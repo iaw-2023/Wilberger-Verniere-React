@@ -1,6 +1,9 @@
+"use client";
+
+import React from "react"
 import Image from 'next/image'
-import Welcome from '../src/Components/welcome/welcome'
-import NavBar from '../src/Components/navbar/navbar'
+import { BrowserRouter } from "react-router-dom"
+import App from "../src/App"
 
 export function Home() {
   return (
@@ -116,9 +119,8 @@ export function Home() {
 
 export default function welcome(){
   return(
-    <main>    
-      <NavBar/>
-      <Welcome/>
-    </main>
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>
   )
 }
