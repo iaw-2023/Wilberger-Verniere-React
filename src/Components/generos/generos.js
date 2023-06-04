@@ -1,11 +1,9 @@
 import React from 'react'
 
-function generos() {
+function Generos() {
   return (
-    <div>
-      
-    </div>
+    <div>Menu Generos</div>
   )
 }
 
-export default generos
+export default Generos
