@@ -1,11 +1,9 @@
 import React from 'react'
 
-function funciones() {
+function Funciones() {
   return (
-    <div>
-      
-    </div>
+    <div>Menu Funciones</div>
   )
 }
 
-export default funciones
+export default Funciones
