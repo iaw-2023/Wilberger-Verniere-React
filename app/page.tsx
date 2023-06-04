@@ -1,6 +1,8 @@
 import Image from 'next/image'
+import Welcome from '../src/Components/welcome/welcome'
+import NavBar from '../src/Components/navbar/navbar'
 
-export default function Home() {
+export function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -108,6 +110,15 @@ export default function Home() {
           </p>
         </a>
       </div>
+    </main>
+  )
+}
+
+export default function welcome(){
+  return(
+    <main>    
+      <NavBar/>
+      <Welcome/>
     </main>
   )
 }
