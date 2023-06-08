@@ -1,9 +1,11 @@
 "use client";
 
 import React from "react"
+import 'bootstrap/dist/css/bootstrap.css';
 import Image from 'next/image'
 import { BrowserRouter } from "react-router-dom"
 import App from "../src/App"
+import Slider from "../src/Components/slider/slider"
 
 export function Home() {
   return (
@@ -120,7 +122,12 @@ export function Home() {
 export default function welcome(){
   return(
     <BrowserRouter>
-      <App/>
+      <div className = "navigation-container">
+        <App/>
+      </div>
+      <div className = "image-slider">
+        <Slider>
+      </div>
     </BrowserRouter>
   )
 }
