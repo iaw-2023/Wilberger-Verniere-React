@@ -5,7 +5,6 @@ import Funciones from './Components/funciones/funciones'
 import Peliculas from './Components/peliculas/peliculas'
 import Generos from './Components/generos/generos'
 import NavBar from './Components/navbar/navbar'
-import Slider from "../src/Components/slider/slider"
 
 function App() {
   return (
@@ -18,9 +17,6 @@ function App() {
           <Route path="/peliculas" element={<Peliculas/>} />
           <Route path="/generos" element={<Generos/>} />
         </Routes>
-      </div>
-      <div className = "image-slider">
-        <Slider/>
       </div>
     </div>
   )
