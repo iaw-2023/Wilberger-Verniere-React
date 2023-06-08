@@ -5,17 +5,23 @@ import Funciones from './Components/funciones/funciones'
 import Peliculas from './Components/peliculas/peliculas'
 import Generos from './Components/generos/generos'
 import NavBar from './Components/navbar/navbar'
+import Slider from "../src/Components/slider/slider"
 
 function App() {
   return (
     <div>
-      <NavBar/>
-      <Routes>
-        <Route path="/" element={ <Welcome/>} />
-        <Route path="/funciones" element={ <Funciones/> } />
-        <Route path="/peliculas" element={<Peliculas/>} />
-        <Route path="/generos" element={<Generos/>} />
-      </Routes>
+      <div className="navigation-menu">
+        <NavBar/>
+        <Routes>
+          <Route path="/" element={ <Welcome/>} />
+          <Route path="/funciones" element={ <Funciones/> } />
+          <Route path="/peliculas" element={<Peliculas/>} />
+          <Route path="/generos" element={<Generos/>} />
+        </Routes>
+      </div>
+      <div className = "image-slider">
+        <Slider/>
+      </div>
     </div>
   )
 }
