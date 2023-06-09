@@ -1,0 +1,26 @@
+.table{
+    width: 100%;
+    font-size: .875rem;
+    text-align: left;
+    color: #a0aec0;
+}
+
+.thead{
+    font-size: .75rem;
+    color: #4a5568;
+    text-transform: uppercase;
+    background-color: rgb(249 250 251);
+}
+
+.th{
+    padding-right: 1.5rem; 
+    padding-left: 1.5rem;
+
+    padding-top: 0.75rem; 
+    padding-bottom: 0.75rem;
+}
+
+.tr{
+    background: white;
+    border: black;
+}
