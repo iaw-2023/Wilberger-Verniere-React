@@ -9,7 +9,7 @@ function Generos() {
   const [error, setError] = useState(null);
 
   const fetchGenero = () => {
-      return axios.get('https://vercel-deploy-test-jtuw53plx-wilbergermatias.vercel.app/rest/generos')
+      return axios.get('https://vercel-deploy-test-921bwpfuo-wilbergermatias.vercel.app/rest/generos')
           .then((response) => {
             setGenero(response.data);
             setError(null);
@@ -20,7 +20,7 @@ function Generos() {
       fetchGenero();
   },[]);
 
-  if (error) return<p> OCURRIO UN ERROR AL PEDIR LOS GENEROS</p>
+  if (error) return<p> OCURRIO UN ERROR AL PEDIR LOS GENEROS </p>
 
   return (
     <div>

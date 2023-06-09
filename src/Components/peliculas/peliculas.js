@@ -3,15 +3,13 @@ import { useState } from 'react';
 import './peliculas.css';
 import axios from 'axios';
 
-// data = Obtener datos de la API
-
 function peliculas() {
   
   const [pelicula, setPelicula] = useState([]);
   const [error, setError] = useState(null);
 
   const fetchPelicula = () => {
-      return axios.get('https://vercel-deploy-test-jtuw53plx-wilbergermatias.vercel.app/rest/peliculas')
+      return axios.get('https://vercel-deploy-test-921bwpfuo-wilbergermatias.vercel.app/rest/peliculas')
           .then((response) => {
             setPelicula(response.data);
             setError(null);

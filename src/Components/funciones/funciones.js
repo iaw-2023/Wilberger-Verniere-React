@@ -10,7 +10,7 @@ function Funciones() {
     const [error, setError] = useState(null);
 
     const fetchFuncion = () => {
-        return axios.get('https://vercel-deploy-test-jtuw53plx-wilbergermatias.vercel.app/rest/funciones')
+        return axios.get('https://vercel-deploy-test-921bwpfuo-wilbergermatias.vercel.app/rest/funciones')
             .then((response) => {
                 setFuncion(response.data);
                 setError(null);
