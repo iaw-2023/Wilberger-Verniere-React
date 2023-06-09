@@ -1,4 +1,6 @@
+import Script from 'next/script';
 import React from 'react'
+import CarouselItem from './carouselItem'
 /*
 * Este codigo fue tomado de la pagina de ejemplos de componentes bootstrap
 * link: https://getbootstrap.com/docs/5.2/components/carousel/#usage
@@ -7,15 +9,9 @@ function slider() {
   return (
     <div id="carouselExampleControlsNoTouching" className="carousel slide" data-bs-touch="false">
         <div className="carousel-inner">
-            <div className="carousel-item active" data-bs-interval="5000">
-                <img src="../images/im1.jpg" className="d-block w-30" alt="..."></img>
-            </div>
-            <div className="carousel-item">
-                <img src="../images/im2.jpg" className="d-block w-30" alt="..."></img>
-            </div>
-            <div className="carousel-item">
-                <img src="..." className="d-block w-100" alt="..."></img>
-            </div>
+            <CarouselItem name ={"carousel-item active"} route={"../images/im1.jpg"}/>
+            <CarouselItem name ={"carousel-item"} route={"../images/im2.jpg"}/>
+            <CarouselItem name ={"carousel-item"} route={"../images/im3.jpg"}/>
         </div>
         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -25,8 +21,27 @@ function slider() {
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="visually-hidden">Next</span>
         </button>
+        <script>
+            start()
+        </script>
     </div>
   )
 }
 
+function start(){
+    $("#myCarousel").carousel();
+
+    // Enable Carousel Indicators
+    $(".item").click(function(){
+      $("#myCarousel").carousel(1);
+    });
+    
+    // Enable Carousel Controls
+    $(".left").click(function(){
+      $("#myCarousel").carousel("prev");
+    });
+}
+
 export default slider
+
+
