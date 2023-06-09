@@ -7,16 +7,22 @@ import axios from 'axios';
 
 function peliculas() {
   
-  const [pelicula, setPelicula] = useState([])
+  const [pelicula, setPelicula] = useState([]);
+  const [error, setError] = useState(null);
 
   const fetchPelicula = () => {
       return axios.get('https://vercel-deploy-test-jtuw53plx-wilbergermatias.vercel.app/rest/peliculas')
-          .then((response) => setPelicula(response.data));
+          .then((response) => {
+            setPelicula(response.data);
+            setError(null);
+        }).catch(setError);
   }
 
   useEffect(() => {
       fetchPelicula();
   },[])
+
+  if (error) return<p> OCURRIO UN ERROR AL PEDIR LAS PELICULAS</p>
 
   return (
     <div>

@@ -5,16 +5,22 @@ import axios from 'axios';
 
 function Generos() {
 
-  const [genero, setGenero] = useState([])
+  const [genero, setGenero] = useState([]);
+  const [error, setError] = useState(null);
 
   const fetchGenero = () => {
       return axios.get('https://vercel-deploy-test-jtuw53plx-wilbergermatias.vercel.app/rest/generos')
-          .then((response) => setGenero(response.data));
+          .then((response) => {
+            setGenero(response.data);
+            setError(null);
+        }).catch(setError);
   }
 
   useEffect(() => {
       fetchGenero();
-  },[])
+  },[]);
+
+  if (error) return<p> OCURRIO UN ERROR AL PEDIR LOS GENEROS</p>
 
   return (
     <div>

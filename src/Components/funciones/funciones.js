@@ -7,16 +7,22 @@ import axios from 'axios';
 function Funciones() {
 
     const [funcion, setFuncion] = useState([])
+    const [error, setError] = useState(null);
 
     const fetchFuncion = () => {
         return axios.get('https://vercel-deploy-test-jtuw53plx-wilbergermatias.vercel.app/rest/funciones')
-            .then((response) => setFuncion(response.data));
+            .then((response) => {
+                setFuncion(response.data);
+                setError(null);
+            }).catch(setError);
     }
 
     useEffect(() => {
         fetchFuncion();
-    },[])
+    },[]);
 
+    if (error) return<p> OCURRIO UN ERROR AL PEDIR LAS FUNCIONES</p>
+    
     return (
         <div>
             <div>Menu Funciones</div>
