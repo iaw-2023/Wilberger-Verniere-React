@@ -8,10 +8,10 @@ function slider() {
     <div id="carouselExampleControlsNoTouching" className="carousel slide" data-bs-touch="false">
         <div className="carousel-inner">
             <div className="carousel-item active" data-bs-interval="5000">
-                <img src="../images/im1.jpg" className="d-block w-100" alt="..."></img>
+                <img src="../images/im1.jpg" className="d-block w-30" alt="..."></img>
             </div>
             <div className="carousel-item">
-                <img src="../images/im2.jpg" className="d-block w-100" alt="..."></img>
+                <img src="../images/im2.jpg" className="d-block w-30" alt="..."></img>
             </div>
             <div className="carousel-item">
                 <img src="..." className="d-block w-100" alt="..."></img>
