@@ -1,0 +1,10 @@
+.carousel-inner{
+    display:flex;
+    
+    
+}
+
+.carousel-item{
+    align-items: center;
+    align-content: center;
+}
