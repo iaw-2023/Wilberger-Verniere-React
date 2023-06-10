@@ -4,6 +4,7 @@ import Welcome from './Components/welcome/welcome'
 import Funciones from './Components/funciones/funciones'
 import Peliculas from './Components/peliculas/peliculas'
 import Generos from './Components/generos/generos'
+import Carrito from './Components/carrito/carrito'
 import NavBar from './Components/navbar/navbar'
 import Footer from './Components/footer/footer'
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/funciones" element={ <Funciones/> } />
           <Route path="/peliculas" element={<Peliculas/>} />
           <Route path="/generos" element={<Generos/>} />
+          <Route path="/carrito" element={<Carrito/>} />
         </Routes>
       </div>
       <div className= "page-footer">
