@@ -21,25 +21,8 @@ function slider() {
             <span className="carousel-control-next-icon" aria-hidden="true"></span>
             <span className="visually-hidden">Next</span>
         </button>
-        <script>
-            start()
-        </script>
     </div>
   )
-}
-
-function start(){
-    $("#myCarousel").carousel();
-
-    // Enable Carousel Indicators
-    $(".item").click(function(){
-      $("#myCarousel").carousel(1);
-    });
-    
-    // Enable Carousel Controls
-    $(".left").click(function(){
-      $("#myCarousel").carousel("prev");
-    });
 }
 
 export default slider

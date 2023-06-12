@@ -19,3 +19,7 @@
 html {
   background-image: radial-gradient(circle, --color1, --color2, --color3);
 }
+
+.page-footer{
+  padding-top: 8vh;
+}
