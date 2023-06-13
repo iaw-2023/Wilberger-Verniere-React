@@ -12,14 +12,14 @@ function NavBar() {
           <Link to="/peliculas">Peliculas</Link>
           <Link to="/generos">Generos</Link>
           <Link to="/carrito" className="carrito">🛒</Link>
-          <div className="search-container">
+          {/* <div className="search-container">
             <form action="/action_page.php">
               <input type="text" placeholder="Search.." name="search"></input>
               <button type="submit">
                 <i className="fa fa-search"></i>
               </button>
             </form>
-          </div>
+          </div> */}
         </div>
       </>
     );
