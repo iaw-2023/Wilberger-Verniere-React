@@ -1,0 +1,8 @@
+.quitar-orden{
+    background-color: #d9534f;
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
