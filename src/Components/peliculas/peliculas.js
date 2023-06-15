@@ -24,31 +24,24 @@ function peliculas() {
 
   return (
     <div>
-      <div>Menu Peliculas</div>
-        <div>
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="tabla dark:text-gray-400">
-                    <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table className="tabla dark:text-gray-400">
+                <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
+                    <tr className="tablaRow">
+                        <th scope="col" className="tablaH">Nombre: </th>
+                        <th scope="col" className="tablaH">Genero: </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { pelicula && pelicula.length>0 && pelicula.map((peliculaObj,index) => (
                         <tr className="tablaRow">
-                            <th scope="col" className="tablaH">
-                                Nombre:
-                            </th>
-                            <th scope="col" className="tablaH">
-                                Genero:
-                            </th>
+                            <th className="tablaH"> {peliculaObj.Nombre}   </th>
+                            <th className="tablaH">  {peliculaObj.Genero}   </th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        { pelicula && pelicula.length>0 && pelicula.map((peliculaObj,index) => (
-                            <tr className="tablaRow">
-                                <th className="tablaH"> {peliculaObj.Nombre}   </th>
-                                <th className="tablaH">  {peliculaObj.Genero}   </th>
-                            </tr>
-                        ))
-                        }
-                    </tbody>
-                </table>
-            </div>
+                    ))
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
   )
