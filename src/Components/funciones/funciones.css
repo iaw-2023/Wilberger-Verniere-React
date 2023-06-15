@@ -27,6 +27,10 @@
     border: black;
 }
 
+.tablaRow:hover{
+    background:  #fbf1f1;
+}
+
 .añadir-ticket{
     background-color: #5cb85c;
     border-radius: 5px;
