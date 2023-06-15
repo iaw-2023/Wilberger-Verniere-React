@@ -5,9 +5,9 @@ function Welcome() {
       <>
         <h1>Bienvenido</h1>
         <p>Elija una opcion en la barra de navegacion.</p>
-        <div className = "image-slider">
+        {/* <div className = "image-slider">
           <Slider/>
-        </div>
+        </div> */}
       </>
     );
 }
