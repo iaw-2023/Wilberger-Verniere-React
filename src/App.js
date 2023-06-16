@@ -7,10 +7,11 @@ import Generos from './Components/generos/generos'
 import Carrito from './Components/carrito/carrito'
 import NavBar from './Components/navbar/navbar'
 import Footer from './Components/footer/footer'
+import DataProvider from './Components/context/dataContext'
 
 function App() {
   return (
-    <div>
+    <DataProvider>
       <div className="navigation-menu">
         <NavBar/>
         <Routes>
@@ -21,10 +22,10 @@ function App() {
           <Route path="/carrito" element={<Carrito/>} />
         </Routes>
       </div>
-      <div className= "page-footer">
+      {/* <div className= "page-footer">
         <Footer/>
-      </div>
-    </div>
+      </div> */}
+    </DataProvider>
   )
 }
 
