@@ -3,6 +3,21 @@ import { useState } from 'react';
 import './generos.css';
 import axios from 'axios';
 
+function listaPeliculas(arregloPeliculas){
+    if (arregloPeliculas.length < 1){
+        return "No hay peliculas asociadas a este genero"
+    }
+    else {
+        let arregloRet = [];
+        for (let i=0; i<arregloPeliculas.length; i++){
+            console.log("arregloPeliculas: ",arregloPeliculas[i]);
+            arregloRet[i]=arregloPeliculas[i].nombre;
+            console.log("arregloRet: ", arregloRet[i])
+        }
+        return arregloRet.toString;
+    }
+}
+
 function Generos() {
 
   const [genero, setGenero] = useState([]);
@@ -27,19 +42,18 @@ function Generos() {
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="tabla dark:text-gray-400">
                 <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
-                    <tr className='tablaRow'>
+                    <tr>
                         <th scope="col" className="tablaH">Nombre: </th>
                         <th scope="col" className="tablaH">Peliculas: </th>
                     </tr>
                 </thead>
                 <tbody>
                     { genero && genero.length>0 && genero.map((generoObj,index) => (
-                        <tr className="tablaRow">
-                            <th className="tablaH"> {generoObj.Nombre}            </th>
-                            <th className="tablaH"> {generoObj.Peliculas}         </th>
+                        <tr className="tablaRow" key={index}>
+                            <th className="tablaH"> {generoObj.Nombre} </th>
+                            <th className="tablaH"> { listaPeliculas(generoObj.Peliculas) } </th>
                         </tr>
-                    ))
-                    }
+                    ))}
                 </tbody>
             </table>
         </div>
