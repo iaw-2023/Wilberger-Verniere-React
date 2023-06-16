@@ -1,0 +1,28 @@
+.form-div{
+    margin: 0 auto;
+    width: 25%;
+    margin-top: 10px;
+    text-align: center; 
+}
+
+.formulario{
+    display: block;
+    margin-bottom: 15px;
+}
+
+.input-email{
+    border-width: 1px;
+    border-radius: 5px;;
+    border-color: black;
+    margin-right: 15px;
+}
+
+.boton-enviar{
+    background-color: #5c75b8;
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
