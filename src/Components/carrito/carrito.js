@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import "./carrito.css";
 import { dataContext } from '../context/dataContext';
@@ -29,15 +29,38 @@ export function useComprar(compra, tickets) {
   });
 }
 
-function cancelarOrden(index) { 
+function cancelarOrden(index)
+{ 
   const { carrito } = useContext(dataContext);
   carrito.splice(index,1); 
   console.log(carrito); 
 }
 
-function confirmarCompra(){ console.log("COMPRA CONFIRMADA"); }
+function confirmarCompra()
+{
+  const { carrito } = useContext(dataContext);
+  console.log("data: [");
+  console.log("Observaciones: "+observaciones);
+  console.log("Email: "+email);
+  console.log("FechaCompra: "+fechaCompra);
+  console.log("Compras: ");
+  { carrito && carrito.length>0 && carrito.map((compraObj,index) => (
+    console.log(index+": "),
+    console.log("Pelicula: "+compraObj.Pelicula),
+    console.log("NroTickets: "+compraObj.NroTickets),
+    console.log("Fecha: "+compraObj.Fecha),
+    console.log("Hora: "+compraObj.Hora)
+  ))};
+  console.log("]");
+  /* axios.post(
+    'https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/compras/crear',
+    { todo lo relacionado a la compra }
+  ) */
+   
+}
 
-function limpiarCompra(){ 
+function limpiarCompra()
+{ 
   const { carrito, setCarrito } = useContext(dataContext);
   setCarrito( () => {
     carrito.splice(0,carrito.length); 
@@ -47,9 +70,31 @@ function limpiarCompra(){
 
 function ordenes() {
   const { carrito } = useContext(dataContext);
+
+  const [email, SetEmail] = useState("");
+  const handleSubmitEmail= (event) => {
+    event.preventDefault();
+    SetEmail(event.target.value);
+  }
+  const [observaciones, SetObservaciones] = useState("");
+  const handleSubmitObservaciones= (event) => {
+    event.preventDefault();
+    SetObservaciones(event.target.value);
+  }
+
   return (
-    <div>
+    <div className='wrapper'>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div className='input-wrapper'>
+          <div className="email">
+            <div className='email-text'>Email:</div>   
+            <input type="text" className="input-email" value={email} onChange={handleSubmitEmail}/>
+          </div>
+          <div className="observaciones">
+            <div className='observaciones-text'>Observaciones:</div>   
+            <input type="text" className="input-observaciones" value={observaciones} onChange={handleSubmitObservaciones}/>
+          </div>
+        </div>
         <table className="tabla dark:text-gray-400">
           <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
             <tr>

@@ -1,3 +1,41 @@
+.wrapper{
+    margin-left: 20px;
+}
+
+.input-wrapper{
+    columns: auto 1;
+}
+
+.email{
+    margin-bottom: 10px;
+}
+
+.email-text{
+    margin-right: 20px;
+}
+
+.input-email{
+    border-width: 1px;
+    border-radius: 5px;;
+    border-color: black;
+    margin-right: 15px;
+}
+
+.observaciones{
+    margin-bottom: 10px;
+}
+
+.observaciones-text{
+    margin-right: 20px;
+}
+
+.input-observaciones{
+    border-width: 1px;
+    border-radius: 5px;;
+    border-color: black;
+    margin-right: 15px;
+}
+
 .quitar-orden{
     background-color: #d9534f;
     border-radius: 5px;
@@ -9,6 +47,7 @@
 
 .boton-group{
     display: inline-block;
+    margin-top: 50px;
 }
 
 .boton-enviar{
