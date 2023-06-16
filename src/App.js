@@ -8,20 +8,22 @@ import Carrito from './Components/carrito/carrito'
 import NavBar from './Components/navbar/navbar'
 import Footer from './Components/footer/footer'
 import DataProvider from './Components/context/dataContext'
+import Compras from './Components/compras/compras'
 
 function App() {
   return (
     <DataProvider>
       <div className="navigation-menu">
         <NavBar/>
-        <Routes>
-          <Route path="/" element={ <Welcome/>} />
-          <Route path="/funciones" element={ <Funciones/> } />
-          <Route path="/peliculas" element={<Peliculas/>} />
-          <Route path="/generos" element={<Generos/>} />
-          <Route path="/carrito" element={<Carrito/>} />
-        </Routes>
       </div>
+      <Routes>
+        <Route path="/" element={ <Welcome/>} />
+        <Route path="/funciones" element={ <Funciones/> } />
+        <Route path="/peliculas" element={<Peliculas/>} />
+        <Route path="/generos" element={<Generos/>} />
+        <Route path="/compras" element={<Compras/>} />
+        <Route path="/carrito" element={<Carrito/>} />
+      </Routes>
       {/* <div className= "page-footer">
         <Footer/>
       </div> */}
