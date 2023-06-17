@@ -9,12 +9,12 @@ function listaPeliculas(arregloPeliculas){
     }
     else {
         let arregloRet = [];
-        for (let i=0; i<arregloPeliculas.length; i++){
-            console.log("arregloPeliculas: ",arregloPeliculas[i]);
-            arregloRet[i]=arregloPeliculas[i].nombre;
-            console.log("arregloRet: ", arregloRet[i])
+        for (let i = 0; i<arregloPeliculas.length; i++){
+            //console.log("arregloPeliculas: ", arregloPeliculas[i]);
+            arregloRet[i]=arregloPeliculas[i].nombre + "\n";
+            //console.log("arregloRet: ", arregloRet[i])
         }
-        return arregloRet.toString;
+        return arregloRet;
     }
 }
 
@@ -51,7 +51,7 @@ function Generos() {
                     { genero && genero.length>0 && genero.map((generoObj,index) => (
                         <tr className="tablaRow" key={index}>
                             <th className="tablaH"> {generoObj.Nombre} </th>
-                            <th className="tablaH"> { listaPeliculas(generoObj.Peliculas) } </th>
+                            <th className="tablaH"> {listaPeliculas(generoObj.Peliculas) } </th>
                         </tr>
                     ))}
                 </tbody>
