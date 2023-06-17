@@ -8,7 +8,7 @@ import { dataContext } from '../context/dataContext';
 function Funciones() {
     const [funcion, setFuncion] = useState([])
     const [error, setError] = useState(null);
-    const {carrito, setCarrito} = useContext(dataContext);
+    const {handleComprar} = useContext(dataContext);
 
     const fetchFuncion = () => {
         return axios.get('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/funciones')
@@ -23,41 +23,6 @@ function Funciones() {
     },[]);
 
     if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS FUNCIONES</p>
-    
-    const handleComprar = (props) => 
-    {
-        var p = prompt("Ingrese la cantidad de tickets que desea comprar", "0");
-        var cantTickets = parseInt(p);
-        if (!cantTickets<1){
-            console.log("se va a llamar a comprar");
-            comprar(props, cantTickets);
-            console.log("se completo comprar");
-        }
-    }
-
-    const comprar = (compra, tickets) => 
-    {
-        setCarrito( () => {
-            compra.NroTickets = tickets;
-            let found = false;
-            let index = 0;
-            console.log("Buscando elemento en carrito");
-            while (!found && index < carrito.length){
-                let aux = carrito.at(index);
-                if (aux.Pelicula == compra.Pelicula && aux.Fecha == compra.Fecha && aux.NroSala == compra.NroSala && aux.Hora == compra.Hora){
-                aux.NroTickets += compra.NroTickets;
-                found = true;
-                console.log("Se encontro en carrito y se sumaron tickets");
-                }
-                index++;
-            }
-            if (!found){
-                console.log("No se encontro, se agrego al carrito");
-                carrito.push(compra);
-            }   
-            console.log(carrito);
-        });
-    }
 
     return (
         <div>
@@ -83,8 +48,7 @@ function Funciones() {
                                     <Button className="añadir-ticket" onClick={ ()=>handleComprar(funcionObj) }>Comprar</Button>
                                 </th>
                             </tr>
-                        ))
-                        }
+                        ))}
                     </tbody>
                 </table>
             </div>

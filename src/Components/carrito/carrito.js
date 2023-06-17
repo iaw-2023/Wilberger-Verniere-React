@@ -5,57 +5,22 @@ import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 
 function ordenes() {
-  const {carrito, setCarrito} = useContext(dataContext);
+  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra} = useContext(dataContext);
   const [email, SetEmail] = useState("");
   const [observaciones, SetObservaciones] = useState("");
 
   const handleSubmitEmail = (event) => 
   {
     event.preventDefault();
+    console.log(event.target.value);
     SetEmail(event.target.value);
   }
   
   const handleSubmitObservaciones = (event) => 
   {
     event.preventDefault();
+    console.log(event.target.value);
     SetObservaciones(event.target.value);
-  }
-
-  const cancelarOrden = (index) =>
-  {
-    setCarrito( () => {
-      carrito.splice(index,1); 
-      console.log(carrito); 
-    });
-  }
-
-  const confirmarCompra = () =>
-  {
-    console.log("data: [");
-    console.log("Observaciones: "+observaciones);
-    console.log("Email: "+email);
-    console.log("FechaCompra: "+fechaCompra);
-    console.log("Compras: ");
-    { carrito && carrito.length>0 && carrito.map((compraObj,index) => (
-      console.log(index+": "),
-      console.log("Pelicula: "+compraObj.Pelicula),
-      console.log("NroTickets: "+compraObj.NroTickets),
-      console.log("Fecha: "+compraObj.Fecha),
-      console.log("Hora: "+compraObj.Hora)
-    ))};
-    console.log("]");
-    /* axios.post(
-      'https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/compras/crear',
-      { todo lo relacionado a la compra }
-    ) */ 
-  }
-
-  const limpiarCompra = () =>
-  { 
-    setCarrito( () => {
-      carrito.splice(0,carrito.length); 
-      console.log(carrito);
-    });
   }
 
   return (
