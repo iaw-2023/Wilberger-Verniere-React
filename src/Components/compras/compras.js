@@ -7,7 +7,8 @@ function compras() {
   const [text, SetText] = useState("");
   const handleSubmit= (event) => {
     event.preventDefault();
-    SetText(event.target[0].value);
+    console.log(event.target.value);
+    SetText(event.target.value);
   }
 
   return (
