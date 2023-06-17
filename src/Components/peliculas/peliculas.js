@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import './peliculas.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function peliculas() {
   
@@ -30,6 +31,7 @@ function peliculas() {
                     <tr>
                         <th scope="col" className="tablaH">Nombre: </th>
                         <th scope="col" className="tablaH">Genero: </th>
+                        {/* <th scope="col" className="tablaH">Accion: </th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +39,7 @@ function peliculas() {
                         <tr className="tablaRow">
                             <th className="tablaH"> {peliculaObj.Nombre}   </th>
                             <th className="tablaH">  {peliculaObj.Genero}   </th>
+                            {/* <Link to={"/funciones/${peliculaObj.Nombre}/${peliculaObj.Genero}"}>Ver funciones</Link> */}
                         </tr>
                     ))
                     }
