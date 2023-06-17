@@ -15,7 +15,7 @@ const dataProvider = ( {children} ) => {
             .then(response => setData(response.data.data));
     })
 
-    return <dataContext.Provider value={{ data, carrito, setCarrito }}>{children}</dataContext.Provider>
+    return <dataContext.Provider value={ {data, carrito, setCarrito} }>{children}</dataContext.Provider>
 };
 
 export default dataProvider;
