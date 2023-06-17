@@ -3,83 +3,59 @@ import {Button, ButtonGroup} from 'react-bootstrap';
 import "./carrito.css";
 import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
-    
-export function useComprar(compra, tickets) {
-  const { carrito, setCarrito } = useContext(dataContext);
-
-  setCarrito( () => {
-    compra.NroTickets = tickets;
-    let found = false;
-    let index = 0;
-    console.log("Buscando elemento en carrito");
-    while (!found && index < carrito.length){
-      let aux = carrito.at(index);
-      if (aux.Pelicula == compra.Pelicula && aux.Fecha == compra.Fecha && aux.NroSala == compra.NroSala && aux.Hora == compra.Hora){
-        aux.NroTickets += compra.NroTickets;
-        found = true;
-        console.log("Se encontro en carrito y se sumaron tickets");
-      }
-      index++;
-    }
-    if (!found){
-      console.log("No se encontro, se agrego al carrito");
-      carrito.push(compra);
-    }   
-    console.log(carrito);
-  });
-}
-
-function cancelarOrden(index)
-{ 
-  const { carrito } = useContext(dataContext);
-  carrito.splice(index,1); 
-  console.log(carrito); 
-}
-
-function confirmarCompra()
-{
-  const { carrito } = useContext(dataContext);
-  console.log("data: [");
-  console.log("Observaciones: "+observaciones);
-  console.log("Email: "+email);
-  console.log("FechaCompra: "+fechaCompra);
-  console.log("Compras: ");
-  { carrito && carrito.length>0 && carrito.map((compraObj,index) => (
-    console.log(index+": "),
-    console.log("Pelicula: "+compraObj.Pelicula),
-    console.log("NroTickets: "+compraObj.NroTickets),
-    console.log("Fecha: "+compraObj.Fecha),
-    console.log("Hora: "+compraObj.Hora)
-  ))};
-  console.log("]");
-  /* axios.post(
-    'https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/compras/crear',
-    { todo lo relacionado a la compra }
-  ) */
-   
-}
-
-function limpiarCompra()
-{ 
-  const { carrito, setCarrito } = useContext(dataContext);
-  setCarrito( () => {
-    carrito.splice(0,carrito.length); 
-    console.log(carrito);
-  });
-}
 
 function ordenes() {
-  const { carrito } = useContext(dataContext);
-
+  const {carrito, setCarrito} = useContext(dataContext);
   const [email, SetEmail] = useState("");
-  const handleSubmitEmail= (event) => {
+  const [observaciones, SetObservaciones] = useState("");
+
+  const handleSubmitEmail = (event) => 
+  {
     event.preventDefault();
     SetEmail(event.target.value);
   }
-  const [observaciones, SetObservaciones] = useState("");
-  const handleSubmitObservaciones= (event) => {
+  
+  const handleSubmitObservaciones = (event) => 
+  {
     event.preventDefault();
     SetObservaciones(event.target.value);
+  }
+
+  const cancelarOrden = (index) =>
+  {
+    setCarrito( () => {
+      carrito.splice(index,1); 
+      console.log(carrito); 
+    });
+  }
+
+  const confirmarCompra = () =>
+  {
+    console.log("data: [");
+    console.log("Observaciones: "+observaciones);
+    console.log("Email: "+email);
+    console.log("FechaCompra: "+fechaCompra);
+    console.log("Compras: ");
+    { carrito && carrito.length>0 && carrito.map((compraObj,index) => (
+      console.log(index+": "),
+      console.log("Pelicula: "+compraObj.Pelicula),
+      console.log("NroTickets: "+compraObj.NroTickets),
+      console.log("Fecha: "+compraObj.Fecha),
+      console.log("Hora: "+compraObj.Hora)
+    ))};
+    console.log("]");
+    /* axios.post(
+      'https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/compras/crear',
+      { todo lo relacionado a la compra }
+    ) */ 
+  }
+
+  const limpiarCompra = () =>
+  { 
+    setCarrito( () => {
+      carrito.splice(0,carrito.length); 
+      console.log(carrito);
+    });
   }
 
   return (
