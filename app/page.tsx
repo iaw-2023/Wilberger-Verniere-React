@@ -2,7 +2,6 @@
 
 import React from "react"
 import 'bootstrap/dist/css/bootstrap.css';
-import Image from 'next/image'
 import { BrowserRouter } from "react-router-dom"
 import App from "../src/App"
 

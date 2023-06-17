@@ -1,9 +1,9 @@
-.carousel-inner{
-    display:flex;
-
+.carousel .carousel-indicators button {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
 }
 
-.carousel-item{
-    align-items: center;
-    align-content: center;
+.carousel .carousel-control-next-icon.changed {
+    background-image: url("./arrow-right-solid.svg");
 }

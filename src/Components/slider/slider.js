@@ -1,30 +1,37 @@
-import Script from 'next/script';
-import React from 'react'
-import CarouselItem from './carouselItem'
-/*
-* Este codigo fue tomado de la pagina de ejemplos de componentes bootstrap
-* link: https://getbootstrap.com/docs/5.2/components/carousel/#usage
-*/
-function slider() {
+import Carousel from 'react-bootstrap/Carousel';
+import React, { useState } from 'react';
+import './slider.css';
+
+function Slider({ slides }) {
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    console.log('selected index: ', selectedIndex)
+    setIndex(selectedIndex);
+  };
+
   return (
-    <div id="carouselExampleControlsNoTouching" className="carousel slide" data-bs-touch="false">
-        <div className="carousel-inner">
-            <CarouselItem name ={"carousel-item active"} route={"../images/im1.jpg"}/>
-            <CarouselItem name ={"carousel-item"} route={"../images/im2.jpg"}/>
-            <CarouselItem name ={"carousel-item"} route={"../images/im3.jpg"}/>
-        </div>
-        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-        </button>
-        <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-        </button>
-    </div>
-  )
+    <Carousel activeIndex={index}
+              onSelect={handleSelect}
+              nextIcon={<span aria-hidden="true" className="carousel-control-next-icon changed" />}
+    >
+      {slides.map((slide) => (
+        <Carousel.Item key={slide.image} interval={slide.interval}>
+          <img
+            className="d-block w-100"
+            src={slide.image}
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            <h3>{slide.title}</h3>
+            <p>{slide.subTitle}</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      ))}
+    </Carousel>
+  );
 }
 
-export default slider
+export default Slider;
 
 
