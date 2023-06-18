@@ -23,6 +23,16 @@ function ordenes() {
     SetObservaciones(event.target.value);
   }
 
+  const getCurrentDate = (separator='/') => 
+  {
+    let newDate = new Date()
+    let date = newDate.getDate();
+    let month = newDate.getMonth() + 1;
+    let year = newDate.getFullYear();
+    
+    return `${date}${separator}${month<10?`0${month}`:`${month}`}${separator}${year}`
+  }
+
   return (
     <div className='wrapper'>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -48,13 +58,13 @@ function ordenes() {
             </tr>
           </thead>
           <tbody>
-            { carrito && carrito.length>0 && carrito.map((compra,index) => (
+            { carrito && carrito.length>0 && carrito.map((carritoObj,index) => (
               <tr className="tablaRow" key={index}>
-                <th className="tablaH"> {compra.Pelicula}      </th>
-                <th className="tablaH"> {compra.Fecha}         </th>
-                <th className="tablaH"> {compra.Hora}          </th>
-                <th className="tablaH"> {compra.NroSala}       </th>
-                <th className="tablaH"> {compra.NroTickets}    </th>
+                <th className="tablaH"> {carritoObj.Pelicula}      </th>
+                <th className="tablaH"> {carritoObj.Fecha}         </th>
+                <th className="tablaH"> {carritoObj.Hora}          </th>
+                <th className="tablaH"> {carritoObj.NroSala}       </th>
+                <th className="tablaH"> {carritoObj.NroTickets}    </th>
                 <th className="tablaH"> 
                     <Button className="quitar-orden" onClick={ ()=>cancelarOrden(index) }>Quitar</Button>
                 </th>
@@ -65,7 +75,7 @@ function ordenes() {
       </div>
       <ButtonGroup className='boton-group'>
         <Button className="boton-cancelar" onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
-        <Button className="boton-enviar" onClick={ ()=>confirmarCompra() }>Confirmar Compra</Button>
+        <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, email, getCurrentDate()) }>Confirmar Compra</Button>
       </ButtonGroup>
     </div>
   )
