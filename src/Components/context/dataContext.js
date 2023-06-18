@@ -50,25 +50,28 @@ const dataProvider = ( {children} ) => {
         });
     }
 
-    const confirmarCompra = () =>
+    const confirmarCompra = (observaciones,email,fechaCompra) =>
     {
         console.log("data: [");
-        console.log("Observaciones: "+observaciones);
-        console.log("Email: "+email);
-        console.log("FechaCompra: "+fechaCompra);
-        console.log("Compras: ");
-        { carrito && carrito.length>0 && carrito.map((compraObj,index) => (
-        console.log(index+": "),
-        console.log("Pelicula: "+compraObj.Pelicula),
-        console.log("NroTickets: "+compraObj.NroTickets),
-        console.log("Fecha: "+compraObj.Fecha),
-        console.log("Hora: "+compraObj.Hora)
+        console.log("   Observaciones: "+observaciones);
+        console.log("   Email: "+email);
+        console.log("   FechaCompra: "+fechaCompra);
+        console.log("   Compras: ");
+        { carrito && carrito.length>0 && carrito.map((carritoObj,index) => (
+            console.log(index+" :\n["),
+            console.log("       Pelicula: "+carritoObj.Pelicula),
+            console.log("       NroTickets: "+carritoObj.NroTickets),
+            console.log("       Fecha: "+carritoObj.Fecha),
+            console.log("       Hora: "+carritoObj.Hora)
         ))};
         console.log("]");
-        /* axios.post(
-        'https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/compras/crear',
-        { todo lo relacionado a la compra }
-        ) */ 
+        /* axios.post('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/compras/crear',
+        { 
+            Observaciones: observaciones, 
+            EmailCliente: email, 
+            FechaCompra: fechaCompra, 
+            Compras: carrito 
+        }); */ 
     }
 
     const limpiarCompra = () =>
