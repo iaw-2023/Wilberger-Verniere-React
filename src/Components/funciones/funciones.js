@@ -34,6 +34,7 @@ function Funciones() {
                             <th scope="col" className="tablaH">Fecha:</th>
                             <th scope="col" className="tablaH">Hora:</th>
                             <th scope="col" className="tablaH">Sala numero:</th>
+                            {/* <th scope="col" className="tablaH">Asientos Disponibles:</th> */}
                             <th scope="col" className="tablaH">Accion:</th>
                         </tr>
                     </thead>
@@ -44,6 +45,7 @@ function Funciones() {
                                 <th className="tablaH"> {funcionObj.Fecha}         </th>
                                 <th className="tablaH"> {funcionObj.Hora}          </th>
                                 <th className="tablaH"> {funcionObj.NroSala}       </th>
+                                {/* <th className="tablaH"> {funcionObj.LugaresDisponibles}       </th> */}
                                 <th className="tablaH"> 
                                     <Button className="añadir-ticket" onClick={ ()=>handleComprar(funcionObj) }>Comprar</Button>
                                 </th>

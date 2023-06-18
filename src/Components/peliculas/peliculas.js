@@ -29,6 +29,7 @@ function peliculas() {
             <table className="tabla dark:text-gray-400">
                 <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
                     <tr>
+                        {/* <th scope="col" className="tablaH">Imagen: </th> */}
                         <th scope="col" className="tablaH">Nombre: </th>
                         <th scope="col" className="tablaH">Genero: </th>
                         {/* <th scope="col" className="tablaH">Accion: </th> */}
@@ -37,6 +38,7 @@ function peliculas() {
                 <tbody>
                     { pelicula && pelicula.length>0 && pelicula.map((peliculaObj,index) => (
                         <tr className="tablaRow" key={index}>
+                            {/* <th className="tablaH"> {peliculaObj.Imagen}   </th> */}
                             <th className="tablaH"> {peliculaObj.Nombre}   </th>
                             <th className="tablaH">  {peliculaObj.Genero}   </th>
                             {/* <Link to={"/funciones/${peliculaObj.Nombre}/${peliculaObj.Genero}"}>Ver funciones</Link> */}
