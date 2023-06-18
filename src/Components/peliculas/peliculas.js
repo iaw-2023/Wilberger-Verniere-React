@@ -36,7 +36,7 @@ function peliculas() {
                 </thead>
                 <tbody>
                     { pelicula && pelicula.length>0 && pelicula.map((peliculaObj,index) => (
-                        <tr className="tablaRow">
+                        <tr className="tablaRow" key={index}>
                             <th className="tablaH"> {peliculaObj.Nombre}   </th>
                             <th className="tablaH">  {peliculaObj.Genero}   </th>
                             {/* <Link to={"/funciones/${peliculaObj.Nombre}/${peliculaObj.Genero}"}>Ver funciones</Link> */}
