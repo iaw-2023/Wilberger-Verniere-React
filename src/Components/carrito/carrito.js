@@ -33,6 +33,8 @@ function ordenes() {
     return `${date}${separator}${month<10?`0${month}`:`${month}`}${separator}${year}`
   }
 
+  console.log(carrito);
+
   return (
     <div className='wrapper'>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

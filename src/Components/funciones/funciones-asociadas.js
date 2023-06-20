@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './funciones.css';
 import {Button} from 'react-bootstrap';
 import axios from 'axios';
-import {useComprar} from '../carrito/carrito';
+import { useComprar } from '../carrito/carrito';
+import { dataContext } from '../context/dataContext';
  
 
 function handleComprar(props){
@@ -16,14 +17,15 @@ function handleComprar(props){
 }
 
 function FuncionesAsociadas() {
-    const {pelicula,genero} = props.location.state
+    const {peliculaElegida} = useContext(dataContext);
+    const [error, setError] = useState(null);
     const [funcion, setFuncion] = useState([])
 
     const fetchFuncion = () => {
         return axios.get('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/funciones/asociadas', 
             params={
-                pelicula: pelicula,
-                genero: genero
+                pelicula: peliculaElegida.Nombre,
+                genero: peliculaElegida.Genero,
         })
             .then((response) => {
                 setFuncion(response.data.data);
@@ -35,8 +37,9 @@ function FuncionesAsociadas() {
         fetchFuncion();
     },[]);
 
+    console.log(peliculaElegida);
     if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS FUNCIONES</p>
-    
+
     return (
         <div>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -61,8 +64,7 @@ function FuncionesAsociadas() {
                                     <Button className="añadir-ticket" onClick={ ()=>handleComprar(funcionObj) }>Comprar</Button>
                                 </th>
                             </tr>
-                        ))
-                        }
+                        ))}
                     </tbody>
                 </table>
             </div>

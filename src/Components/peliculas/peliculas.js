@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import './peliculas.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { dataContext } from '../context/dataContext';
 
 function peliculas() {
   
   const [pelicula, setPelicula] = useState([]);
   const [error, setError] = useState(null);
+  const { setPeliculaElegida } = useContext(dataContext);
 
   const fetchPelicula = () => {
       return axios.get('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/peliculas')
@@ -32,7 +34,7 @@ function peliculas() {
                         {/* <th scope="col" className="tablaH">Imagen: </th> */}
                         <th scope="col" className="tablaH">Nombre: </th>
                         <th scope="col" className="tablaH">Genero: </th>
-                        {/* <th scope="col" className="tablaH">Accion: </th> */}
+                        <th scope="col" className="tablaH">Accion: </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,10 +43,11 @@ function peliculas() {
                             {/* <th className="tablaH"> {peliculaObj.Imagen}   </th> */}
                             <th className="tablaH"> {peliculaObj.Nombre}   </th>
                             <th className="tablaH">  {peliculaObj.Genero}   </th>
-                            {/* <Link to={"/funciones/${peliculaObj.Nombre}/${peliculaObj.Genero}"}>Ver funciones</Link> */}
+                            <th>
+                                <Link to={"/funcionesAsociadas"} onClick={ () => setPeliculaElegida(peliculaObj) }>Ver funciones</Link>
+                            </th>
                         </tr>
-                    ))
-                    }
+                    ))}
                 </tbody>
             </table>
         </div>
