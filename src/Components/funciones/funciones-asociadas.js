@@ -2,22 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import './funciones.css';
 import {Button} from 'react-bootstrap';
 import axios from 'axios';
-import { useComprar } from '../carrito/carrito';
 import { dataContext } from '../context/dataContext';
- 
-
-function handleComprar(props){
-    var p = prompt("Ingrese la cantidad de tickets que desea comprar", "0");
-    var cantTickets = parseInt(p);
-    if (!cantTickets<1){
-        console.log("se va a llamar a comprar");
-        useComprar(props, cantTickets);
-        console.log("se completo comprar");
-    }
-}
 
 function FuncionesAsociadas() {
-    const {peliculaElegida} = useContext(dataContext);
+    const {peliculaElegida, promptComprar} = useContext(dataContext);
     const [error, setError] = useState(null);
     const [funcion, setFuncion] = useState([])
 
@@ -61,7 +49,7 @@ function FuncionesAsociadas() {
                                 <th className="tablaH"> {funcionObj.Hora}          </th>
                                 <th className="tablaH"> {funcionObj.NroSala}       </th>
                                 <th className="tablaH"> 
-                                    <Button className="añadir-ticket" onClick={ ()=>handleComprar(funcionObj) }>Comprar</Button>
+                                    <Button className="añadir-ticket" onClick={ ()=>promptComprar(funcionObj) }>Comprar</Button>
                                 </th>
                             </tr>
                         ))}
