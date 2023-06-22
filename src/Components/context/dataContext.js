@@ -9,7 +9,7 @@ const dataProvider = ( {children} ) => {
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState([]);
 
-    const handleComprar = (props) => 
+    const promptComprar = (compra) => 
     {
         /* var valorValido = false;
         while (!valorValido){
@@ -21,12 +21,12 @@ const dataProvider = ( {children} ) => {
         console.log("se va a llamar a comprar");
         comprar(props, cantTickets);
         console.log("se completo comprar"); */
-
+        console.log(carrito);
         var p = prompt("Ingrese la cantidad de tickets que desea comprar", "0");
         var cantTickets = parseInt(p);
         if (!cantTickets<1){
             console.log("se va a llamar a comprar");
-            comprar(props, cantTickets);
+            comprar(compra, cantTickets);
             console.log("se completo comprar");
         }
     }
@@ -40,11 +40,7 @@ const dataProvider = ( {children} ) => {
             console.log("Buscando compra en carrito");
             while (!found && index < carrito.length){
                 let aux = carrito.at(index);
-                console.log("Pelicula: " + compra.Pelicula+","+aux.Pelicula);
-                console.log("NroSala: " + compra.NroSala+","+aux.NroSala);
-                console.log("Fecha: " + compra.Fecha+","+aux.Fecha);
-                console.log("Hora: " + compra.Hora+","+aux.Hora);
-                if (aux.Pelicula == compra.Pelicula && aux.Fecha == compra.Fecha && aux.NroSala == compra.NroSala && aux.Hora == compra.Hora){
+                if (comprasIguales(aux,compra)){
                     aux.NroTickets += compra.NroTickets;
                     found = true;
                     console.log("Se encontro compra en carrito y se sumaron tickets");
@@ -55,15 +51,33 @@ const dataProvider = ( {children} ) => {
                 console.log("No se encontro, se agrego nueva compra al carrito");
                 carrito.push(compra);
             }
-            console.log(carrito);
+            return carrito;
         });
+    }
+
+    const comprasIguales = (compra1,compra2) => 
+    {
+        return (
+            compra1.Pelicula == compra2.Pelicula && 
+            compra1.Fecha == compra2.Fecha && 
+            compra1.NroSala == compra2.NroSala && 
+            compra1.Hora == compra2.Hora
+        )
     }
 
     const cancelarOrden = (index) =>
     {
         setCarrito( () => {
-            carrito.splice(index,1); 
-            console.log(carrito); 
+            /* carrito.splice(index,1); 
+            console.log(carrito);
+            return carrito; */
+            let nuevoCarrito = [];
+            for (let i=0; i<carrito.length; i++){
+                if (i != index){
+                    nuevoCarrito.push(carrito[i]);
+                }
+            }
+            return nuevoCarrito;
         });
     }
 
@@ -94,15 +108,17 @@ const dataProvider = ( {children} ) => {
     const limpiarCompra = () =>
     { 
         setCarrito( () => {
-            carrito.splice(0,carrito.length); 
+            /* carrito.splice(0,carrito.length); 
             console.log(carrito);
+            return carrito; */
+            return [];
         });
     }
 
     return <dataContext.Provider value={ 
         {
             carrito, setCarrito, 
-            handleComprar, cancelarOrden, 
+            promptComprar, cancelarOrden, 
             confirmarCompra, limpiarCompra, 
             peliculaElegida, setPeliculaElegida,
             compraElegida, setCompraElegida

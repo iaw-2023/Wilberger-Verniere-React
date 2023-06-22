@@ -8,7 +8,7 @@ import { dataContext } from '../context/dataContext';
 function Funciones() {
     const [funcion, setFuncion] = useState([])
     const [error, setError] = useState(null);
-    const {handleComprar} = useContext(dataContext);
+    const {promptComprar} = useContext(dataContext);
 
     const fetchFuncion = () => {
         return axios.get('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/funciones')
@@ -47,7 +47,7 @@ function Funciones() {
                                 <th className="tablaH"> {funcionObj.NroSala}       </th>
                                 {/* <th className="tablaH"> {funcionObj.LugaresDisponibles}       </th> */}
                                 <th className="tablaH"> 
-                                    <Button className="añadir-ticket" onClick={ ()=>handleComprar(funcionObj) }>Comprar</Button>
+                                    <Button className="añadir-ticket" onClick={ ()=>promptComprar(funcionObj) }>Comprar</Button>
                                 </th>
                             </tr>
                         ))}
