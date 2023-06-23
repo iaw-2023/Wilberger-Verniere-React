@@ -16,7 +16,7 @@ function compras() {
     console.log("SE ENVIO PEDIDO: ", textEmail)
     return axios.get('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/compras/asociadas', {
       params: {
-        textEmail
+        email: textEmail
       }
     })
         .then((response) => {
