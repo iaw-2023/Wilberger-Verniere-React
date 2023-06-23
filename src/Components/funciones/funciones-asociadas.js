@@ -10,10 +10,11 @@ function FuncionesAsociadas() {
     const [funcion, setFuncion] = useState([])
 
     const fetchFuncion = () => {
-        return axios.get('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/funciones/asociadas', 
-            params={
+        return axios.get('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/funciones/asociadas', { 
+            params: {
                 pelicula: peliculaElegida.Nombre,
                 genero: peliculaElegida.Genero,
+            }
         })
             .then((response) => {
                 setFuncion(response.data.data);
