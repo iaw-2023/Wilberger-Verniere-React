@@ -24,7 +24,7 @@ function Generos() {
   const [error, setError] = useState(null);
 
   const fetchGenero = () => {
-      return axios.get('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/generos')
+      return axios.get('https://wilberger-verniere-laravel-zxwy-kw6w8m4ps-iawv.vercel.app/rest/generos')
           .then((response) => {
             setGenero(response.data.data);
             setError(null);

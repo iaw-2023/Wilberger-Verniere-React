@@ -11,7 +11,7 @@ function Funciones() {
     const {promptComprar} = useContext(dataContext);
 
     const fetchFuncion = () => {
-        return axios.get('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/funciones')
+        return axios.get('https://wilberger-verniere-laravel-zxwy-kw6w8m4ps-iawv.vercel.app/rest/funciones')
             .then((response) => {
                 setFuncion(response.data.data);
                 setError(null);
