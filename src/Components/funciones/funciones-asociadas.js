@@ -9,11 +9,11 @@ function FuncionesAsociadas() {
     const [error, setError] = useState(null);
     const [funcion, setFuncion] = useState([])
 
-    const fetchFuncion = () => {
-        return axios.get('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/funciones/asociadas', { 
+    const fetchFuncion = () => 
+    {
+        return axios.get('https://wilberger-verniere-laravel-zxwy-kw6w8m4ps-iawv.vercel.app/rest/funciones/asociadas', { 
             params: {
-                pelicula: peliculaElegida.Nombre,
-                genero: peliculaElegida.Genero,
+                'Id': peliculaElegida.Id,
             }
         })
             .then((response) => {
