@@ -28,18 +28,19 @@ function ordenes() {
   const handleSubmitObservaciones = (event) => 
   {
     event.preventDefault();
-    console.log(event.target.value);
-    SetObservaciones(event.target.value);
+    if(event.target.value) {SetObservaciones(event.target.value);}
+    else { SetObservaciones(""); }
+    console.log(observaciones);
   }
 
-  const getCurrentDate = (separator='/') => 
+  const getCurrentDate = (separator='-') => 
   {
     let newDate = new Date()
     let date = newDate.getDate();
     let month = newDate.getMonth() + 1;
     let year = newDate.getFullYear();
     
-    return `${date}${separator}${month<10?`0${month}`:`${month}`}${separator}${year}`
+    return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`
   }
 
   console.log(carrito);
@@ -85,12 +86,14 @@ function ordenes() {
           </tbody>
         </table>
       </div>
-      { carrito && carrito.length>0 && email && emailValido && 
-        <ButtonGroup className='boton-group'>
+      <ButtonGroup className='boton-group'>
+        { carrito && carrito.length>0 &&
           <Button className="boton-cancelar" onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
+        }
+        { carrito && carrito.length>0 && email && emailValido && 
           <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, email, getCurrentDate()) }>Confirmar Compra</Button>
-        </ButtonGroup>
-      }
+        }
+      </ButtonGroup>
     </div>
   )
 }
