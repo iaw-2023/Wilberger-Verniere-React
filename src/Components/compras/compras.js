@@ -14,9 +14,9 @@ function compras() {
   const fetchCompras = () => 
   {
     console.log("SE ENVIO PEDIDO: ", textEmail)
-    return axios.get('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/compras/asociadas', {
+    return axios.get('https://wilberger-verniere-laravel-zxwy-kw6w8m4ps-iawv.vercel.app/rest/compras/asociadas', {
       params: {
-        email: textEmail
+        'email': textEmail
       }
     })
         .then((response) => {
@@ -36,10 +36,11 @@ function compras() {
 
   return (
     <div className="form-div">
-      <form className="formulario" onSubmit={ () => fetchCompras() }>
+      <div className="formulario" onClick={ () => fetchCompras() }>
+        Email:
         <input type="text" className="input-email" value={textEmail} onChange={handleTextEmail}/>
-        <button type="submit" className="boton-enviar">Enviar</button>
-      </form>
+        { textEmail && <button className="boton-enviar">Enviar</button>}
+      </div>
       <table className="tabla dark:text-gray-400">
           <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
             <tr>
