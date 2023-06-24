@@ -14,6 +14,10 @@
     margin-right: 20px;
 }
 
+.email-valido-text{
+    color: #d9534f;
+}
+
 .input-email{
     border-width: 1px;
     border-radius: 5px;;

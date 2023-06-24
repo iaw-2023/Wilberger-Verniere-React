@@ -7,6 +7,7 @@ import { useContext } from 'react';
 function ordenes() {
   const {carrito, cancelarOrden, limpiarCompra, confirmarCompra} = useContext(dataContext);
   const [email, SetEmail] = useState("");
+  const [emailValido, SetEmailValido] = useState(false);
   const [observaciones, SetObservaciones] = useState("");
 
   const handleSubmitEmail = (event) => 
@@ -14,6 +15,14 @@ function ordenes() {
     event.preventDefault();
     console.log(event.target.value);
     SetEmail(event.target.value);
+    if (esValidoEmail(event.target.value)){
+      SetEmailValido(true);
+    }
+    else { SetEmailValido(false); }
+  }
+
+  const esValidoEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email);
   }
   
   const handleSubmitObservaciones = (event) => 
@@ -42,6 +51,7 @@ function ordenes() {
           <div className="email">
             <div className='email-text'>Email:</div>   
             <input type="text" className="input-email" value={email} onChange={handleSubmitEmail}/>
+            { email && (!emailValido) && <div className='email-valido-text'>Este email no es valido!</div>}
           </div>
           <div className="observaciones">
             <div className='observaciones-text'>Observaciones:</div>   
@@ -75,10 +85,12 @@ function ordenes() {
           </tbody>
         </table>
       </div>
-      <ButtonGroup className='boton-group'>
-        <Button className="boton-cancelar" onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
-        <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, email, getCurrentDate()) }>Confirmar Compra</Button>
-      </ButtonGroup>
+      { carrito && carrito.length>0 && email && emailValido && 
+        <ButtonGroup className='boton-group'>
+          <Button className="boton-cancelar" onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
+          <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, email, getCurrentDate()) }>Confirmar Compra</Button>
+        </ButtonGroup>
+      }
     </div>
   )
 }
