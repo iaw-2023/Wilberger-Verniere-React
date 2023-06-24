@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
@@ -68,9 +69,6 @@ const dataProvider = ( {children} ) => {
     const cancelarOrden = (index) =>
     {
         setCarrito( () => {
-            /* carrito.splice(index,1); 
-            console.log(carrito);
-            return carrito; */
             let nuevoCarrito = [];
             for (let i=0; i<carrito.length; i++){
                 if (i != index){
@@ -83,34 +81,24 @@ const dataProvider = ( {children} ) => {
 
     const confirmarCompra = (observaciones,email,fechaCompra) =>
     {
-        console.log("data: [");
-        console.log("   Observaciones: "+observaciones);
-        console.log("   Email: "+email);
-        console.log("   FechaCompra: "+fechaCompra);
-        console.log("   Compras: ");
-        { carrito && carrito.length>0 && carrito.map((carritoObj,index) => (
-            console.log(index+" :\n["),
-            console.log("       Pelicula: "+carritoObj.Pelicula),
-            console.log("       NroTickets: "+carritoObj.NroTickets),
-            console.log("       Fecha: "+carritoObj.Fecha),
-            console.log("       Hora: "+carritoObj.Hora)
-        ))};
-        console.log("]");
-        /* axios.post('https://vercel-deploy-test-7ix687nun-wilbergermatias.vercel.app/rest/compras/crear',
+        axios.post('https://wilberger-verniere-laravel-zxwy-kw6w8m4ps-iawv.vercel.app/rest/compras/crear',
         { 
-            Observaciones: observaciones, 
-            EmailCliente: email, 
-            FechaCompra: fechaCompra, 
-            Compras: carrito 
-        }); */ 
+            'Observaciones': observaciones, 
+            'Email': email, 
+            'FechaCompra': fechaCompra, 
+            'Compras': carrito 
+        })
+        .then(function (response) {
+            console.log(response);
+          })
+        .catch(function (error) {
+            console.log(error);
+          }); 
     }
 
     const limpiarCompra = () =>
     { 
         setCarrito( () => {
-            /* carrito.splice(0,carrito.length); 
-            console.log(carrito);
-            return carrito; */
             return [];
         });
     }
