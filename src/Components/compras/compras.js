@@ -4,8 +4,9 @@ import React, { useContext, useState } from 'react'
 import { Link } from "react-router-dom";
 import { dataContext } from "../context/dataContext";
 
-
-function compras() {
+//{ compra && compra.length>0 && compra.map((compraObj: {Observaciones: String | null | undefined; FechaCompra: String},index) => (
+  
+function Compras() {
   const [compra, setCompra] = useState([]);
   const [error, setError] = useState(null);
   const [textEmail, setTextEmail] = useState("");
@@ -27,6 +28,7 @@ function compras() {
 
   if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS COMPRAS</p>
 
+  //const handleTextEmail = (event: { preventDefault: () => void; target: { value: string; }; }) => 
   const handleTextEmail = (event) => 
   {
     event.preventDefault();
@@ -65,4 +67,4 @@ function compras() {
   )
 }
 
-export default compras
+export default Compras

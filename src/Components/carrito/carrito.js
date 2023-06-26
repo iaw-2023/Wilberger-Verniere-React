@@ -4,12 +4,13 @@ import "./carrito.css";
 import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 
-function ordenes() {
+function Ordenes() {
   const {carrito, cancelarOrden, limpiarCompra, confirmarCompra} = useContext(dataContext);
   const [email, SetEmail] = useState("");
   const [emailValido, SetEmailValido] = useState(false);
   const [observaciones, SetObservaciones] = useState("");
 
+  //const handleSubmitEmail = (event: { preventDefault: () => void; target: { value: string; }; }) => 
   const handleSubmitEmail = (event) => 
   {
     event.preventDefault();
@@ -21,10 +22,12 @@ function ordenes() {
     else { SetEmailValido(false); }
   }
 
+  //const esValidoEmail = (email: string) => {
   const esValidoEmail = (email) => {
     return /\S+@\S+\.\S+/.test(email);
   }
   
+  //const handleSubmitObservaciones = (event: { preventDefault: () => void; target: { value: string; }; }) => 
   const handleSubmitObservaciones = (event) => 
   {
     event.preventDefault();
@@ -71,7 +74,8 @@ function ordenes() {
             </tr>
           </thead>
           <tbody>
-            { carrito && carrito.length>0 && carrito.map((carritoObj,index) => (
+            { carrito && carrito.length>0 && carrito.map((carritoObj, index) => (
+            //{ carrito && carrito.length>0 && carrito.map((carritoObj: { Pelicula: string ; Fecha: string ; Hora: string; NroSala: number; NroTickets: number; }, index: React.Key) => (
               <tr className="tablaRow" key={index}>
                 <th className="tablaH"> {carritoObj.Pelicula}      </th>
                 <th className="tablaH"> {carritoObj.Fecha}         </th>
@@ -98,4 +102,4 @@ function ordenes() {
   )
 }
 
-export default ordenes
+export default Ordenes

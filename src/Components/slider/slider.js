@@ -1,6 +1,7 @@
 import Carousel from 'react-bootstrap/Carousel';
 import React, { useState } from 'react';
 import './slider.css';
+import Image from 'next/image';
 
 function Slider({ slides }) {
   const [index, setIndex] = useState(0);
@@ -17,10 +18,12 @@ function Slider({ slides }) {
     >
       {slides.map((slide) => (
         <Carousel.Item key={slide.image} interval={slide.interval}>
-          <img
+          <Image
             className="d-block w-100"
             src={slide.image}
             alt="First slide"
+            width = "1920"
+            height = "1080"
           />
           <Carousel.Caption>
             <h3>{slide.title}</h3>

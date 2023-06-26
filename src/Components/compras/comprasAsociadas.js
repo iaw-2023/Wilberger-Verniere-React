@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { dataContext } from "../context/dataContext";
 
 
-function comprasAsociadas() {
+function ComprasAsociadas() {
   const { compraElegida } = useContext(dataContext);
 
   return (
@@ -34,4 +34,4 @@ function comprasAsociadas() {
   )
 }
 
-export default comprasAsociadas
+export default ComprasAsociadas

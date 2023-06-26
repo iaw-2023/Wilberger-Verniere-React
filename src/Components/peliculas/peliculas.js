@@ -5,8 +5,14 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { dataContext } from '../context/dataContext';
 
-function peliculas() {
-  
+/* type TipoPelicula = {
+    Nombre: String;
+    Genero:String;
+} */
+
+function Peliculas() {
+
+  //const [pelicula, setPelicula] = useState<TipoPelicula[]>([]);
   const [pelicula, setPelicula] = useState([]);
   const [error, setError] = useState(null);
   const { setPeliculaElegida } = useContext(dataContext);
@@ -55,4 +61,4 @@ function peliculas() {
   )
 }
 
-export default peliculas
+export default Peliculas

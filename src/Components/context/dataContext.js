@@ -2,14 +2,32 @@ import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
+import TipoPelicula from '../peliculas/peliculas'
 
-export const dataContext = createContext();
+export const dataContext = createContext([]);
 
-const dataProvider = ( {children} ) => {
+/* type TipoCompra = {
+    Pelicula: String;
+    Fecha: String;
+    NroSala: number;
+    Hora: String;
+    NroTickets: number;
+}
+
+type TipoPelicula = {
+    Nombre: String;
+    Genero:String;
+} */
+
+const DataProvider = ( {children} ) => {
+    /* const [carrito, setCarrito] = useState<TipoCompra[]>([]);
+    const [peliculaElegida, setPeliculaElegida] = useState<TipoPelicula[]>([]);
+    const [compraElegida, setCompraElegida] = useState<TipoCompra>(); */
     const [carrito, setCarrito] = useState([]);
     const [peliculaElegida, setPeliculaElegida] = useState([]);
-    const [compraElegida, setCompraElegida] = useState([]);
+    const [compraElegida, setCompraElegida] = useState();
 
+    //const promptComprar = (compra: TipoCompra) => 
     const promptComprar = (compra) => 
     {
         /* var valorValido = false;
@@ -25,13 +43,14 @@ const dataProvider = ( {children} ) => {
         console.log(carrito);
         var p = prompt("Ingrese la cantidad de tickets que desea comprar", "0");
         var cantTickets = parseInt(p);
-        if (!cantTickets<1){
+        if (!(cantTickets<1)){
             console.log("se va a llamar a comprar");
             comprar(compra, cantTickets);
             console.log("se completo comprar");
         }
     }
 
+    //const comprar = (compra: TipoCompra, tickets: number) => 
     const comprar = (compra, tickets) => 
     {
         setCarrito( () => {
@@ -50,13 +69,14 @@ const dataProvider = ( {children} ) => {
             }
             if (!found){
                 console.log("No se encontro, se agrego nueva compra al carrito");
-                carrito.push(compra);
+                carrito.push (compra);
             }
             return carrito;
         });
     }
 
-    const comprasIguales = (compra1,compra2) => 
+    //const comprasIguales = (compra1: TipoCompra, compra2: TipoCompra) => 
+    const comprasIguales = (compra1, compra2) => 
     {
         return (
             compra1.Pelicula == compra2.Pelicula && 
@@ -66,6 +86,7 @@ const dataProvider = ( {children} ) => {
         )
     }
 
+    //const cancelarOrden = (index: number) =>
     const cancelarOrden = (index) =>
     {
         setCarrito( () => {
@@ -79,7 +100,8 @@ const dataProvider = ( {children} ) => {
         });
     }
 
-    const confirmarCompra = (observaciones,email,fechaCompra) =>
+    //const confirmarCompra = (observaciones: String,email: String,fechaCompra: String) =>
+    const confirmarCompra = (observaciones, email, fechaCompra) =>
     {
         axios.post('https://wilberger-verniere-laravel-zxwy-kw6w8m4ps-iawv.vercel.app/rest/compras/crear',
         { 
@@ -109,9 +131,9 @@ const dataProvider = ( {children} ) => {
             promptComprar, cancelarOrden, 
             confirmarCompra, limpiarCompra, 
             peliculaElegida, setPeliculaElegida,
-            compraElegida, setCompraElegida
+            compraElegida, setCompraElegida,
         } 
     }>{children}</dataContext.Provider>
 };
 
-export default dataProvider;
+export default DataProvider;
