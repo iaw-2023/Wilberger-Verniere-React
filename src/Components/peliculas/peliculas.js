@@ -19,7 +19,7 @@ function Peliculas() {
   const { setPeliculaElegida } = useContext(dataContext);
 
   const fetchPelicula = () => {
-      return axios.get('https://wilberger-verniere-laravel-zxwy-3clbok4r1-iawv.vercel.app/rest/peliculas')
+      return axios.get('https://wilberger-verniere-laravel-zxwy-bo1shc4cz-iawv.vercel.app/rest/peliculas')
           .then((response) => {
             setPelicula(response.data.data);
             setError(null);
