@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export default function App() {
   const [isClient, setIsClient] = useState(false);
