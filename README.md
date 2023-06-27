@@ -1,34 +1,20 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Sobre nuestra pagina
 
-First, run the development server:
+Esta pagina se creo utilizando el framework Nextj, en conjunto con react y bootstrap.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## deploy
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Por familiaridad se eligio utilizar a vercel como la plataforma para el deploy de esta aplicacion.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Deploy en vercel](https://wilberger-verniere-react-di0buhm10-iawv.vercel.app)
+- [Next.js Documentation](https://nextjs.org/docs) - documentacion de Nextjs.
+- [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/) - documentacion de Bootstrap v5.3
 
-## Learn More
+## Comentarios adicionales
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Por como se resolvio las rutas de nuestra aplicacion single-page, hay errores visuales en la interfaz que la hacen verse menos atractiva que la version montada localmente en localhost:3000 sin este cambio.
+- Otro problema proveniente de las rutas es el carousel estatico en la pagina principal.
+- Las imagenes del carousel estan guardadas en un objeto json local al proyecto, pero representan la idea de mostrar posters de peliculas, los cuales podrian traerse de la base de datos de Supabase
