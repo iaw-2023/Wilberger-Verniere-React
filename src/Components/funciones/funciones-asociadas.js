@@ -45,18 +45,32 @@ function FuncionesAsociadas() {
                         </tr>
                     </thead>
                     <tbody>
-                        { funcion && funcion.length>0 && funcion.map((funcionObj,index) => (
-                            <tr className="tablaRow" key={index}>
-                                <th className="tablaH"> {funcionObj.Pelicula}      </th>
-                                <th className="tablaH"> {funcionObj.Fecha}         </th>
-                                <th className="tablaH"> {funcionObj.Hora}          </th>
-                                <th className="tablaH"> {funcionObj.NroSala}       </th>
-                                <th className="tablaH"> {funcionObj.AsientosDisponible}       </th>
-                                <th className="tablaH"> 
-                                    <Button className="añadir-ticket" onClick={ ()=>promptComprar(funcionObj) }>Comprar</Button>
-                                </th>
-                            </tr>
-                        ))}
+                    { funcion && funcion.length>0 && funcion.map((funcionObj,index) => {
+                            if (funcionObj.AsientosDisponible>0) {
+                                return <tr className="tablaRow" key={index}>
+                                    <th className="tablaH"> {funcionObj.Pelicula}      </th>
+                                    <th className="tablaH"> {funcionObj.Fecha}         </th>
+                                    <th className="tablaH"> {funcionObj.Hora}          </th>
+                                    <th className="tablaH"> {funcionObj.NroSala}       </th>
+                                    <th className="tablaH"> {funcionObj.AsientosDisponible}       </th>
+                                    <th className="tablaH"> 
+                                        <Button className="añadir-ticket" onClick={ ()=>promptComprar(funcionObj) }>Comprar</Button>
+                                    </th>
+                                </tr>
+                            }
+                            else {
+                                return <tr className="sinAsientos" key={index}>
+                                    <th className="tablaH"> {funcionObj.Pelicula}      </th>
+                                    <th className="tablaH"> {funcionObj.Fecha}         </th>
+                                    <th className="tablaH"> {funcionObj.Hora}          </th>
+                                    <th className="tablaH"> {funcionObj.NroSala}       </th>
+                                    <th className="tablaH"> {funcionObj.AsientosDisponible}       </th>
+                                    <th className="tablaH"> 
+                                        ENTRADAS AGOTADAS
+                                    </th>
+                                </tr>
+                            }
+                        })}
                     </tbody>
                 </table>
             </div>
