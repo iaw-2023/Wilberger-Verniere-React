@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import "./carrito.css";
+import '../../master.css';
 import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 

@@ -1,5 +1,6 @@
 import axios from "axios";
 import "./compras.css";
+import '../../master.css';
 import React, { useContext, useState } from 'react'
 import { Link } from "react-router-dom";
 import { dataContext } from "../context/dataContext";

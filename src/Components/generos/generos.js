@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
 import './generos.css';
+import '../../master.css';
 import axios from 'axios';
 
 function listaPeliculas(arregloPeliculas){

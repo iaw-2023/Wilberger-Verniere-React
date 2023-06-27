@@ -1,4 +1,5 @@
 import "./compras.css";
+import '../../master.css';
 import React, { useContext } from 'react'
 import { dataContext } from "../context/dataContext";
 

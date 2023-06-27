@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import './peliculas.css';
+import '../../master.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { dataContext } from '../context/dataContext';

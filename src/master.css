@@ -1,0 +1,33 @@
+.tabla{
+    width: 80%;
+    font-size: .875rem;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #5a5d62;
+}
+
+.tablaHead{
+    font-size: .75rem;
+    color: #fff;
+    text-transform: uppercase;
+    background-color: rgb(67, 80, 91);
+    border: none;
+}
+
+.tablaH{
+    padding-right: 1.5rem; 
+    padding-left: 1.5rem;
+    padding-top: 0.75rem; 
+    padding-bottom: 0.75rem;
+
+    border-right: 1px solid black;
+}
+
+.tablaRow{
+    background: white;
+}
+
+.tablaRow:hover{
+    background:  #e2e0e0;
+}
