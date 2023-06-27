@@ -2,58 +2,35 @@ import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
-import TipoPelicula from '../peliculas/peliculas'
 
 export const dataContext = createContext([]);
 
-/* type TipoCompra = {
-    Pelicula: String;
-    Fecha: String;
-    NroSala: number;
-    Hora: String;
-    NroTickets: number;
-}
-
-type TipoPelicula = {
-    Nombre: String;
-    Genero:String;
-} */
-
 const DataProvider = ( {children} ) => {
-    /* const [carrito, setCarrito] = useState<TipoCompra[]>([]);
-    const [peliculaElegida, setPeliculaElegida] = useState<TipoPelicula[]>([]);
-    const [compraElegida, setCompraElegida] = useState<TipoCompra>(); */
     const [carrito, setCarrito] = useState([]);
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState();
 
-    //const promptComprar = (compra: TipoCompra) => 
     const promptComprar = (compra) => 
     {
-        /* var valorValido = false;
-        var p = prompt("Ingrese la cantidad de tickets que desea comprar, hay cantDisponible asientos disponibles", "0");
+        var valorValido = true;
+        var p = prompt("Ingrese la cantidad de tickets que desea comprar, hay "+compra.AsientosDisponible+" asientos disponibles");
         var cantTickets = parseInt(p);
-        if (cantTickets<cantDisponible && cantTickets>0) { valorValido=true; }
-        while (!valorValido){
-            var p = prompt("Error: no ingreso una cantidad de tickets valida, ingrese un nuevo valor, hay cantDisponible asientos disponibles", "0");
+        if (cantTickets>compra.AsientosDisponible || cantTickets<=0) { valorValido=false; }
+        while (!valorValido && p){
+            p = prompt("Error: no ingreso una cantidad de tickets valida, ingrese un nuevo valor, hay "+compra.AsientosDisponible+" asientos disponibles");
             cantTickets = parseInt(p);
-            if (cantTickets<cantDisponible && cantTickets>0) { valorValido=true; }
+            if (cantTickets<=compra.AsientosDisponible && cantTickets>0) { valorValido=true; }
             else { console.log("El valor insertado no es valido, ingrese uno nuevo"); }
         }
-        console.log("se va a llamar a comprar");
-        comprar(props, cantTickets);
-        console.log("se completo comprar"); */
-        console.log(carrito);
-        var p = prompt("Ingrese la cantidad de tickets que desea comprar", "0");
-        var cantTickets = parseInt(p);
-        if (!(cantTickets<1)){
+        if (p){
             console.log("se va a llamar a comprar");
             comprar(compra, cantTickets);
             console.log("se completo comprar");
+            console.log(carrito);
         }
+        console.log("Se cancelo comprar tickets");
     }
 
-    //const comprar = (compra: TipoCompra, tickets: number) => 
     const comprar = (compra, tickets) => 
     {
         setCarrito( () => {
@@ -77,8 +54,7 @@ const DataProvider = ( {children} ) => {
             return carrito;
         });
     }
-
-    //const comprasIguales = (compra1: TipoCompra, compra2: TipoCompra) => 
+ 
     const comprasIguales = (compra1, compra2) => 
     {
         return (
@@ -89,7 +65,6 @@ const DataProvider = ( {children} ) => {
         )
     }
 
-    //const cancelarOrden = (index: number) =>
     const cancelarOrden = (index) =>
     {
         setCarrito( () => {
@@ -103,18 +78,20 @@ const DataProvider = ( {children} ) => {
         });
     }
 
-    //const confirmarCompra = (observaciones: String,email: String,fechaCompra: String) =>
     const confirmarCompra = (observaciones, email, fechaCompra) =>
     {
-        axios.post('https://wilberger-verniere-laravel-zxwy-kw6w8m4ps-iawv.vercel.app/rest/compras/crear',
+        let obvs = observaciones;
+        if (obvs=="") { obvs = "-";}
+        axios.post('https://wilberger-verniere-laravel-zxwy-3clbok4r1-iawv.vercel.app/rest/compras/crear',
         { 
-            'Observaciones': observaciones, 
+            'Observaciones': obvs, 
             'Email': email, 
             'FechaCompra': fechaCompra, 
             'Compras': carrito 
         })
         .then(function (response) {
             console.log(response);
+            setCarrito([]);
           })
         .catch(function (error) {
             console.log(error);
