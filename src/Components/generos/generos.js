@@ -9,11 +9,15 @@ function listaPeliculas(arregloPeliculas){
     }
     else {
         let arregloRet = [];
+        let j=0; 
+        arregloRet[j]="[ "; j++;
         for (let i = 0; i<arregloPeliculas.length; i++){
             //console.log("arregloPeliculas: ", arregloPeliculas[i]);
-            arregloRet[i]=arregloPeliculas[i].nombre + "\n";
+            if (i>0) { arregloRet[j]=","; j++; }
+            arregloRet[j]=arregloPeliculas[i].nombre + "\n"; j++;
             //console.log("arregloRet: ", arregloRet[i])
         }
+        arregloRet[j]=" ]";
         return arregloRet;
     }
 }
