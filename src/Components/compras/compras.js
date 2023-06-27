@@ -16,7 +16,7 @@ function Compras() {
   const fetchCompras = () => 
   {
     console.log("SE ENVIO PEDIDO: ", textEmail)
-    return axios.get('https://wilberger-verniere-laravel-zxwy-kw6w8m4ps-iawv.vercel.app/rest/compras/asociadas', {
+    return axios.get('https://wilberger-verniere-laravel-zxwy-3clbok4r1-iawv.vercel.app/rest/compras/asociadas', {
       params: {
         'email': textEmail
       }

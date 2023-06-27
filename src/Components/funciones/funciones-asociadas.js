@@ -12,7 +12,7 @@ function FuncionesAsociadas() {
 
     const fetchFuncion = () => 
     {
-        return axios.get('https://wilberger-verniere-laravel-zxwy-kw6w8m4ps-iawv.vercel.app/rest/funciones/asociadas', { 
+        return axios.get('https://wilberger-verniere-laravel-zxwy-3clbok4r1-iawv.vercel.app/rest/funciones/asociadas', { 
             params: {
                 'Id': peliculaElegida.Id,
             }
@@ -40,6 +40,7 @@ function FuncionesAsociadas() {
                             <th scope="col" className="tablaH">Fecha:</th>
                             <th scope="col" className="tablaH">Hora:</th>
                             <th scope="col" className="tablaH">Sala numero:</th>
+                            <th scope="col" className="tablaH">Asientos Disponibles:</th>
                             <th scope="col" className="tablaH">Accion:</th>
                         </tr>
                     </thead>
@@ -50,6 +51,7 @@ function FuncionesAsociadas() {
                                 <th className="tablaH"> {funcionObj.Fecha}         </th>
                                 <th className="tablaH"> {funcionObj.Hora}          </th>
                                 <th className="tablaH"> {funcionObj.NroSala}       </th>
+                                <th className="tablaH"> {funcionObj.AsientosDisponible}       </th>
                                 <th className="tablaH"> 
                                     <Button className="añadir-ticket" onClick={ ()=>promptComprar(funcionObj) }>Comprar</Button>
                                 </th>
