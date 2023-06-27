@@ -26,3 +26,14 @@
     background: white;
     border: black;
 }
+
+.funciones-asociadas{
+    background-color: #5c67b8;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
