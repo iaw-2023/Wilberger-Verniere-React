@@ -9,7 +9,7 @@ Esta pagina se creo utilizando el framework Nextj, en conjunto con react y boots
 
 Por familiaridad se eligio utilizar a vercel como la plataforma para el deploy de esta aplicacion.
 
-- [Deploy en vercel](https://wilberger-verniere-react-di0buhm10-iawv.vercel.app)
+- [Deploy en vercel](https://wilberger-verniere-react.vercel.app)
 - [Next.js Documentation](https://nextjs.org/docs) - documentacion de Nextjs.
 - [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/) - documentacion de Bootstrap v5.3
 
