@@ -45,7 +45,7 @@ function Funciones() {
                                 <th className="tablaH"> {funcionObj.Fecha}         </th>
                                 <th className="tablaH"> {funcionObj.Hora}          </th>
                                 <th className="tablaH"> {funcionObj.NroSala}       </th>
-                                {/* <th className="tablaH"> {funcionObj.LugaresDisponibles}       </th> */}
+                                {/* <th className="tablaH"> {funcionObj.AsientosDisponibles}       </th> */}
                                 <th className="tablaH"> 
                                     <Button className="añadir-ticket" onClick={ ()=>promptComprar(funcionObj) }>Comprar</Button>
                                 </th>
