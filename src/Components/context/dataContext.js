@@ -31,10 +31,13 @@ const DataProvider = ( {children} ) => {
     const promptComprar = (compra) => 
     {
         /* var valorValido = false;
+        var p = prompt("Ingrese la cantidad de tickets que desea comprar, hay cantDisponible asientos disponibles", "0");
+        var cantTickets = parseInt(p);
+        if (cantTickets<cantDisponible && cantTickets>0) { valorValido=true; }
         while (!valorValido){
-            var p = prompt("Ingrese la cantidad de tickets que desea comprar", "0");
-            var cantTickets = parseInt(p);
-            if (cantTickets<props.LugaresDisponibles && cantTickets>0) { valorValido=true; }
+            var p = prompt("Error: no ingreso una cantidad de tickets valida, ingrese un nuevo valor, hay cantDisponible asientos disponibles", "0");
+            cantTickets = parseInt(p);
+            if (cantTickets<cantDisponible && cantTickets>0) { valorValido=true; }
             else { console.log("El valor insertado no es valido, ingrese uno nuevo"); }
         }
         console.log("se va a llamar a comprar");
