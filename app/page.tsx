@@ -1,18 +1,16 @@
-"use client";
 
 import React from "react"
 import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter } from "react-router-dom"
-import App from "../src/App"
-
+import Link from 'next/link';
 
 
 export default function welcome(){
+
   return(
     <main>
-      <BrowserRouter>
-        <App/>
-      </BrowserRouter>
+        <Link href="../App#">
+          Go to Client-Side Component
+        </Link>
     </main>
   )
 }
