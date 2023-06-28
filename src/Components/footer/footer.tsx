@@ -7,6 +7,8 @@ function Footer() {
     <div>
       <div className ="container">
         <div className="footer">
+          Esta pagina se desarrollo por estudiantes de la Universidad Nacional del Sur (UNS), en el cursado de la materia Ingenieria de Aplicaciones Web.
+          <br></br>
           Este sitio fue creado utilizando React.
         </div>
         <a href="https://react.dev">

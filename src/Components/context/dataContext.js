@@ -82,7 +82,7 @@ const DataProvider = ( {children} ) => {
     {
         let obvs = observaciones;
         if (obvs=="") { obvs = "-";}
-        axios.post('https://wilberger-verniere-laravel-zxwy-bo1shc4cz-iawv.vercel.app/rest/compras/crear',
+        axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/compras/crear',
         { 
             'Observaciones': obvs, 
             'Email': email, 

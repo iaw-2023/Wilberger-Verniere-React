@@ -12,7 +12,7 @@ function FuncionesAsociadas() {
 
     const fetchFuncion = () => 
     {
-        return axios.get('https://wilberger-verniere-laravel-zxwy-bo1shc4cz-iawv.vercel.app/rest/funciones/asociadas', { 
+        return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/funciones/asociadas', { 
             params: {
                 'Id': peliculaElegida.Id,
             }

@@ -12,26 +12,30 @@ function Slider({ slides }) {
   };
 
   return (
+    <div className="carousel-container">
     <Carousel activeIndex={index}
               onSelect={handleSelect}
               nextIcon={<span aria-hidden="true" className="carousel-control-next-icon changed" />}
     >
       {slides.map((slide) => (
+        
         <Carousel.Item key={slide.image} interval={slide.interval}>
           <Image
-            className="d-block w-100"
+            className="d-block w-95"
             src={slide.image}
             alt="First slide"
-            width = "1920"
-            height = "1080"
+            width = "1020"
+            height = "600"
           />
           <Carousel.Caption>
             <h3>{slide.title}</h3>
             <p>{slide.subTitle}</p>
           </Carousel.Caption>
         </Carousel.Item>
+        
       ))}
     </Carousel>
+    </div>
   );
 }
 
