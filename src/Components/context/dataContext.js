@@ -15,7 +15,7 @@ const DataProvider = ( {children} ) => {
         var valorValido = true;
         var p = prompt("Ingrese la cantidad de tickets que desea comprar, hay "+compra.AsientosDisponible+" asientos disponibles");
         var cantTickets = parseInt(p);
-        if (cantTickets>compra.AsientosDisponible || cantTickets<=0) { valorValido=false; }
+        if (cantTickets>compra.AsientosDisponible || cantTickets<=0 || isNaN(cantTickets)) { valorValido=false; }
         while (!valorValido && p){
             p = prompt("Error: no ingreso una cantidad de tickets valida, ingrese un nuevo valor, hay "+compra.AsientosDisponible+" asientos disponibles");
             cantTickets = parseInt(p);
