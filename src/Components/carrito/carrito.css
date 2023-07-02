@@ -1,0 +1,71 @@
+.input-wrapper{
+    margin-left: 20px;
+    columns: auto 1;
+}
+
+.email{
+    margin-bottom: 10px;
+}
+
+.email-text{
+    margin-right: 20px;
+}
+
+.email-valido-text{
+    color: #d9534f;
+}
+
+.input-email{
+    border-width: 1px;
+    border-radius: 5px;;
+    border-color: black;
+    margin-right: 15px;
+}
+
+.observaciones{
+    margin-bottom: 10px;
+}
+
+.observaciones-text{
+    margin-right: 20px;
+}
+
+.input-observaciones{
+    border-width: 1px;
+    border-radius: 5px;;
+    border-color: black;
+    margin-right: 15px;
+}
+
+.quitar-orden{
+    background-color: #d9534f;
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.boton-group{
+    display: inline-block;
+    margin-top: 50px;
+}
+
+.boton-enviar{
+    background-color: #5cb85c;
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.boton-cancelar{
+    background-color: #d9534f;
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
