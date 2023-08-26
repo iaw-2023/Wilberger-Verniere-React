@@ -30,6 +30,8 @@ export default function App() {
   const Compras = require('../src/Components/compras/compras').default;
   const FuncionesAsociadas = require('../src/Components/funciones/funciones-asociadas').default;
   const ComprasAsociadas = require('../src/Components/compras/comprasAsociadas').default;
+  const UserIni = require('../src/Components/usuarios/usuariosIniciar').default;
+  const UserReg = require('../src/Components/usuarios/usuariosRegistrar').default;
 
   return (
     <div>
@@ -47,6 +49,8 @@ export default function App() {
             <Route path="/compras" element={<Compras />} />
             <Route path="/comprasAsociadas" element={<ComprasAsociadas />} />
             <Route path="/carrito" element={<Carrito />} />
+            <Route path="/usuariosIniciar" element={<UserIni />} />
+            <Route path="/usuariosRegistrar" element={<UserReg />} />
           </Routes>
           {/* <div className= "page-footer">
             <Footer/>

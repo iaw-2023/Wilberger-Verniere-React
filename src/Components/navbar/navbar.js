@@ -2,8 +2,20 @@
 
 import { Link } from 'react-router-dom';
 import "./navbar.css";
+import { useContext } from 'react';
+import { dataContext } from '../context/dataContext';
 
 function NavBar() {
+
+    const { login, setLogin, setEmailActivo, setUsuarioActivo } = useContext(dataContext);
+
+    const handleLogOut = () =>
+    {
+      setLogin(false);
+      setUsuarioActivo("");
+      setEmailActivo("");
+    } 
+
     return (
       <>
         <div className="topnav">
@@ -13,6 +25,9 @@ function NavBar() {
           <Link to="/generos">Generos</Link>
           <Link to="/compras">Compras</Link>
           <Link to="/carrito" className="carrito">🛒</Link>
+          { !login && <Link to="/usuariosIniciar" className="usuarioInicio">Ingresar</Link> }
+          { !login && <Link to="/usuariosRegistrar" className="usuarioRegistrar">Registrarse</Link> }
+          { login && <Link to="/" className="usuarioSalir" onClick={ handleLogOut }>LogOut</Link> }
           {/* <div className="search-container">
             <form action="/action_page.php">
               <input type="text" placeholder="Search.." name="search"></input>

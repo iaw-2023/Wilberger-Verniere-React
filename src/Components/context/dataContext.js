@@ -9,6 +9,9 @@ const DataProvider = ( {children} ) => {
     const [carrito, setCarrito] = useState([]);
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState();
+    const [login, setLogin] = useState(false);
+    const [usuarioActivo, setUsuarioActivo] = useState("");
+    const [emailActivo, setEmailActivo] = useState("");
 
     const promptComprar = (compra) => 
     {
@@ -112,6 +115,9 @@ const DataProvider = ( {children} ) => {
             confirmarCompra, limpiarCompra, 
             peliculaElegida, setPeliculaElegida,
             compraElegida, setCompraElegida,
+            login, setLogin,
+            usuarioActivo, setUsuarioActivo,
+            emailActivo, setEmailActivo,
         } 
     }>{children}</dataContext.Provider>
 };
