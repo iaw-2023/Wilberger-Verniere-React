@@ -9,22 +9,25 @@ function usuarios() {
     const [email, setEmail] = useState("");
     const [emailValido, SetEmailValido] = useState(false);
 
+    const { setUsuarioActivo, setEmailActivo } = useContext(dataContext);
+
     const guardarUsuario = () =>
     {
         console.log("Creo usuario:", nombreUser, contraseña, email);
-        /* return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/crear', {
+        return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/crear', {
         params: {
             'Email': email,
             'Contraseña': contraseña,
-            'Usuario': nombreUser
+            'Nombre': nombreUser
         }
         })
         .then((response) => {
             // SI ES EXITOSO
-                setEmailActivo(response.data.data);
-                setUsuarioAcitvo(response.data.data);
+                console.log(response.data.data);
+                /* setEmailActivo(response.data.data);
+                setUsuarioActivo(response.data.data); */
                 setError(null);
-        }).catch(setError); */
+        }).catch(setError);
     }
 
     const handleTextNombreUser = (event) => 
