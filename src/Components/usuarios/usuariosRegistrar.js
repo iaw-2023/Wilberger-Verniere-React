@@ -13,7 +13,7 @@ function usuarios() {
     const [email, setEmail] = useState("");
     const [emailValido, SetEmailValido] = useState(false);
 
-    const { setUsuarioActivo, setEmailActivo } = useContext(dataContext);
+    const { emailActivo, usuarioActivo, setUsuarioActivo, setEmailActivo, setLogin } = useContext(dataContext);
 
     const guardarUsuario = () =>
     {
@@ -24,13 +24,17 @@ function usuarios() {
             'Contraseña': contraseña,
             'Nombre': nombreUser
         })
-        .then((response) => {
-            // SI ES EXITOSO
-                console.log(response.data.data);
-                /* setEmailActivo(response.data.data);
-                setUsuarioActivo(response.data.data); */
-                setError(null);
-        }).catch(setError);
+        .then(function (response) {
+            console.log(response);
+            setEmailActivo(email);
+            setUsuarioActivo(nombreUser);
+            setLogin(true);
+            setError(null);
+          })
+        .catch(function (error) {
+            console.log(error);
+            setError(error);
+          }); 
     }
 
     const handleTextNombreUser = (event) => 
