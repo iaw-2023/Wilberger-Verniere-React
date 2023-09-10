@@ -2,28 +2,36 @@ import "./usuarios.css";
 import "../../master.css";
 import { useContext, useState } from "react";
 import { dataContext } from "../context/dataContext";
+import axios from "axios";
 
 function usuarios() {
 
     const [contraseña, setContraseña] = useState("");
     const [email, setEmail] = useState("");
+    const [error, setError] = useState(null);
     const { setUsuarioActivo, setEmailActivo } = useContext(dataContext);
 
     const fetchUsuario = () =>
     {
         console.log("Busco usuario:",contraseña, email);
-        /* return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/iniciar', 
+        return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/iniciar', 
         {
             params: {
                 'Email': email,
                 'Contraseña': contraseña,
             }
         })
-        .then((response) => {
-            setUsuarioActivo(response.data.data);
-            setEmailActivo(response.data.data);
+        .then(function (response) {
+            console.log(response);
+            setEmailActivo(response.data.Email);
+            setUsuarioActivo(response.data.Nombre);
+            setLogin(true);
             setError(null);
-        }).catch(setError); */
+          })
+        .catch(function (error) {
+            console.log(error);
+            setError(error);
+          });
     }
 
     const handleTextEmail = (event) => 
