@@ -2,11 +2,13 @@ import "./usuarios.css";
 import "../../master.css";
 import { useContext, useState } from "react";
 import { dataContext } from "../context/dataContext";
+import axios from "axios";
 
 function usuarios() {
 
     const [nombreUser, setNombreUser] = useState("");
     const [contraseña, setContraseña] = useState("");
+    const [error, setError] = useState(null);
     const [email, setEmail] = useState("");
     const [emailValido, SetEmailValido] = useState(false);
 
@@ -15,12 +17,13 @@ function usuarios() {
     const guardarUsuario = () =>
     {
         console.log("Creo usuario:", nombreUser, contraseña, email);
-        return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/crear', {
-        params: {
-            'Email': email,
-            'Contraseña': contraseña,
-            'Nombre': nombreUser
-        }
+        return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/crear',
+        {
+            params: {
+                'Email': email,
+                'Contraseña': contraseña,
+                'Nombre': nombreUser
+            }
         })
         .then((response) => {
             // SI ES EXITOSO
@@ -75,7 +78,7 @@ function usuarios() {
                 Contraseña:
                 <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
             </div>
-            { emailValido && nombreUser && contraseña && <button className="boton-enviar" onClick={ guardarUsuario() }>Confirmar</button>}
+            { emailValido && nombreUser && contraseña && <button className="boton-enviar" onClick={ ()=>guardarUsuario() }>Confirmar</button>}
         </div>
     )
 }
