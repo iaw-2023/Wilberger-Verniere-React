@@ -1,6 +1,7 @@
 import "./usuarios.css";
 import "../../master.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { dataContext } from "../context/dataContext";
 
 function usuarios() {
 
