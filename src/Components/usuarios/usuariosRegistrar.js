@@ -3,6 +3,7 @@ import "../../master.css";
 import { useContext, useState } from "react";
 import { dataContext } from "../context/dataContext";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 
 function usuarios() {
 
@@ -17,13 +18,11 @@ function usuarios() {
     const guardarUsuario = () =>
     {
         console.log("Creo usuario:", nombreUser, contraseña, email);
-        return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/crear',
+        return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/crear',
         {
-            params: {
-                'Email': email,
-                'Contraseña': contraseña,
-                'Nombre': nombreUser
-            }
+            'Email': email,
+            'Contraseña': contraseña,
+            'Nombre': nombreUser
         })
         .then((response) => {
             // SI ES EXITOSO
@@ -78,7 +77,7 @@ function usuarios() {
                 Contraseña:
                 <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
             </div>
-            { emailValido && nombreUser && contraseña && <button className="boton-enviar" onClick={ ()=>guardarUsuario() }>Confirmar</button>}
+            { emailValido && nombreUser && contraseña && <Button className="boton-enviar" onClick={ ()=>guardarUsuario() }>Confirmar</Button>}
         </div>
     )
 }
