@@ -12,7 +12,7 @@ function usuarios() {
     const fetchUsuario = () =>
     {
         console.log("Busco usuario:",contraseña, email);
-        /* return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/iniciar', {
+        /* return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios', {
         params: {
             'Email': email,
             'Contraseña': contraseña,
