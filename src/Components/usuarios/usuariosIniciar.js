@@ -12,11 +12,12 @@ function usuarios() {
     const fetchUsuario = () =>
     {
         console.log("Busco usuario:",contraseña, email);
-        /* return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios', {
-        params: {
-            'Email': email,
-            'Contraseña': contraseña,
-        }
+        /* return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/iniciar', 
+        {
+            params: {
+                'Email': email,
+                'Contraseña': contraseña,
+            }
         })
         .then((response) => {
             setUsuarioActivo(response.data.data);
@@ -49,7 +50,7 @@ function usuarios() {
                 Contraseña: 
                 <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
             </div>
-            { email && contraseña && <button className="boton-enviar" onClick={ fetchUsuario() }>Confirmar</button>}
+            { email && contraseña && <button className="boton-enviar" onClick={ ()=>fetchUsuario() }>Confirmar</button>}
         </div>
     )
 }
