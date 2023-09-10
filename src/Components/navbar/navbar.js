@@ -7,7 +7,7 @@ import { dataContext } from '../context/dataContext';
 
 function NavBar() {
 
-    const { login, setLogin, setEmailActivo, setUsuarioActivo } = useContext(dataContext);
+    const { login, setLogin, setEmailActivo, setUsuarioActivo, usuarioActivo } = useContext(dataContext);
 
     const handleLogOut = () =>
     {
@@ -27,6 +27,7 @@ function NavBar() {
           <Link to="/carrito" className="carrito">🛒</Link>
           { !login && <Link to="/usuariosIniciar" className="usuarioInicio">Ingresar</Link> }
           { !login && <Link to="/usuariosRegistrar" className="usuarioRegistrar">Registrarse</Link> }
+          { login &&  <div className='nombreUsuario'>{usuarioActivo}</div> }
           { login && <Link to="/" className="usuarioSalir" onClick={ handleLogOut }>LogOut</Link> }
           {/* <div className="search-container">
             <form action="/action_page.php">
