@@ -1,7 +1,9 @@
 "use client";
-import React from 'react';
+import React, { useContext } from 'react';
 import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import { dataContext } from '../src/Components/context/dataContext';
+import { Navigate } from 'react-router-dom';
 
 export default function App() {
   const [isClient, setIsClient] = useState(false);
@@ -33,6 +35,16 @@ export default function App() {
   const UserIni = require('../src/Components/usuarios/usuariosIniciar').default;
   const UserReg = require('../src/Components/usuarios/usuariosRegistrar').default;
 
+  function ProteccionRoute({ element, isLogin }) {
+    const { login } = useContext(dataContext);
+  
+    if (isLogin || login) {
+      return element;
+    }
+  
+    return <Navigate to="/usuariosIniciar" />;
+  }
+
   return (
     <div>
       <HashRouter>
@@ -46,11 +58,12 @@ export default function App() {
             <Route path="/funcionesAsociadas" element={<FuncionesAsociadas />} />
             <Route path="/peliculas" element={<Peliculas />} />
             <Route path="/generos" element={<Generos />} />
-            <Route path="/compras" element={<Compras />} />
-            <Route path="/comprasAsociadas" element={<ComprasAsociadas />} />
-            <Route path="/carrito" element={<Carrito />} />
             <Route path="/usuariosIniciar" element={<UserIni />} />
             <Route path="/usuariosRegistrar" element={<UserReg />} />
+
+            <Route path="/compras" element={<ProteccionRoute element={<Compras />} />} />
+            <Route path="/comprasAsociadas" element={<ProteccionRoute element={<ComprasAsociadas />} />} />
+            <Route path="/carrito" element={<ProteccionRoute element={<Carrito />} />} />
           </Routes>
           {/* <div className= "page-footer">
             <Footer/>
