@@ -2,6 +2,7 @@ import "./usuarios.css";
 import "../../master.css";
 import { useContext, useState } from "react";
 import { dataContext } from "../context/dataContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function usuarios() {
@@ -9,7 +10,9 @@ function usuarios() {
     const [contraseña, setContraseña] = useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
-    const { setUsuarioActivo, setEmailActivo } = useContext(dataContext);
+    const { setUsuarioActivo, setEmailActivo, setLogin } = useContext(dataContext);
+
+    const navigate = useNavigate();
 
     const fetchUsuario = () =>
     {
@@ -26,6 +29,8 @@ function usuarios() {
             setUsuarioActivo(response.data.Nombre);
             setLogin(true);
             setError(null);
+
+            navigate('/');
           })
         .catch(function (error) {
             console.log(error);
@@ -56,6 +61,9 @@ function usuarios() {
             <div className="contraseña">
                 Contraseña: 
                 <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
+            </div>
+            <div className="error-message">
+                {error && <p>{error.message}</p>}
             </div>
             { email && contraseña && <button className="boton-enviar" onClick={ ()=>fetchUsuario() }>Confirmar</button>}
         </div>

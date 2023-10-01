@@ -3,6 +3,7 @@ import "../../master.css";
 import { useContext, useState } from "react";
 import { dataContext } from "../context/dataContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 function usuarios() {
@@ -14,6 +15,8 @@ function usuarios() {
     const [emailValido, SetEmailValido] = useState(false);
 
     const { emailActivo, usuarioActivo, setUsuarioActivo, setEmailActivo, setLogin } = useContext(dataContext);
+
+    const navigate = useNavigate();
 
     const guardarUsuario = () =>
     {
@@ -32,6 +35,8 @@ function usuarios() {
             setUsuarioActivo(nombreRespuesta);
             setLogin(true);
             setError(null);
+
+            navigate("/");
           })
         .catch(function (error) {
             console.log(error);

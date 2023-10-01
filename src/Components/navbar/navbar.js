@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "./navbar.css";
 import { useContext } from 'react';
 import { dataContext } from '../context/dataContext';
@@ -8,12 +8,15 @@ import { dataContext } from '../context/dataContext';
 function NavBar() {
 
     const { login, setLogin, setEmailActivo, setUsuarioActivo, usuarioActivo } = useContext(dataContext);
+    const navigate = useNavigate();
 
     const handleLogOut = () =>
     {
       setLogin(false);
       setUsuarioActivo("");
       setEmailActivo("");
+
+      navigate("/");
     } 
 
     return (
