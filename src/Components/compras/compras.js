@@ -1,24 +1,27 @@
 import axios from "axios";
 import "./compras.css";
 import '../../master.css';
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import { dataContext } from "../context/dataContext";
 
-//{ compra && compra.length>0 && compra.map((compraObj: {Observaciones: String | null | undefined; FechaCompra: String},index) => (
   
 function Compras() {
   const [compra, setCompra] = useState([]);
   const [error, setError] = useState(null);
   const [textEmail, setTextEmail] = useState("");
-  const { setCompraElegida } = useContext(dataContext);
+  const { setCompraElegida, emailActivo } = useContext(dataContext);
+
+  useEffect(() => {
+    fetchCompras();
+  },[]);  
 
   const fetchCompras = () => 
   {
-    console.log("SE ENVIO PEDIDO: ", textEmail)
+    console.log("SE ENVIO PEDIDO: ", emailActivo)
     return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/compras/asociadas', {
       params: {
-        'email': textEmail
+        'email': emailActivo
       }
     })
         .then((response) => {
@@ -29,21 +32,8 @@ function Compras() {
 
   if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS COMPRAS</p>
 
-  //const handleTextEmail = (event: { preventDefault: () => void; target: { value: string; }; }) => 
-  const handleTextEmail = (event) => 
-  {
-    event.preventDefault();
-    console.log(event.target.value);
-    setTextEmail(event.target.value);
-  }
-
   return (
     <div className="form-div">
-      <div className="formulario" onClick={ () => fetchCompras() }>
-        Email:
-        <input type="text" className="input-email" value={textEmail} onChange={handleTextEmail}/>
-        { textEmail && <button className="boton-enviar">Enviar</button>}
-      </div>
       <table className="tabla dark:text-gray-400">
           <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
             <tr>

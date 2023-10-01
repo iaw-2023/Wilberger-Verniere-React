@@ -6,29 +6,9 @@ import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 
 function Ordenes() {
-  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra} = useContext(dataContext);
-  const [email, SetEmail] = useState("");
-  const [emailValido, SetEmailValido] = useState(false);
+  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra, emailActivo} = useContext(dataContext);
   const [observaciones, SetObservaciones] = useState("");
-
-  //const handleSubmitEmail = (event: { preventDefault: () => void; target: { value: string; }; }) => 
-  const handleSubmitEmail = (event) => 
-  {
-    event.preventDefault();
-    console.log(event.target.value);
-    SetEmail(event.target.value);
-    if (esValidoEmail(event.target.value)){
-      SetEmailValido(true);
-    }
-    else { SetEmailValido(false); }
-  }
-
-  //const esValidoEmail = (email: string) => {
-  const esValidoEmail = (email) => {
-    return /\S+@\S+\.\S+/.test(email);
-  }
   
-  //const handleSubmitObservaciones = (event: { preventDefault: () => void; target: { value: string; }; }) => 
   const handleSubmitObservaciones = (event) => 
   {
     event.preventDefault();
@@ -48,16 +28,12 @@ function Ordenes() {
   }
 
   console.log(carrito);
+  console.log(emailActivo);
 
   return (
     <div className='wrapper'>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div className='input-wrapper'>
-          <div className="email">
-            <div className='email-text'>Email:</div>   
-            <input type="text" className="input-email" value={email} onChange={handleSubmitEmail}/>
-            { email && (!emailValido) && <div className='email-valido-text'>Este email no es valido!</div>}
-          </div>
           <div className="observaciones">
             <div className='observaciones-text'>Observaciones:</div>   
             <input type="text" className="input-observaciones" value={observaciones} onChange={handleSubmitObservaciones}/>
@@ -76,7 +52,6 @@ function Ordenes() {
           </thead>
           <tbody>
             { carrito && carrito.length>0 && carrito.map((carritoObj, index) => (
-            //{ carrito && carrito.length>0 && carrito.map((carritoObj: { Pelicula: string ; Fecha: string ; Hora: string; NroSala: number; NroTickets: number; }, index: React.Key) => (
               <tr className="tablaRow" key={index}>
                 <th className="tablaH"> {carritoObj.Pelicula}      </th>
                 <th className="tablaH"> {carritoObj.Fecha}         </th>
@@ -95,8 +70,8 @@ function Ordenes() {
         { carrito && carrito.length>0 &&
           <Button className="boton-cancelar" onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
         }
-        { carrito && carrito.length>0 && email && emailValido && 
-          <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, email, getCurrentDate()) }>Confirmar Compra</Button>
+        { carrito && carrito.length>0 && 
+          <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, emailActivo, getCurrentDate()) }>Confirmar Compra</Button>
         }
       </ButtonGroup>
     </div>
