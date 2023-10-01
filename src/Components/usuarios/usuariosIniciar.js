@@ -25,8 +25,11 @@ function usuarios() {
         return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/iniciar',data)
         .then(function (response) {
             console.log(response);
-            setEmailActivo(response.data.Email);
-            setUsuarioActivo(response.data.Nombre);
+            const Email = response.data.data.Email;
+            const Nombre = response.data.data.Nombre;
+
+            setEmailActivo(Email);
+            setUsuarioActivo(Nombre);
             setLogin(true);
             setError(null);
 
