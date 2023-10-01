@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const dataContext = createContext([]);
 
@@ -12,9 +13,15 @@ const DataProvider = ( {children} ) => {
     const [login, setLogin] = useState(false);
     const [usuarioActivo, setUsuarioActivo] = useState("");
     const [emailActivo, setEmailActivo] = useState("");
+    const navigate = useNavigate();
 
     const promptComprar = (compra) => 
-    {
+    {    
+        if (!login){ //Si no esta logueado lo redirecciona a pantalla de login
+            navigate('/usuariosIniciar');
+            return;
+        }
+
         var valorValido = true;
         var p = prompt("Ingrese la cantidad de tickets que desea comprar, hay "+compra.AsientosDisponible+" asientos disponibles");
         var cantTickets = parseInt(p);
