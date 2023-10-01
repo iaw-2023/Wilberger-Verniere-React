@@ -26,8 +26,10 @@ function usuarios() {
         })
         .then(function (response) {
             console.log(response);
-            setEmailActivo(email);
-            setUsuarioActivo(nombreUser);
+            const { emailRespuesta, nombreRespuesta } = response.data;
+
+            setEmailActivo(emailRespuesta);
+            setUsuarioActivo(nombreRespuesta);
             setLogin(true);
             setError(null);
           })
