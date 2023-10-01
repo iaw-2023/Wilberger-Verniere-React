@@ -16,6 +16,8 @@ function NavBar() {
       setUsuarioActivo("");
       setEmailActivo("");
 
+      localStorage.removeItem("authToken");
+
       navigate("/");
     } 
 
@@ -26,12 +28,15 @@ function NavBar() {
           <Link to="/funciones">Estrenos</Link>
           <Link to="/peliculas">Peliculas</Link>
           <Link to="/generos">Generos</Link>
-          <Link to="/compras">Compras</Link>
-          <Link to="/carrito" className="carrito">🛒</Link>
+          { login && <Link to="/compras">Compras</Link> }
+          { login && <Link to="/carrito" className="carrito">🛒</Link> }
           { !login && <Link to="/usuariosIniciar" className="usuarioInicio">Ingresar</Link> }
           { !login && <Link to="/usuariosRegistrar" className="usuarioRegistrar">Registrarse</Link> }
-          { login &&  <div className='nombreUsuario'>{usuarioActivo}</div> }
-          { login && <Link to="/" className="usuarioSalir" onClick={ handleLogOut }>LogOut</Link> }
+          { login &&  
+            <div className='nombreUsuario'> 
+              {usuarioActivo} 
+              <Link to="/" className="usuarioSalir" onClick={ handleLogOut }>LogOut</Link>
+            </div> }
           {/* <div className="search-container">
             <form action="/action_page.php">
               <input type="text" placeholder="Search.." name="search"></input>
