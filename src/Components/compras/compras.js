@@ -9,8 +9,7 @@ import { dataContext } from "../context/dataContext";
 function Compras() {
   const [compra, setCompra] = useState([]);
   const [error, setError] = useState(null);
-  const [textEmail, setTextEmail] = useState("");
-  const { setCompraElegida, emailActivo } = useContext(dataContext);
+  const { setCompraElegida, fetchEmailUsuario, authToken } = useContext(dataContext);
 
   useEffect(() => {
     fetchCompras();
@@ -21,8 +20,11 @@ function Compras() {
     console.log("SE ENVIO PEDIDO: ", emailActivo)
     return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/compras/asociadas', {
       params: {
-        'email': emailActivo
-      }
+        'email': fetchEmailUsuario
+      },
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
     })
         .then((response) => {
             setCompra(response.data.data);
