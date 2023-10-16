@@ -21,7 +21,7 @@ function usuarios() {
     const guardarUsuario = () =>
     {
         console.log("Creo usuario:", nombreUser, contraseña, email);
-        return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/crear',
+        return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/register',
         {
             'Email': email,
             'Contraseña': contraseña,
