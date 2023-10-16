@@ -11,6 +11,7 @@ function usuarios() {
     const [nombreUser, setNombreUser] = useState("");
     const [contraseña, setContraseña] = useState("");
     const [email, setEmail] = useState("");
+    const [error, setError] = useState(null);
     const [emailValido, SetEmailValido] = useState(false);
 
     const { setLogin, setAuthToken } = useContext(dataContext);
