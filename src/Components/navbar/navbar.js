@@ -1,25 +1,13 @@
 "use client";
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./navbar.css";
 import { useContext } from 'react';
 import { dataContext } from '../context/dataContext';
 
 function NavBar() {
 
-    const { login, setLogin, setEmailActivo, setUsuarioActivo, usuarioActivo } = useContext(dataContext);
-    const navigate = useNavigate();
-
-    const handleLogOut = () =>
-    {
-      setLogin(false);
-      setUsuarioActivo("");
-      setEmailActivo("");
-
-      localStorage.removeItem("authToken");
-
-      navigate("/");
-    } 
+    const { login, fetchNombreUsuario, handleLogOut} = useContext(dataContext);
 
     return (
       <>
@@ -34,7 +22,7 @@ function NavBar() {
           { !login && <Link to="/usuariosRegistrar" className="usuarioRegistrar">Registrarse</Link> }
           { login &&  
             <div className='nombreUsuario'> 
-              {usuarioActivo} 
+              {fetchNombreUsuario} 
               <Link to="/" className="usuarioSalir" onClick={ handleLogOut }>LogOut</Link>
             </div> }
           {/* <div className="search-container">

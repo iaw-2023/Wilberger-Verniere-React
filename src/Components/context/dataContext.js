@@ -11,8 +11,7 @@ const DataProvider = ( {children} ) => {
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState();
     const [login, setLogin] = useState(false);
-    const [usuarioActivo, setUsuarioActivo] = useState("");
-    const [emailActivo, setEmailActivo] = useState("");
+    const [authToken, setAuthToken] = useState(null);
     const navigate = useNavigate();
 
     const promptComprar = (compra) => 
@@ -98,6 +97,11 @@ const DataProvider = ( {children} ) => {
             'Email': email, 
             'FechaCompra': fechaCompra, 
             'Compras': carrito 
+        },
+        {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+            },
         })
         .then(function (response) {
             console.log(response);
@@ -115,6 +119,58 @@ const DataProvider = ( {children} ) => {
         });
     }
 
+    const handleLogOut = () =>
+    {
+      setLogin(false);
+      axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/logout',
+        {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+            },
+        })
+        .then(function (response) {
+            console.log(response);
+          })
+        .catch(function (error) {
+            console.log(error);
+          });
+      navigate("/");
+    } 
+
+    const fetchNombreUsuario = () => 
+    {
+      axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/user',
+        {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+            },
+        })
+        .then(function (response) {
+            console.log(response);
+            return response.data.Nombre
+          })
+        .catch(function (error) {
+            console.log(error);
+          });
+    }
+
+    const fetchEmailUsuario = () => 
+    {
+      axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/user',
+        {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+            },
+        })
+        .then(function (response) {
+            console.log(response);
+            return response.data.Email
+          })
+        .catch(function (error) {
+            console.log(error);
+          });
+    }
+
     return <dataContext.Provider value={ 
         {
             carrito, setCarrito, 
@@ -123,9 +179,11 @@ const DataProvider = ( {children} ) => {
             peliculaElegida, setPeliculaElegida,
             compraElegida, setCompraElegida,
             login, setLogin,
-            usuarioActivo, setUsuarioActivo,
-            emailActivo, setEmailActivo,
-        } 
+            authToken, setAuthToken,
+            handleLogOut,
+            fetchNombreUsuario,
+            fetchEmailUsuario,
+        }
     }>{children}</dataContext.Provider>
 };
 
