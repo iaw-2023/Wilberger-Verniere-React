@@ -10,26 +10,23 @@ function usuarios() {
     const [contraseña, setContraseña] = useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
-    const { setUsuarioActivo, setEmailActivo, setLogin } = useContext(dataContext);
+    const { setLogin, setAuthToken } = useContext(dataContext);
 
     const navigate = useNavigate();
 
     const fetchUsuario = () =>
     {
-        console.log("Busco usuario:",contraseña, email);
+        console.log("Busco usuario:",email, contraseña);
         const data = {
             Email: email,
             Contraseña: contraseña,
         };
 
-        return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/usuarios/iniciar',data)
+        return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/login',data)
         .then(function (response) {
             console.log(response);
-            const Email = response.data.data.Email;
-            const Nombre = response.data.data.Nombre;
+            setAuthToken(response.data.data.access_token);
 
-            setEmailActivo(Email);
-            setUsuarioActivo(Nombre);
             setLogin(true);
             setError(null);
 
