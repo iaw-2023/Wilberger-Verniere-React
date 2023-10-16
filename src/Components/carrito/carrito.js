@@ -6,7 +6,7 @@ import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 
 function Ordenes() {
-  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra, emailActivo} = useContext(dataContext);
+  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra, fetchEmailUsuario} = useContext(dataContext);
   const [observaciones, SetObservaciones] = useState("");
   
   const handleSubmitObservaciones = (event) => 
@@ -28,7 +28,7 @@ function Ordenes() {
   }
 
   console.log(carrito);
-  console.log(emailActivo);
+  console.log(fetchEmailUsuario);
 
   return (
     <div className='wrapper'>
@@ -71,7 +71,7 @@ function Ordenes() {
           <Button className="boton-cancelar" onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
         }
         { carrito && carrito.length>0 && 
-          <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, emailActivo, getCurrentDate()) }>Confirmar Compra</Button>
+          <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, fetchEmailUsuario, getCurrentDate()) }>Confirmar Compra</Button>
         }
       </ButtonGroup>
     </div>
