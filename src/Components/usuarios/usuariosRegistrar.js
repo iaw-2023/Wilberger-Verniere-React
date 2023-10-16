@@ -10,11 +10,10 @@ function usuarios() {
 
     const [nombreUser, setNombreUser] = useState("");
     const [contraseña, setContraseña] = useState("");
-    const [error, setError] = useState(null);
     const [email, setEmail] = useState("");
     const [emailValido, SetEmailValido] = useState(false);
 
-    const { emailActivo, usuarioActivo, setUsuarioActivo, setEmailActivo, setLogin } = useContext(dataContext);
+    const { setLogin, setAuthToken } = useContext(dataContext);
 
     const navigate = useNavigate();
 
@@ -29,10 +28,8 @@ function usuarios() {
         })
         .then(function (response) {
             console.log(response);
-            const { emailRespuesta, nombreRespuesta } = response.data;
+            setAuthToken(response.data.data.access_token);
 
-            setEmailActivo(emailRespuesta);
-            setUsuarioActivo(nombreRespuesta);
             setLogin(true);
             setError(null);
 
