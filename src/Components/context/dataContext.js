@@ -11,7 +11,7 @@ const DataProvider = ( {children} ) => {
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState();
     const [login, setLogin] = useState(false);
-    const [authToken, setAuthToken] = useState(null);
+    const [authToken, setAuthToken] = useState("");
     const navigate = useNavigate();
 
     const promptComprar = (compra) => 
@@ -130,6 +130,7 @@ const DataProvider = ( {children} ) => {
         })
         .then(function (response) {
             console.log(response);
+            setAuthToken("");
           })
         .catch(function (error) {
             console.log(error);
@@ -139,7 +140,7 @@ const DataProvider = ( {children} ) => {
 
     const fetchNombreUsuario = () => 
     {
-      axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/user',
+      axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/user',
         {
             headers: {
                 Authorization: `Bearer ${authToken}`,
@@ -156,7 +157,7 @@ const DataProvider = ( {children} ) => {
 
     const fetchEmailUsuario = () => 
     {
-      axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/user',
+      axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/user',
         {
             headers: {
                 Authorization: `Bearer ${authToken}`,
