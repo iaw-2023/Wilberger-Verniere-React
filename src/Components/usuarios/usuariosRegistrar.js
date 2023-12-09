@@ -26,11 +26,6 @@ function usuarios() {
             'Email': email,
             'Contraseña': contraseña,
             'Nombre': nombreUser
-        },
-        {
-            headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
         })
         .then(function (response) {
             console.log(response);
