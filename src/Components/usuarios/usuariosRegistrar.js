@@ -20,26 +20,26 @@ function usuarios() {
 
     const guardarUsuario = () =>
     {
-        console.log("Creo usuario:", nombreUser, contraseña, email);
-        return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/register',
-        {
-            'Email': email,
-            'Contraseña': contraseña,
-            'Nombre': nombreUser
-        })
-        .then(function (response) {
-            console.log(response);
-            setAuthToken(response.data.data.access_token);
-
-            setLogin(true);
-            setError(null);
-
-            navigate("/");
-          })
-        .catch(function (error) {
-            console.log(error);
-            setError(error);
-          }); 
+        axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/sanctum/csrf-cookie')
+            .then(() => {
+                console.log("Creo usuario:", nombreUser, contraseña, email);
+                return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/register', {
+                    'Email': email,
+                    'Contraseña': contraseña,
+                    'Nombre': nombreUser
+                });
+            })
+            .then(function (response) {
+                console.log(response);
+                setAuthToken(response.data.data.access_token);
+                setLogin(true);
+                setError(null);
+                navigate("/");
+            })
+            .catch(function (error) {
+                console.log(error);
+                setError(error);
+            });
     }
 
     const handleTextNombreUser = (event) => 
