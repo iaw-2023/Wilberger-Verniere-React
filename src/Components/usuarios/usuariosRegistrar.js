@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-function usuarios() {
+function UsuariosRegistrar() {
 
     const [nombreUser, setNombreUser] = useState("");
     const [contraseña, setContraseña] = useState("");
@@ -91,4 +91,4 @@ function usuarios() {
     )
 }
 
-export default usuarios
+export default UsuariosRegistrar

@@ -5,7 +5,7 @@ import { dataContext } from "../context/dataContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function usuarios() {
+function UsuariosIniciar() {
 
     const [contraseña, setContraseña] = useState("");
     const [email, setEmail] = useState("");
@@ -70,4 +70,4 @@ function usuarios() {
     )
 }
 
-export default usuarios
+export default UsuariosIniciar
