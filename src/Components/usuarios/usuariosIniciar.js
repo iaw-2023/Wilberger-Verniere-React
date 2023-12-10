@@ -18,8 +18,8 @@ function UsuariosIniciar() {
     {
         console.log("Busco usuario:",email, contraseña);
         const data = {
-            Email: email,
-            Contraseña: contraseña,
+            email: email,
+            password: contraseña,
         };
 
         return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/login',data)

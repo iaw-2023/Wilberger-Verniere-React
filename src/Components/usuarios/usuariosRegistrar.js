@@ -24,9 +24,9 @@ function UsuariosRegistrar() {
             .then(() => {
                 console.log("Creo usuario:", nombreUser, contraseña, email);
                 return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/register', {
-                    'Email': email,
-                    'Contraseña': contraseña,
-                    'Nombre': nombreUser
+                    'email': email,
+                    'password': contraseña,
+                    'name': nombreUser
                 });
             })
             .then(function (response) {
