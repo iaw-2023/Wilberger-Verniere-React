@@ -17,7 +17,6 @@ function Compras() {
 
   const fetchCompras = () => 
   {
-    console.log("SE ENVIO PEDIDO: ", emailActivo)
     return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/compras/asociadas', {
       params: {
         'email': fetchEmailUsuario
