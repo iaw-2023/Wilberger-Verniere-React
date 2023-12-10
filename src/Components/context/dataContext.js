@@ -121,7 +121,7 @@ const DataProvider = ( {children} ) => {
 
     const handleLogOut = () =>
     {
-      setLogin(false);
+      
       axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/logout',
         {
             headers: {
@@ -131,10 +131,12 @@ const DataProvider = ( {children} ) => {
         .then(function (response) {
             console.log(response);
             setAuthToken("");
-          })
+        })
         .catch(function (error) {
             console.log(error);
-          });
+        });
+
+      setLogin(false);
       navigate("/");
     } 
 
