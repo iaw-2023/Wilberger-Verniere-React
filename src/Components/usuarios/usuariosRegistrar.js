@@ -86,6 +86,9 @@ function UsuariosRegistrar() {
                 Contraseña:
                 <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
             </div>
+            <div className="error-message">
+                {error && <p>{error.message}</p>}
+            </div>
             { emailValido && nombreUser && contraseña && <Button className="boton-enviar" onClick={ ()=>guardarUsuario() }>Confirmar</Button>}
         </div>
     )
