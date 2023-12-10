@@ -25,7 +25,7 @@ function UsuariosIniciar() {
         return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/login',data)
         .then(function (response) {
             console.log(response);
-            setAuthToken(response.data.data.access_token);
+            setAuthToken(response.data.access_token);
 
             setLogin(true);
             setError(null);
