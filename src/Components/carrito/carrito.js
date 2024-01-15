@@ -28,7 +28,7 @@ function Ordenes() {
   }
 
   console.log(carrito);
-  console.log(fetchEmailUsuario);
+  console.log(()=>fetchEmailUsuario);
 
   return (
     <div className='wrapper'>
