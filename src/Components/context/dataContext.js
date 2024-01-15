@@ -10,8 +10,12 @@ const DataProvider = ( {children} ) => {
     const [carrito, setCarrito] = useState([]);
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState();
-    const [login, setLogin] = useState(false);
-    const [authToken, setAuthToken] = useState("");
+    const [login, setLogin] = useState(
+        localStorage.getItem('login') == 'true' || false
+    );
+    const [authToken, setAuthToken] = useState(
+        localStorage.getItem('authToken') || ""
+    );
     const navigate = useNavigate();
 
     const API_URL = "https://wilberger-verniere-laravel-zxwy.vercel.app"
@@ -133,12 +137,13 @@ const DataProvider = ( {children} ) => {
         .then(function (response) {
             console.log(response);
             setAuthToken("");
+            localStorage.setItem('authToken', "");
+            setLogin(false);
+            localStorage.setItem('login', false);
         })
         .catch(function (error) {
             console.log(error);
         });
-
-      setLogin(false);
       navigate("/");
     } 
 

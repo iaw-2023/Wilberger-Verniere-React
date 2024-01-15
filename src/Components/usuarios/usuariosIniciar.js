@@ -3,7 +3,6 @@ import "../../master.css";
 import { useContext, useState } from "react";
 import { dataContext } from "../context/dataContext";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import apiClient from '../../Services/api';
 
 
@@ -27,8 +26,10 @@ function UsuariosIniciar() {
         return apiClient.post("/rest/login",data)
         .then(function (response) {
             console.log(response);
-            setAuthToken(response.data.access_token);
             setLogin(true);
+            localStorage.setItem('login', true);
+            setAuthToken(response.data.access_token);
+            localStorage.setItem('authToken', response.data.access_token);
             setError(null);
             navigate('/');
           })

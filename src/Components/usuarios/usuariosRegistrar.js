@@ -32,9 +32,11 @@ function UsuariosRegistrar() {
                 });
             })
             .then(function (response) {
-                console.log(response);
-                setAuthToken(response.data.access_token);
+                console.log(response);                
                 setLogin(true);
+                localStorage.setItem('login', true);
+                setAuthToken(response.data.access_token);
+                localStorage.setItem('authToken', response.data.access_token);
                 setError(null);
                 navigate("/");
             })
