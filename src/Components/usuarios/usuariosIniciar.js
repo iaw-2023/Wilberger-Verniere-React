@@ -41,14 +41,12 @@ function UsuariosIniciar() {
     const handleTextEmail = (event) => 
     {
         event.preventDefault();
-        console.log(event.target.value);
         setEmail(event.target.value);
     }
 
     const handleTextContraseña = (event) => 
     {
         event.preventDefault();
-        console.log(event.target.value);
         setContraseña(event.target.value);
     }
 

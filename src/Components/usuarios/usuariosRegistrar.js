@@ -45,14 +45,12 @@ function UsuariosRegistrar() {
     const handleTextNombreUser = (event) => 
     {
         event.preventDefault();
-        console.log(event.target.value);
         setNombreUser(event.target.value);
     }
 
     const handleTextEmail = (event) => 
     {
         event.preventDefault();
-        console.log(event.target.value);
         setEmail(event.target.value);
         if (esValidoEmail(event.target.value)){
             SetEmailValido(true);
@@ -67,7 +65,6 @@ function UsuariosRegistrar() {
     const handleTextContraseña = (event) => 
     {
         event.preventDefault();
-        console.log(event.target.value);
         setContraseña(event.target.value);
     }
 
