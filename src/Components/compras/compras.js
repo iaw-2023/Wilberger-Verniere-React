@@ -1,15 +1,15 @@
-import axios from "axios";
 import "./compras.css";
 import '../../master.css';
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import { dataContext } from "../context/dataContext";
+import apiClient from '../../Services/api';
 
   
 function Compras() {
   const [compra, setCompra] = useState([]);
   const [error, setError] = useState(null);
-  const { setCompraElegida, fetchEmailUsuario, authToken, API_URL } = useContext(dataContext);
+  const { setCompraElegida, fetchEmailUsuario, authToken} = useContext(dataContext);
 
   useEffect(() => {
     fetchCompras();
@@ -20,7 +20,7 @@ function Compras() {
 
   const fetchCompras = () => 
   {
-    return axios.get(API_URL+"/rest/compras/asociadas", {
+    return apiClient.get("/rest/compras/asociadas", {
       params: {
         'email': fetchEmailUsuario
       },

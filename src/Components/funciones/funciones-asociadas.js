@@ -4,15 +4,16 @@ import '../../master.css';
 import {Button} from 'react-bootstrap';
 import axios from 'axios';
 import { dataContext } from '../context/dataContext';
+import apiClient from '../../Services/api';
 
 function FuncionesAsociadas() {
-    const {peliculaElegida, promptComprar,API_URL} = useContext(dataContext);
+    const {peliculaElegida, promptComprar} = useContext(dataContext);
     const [error, setError] = useState(null);
     const [funcion, setFuncion] = useState([])
 
     const fetchFuncion = () => 
     {
-        return axios.get(API_URL+"/rest/funciones/asociadas", { 
+        return apiClient.get("/rest/funciones/asociadas", { 
             params: {
                 'Id': peliculaElegida.Id,
             }

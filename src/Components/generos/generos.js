@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import './generos.css';
 import '../../master.css';
-import axios from 'axios';
-import { dataContext } from '../context/dataContext';
+import apiClient from '../../Services/api';
 
 function listaPeliculas(arregloPeliculas){
     if (arregloPeliculas.length < 1){
@@ -28,10 +27,9 @@ function Generos() {
 
   const [genero, setGenero] = useState([]);
   const [error, setError] = useState(null);
-  const {API_URL} = useContext(dataContext);
 
   const fetchGenero = () => {
-      return axios.get(API_URL+"/rest/generos")
+      return apiClient.get("/rest/generos")
           .then((response) => {
             setGenero(response.data.data);
             setError(null);

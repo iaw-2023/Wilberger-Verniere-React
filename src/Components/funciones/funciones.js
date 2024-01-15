@@ -3,16 +3,16 @@ import { useState } from 'react';
 import './funciones.css';
 import '../../master.css';
 import {Button} from 'react-bootstrap';
-import axios from 'axios';
 import { dataContext } from '../context/dataContext';
+import apiClient from '../../Services/api';
 
 function Funciones() {
     const [funcion, setFuncion] = useState([])
     const [error, setError] = useState(null);
-    const {promptComprar, API_URL} = useContext(dataContext);
+    const {promptComprar} = useContext(dataContext);
 
     const fetchFuncion = () => {
-        return axios.get(API_URL+"/rest/funciones")
+        return apiClient.get("/rest/funciones")
             .then((response) => {
                 setFuncion(response.data.data);
                 setError(null);

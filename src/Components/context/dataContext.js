@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import apiClient from '../../Services/api';
 
 export const dataContext = createContext([]);
 
@@ -17,8 +17,6 @@ const DataProvider = ( {children} ) => {
         localStorage.getItem('authToken') || ""
     );
     const navigate = useNavigate();
-
-    const API_URL = "https://wilberger-verniere-laravel-zxwy.vercel.app"
 
     const promptComprar = (compra) => 
     {    
@@ -97,7 +95,7 @@ const DataProvider = ( {children} ) => {
     {
         let obvs = observaciones;
         if (obvs=="") { obvs = "-";}
-        axios.post(API_URL+"/rest/compras/crear",
+        apiClient.post("/rest/compras/crear",
         { 
             'Observaciones': obvs, 
             'Email': email, 
@@ -128,7 +126,7 @@ const DataProvider = ( {children} ) => {
     const handleLogOut = () =>
     {
       
-      axios.post(API_URL+"/rest/logout",
+      apiClient.post("/rest/logout",
         {
             headers: {
                 Authorization: `Bearer ${authToken}`,
@@ -149,7 +147,7 @@ const DataProvider = ( {children} ) => {
 
     const fetchNombreUsuario = () => 
     {
-      axios.get(API_URL+"/rest/user",
+       apiClient.get("/rest/user",
         {
             headers: {
                 Authorization: `Bearer ${authToken}`,
@@ -167,7 +165,7 @@ const DataProvider = ( {children} ) => {
 
     const fetchEmailUsuario = () => 
     {
-      axios.get(API_URL+"/rest/user",
+        apiClient.get("/rest/user",
         {
             headers: {
                 Authorization: `Bearer ${authToken}`,

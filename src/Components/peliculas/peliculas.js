@@ -2,9 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import './peliculas.css';
 import '../../master.css';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { dataContext } from '../context/dataContext';
+import apiClient from '../../Services/api';
 
 /* type TipoPelicula = {
     Nombre: String;
@@ -16,10 +16,10 @@ function Peliculas() {
   //const [pelicula, setPelicula] = useState<TipoPelicula[]>([]);
   const [pelicula, setPelicula] = useState([]);
   const [error, setError] = useState(null);
-  const { setPeliculaElegida,API_URL } = useContext(dataContext);
+  const { setPeliculaElegida} = useContext(dataContext);
 
   const fetchPelicula = () => {
-      return axios.get(API_URL+"/rest/peliculas")
+      return apiClient.get("/rest/peliculas")
           .then((response) => {
             setPelicula(response.data.data);
             setError(null);
