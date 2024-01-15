@@ -22,7 +22,7 @@ function NavBar() {
           { !login && <Link to="/usuariosRegistrar" className="usuarioRegistrar">Registrarse</Link> }
           { login &&  
             <div className='nombreUsuario'> 
-              {fetchNombreUsuario} 
+              {()=>fetchNombreUsuario} 
               <Link to="/" className="usuarioSalir" onClick={ handleLogOut }>LogOut</Link>
             </div> }
           {/* <div className="search-container">
