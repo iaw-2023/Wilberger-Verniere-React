@@ -15,6 +15,8 @@ function Compras() {
     fetchCompras();
   },[]);  
 
+  console.log(fetchEmailUsuario);
+
   const fetchCompras = () => 
   {
     return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/compras/asociadas', {
