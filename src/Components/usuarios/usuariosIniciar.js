@@ -4,10 +4,6 @@ import { useContext, useState } from "react";
 import { dataContext } from "../context/dataContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-axios.defaults.headers.common['Accept'] = 'application/json';
-axios.defaults.headers.common['Content-Type'] = 'application/json';
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.withCredentials = true;
 
 function UsuariosIniciar() {
 

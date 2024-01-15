@@ -6,11 +6,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-axios.defaults.headers.common['Accept'] = 'application/json';
-axios.defaults.headers.common['Content-Type'] = 'application/json';
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.withCredentials = true;
-
 function UsuariosRegistrar() {
 
     const [nombreUser, setNombreUser] = useState("");
