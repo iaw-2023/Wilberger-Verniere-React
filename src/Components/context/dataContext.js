@@ -150,7 +150,7 @@ const DataProvider = ( {children} ) => {
         })
         .then(function (response) {
             console.log(response);
-            return response.data.Nombre
+            return response.data.nombre
           })
         .catch(function (error) {
             console.log(error);
@@ -167,7 +167,7 @@ const DataProvider = ( {children} ) => {
         })
         .then(function (response) {
             console.log(response);
-            return response.data.Email
+            return response.data.email
           })
         .catch(function (error) {
             console.log(error);
