@@ -6,13 +6,13 @@ import axios from 'axios';
 import { dataContext } from '../context/dataContext';
 
 function FuncionesAsociadas() {
-    const {peliculaElegida, promptComprar} = useContext(dataContext);
+    const {peliculaElegida, promptComprar,API_URL} = useContext(dataContext);
     const [error, setError] = useState(null);
     const [funcion, setFuncion] = useState([])
 
     const fetchFuncion = () => 
     {
-        return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/funciones/asociadas', { 
+        return axios.get(API_URL+"/rest/funciones/asociadas", { 
             params: {
                 'Id': peliculaElegida.Id,
             }

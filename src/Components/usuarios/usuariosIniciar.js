@@ -10,8 +10,7 @@ function UsuariosIniciar() {
     const [contraseña, setContraseña] = useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
-    const { setLogin, setAuthToken } = useContext(dataContext);
-    const API_URL = "https://wilberger-verniere-laravel-zxwy.vercel.app";
+    const { setLogin, setAuthToken, API_URL } = useContext(dataContext);
 
     const navigate = useNavigate();
 
@@ -27,10 +26,8 @@ function UsuariosIniciar() {
         .then(function (response) {
             console.log(response);
             setAuthToken(response.data.access_token);
-
             setLogin(true);
             setError(null);
-
             navigate('/');
           })
         .catch(function (error) {

@@ -9,10 +9,10 @@ import { dataContext } from '../context/dataContext';
 function Funciones() {
     const [funcion, setFuncion] = useState([])
     const [error, setError] = useState(null);
-    const {promptComprar} = useContext(dataContext);
+    const {promptComprar, API_URL} = useContext(dataContext);
 
     const fetchFuncion = () => {
-        return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/funciones')
+        return axios.get(API_URL+"/rest/funciones")
             .then((response) => {
                 setFuncion(response.data.data);
                 setError(null);

@@ -14,6 +14,8 @@ const DataProvider = ( {children} ) => {
     const [authToken, setAuthToken] = useState("");
     const navigate = useNavigate();
 
+    const API_URL = "https://wilberger-verniere-laravel-zxwy.vercel.app"
+
     const promptComprar = (compra) => 
     {    
         if (!login){ //Si no esta logueado lo redirecciona a pantalla de login
@@ -91,7 +93,7 @@ const DataProvider = ( {children} ) => {
     {
         let obvs = observaciones;
         if (obvs=="") { obvs = "-";}
-        axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/compras/crear',
+        axios.post(API_URL+"/rest/compras/crear",
         { 
             'Observaciones': obvs, 
             'Email': email, 
@@ -122,7 +124,7 @@ const DataProvider = ( {children} ) => {
     const handleLogOut = () =>
     {
       
-      axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/logout',
+      axios.post(API_URL+"/rest/logout",
         {
             headers: {
                 Authorization: `Bearer ${authToken}`,
@@ -142,7 +144,7 @@ const DataProvider = ( {children} ) => {
 
     const fetchNombreUsuario = () => 
     {
-      axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/user',
+      axios.get(API_URL+"/rest/user",
         {
             headers: {
                 Authorization: `Bearer ${authToken}`,
@@ -159,7 +161,7 @@ const DataProvider = ( {children} ) => {
 
     const fetchEmailUsuario = () => 
     {
-      axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/user',
+      axios.get(API_URL+"/rest/user",
         {
             headers: {
                 Authorization: `Bearer ${authToken}`,
@@ -186,6 +188,7 @@ const DataProvider = ( {children} ) => {
             handleLogOut,
             fetchNombreUsuario,
             fetchEmailUsuario,
+            API_URL,
         }
     }>{children}</dataContext.Provider>
 };

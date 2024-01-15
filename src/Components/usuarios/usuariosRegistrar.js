@@ -13,9 +13,8 @@ function UsuariosRegistrar() {
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
     const [emailValido, SetEmailValido] = useState(false);
-    const API_URL = "https://wilberger-verniere-laravel-zxwy.vercel.app";
 
-    const { setLogin, setAuthToken } = useContext(dataContext);
+    const { setLogin, setAuthToken, API_URL } = useContext(dataContext);
 
     const navigate = useNavigate();
 

@@ -16,10 +16,10 @@ function Peliculas() {
   //const [pelicula, setPelicula] = useState<TipoPelicula[]>([]);
   const [pelicula, setPelicula] = useState([]);
   const [error, setError] = useState(null);
-  const { setPeliculaElegida } = useContext(dataContext);
+  const { setPeliculaElegida,API_URL } = useContext(dataContext);
 
   const fetchPelicula = () => {
-      return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/peliculas')
+      return axios.get(API_URL+"/rest/peliculas")
           .then((response) => {
             setPelicula(response.data.data);
             setError(null);
