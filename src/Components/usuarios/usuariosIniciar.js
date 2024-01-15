@@ -4,13 +4,15 @@ import { useContext, useState } from "react";
 import { dataContext } from "../context/dataContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import apiClient from '../../Services/api';
+
 
 function UsuariosIniciar() {
 
     const [contraseña, setContraseña] = useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
-    const { setLogin, setAuthToken, API_URL } = useContext(dataContext);
+    const { setLogin, setAuthToken} = useContext(dataContext);
 
     const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ function UsuariosIniciar() {
             password: contraseña,
         };
 
-        return axios.post(API_URL+"/rest/login",data)
+        return apiClient.post("/rest/login",data)
         .then(function (response) {
             console.log(response);
             setAuthToken(response.data.access_token);
