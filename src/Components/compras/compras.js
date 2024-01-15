@@ -16,7 +16,7 @@ function Compras() {
   },[]);  
 
   console.log(authToken);
-  console.log(fetchEmailUsuario);
+  console.log(()=>fetchEmailUsuario);
 
   const fetchCompras = () => 
   {
