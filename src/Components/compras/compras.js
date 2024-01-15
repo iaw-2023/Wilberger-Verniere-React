@@ -9,12 +9,13 @@ import { dataContext } from "../context/dataContext";
 function Compras() {
   const [compra, setCompra] = useState([]);
   const [error, setError] = useState(null);
-  const { setCompraElegida, fetchEmailUsuario, authToken,API_URL } = useContext(dataContext);
+  const { setCompraElegida, fetchEmailUsuario, authToken, API_URL } = useContext(dataContext);
 
   useEffect(() => {
     fetchCompras();
   },[]);  
 
+  console.log(authToken);
   console.log(fetchEmailUsuario);
 
   const fetchCompras = () => 
