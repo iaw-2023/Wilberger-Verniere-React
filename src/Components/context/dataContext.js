@@ -151,6 +151,7 @@ const DataProvider = ( {children} ) => {
             },
         })
         .then(function (response) {
+            console.log(authToken);
             console.log(response);
             return response.data.nombre
           })
@@ -168,6 +169,7 @@ const DataProvider = ( {children} ) => {
             },
         })
         .then(function (response) {
+            console.log(authToken);
             console.log(response);
             return response.data.email
           })
