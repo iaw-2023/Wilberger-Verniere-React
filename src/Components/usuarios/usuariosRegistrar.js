@@ -6,6 +6,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
+axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.withCredentials = true;
+
 function UsuariosRegistrar() {
 
     const [nombreUser, setNombreUser] = useState("");
@@ -13,6 +18,7 @@ function UsuariosRegistrar() {
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
     const [emailValido, SetEmailValido] = useState(false);
+    const API_URL = "https://wilberger-verniere-laravel-zxwy.vercel.app";
 
     const { setLogin, setAuthToken } = useContext(dataContext);
 
@@ -20,10 +26,10 @@ function UsuariosRegistrar() {
 
     const guardarUsuario = () =>
     {
-        axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/sanctum/csrf-cookie')
+        axios.get(API_URL+"/sanctum/csrf-cookie")
             .then(() => {
                 console.log("Creo usuario:", nombreUser, contraseña, email);
-                return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/register', {
+                return axios.post(API_URL+"/rest/register", {
                     'email': email,
                     'password': contraseña,
                     'name': nombreUser

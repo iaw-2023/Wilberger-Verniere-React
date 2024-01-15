@@ -4,6 +4,10 @@ import { useContext, useState } from "react";
 import { dataContext } from "../context/dataContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+axios.defaults.headers.common['Accept'] = 'application/json';
+axios.defaults.headers.common['Content-Type'] = 'application/json';
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.withCredentials = true;
 
 function UsuariosIniciar() {
 
@@ -11,6 +15,7 @@ function UsuariosIniciar() {
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
     const { setLogin, setAuthToken } = useContext(dataContext);
+    const API_URL = "https://wilberger-verniere-laravel-zxwy.vercel.app";
 
     const navigate = useNavigate();
 
@@ -22,7 +27,7 @@ function UsuariosIniciar() {
             password: contraseña,
         };
 
-        return axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/login',data)
+        return axios.post(API_URL+"/rest/login",data)
         .then(function (response) {
             console.log(response);
             setAuthToken(response.data.access_token);
