@@ -8,6 +8,7 @@ import { dataContext } from '../context/dataContext';
 function NavBar() {
 
     const { login, fetchNombreUsuario, handleLogOut} = useContext(dataContext);
+    console.log(fetchNombreUsuario);
 
     return (
       <>
@@ -22,7 +23,7 @@ function NavBar() {
           { !login && <Link to="/usuariosRegistrar" className="usuarioRegistrar">Registrarse</Link> }
           { login &&  
             <div className='nombreUsuario'> 
-              {()=>fetchNombreUsuario} 
+              {fetchNombreUsuario} 
               <Link to="/" className="usuarioSalir" onClick={ handleLogOut }>LogOut</Link>
             </div> }
           {/* <div className="search-container">
