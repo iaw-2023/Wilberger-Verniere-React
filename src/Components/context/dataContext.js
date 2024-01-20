@@ -131,7 +131,6 @@ const DataProvider = ( {children} ) => {
         {
             headers: {
                 Authorization: `Bearer ${authToken}`,
-                Accept :'application/json', 
             },
         })
         .then(function (response) {
@@ -155,7 +154,6 @@ const DataProvider = ( {children} ) => {
         {
             headers: {
                 Authorization: `Bearer ${authToken}`,
-                Accept :'application/json', 
             },
         })
         .then(function (response) {
@@ -176,7 +174,6 @@ const DataProvider = ( {children} ) => {
         {
             headers: {
                 Authorization: `Bearer ${authToken}`,
-                Accept :'application/json', 
             },
         })
         .then(function (response) {
