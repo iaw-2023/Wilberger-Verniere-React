@@ -29,20 +29,20 @@ function UsuariosRegistrar() {
                     'email': email,
                     'password': contraseña,
                     'name': nombreUser
+                })
+                .then(function (response) {
+                    console.log(response);                
+                    setLogin(true);
+                    sessionStorage.setItem('login', true);
+                    setAuthToken(response.data.access_token);
+                    sessionStorage.setItem('authToken', response.data.access_token);
+                    setError(null);
+                    navigate("/");
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    setError(error);
                 });
-            })
-            .then(function (response) {
-                console.log(response);                
-                setLogin(true);
-                sessionStorage.setItem('login', true);
-                setAuthToken(response.data.access_token);
-                sessionStorage.setItem('authToken', response.data.access_token);
-                setError(null);
-                navigate("/");
-            })
-            .catch(function (error) {
-                console.log(error);
-                setError(error);
             });
     }
 
