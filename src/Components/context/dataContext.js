@@ -113,6 +113,7 @@ const DataProvider = ( {children} ) => {
           })
         .catch(function (error) {
             console.log(error);
+            return null;
           }); 
     }
 
@@ -125,7 +126,7 @@ const DataProvider = ( {children} ) => {
 
     const handleLogOut = () =>
     {
-      
+      console.log("Mi authToken es (en handleLogOut): ",authToken);
       apiClient.post("/rest/logout",
         {
             headers: {
@@ -141,12 +142,14 @@ const DataProvider = ( {children} ) => {
         })
         .catch(function (error) {
             console.log(error);
+            return null;
         });
       navigate("/");
     } 
 
     const fetchNombreUsuario = () => 
     {
+       console.log("Mi authToken es (en fetchNombreUsuario): ",authToken);
        apiClient.get("/rest/user",
         {
             headers: {
@@ -160,11 +163,13 @@ const DataProvider = ( {children} ) => {
           })
         .catch(function (error) {
             console.log(error);
+            return null;
           });
     }
 
     const fetchEmailUsuario = () => 
     {
+        console.log("Mi authToken es (en fetchEmailUsuario): ",authToken);
         apiClient.get("/rest/user",
         {
             headers: {
@@ -178,6 +183,7 @@ const DataProvider = ( {children} ) => {
           })
         .catch(function (error) {
             console.log(error);
+            return null;
           });
     }
 
