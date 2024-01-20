@@ -26,6 +26,7 @@ function Compras() {
       },
       headers: {
         Authorization: `Bearer ${authToken}`,
+        Accept :'application/json', 
       },
     })
         .then((response) => {
