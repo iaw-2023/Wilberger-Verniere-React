@@ -22,7 +22,7 @@ function Compras() {
   {
     return apiClient.get("/rest/compras/asociadas", {
       params: {
-        'email': fetchEmailUsuario
+        'email': ()=>fetchEmailUsuario
       },
       headers: {
         Authorization: `Bearer ${authToken}`,
