@@ -34,9 +34,9 @@ function UsuariosRegistrar() {
             .then(function (response) {
                 console.log(response);                
                 setLogin(true);
-                localStorage.setItem('login', true);
+                sessionStorage.setItem('login', true);
                 setAuthToken(response.data.access_token);
-                localStorage.setItem('authToken', response.data.access_token);
+                sessionStorage.setItem('authToken', response.data.access_token);
                 setError(null);
                 navigate("/");
             })

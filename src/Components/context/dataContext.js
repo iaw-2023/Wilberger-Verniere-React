@@ -11,10 +11,10 @@ const DataProvider = ( {children} ) => {
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState();
     const [login, setLogin] = useState(
-        localStorage.getItem('login') == 'true' || false
+        sessionStorage.getItem('login') == 'true' || false
     );
     const [authToken, setAuthToken] = useState(
-        localStorage.getItem('authToken') || ""
+        sessionStorage.getItem('authToken') || ""
     );
     const navigate = useNavigate();
 
@@ -136,9 +136,9 @@ const DataProvider = ( {children} ) => {
         .then(function (response) {
             console.log(response);
             setAuthToken("");
-            localStorage.setItem('authToken', "");
+            sessionStorage.setItem('authToken', "");
             setLogin(false);
-            localStorage.setItem('login', false);
+            sessionStorage.setItem('login', false);
         })
         .catch(function (error) {
             console.log(error);
