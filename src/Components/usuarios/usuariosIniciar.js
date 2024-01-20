@@ -23,7 +23,7 @@ function UsuariosIniciar() {
             password: contraseña,
         };
 
-        return apiClient.post("/rest/login",data)
+        apiClient.post("/rest/login",data)
         .then(function (response) {
             console.log(response);
             setLogin(true);

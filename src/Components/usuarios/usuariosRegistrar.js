@@ -25,7 +25,7 @@ function UsuariosRegistrar() {
         apiClient.get("/sanctum/csrf-cookie")
             .then(() => {
                 console.log("Creo usuario:", nombreUser, contraseña, email);
-                return apiClient.post("/rest/register", {
+                apiClient.post("/rest/register", {
                     'email': email,
                     'password': contraseña,
                     'name': nombreUser
