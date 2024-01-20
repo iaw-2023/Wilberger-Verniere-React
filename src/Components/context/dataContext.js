@@ -192,8 +192,7 @@ const DataProvider = ( {children} ) => {
             authToken, setAuthToken,
             handleLogOut,
             fetchNombreUsuario,
-            fetchEmailUsuario,
-            API_URL,
+            fetchEmailUsuario
         }
     }>{children}</dataContext.Provider>
 };
