@@ -29,7 +29,7 @@ function UsuariosRegistrar() {
                     setEmail("");
                     setRespuesta(respuesta.data.message);
                 })
-                .catch(function (error) {
+                .catch(function (error, respuesta) {
                     console.log(respuesta);
                     setRespuesta(error);
                 });
