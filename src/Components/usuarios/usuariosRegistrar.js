@@ -22,16 +22,16 @@ function UsuariosRegistrar() {
                     'password': contraseña,
                     'name': nombreUser
                 })
-                .then(function (respuesta) {
-                    console.log(respuesta);
+                .then(function (response) {
+                    console.log(response);
                     setNombreUser("");
                     setContraseña("");
                     setEmail("");
-                    setRespuesta(respuesta.data.message);
+                    setRespuesta(response.data.message);
                 })
-                .catch(function (respuesta) {
-                    console.log(respuesta);
-                    setRespuesta(respuesta.data.message);
+                .catch(function (response) {
+                    console.log(response);
+                    setRespuesta(response.data.message);
                 });
             });
     }
