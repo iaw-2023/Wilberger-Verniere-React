@@ -29,9 +29,9 @@ function UsuariosRegistrar() {
                     setEmail("");
                     setRespuesta(respuesta.data.message);
                 })
-                .catch(function (error, respuesta) {
+                .catch(function (respuesta) {
                     console.log(respuesta);
-                    setRespuesta(error);
+                    setRespuesta(respuesta.data.message);
                 });
             });
     }
