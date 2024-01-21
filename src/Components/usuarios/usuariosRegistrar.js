@@ -1,9 +1,6 @@
 import "./usuarios.css";
 import "../../master.css";
-import { useContext, useState } from "react";
-import { dataContext } from "../context/dataContext";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { Button } from "react-bootstrap";
 import apiClient from '../../Services/api';
 
@@ -12,13 +9,8 @@ function UsuariosRegistrar() {
     const [nombreUser, setNombreUser] = useState("");
     const [contraseña, setContraseña] = useState("");
     const [email, setEmail] = useState("");
-    const [error, setError] = useState(null);
+    const [respuesta, setRespuesta] = useState(null);
     const [emailValido, SetEmailValido] = useState(false);
-
-    const { setLogin, setAuthToken} = useContext(dataContext);
-    
-
-    const navigate = useNavigate();
 
     const guardarUsuario = () =>
     {
@@ -30,18 +22,13 @@ function UsuariosRegistrar() {
                     'password': contraseña,
                     'name': nombreUser
                 })
-                .then(function (response) {
-                    console.log(response);                
-                    setLogin(true);
-                    sessionStorage.setItem('login', true);
-                    setAuthToken(response.data.access_token);
-                    sessionStorage.setItem('authToken', response.data.access_token);
-                    setError(null);
-                    navigate("/");
+                .then(function (respuesta) {
+                    console.log(respuesta);
+                    setRespuesta(respuesta.message);
                 })
-                .catch(function (error) {
-                    console.log(error);
-                    setError(error);
+                .catch(function (respuesta) {
+                    console.log(respuesta);
+                    setRespuesta(respuesta);
                 });
             });
     }
@@ -87,8 +74,8 @@ function UsuariosRegistrar() {
                 Contraseña:
                 <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
             </div>
-            <div className="error-message">
-                {error && <p>{error.message}</p>}
+            <div className="respuesta-message">
+                {respuesta && <p>{respuesta.message}</p>}
             </div>
             { emailValido && nombreUser && contraseña && <Button className="boton-enviar" onClick={ ()=>guardarUsuario() }>Confirmar</Button>}
         </div>
