@@ -24,11 +24,14 @@ function UsuariosRegistrar() {
                 })
                 .then(function (respuesta) {
                     console.log(respuesta);
-                    setRespuesta(respuesta.message);
+                    setNombreUser("");
+                    setContraseña("");
+                    setEmail("");
+                    setRespuesta(respuesta.data.message);
                 })
-                .catch(function (respuesta) {
+                .catch(function (error) {
                     console.log(respuesta);
-                    setRespuesta(respuesta);
+                    setRespuesta(error);
                 });
             });
     }
