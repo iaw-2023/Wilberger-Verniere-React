@@ -1,7 +1,6 @@
 import "./usuarios.css";
 import "../../master.css";
 import { useContext, useState } from "react";
-import { dataContext } from "../context/dataContext";
 import { useNavigate } from "react-router-dom";
 import apiClient from '../../Services/api';
 
@@ -11,7 +10,6 @@ function UsuariosIniciar() {
     const [contraseña, setContraseña] = useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
-    const { setLogin, setAuthToken } = useContext(dataContext);
 
     const navigate = useNavigate();
 
@@ -26,8 +24,6 @@ function UsuariosIniciar() {
         return apiClient.post("/rest/login",data)
         .then(function (response) {
             console.log(response);
-            setLogin(true);
-            setAuthToken(response.data.access_token);
             sessionStorage.setItem('login', true);
             sessionStorage.setItem('authToken', response.data.access_token);
             sessionStorage.setItem('userNombre', response.data.user_name);

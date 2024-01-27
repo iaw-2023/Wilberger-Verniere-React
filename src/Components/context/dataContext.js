@@ -10,17 +10,11 @@ const DataProvider = ( {children} ) => {
     const [carrito, setCarrito] = useState([]);
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState();
-    const [login, setLogin] = useState(
-        sessionStorage.getItem('login') == 'true' || false
-    );
-    const [authToken, setAuthToken] = useState(
-        sessionStorage.getItem('authToken') || ""
-    );
     const navigate = useNavigate();
 
     const promptComprar = (compra) => 
     {    
-        if (!login){ //Si no esta logueado lo redirecciona a pantalla de login
+        if (!sessionStorage.getItem('authToken')){ //Si no esta logueado lo redirecciona a pantalla de login
             navigate('/usuariosIniciar');
             return;
         }
@@ -104,7 +98,7 @@ const DataProvider = ( {children} ) => {
         },
         {
             headers: {
-                Authorization: `Bearer ${authToken}`,
+                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
             },
         })
         .then(function (response) {
@@ -126,18 +120,16 @@ const DataProvider = ( {children} ) => {
 
     const handleLogOut = () =>
     {
-      console.log("Mi authToken es (en handleLogOut): ",authToken);
+      console.log("Mi authToken es (en handleLogOut): ",sessionStorage.getItem('authToken'));
       apiClient.post("/rest/logout",
         {
             headers: {
-                Authorization: `Bearer ${authToken}`,
+                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
             },
         })
         .then(function (response) {
             console.log(response);
-            setAuthToken("");
             sessionStorage.setItem('authToken', "");
-            setLogin(false);
             sessionStorage.setItem('login', false);
         })
         .catch(function (error) {
@@ -147,46 +139,6 @@ const DataProvider = ( {children} ) => {
       navigate("/");
     } 
 
-    const fetchNombreUsuario = () => 
-    {
-       console.log("Mi authToken es (en fetchNombreUsuario): ",authToken);
-       apiClient.get("/rest/user",
-        {
-            headers: {
-                Authorization: `Bearer ${authToken}`,
-            },
-        })
-        .then(function (response) {
-            console.log(authToken);
-            console.log(response);
-            return response.data.nombre
-          })
-        .catch(function (error) {
-            console.log(error);
-            return null;
-          });
-    }
-
-    const fetchEmailUsuario = () => 
-    {
-        console.log("Mi authToken es (en fetchEmailUsuario): ",authToken);
-        apiClient.get("/rest/user",
-        {
-            headers: {
-                Authorization: `Bearer ${authToken}`,
-            },
-        })
-        .then(function (response) {
-            console.log(authToken);
-            console.log(response);
-            return response.data.email
-          })
-        .catch(function (error) {
-            console.log(error);
-            return null;
-          });
-    }
-
     return <dataContext.Provider value={ 
         {
             carrito, setCarrito, 
@@ -194,11 +146,7 @@ const DataProvider = ( {children} ) => {
             confirmarCompra, limpiarCompra, 
             peliculaElegida, setPeliculaElegida,
             compraElegida, setCompraElegida,
-            login, setLogin,
-            authToken, setAuthToken,
             handleLogOut,
-            fetchNombreUsuario,
-            fetchEmailUsuario
         }
     }>{children}</dataContext.Provider>
 };

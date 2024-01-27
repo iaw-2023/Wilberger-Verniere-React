@@ -6,7 +6,7 @@ import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 
 function Ordenes() {
-  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra, fetchEmailUsuario} = useContext(dataContext);
+  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra} = useContext(dataContext);
   const [observaciones, SetObservaciones] = useState("");
   
   const handleSubmitObservaciones = (event) => 
@@ -28,7 +28,6 @@ function Ordenes() {
   }
 
   console.log(carrito);
-  console.log(()=>fetchEmailUsuario);
   console.log(sessionStorage.getItem('userEmail'));
 
   return (

@@ -9,14 +9,12 @@ import apiClient from '../../Services/api';
 function Compras() {
   const [compra, setCompra] = useState([]);
   const [error, setError] = useState(null);
-  const { setCompraElegida, fetchEmailUsuario, authToken} = useContext(dataContext);
+  const { setCompraElegida} = useContext(dataContext);
 
   useEffect(() => {
     fetchCompras();
   },[]);  
 
-  console.log(authToken);
-  console.log(()=>fetchEmailUsuario);
   console.log(sessionStorage.getItem('userEmail'));
 
   const fetchCompras = () => 
@@ -26,7 +24,7 @@ function Compras() {
         'email': sessionStorage.getItem('userEmail')
       },
       headers: {
-        Authorization: `Bearer ${authToken}`,
+        Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
       },
     })
         .then((response) => {
