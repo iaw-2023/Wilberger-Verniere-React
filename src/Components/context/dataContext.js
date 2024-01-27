@@ -121,8 +121,9 @@ const DataProvider = ( {children} ) => {
     const handleLogOut = () =>
     {
       console.log("Mi authToken es (en handleLogOut): ",sessionStorage.getItem('authToken'));
-      apiClient.post("/rest/logout",
+      apiClient.post("/rest/logout", {},
         {
+            
             headers: {
                 Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
             },
