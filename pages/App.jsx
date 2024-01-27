@@ -35,10 +35,8 @@ export default function App() {
   const UserIni = require('../src/Components/usuarios/usuariosIniciar').default;
   const UserReg = require('../src/Components/usuarios/usuariosRegistrar').default;
 
-  function ProteccionRoute({ element, isLogin }) {
-    const { login } = useContext(dataContext);
-  
-    if (isLogin || login) {
+  function ProteccionRoute({ element, isLogin }) {  
+    if (isLogin || sessionStorage.getItem('authToken')) {
       return element;
     }
   
