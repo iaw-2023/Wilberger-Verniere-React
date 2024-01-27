@@ -27,11 +27,11 @@ function UsuariosRegistrar() {
                     setNombreUser("");
                     setContraseña("");
                     setEmail("");
-                    setRespuesta(response.data.message);
+                    setRespuesta(response.data.error);
                 })
                 .catch(function (response) {
                     console.log(response);
-                    setRespuesta(response.data.message);
+                    setRespuesta(response.data.error);
                 });
             });
     }
