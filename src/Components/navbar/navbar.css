@@ -53,10 +53,11 @@
 
 .infoCuenta{
     margin-left: auto;
+    display: flex;
+    align-items: center;
 }
 
-.nombreCuenta{
-    float: left;
+.userNombre{
     display: block;
     color: white;
     text-align: center;
