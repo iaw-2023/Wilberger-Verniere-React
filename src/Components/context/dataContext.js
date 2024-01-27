@@ -130,10 +130,10 @@ const DataProvider = ( {children} ) => {
         })
         .then(function (response) {
             console.log(response);
-            sessionStorage.setItem('authToken', "");
-            sessionStorage.setItem('login', false);
-            sessionStorage.setItem('userNombre', "");
-            sessionStorage.setItem('userEmail', "");
+            sessionStorage.removeItem('authToken');
+            sessionStorage.removeItem('login');
+            sessionStorage.removeItem('userNombre');
+            sessionStorage.removeItem('userEmail');
         })
         .catch(function (error) {
             console.log(error);
