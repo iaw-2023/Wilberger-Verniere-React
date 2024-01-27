@@ -176,7 +176,9 @@ const DataProvider = ( {children} ) => {
             if (response.data && response.data.choices && response.data.choices.length > 0){
                 setRespuestaChatGPT(response.data.choices[0].message.content);
             }
-          } catch (error) { console.error('Error:', error);}
+          } catch (error) { 
+                console.error('Error:', error);
+            }
     }
 
     return <dataContext.Provider value={ 
