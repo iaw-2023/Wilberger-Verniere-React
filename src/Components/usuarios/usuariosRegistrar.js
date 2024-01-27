@@ -3,6 +3,7 @@ import "../../master.css";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import apiClient from '../../Services/api';
+import { Navigate } from "react-router-dom";
 
 function UsuariosRegistrar() {
 
@@ -28,6 +29,7 @@ function UsuariosRegistrar() {
                     setContraseña("");
                     setEmail("");
                     setRespuesta(response.data.error);
+                    Navigate("/usuariosIniciar");
                 })
                 .catch(function (response) {
                     console.log(response);

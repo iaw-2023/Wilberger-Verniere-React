@@ -139,7 +139,7 @@ const DataProvider = ( {children} ) => {
             console.log(error);
             return null;
         });
-      navigate("/");
+      navigate("/usuariosIniciar");
     } 
 
     return <dataContext.Provider value={ 
