@@ -132,6 +132,8 @@ const DataProvider = ( {children} ) => {
             console.log(response);
             sessionStorage.setItem('authToken', "");
             sessionStorage.setItem('login', false);
+            sessionStorage.setItem('userNombre', "");
+            sessionStorage.setItem('userEmail', "");
         })
         .catch(function (error) {
             console.log(error);
