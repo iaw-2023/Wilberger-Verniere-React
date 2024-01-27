@@ -12,7 +12,7 @@ function UsuariosRegistrar() {
     const [respuesta, setRespuesta] = useState(null);
     const [emailValido, SetEmailValido] = useState(false);
 
-    const guardarUsuario = () =>
+    const submitRegister = () =>
     {
         apiClient.get("/sanctum/csrf-cookie")
             .then(() => {
@@ -80,7 +80,7 @@ function UsuariosRegistrar() {
             <div className="respuesta-message">
                 {respuesta && <p>{respuesta.message}</p>}
             </div>
-            { emailValido && nombreUser && contraseña && <Button className="boton-enviar" onClick={ ()=>guardarUsuario() }>Confirmar</Button>}
+            { emailValido && nombreUser && contraseña && <Button className="boton-enviar" onClick={ ()=>submitRegister() }>Confirmar</Button>}
         </div>
     )
 }

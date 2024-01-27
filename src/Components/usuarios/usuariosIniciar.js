@@ -11,11 +11,11 @@ function UsuariosIniciar() {
     const [contraseña, setContraseña] = useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState(null);
-    const { setLogin, setAuthToken} = useContext(dataContext);
+    const { setLogin, setAuthToken } = useContext(dataContext);
 
     const navigate = useNavigate();
 
-    const fetchUsuario = () =>
+    const submitLogin = () =>
     {
         console.log("Busco usuario:",email, contraseña);
         const data = {
@@ -64,7 +64,7 @@ function UsuariosIniciar() {
             <div className="error-message">
                 {error && <p>{error.message}</p>}
             </div>
-            { email && contraseña && <button className="boton-enviar" onClick={ ()=>fetchUsuario() }>Confirmar</button>}
+            { email && contraseña && <button className="boton-enviar" onClick={ ()=>submitLogin() }>Confirmar</button>}
         </div>
     )
 }
