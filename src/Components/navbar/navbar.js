@@ -24,7 +24,7 @@ function NavBar() {
           { !login && <Link to="/usuariosRegistrar" className="usuarioRegistrar">Registrarse</Link> }
           { login &&  
             <div className='nombreUsuario'>
-              <div>{sessionStorage.getItem('userNombre')}</div>
+              <div className='userNombre'> {sessionStorage.getItem('userNombre')} </div>
               <Link to="/" className="usuarioSalir" onClick={ handleLogOut }>LogOut</Link>
             </div> }
           {/* <div className="search-container">
