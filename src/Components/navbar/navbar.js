@@ -9,6 +9,7 @@ function NavBar() {
 
     const { handleLogOut} = useContext(dataContext);
     console.log(sessionStorage.getItem('userNombre'));
+    const islogin = sessionStorage.getItem('login') || false;
 
     return (
       <>
@@ -17,14 +18,14 @@ function NavBar() {
           <Link to="/funciones">Estrenos</Link>
           <Link to="/peliculas">Peliculas</Link>
           <Link to="/generos">Generos</Link>
-          { sessionStorage.getItem('login') && <Link to="/compras">Compras</Link> }
-          { sessionStorage.getItem('login') && <Link to="/carrito" className="carrito">🛒</Link> }
-          { !sessionStorage.getItem('login') &&  
+          { islogin && <Link to="/compras">Compras</Link> }
+          { islogin && <Link to="/carrito" className="carrito">🛒</Link> }
+          { !islogin &&  
             <div className='infoCuenta'>
               <Link to="/usuariosIniciar" className="usuarioInicio">Ingresar</Link>
               <Link to="/usuariosRegistrar" className="usuarioRegistrar">Registrarse</Link>
             </div> }
-          { sessionStorage.getItem('login') &&  
+          { islogin &&  
             <div className='infoCuenta'>
               <div className='userNombre'> {sessionStorage.getItem('userNombre')} </div>
               <Link to="/" className="usuarioSalir" onClick={ handleLogOut }>LogOut</Link>
