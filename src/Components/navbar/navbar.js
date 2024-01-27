@@ -9,6 +9,7 @@ function NavBar() {
 
     const { login, fetchNombreUsuario, handleLogOut} = useContext(dataContext);
     console.log(()=>fetchNombreUsuario);
+    console.log(sessionStorage.getItem('userNombre'));
 
     return (
       <>
@@ -23,7 +24,7 @@ function NavBar() {
           { !login && <Link to="/usuariosRegistrar" className="usuarioRegistrar">Registrarse</Link> }
           { login &&  
             <div className='nombreUsuario'>
-              {sessionStorage.getItem('userName')}
+              {sessionStorage.getItem('userNombre')}
               <Link to="/" className="usuarioSalir" onClick={ handleLogOut }>LogOut</Link>
             </div> }
           {/* <div className="search-container">
