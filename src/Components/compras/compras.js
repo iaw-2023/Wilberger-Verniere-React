@@ -17,12 +17,13 @@ function Compras() {
 
   console.log(authToken);
   console.log(()=>fetchEmailUsuario);
+  console.log(sessionStorage.getItem('userEmail'));
 
   const fetchCompras = () => 
   {
     return apiClient.get("/rest/compras/asociadas", {
       params: {
-        'email': ()=>fetchEmailUsuario
+        'email': sessionStorage.getItem('userEmail')
       },
       headers: {
         Authorization: `Bearer ${authToken}`,

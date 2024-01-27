@@ -29,6 +29,7 @@ function Ordenes() {
 
   console.log(carrito);
   console.log(()=>fetchEmailUsuario);
+  console.log(sessionStorage.getItem('userEmail'));
 
   return (
     <div className='wrapper'>
@@ -71,7 +72,7 @@ function Ordenes() {
           <Button className="boton-cancelar" onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
         }
         { carrito && carrito.length>0 && 
-          <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, fetchEmailUsuario, getCurrentDate()) }>Confirmar Compra</Button>
+          <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
         }
       </ButtonGroup>
     </div>

@@ -27,9 +27,11 @@ function UsuariosIniciar() {
         .then(function (response) {
             console.log(response);
             setLogin(true);
-            sessionStorage.setItem('login', true);
             setAuthToken(response.data.access_token);
+            sessionStorage.setItem('login', true);
             sessionStorage.setItem('authToken', response.data.access_token);
+            sessionStorage.setItem('userNombre', response.data.user_name);
+            sessionStorage.setItem('userEmail', response.data.user_email);
             setError(null);
             navigate('/');
           })
