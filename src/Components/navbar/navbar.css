@@ -46,3 +46,8 @@
 .topnav .search-container button:hover {
     background: #ccc;
 }
+
+.nombreUsuario{
+    display: flex;
+    text-align: right;
+}
