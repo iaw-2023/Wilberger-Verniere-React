@@ -134,12 +134,12 @@ const DataProvider = ( {children} ) => {
             sessionStorage.removeItem('login');
             sessionStorage.removeItem('userNombre');
             sessionStorage.removeItem('userEmail');
+            navigate("/usuariosIniciar");
         })
         .catch(function (error) {
             console.log(error);
             return null;
         });
-      navigate("/usuariosIniciar");
     } 
 
     return <dataContext.Provider value={ 
