@@ -17,12 +17,15 @@ function NavBar() {
           <Link to="/funciones">Estrenos</Link>
           <Link to="/peliculas">Peliculas</Link>
           <Link to="/generos">Generos</Link>
-          { sessionStorage.getItem('authToken') && <Link to="/compras">Compras</Link> }
-          { sessionStorage.getItem('authToken') && <Link to="/carrito" className="carrito">🛒</Link> }
-          { !sessionStorage.getItem('authToken') && <Link to="/usuariosIniciar" className="usuarioInicio">Ingresar</Link> }
-          { !sessionStorage.getItem('authToken') && <Link to="/usuariosRegistrar" className="usuarioRegistrar">Registrarse</Link> }
+          { sessionStorage.getItem('login') && <Link to="/compras">Compras</Link> }
+          { sessionStorage.getItem('login') && <Link to="/carrito" className="carrito">🛒</Link> }
+          { !sessionStorage.getItem('login') &&  
+            <div className='infoCuenta'>
+              <Link to="/usuariosIniciar" className="usuarioInicio">Ingresar</Link>
+              <Link to="/usuariosRegistrar" className="usuarioRegistrar">Registrarse</Link>
+            </div> }
           { sessionStorage.getItem('login') &&  
-            <div className='nombreUsuario'>
+            <div className='infoCuenta'>
               <div className='userNombre'> {sessionStorage.getItem('userNombre')} </div>
               <Link to="/" className="usuarioSalir" onClick={ handleLogOut }>LogOut</Link>
             </div> }
