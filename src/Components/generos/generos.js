@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react';
 import './generos.css';
 import '../../master.css';
-import axios from 'axios';
+import apiClient from '../../Services/api';
 
 function listaPeliculas(arregloPeliculas){
     if (arregloPeliculas.length < 1){
@@ -29,7 +29,7 @@ function Generos() {
   const [error, setError] = useState(null);
 
   const fetchGenero = () => {
-      return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/generos')
+      return apiClient.get("/rest/generos")
           .then((response) => {
             setGenero(response.data.data);
             setError(null);

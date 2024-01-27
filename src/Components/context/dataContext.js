@@ -1,7 +1,8 @@
-import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import apiClient from '../../Services/api';
 
 export const dataContext = createContext([]);
 
@@ -9,9 +10,15 @@ const DataProvider = ( {children} ) => {
     const [carrito, setCarrito] = useState([]);
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState();
+    const navigate = useNavigate();
 
     const promptComprar = (compra) => 
-    {
+    {    
+        if (!sessionStorage.getItem('authToken')){ //Si no esta logueado lo redirecciona a pantalla de login
+            navigate('/usuariosIniciar');
+            return;
+        }
+
         var valorValido = true;
         var p = prompt("Ingrese la cantidad de tickets que desea comprar, hay "+compra.AsientosDisponible+" asientos disponibles");
         var cantTickets = parseInt(p);
@@ -82,12 +89,17 @@ const DataProvider = ( {children} ) => {
     {
         let obvs = observaciones;
         if (obvs=="") { obvs = "-";}
-        axios.post('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/compras/crear',
+        apiClient.post("/rest/compras/crear",
         { 
             'Observaciones': obvs, 
             'Email': email, 
             'FechaCompra': fechaCompra, 
             'Compras': carrito 
+        },
+        {
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+            },
         })
         .then(function (response) {
             console.log(response);
@@ -95,6 +107,7 @@ const DataProvider = ( {children} ) => {
           })
         .catch(function (error) {
             console.log(error);
+            return null;
           }); 
     }
 
@@ -105,6 +118,30 @@ const DataProvider = ( {children} ) => {
         });
     }
 
+    const handleLogOut = () =>
+    {
+      console.log("Mi authToken es (en handleLogOut): ",sessionStorage.getItem('authToken'));
+      apiClient.post("/rest/logout", {},
+        {
+            
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+            },
+        })
+        .then(function (response) {
+            console.log(response);
+            sessionStorage.removeItem('authToken');
+            sessionStorage.removeItem('login');
+            sessionStorage.removeItem('userNombre');
+            sessionStorage.removeItem('userEmail');
+            navigate("/usuariosIniciar");
+        })
+        .catch(function (error) {
+            console.log(error);
+            return null;
+        });
+    } 
+
     return <dataContext.Provider value={ 
         {
             carrito, setCarrito, 
@@ -112,7 +149,8 @@ const DataProvider = ( {children} ) => {
             confirmarCompra, limpiarCompra, 
             peliculaElegida, setPeliculaElegida,
             compraElegida, setCompraElegida,
-        } 
+            handleLogOut,
+        }
     }>{children}</dataContext.Provider>
 };
 

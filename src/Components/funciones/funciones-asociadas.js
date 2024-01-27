@@ -4,6 +4,7 @@ import '../../master.css';
 import {Button} from 'react-bootstrap';
 import axios from 'axios';
 import { dataContext } from '../context/dataContext';
+import apiClient from '../../Services/api';
 
 function FuncionesAsociadas() {
     const {peliculaElegida, promptComprar} = useContext(dataContext);
@@ -12,7 +13,7 @@ function FuncionesAsociadas() {
 
     const fetchFuncion = () => 
     {
-        return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/funciones/asociadas', { 
+        return apiClient.get("/rest/funciones/asociadas", { 
             params: {
                 'Id': peliculaElegida.Id,
             }

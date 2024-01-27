@@ -3,8 +3,8 @@ import { useState } from 'react';
 import './funciones.css';
 import '../../master.css';
 import {Button} from 'react-bootstrap';
-import axios from 'axios';
 import { dataContext } from '../context/dataContext';
+import apiClient from '../../Services/api';
 
 function Funciones() {
     const [funcion, setFuncion] = useState([])
@@ -12,7 +12,7 @@ function Funciones() {
     const {promptComprar} = useContext(dataContext);
 
     const fetchFuncion = () => {
-        return axios.get('https://wilberger-verniere-laravel-zxwy.vercel.app/rest/funciones')
+        return apiClient.get("/rest/funciones")
             .then((response) => {
                 setFuncion(response.data.data);
                 setError(null);
