@@ -4,6 +4,7 @@ import { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../Services/api';
 import OPENAI_API_KEY from '../../config/openai'; 
+import axios from 'axios';
 
 export const dataContext = createContext([]);
 
