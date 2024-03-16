@@ -26,6 +26,10 @@ function PeliculasInformacion(){
                     Sinopsis: 
                     { respuestaChatGPT && respuestaChatGPT.length>0 && (<p className="sinopsis">{respuestaChatGPT}</p>) }
                 </h2>
+                <h3 className="Portada">
+                    Portada:
+                    { peliculaElegida.Imagen }
+                </h3>
         </article>
     )
 };
