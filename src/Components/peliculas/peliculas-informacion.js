@@ -22,14 +22,14 @@ function PeliculasInformacion(){
                 Nombre: 
                 <p className="nombre">{peliculaElegida.Nombre}</p>
             </h1>
-                <h2 className="Sinopsis">
-                    Sinopsis: 
-                    { respuestaChatGPT && respuestaChatGPT.length>0 && (<p className="sinopsis">{respuestaChatGPT}</p>) }
-                </h2>
-                <h3 className="Portada">
-                    Portada:
-                    { peliculaElegida.Imagen }
-                </h3>
+            <h2 className="Sinopsis">
+                Sinopsis: 
+                { respuestaChatGPT && respuestaChatGPT.length>0 && (<p className="sinopsis">{respuestaChatGPT}</p>) }
+            </h2>
+            <h3 className="Portada">
+                Portada:
+                { peliculaElegida.Imagen ? peliculaElegida.Imagen : <p>Imagen no disponible</p> }
+            </h3>
         </article>
     )
 };
