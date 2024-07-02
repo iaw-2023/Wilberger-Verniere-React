@@ -28,12 +28,12 @@ function UsuariosRegistrar() {
                     setNombreUser("");
                     setContraseña("");
                     setEmail("");
-                    setRespuesta(response.data.error);
+                    setRespuesta(response.data.message);
                     Navigate("/usuariosIniciar");
                 })
                 .catch(function (response) {
                     console.log(response);
-                    setRespuesta(response.data.error);
+                    setRespuesta(response.data.message);
                 });
             });
     }
