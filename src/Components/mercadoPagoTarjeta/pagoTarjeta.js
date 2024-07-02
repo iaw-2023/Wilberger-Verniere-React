@@ -1,4 +1,4 @@
-import Script from 'next/script';
+/* import Script from 'next/script';
 import { MercadoPagoConfig } from 'mercadopago';
 
 
@@ -83,4 +83,4 @@ function pagoTarjeta() {
     )
 }
 
-export default pagoTarjeta();
+export default pagoTarjeta(); */
