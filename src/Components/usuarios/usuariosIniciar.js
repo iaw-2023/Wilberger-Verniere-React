@@ -33,7 +33,7 @@ function UsuariosIniciar() {
           })
         .catch(function (error) {
             console.log(error);
-            setError(response.data.message);
+            setError(error.data.message);
           });
     }
 
