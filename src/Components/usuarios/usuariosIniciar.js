@@ -32,8 +32,8 @@ function UsuariosIniciar() {
             navigate('/');
           })
         .catch(function (error) {
-            console.log(error);
-            setError(error.data.message);
+            console.log(error.response);
+            setError(error.message);
           });
     }
 
