@@ -60,7 +60,7 @@ function UsuariosIniciar() {
                 <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
             </div>
             <div className="error-message">
-                {error && <p>{error.message}</p>}
+                {error && <p>{error}</p>}
             </div>
             { email && contraseña && <button className="boton-enviar" onClick={ ()=>submitLogin() }>Confirmar</button>}
         </div>
