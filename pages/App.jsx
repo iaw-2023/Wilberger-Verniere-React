@@ -64,7 +64,7 @@ export default function App() {
             <Route path="/compras" element={<ProteccionRoute element={<Compras />} />} />
             <Route path="/comprasAsociadas" element={<ProteccionRoute element={<ComprasAsociadas />} />} />
             <Route path="/carrito" element={<ProteccionRoute element={<Carrito />} />} />
-            <Route path="/pagoTarjeta" element={<ProteccionRoute element={<PagoTarjeta />} />} />
+            {/* <Route path="/pagoTarjeta" element={<ProteccionRoute element={<PagoTarjeta />} />} /> */}
           </Routes>
           {/* <div className= "page-footer">
             <Footer/>

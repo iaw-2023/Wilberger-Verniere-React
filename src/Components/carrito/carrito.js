@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 
 function Ordenes() {
-  const {carrito, cancelarOrden, limpiarCompra } = useContext(dataContext);
+  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra } = useContext(dataContext);
   const [observaciones, SetObservaciones] = useState("");
   
   const handleSubmitObservaciones = (event) => 
@@ -28,10 +28,10 @@ function Ordenes() {
     return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`;
   }
 
-  const promptPagoTarjeta = (observaciones, emailUsuario, fechaHoy) =>   
+/*   const promptPagoTarjeta = (observaciones, emailUsuario, fechaHoy) =>   
   {
     Navigate("/pagoTarjeta");
-  }
+  } */
 
   console.log(carrito);
   console.log(sessionStorage.getItem('userEmail'));
@@ -77,7 +77,7 @@ function Ordenes() {
           <Button className="boton-cancelar" onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
         }
         { carrito && carrito.length>0 && 
-          <Button className="boton-enviar" onClick={ ()=>promptPagoTarjeta(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
+          <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
         }
       </ButtonGroup>
     </div>
