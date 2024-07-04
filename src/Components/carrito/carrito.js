@@ -28,11 +28,6 @@ function Ordenes() {
     return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`;
   }
 
-/*   const promptPagoTarjeta = (observaciones, emailUsuario, fechaHoy) =>   
-  {
-    Navigate("/pagoTarjeta");
-  } */
-
   console.log(carrito);
   console.log(sessionStorage.getItem('userEmail'));
 

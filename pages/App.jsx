@@ -66,9 +66,6 @@ export default function App() {
             <Route path="/carrito" element={<ProteccionRoute element={<Carrito />} />} />
             {/* <Route path="/pagoTarjeta" element={<ProteccionRoute element={<PagoTarjeta />} />} /> */}
           </Routes>
-          {/* <div className= "page-footer">
-            <Footer/>
-          </div> */}
         </DataProvider>
       </HashRouter>
     </div>
