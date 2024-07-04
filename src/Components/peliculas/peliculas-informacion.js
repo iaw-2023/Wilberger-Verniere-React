@@ -6,7 +6,7 @@ import { dataContext } from '../context/dataContext';
 
 function PeliculasInformacion(){
 
-    const { peliculaElegida,obtenerInfoPeliculaChatGPT, respuestaChatGPT } = useContext(dataContext);
+    const { peliculaElegida,obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT } = useContext(dataContext);
 
     console.log(peliculaElegida);
 
@@ -24,7 +24,8 @@ function PeliculasInformacion(){
             </h1>
             <h2 className="Sinopsis">
                 Sinopsis: 
-                { respuestaChatGPT && respuestaChatGPT.length>0 && (<p className="sinopsis">{respuestaChatGPT}</p>) }
+                { respuestaChatGPT && respuestaChatGPT.length>0 && (<p className="Sinopsis-texto">{respuestaChatGPT}</p>) }
+                { errorRespuestaChatGPT && errorRespuestaChatGPT.length>0 && (<p className="Error">{errorRespuestaChatGPT}</p>) }
             </h2>
             <h3 className="Portada">
                 Portada:

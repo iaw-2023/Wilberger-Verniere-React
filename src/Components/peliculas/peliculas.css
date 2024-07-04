@@ -40,3 +40,8 @@
 .Portada {
     font-size: 1.5em;
 }
+
+.Error {
+    font-size: 1.5em;
+    color: red;
+}
