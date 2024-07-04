@@ -16,7 +16,7 @@ function Peliculas() {
   //const [pelicula, setPelicula] = useState<TipoPelicula[]>([]);
   const [pelicula, setPelicula] = useState([]);
   const [error, setError] = useState(null);
-  const { setPeliculaElegida} = useContext(dataContext);
+  const {setPeliculaElegida} = useContext(dataContext);
 
   const fetchPelicula = () => {
       return apiClient.get("/rest/peliculas")
