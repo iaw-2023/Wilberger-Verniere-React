@@ -1,4 +1,4 @@
-import styles from "./usuarios.,module.css";
+import styles from "./usuarios.module.css";
 import "../../master.css";
 import { useState } from "react";
 import { Button } from "react-bootstrap";

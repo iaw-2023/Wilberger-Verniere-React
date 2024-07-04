@@ -1,4 +1,4 @@
-import styles from "./usuarios.,module.css";
+import styles from "./usuarios.module.css";
 import "../../master.css";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
