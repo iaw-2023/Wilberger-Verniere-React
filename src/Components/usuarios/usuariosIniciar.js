@@ -50,19 +50,22 @@ function UsuariosIniciar() {
     }
 
     return (
-        <div>
-            <div className="email">
-                Email: 
-                <input type="text" className="input-user-emailUser" value={email} onChange={handleTextEmail}/>
-            </div> 
-            <div className="contraseña">
-                Contraseña: 
-                <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
+        <div className="container">
+            <div className="form-container">
+                <h2>Iniciar Sesión</h2>
+                <div className="email">
+                    Email: 
+                    <input type="text" className="input-user-emailUser" value={email} onChange={handleTextEmail}/>
+                </div> 
+                <div className="contraseña">
+                    Contraseña: 
+                    <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
+                </div>
+                <div className="error-message">
+                    {error && <p>{error}</p>}
+                </div>
+                { email && contraseña && <button className="boton-enviar" onClick={ ()=>submitLogin() }>Confirmar</button>}
             </div>
-            <div className="error-message">
-                {error && <p>{error}</p>}
-            </div>
-            { email && contraseña && <button className="boton-enviar" onClick={ ()=>submitLogin() }>Confirmar</button>}
         </div>
     )
 }
