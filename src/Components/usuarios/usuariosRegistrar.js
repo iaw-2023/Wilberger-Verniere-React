@@ -1,4 +1,4 @@
-import "./usuarios.css";
+import styles from "./usuarios.,module.css";
 import "../../master.css";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
@@ -65,26 +65,26 @@ function UsuariosRegistrar() {
     }
 
     return (
-        <div className="container">
-            <div className="form-container">
+        <div className={styles.container}>
+            <div className={styles.form-container}>
                 <h2>Registrar Usuario</h2>
-                <div className="usuario">
+                <div className={styles.usuario}>
                     Nombre de Usuario: 
-                    <input type="text" className="input-user-nombreUser" value={nombreUser} onChange={handleTextNombreUser}/>
+                    <input type="text" className={styles.input-user-nombreUser} value={nombreUser} onChange={handleTextNombreUser}/>
                 </div>
                 <div className="email">
                     Email: 
-                    <input type="text" className="input-user-emailUser" value={email} onChange={handleTextEmail}/>
-                    { email && (!emailValido) && <div className='email-valido-text'>Este email no es valido!</div>}
+                    <input type="text" className={styles.input-user-emailUser} value={email} onChange={handleTextEmail}/>
+                    { email && (!emailValido) && <div className={styles.email-valido-text}>Este email no es valido!</div>}
                 </div> 
                 <div className="contraseña">
                     Contraseña:
-                    <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
+                    <input type="text" className={styles.input-user-contraseñaUser} value={contraseña} onChange={handleTextContraseña}/>
                 </div>
-                <div className="respuesta-message">
+                <div className={styles.respuesta-message}>
                     {respuesta && <p>{respuesta}</p>}
                 </div>
-                { emailValido && nombreUser && contraseña && <Button className="boton-enviar" onClick={ ()=>submitRegister() }>Confirmar</Button>}
+                { emailValido && nombreUser && contraseña && <Button className={styles.boton-enviar} onClick={ ()=>submitRegister() }>Confirmar</Button>}
             </div>
         </div>
     )

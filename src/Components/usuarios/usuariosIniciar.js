@@ -1,4 +1,4 @@
-import "./usuarios.css";
+import styles from "./usuarios.,module.css";
 import "../../master.css";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -50,21 +50,21 @@ function UsuariosIniciar() {
     }
 
     return (
-        <div className="container">
-            <div className="form-container">
+        <div className={styles.container}>
+            <div className={styles.form-container}>
                 <h2>Iniciar Sesión</h2>
-                <div className="email">
+                <div className={styles.email}>
                     Email: 
-                    <input type="text" className="input-user-emailUser" value={email} onChange={handleTextEmail}/>
+                    <input type="text" className={styles.input-user-emailUser} value={email} onChange={handleTextEmail}/>
                 </div> 
-                <div className="contraseña">
+                <div className={styles.contraseña}>
                     Contraseña: 
-                    <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
+                    <input type="text" className={styles.input-user-contraseñaUser} value={contraseña} onChange={handleTextContraseña}/>
                 </div>
-                <div className="error-message">
+                <div className={styles.error-message}>
                     {error && <p>{error}</p>}
                 </div>
-                { email && contraseña && <button className="boton-enviar" onClick={ ()=>submitLogin() }>Confirmar</button>}
+                { email && contraseña && <button className={styles.boton-enviar} onClick={ ()=>submitLogin() }>Confirmar</button>}
             </div>
         </div>
     )
