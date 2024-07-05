@@ -114,6 +114,10 @@ const DataProvider = ( {children} ) => {
             return null;
           }); 
     }
+    
+    const pagarconMP = () => {
+        navigate('/pagoTarjeta')
+    }
 
     const limpiarCompra = () =>
     { 
