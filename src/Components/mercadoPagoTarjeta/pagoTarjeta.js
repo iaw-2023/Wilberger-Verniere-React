@@ -3,7 +3,7 @@ import MERCADOPAGO_API_KEY from "../../config/mercadopago";
 //https://github.com/mercadopago/sdk-js/blob/main/API/bricks/card-payment.md VER PAGINA EJEMPLO
 function pagoTarjeta() {
 
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    //<script src="https://sdk.mercadopago.com/js/v2"></script>
 
     const mp = new MercadoPago(MERCADOPAGO_API_KEY, { locale: 'es-AR' });
     const brickCardPayment = mp.bricks().create("cardPayment", "cardPaymentBrick_container", {
