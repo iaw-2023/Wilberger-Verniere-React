@@ -1,7 +1,8 @@
+import '../../master.css';
+import styles from './funciones.module.css';
+
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
-import './funciones.css';
-import '../../master.css';
 import {Button} from 'react-bootstrap';
 import { dataContext } from '../context/dataContext';
 import apiClient from '../../Services/api';
@@ -49,12 +50,12 @@ function Funciones() {
                                     <th className="tablaH"> {funcionObj.NroSala}       </th>
                                     <th className="tablaH"> {funcionObj.AsientosDisponible}       </th>
                                     <th className="tablaH"> 
-                                        <Button className="añadir-ticket" onClick={ ()=>promptComprar(funcionObj) }>Comprar</Button>
+                                        <Button className={styles.añadirTicket} onClick={ ()=>promptComprar(funcionObj) }>Comprar</Button>
                                     </th>
                                 </tr>
                             }
                             else {
-                                return <tr className="sinAsientos" key={index}>
+                                return <tr className={styles.sinAsientos} key={index}>
                                     <th className="tablaH"> {funcionObj.Pelicula}      </th>
                                     <th className="tablaH"> {funcionObj.Fecha}         </th>
                                     <th className="tablaH"> {funcionObj.Hora}          </th>

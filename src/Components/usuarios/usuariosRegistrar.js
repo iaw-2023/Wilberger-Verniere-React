@@ -1,5 +1,4 @@
 import styles from "./usuarios.module.css";
-import "../../master.css";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import apiClient from '../../Services/api';

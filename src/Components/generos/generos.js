@@ -1,7 +1,7 @@
+import '../../master.css';
+
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import './generos.css';
-import '../../master.css';
 import apiClient from '../../Services/api';
 
 function listaPeliculas(arregloPeliculas){

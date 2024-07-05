@@ -1,7 +1,8 @@
+import '../../master.css';
+import styles from './peliculas.module.css';
+
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
-import './peliculas.css';
-import '../../master.css';
 import { Link } from 'react-router-dom';
 import { dataContext } from '../context/dataContext';
 import apiClient from '../../Services/api';
@@ -43,8 +44,8 @@ function Peliculas() {
                             <th className="tablaH"> {peliculaObj.Nombre}   </th>
                             <th className="tablaH">  {peliculaObj.Genero}   </th>
                             <th>
-                                <Link to={"/peliculasInformacion"} className="info-pelicula" onClick={ () => setPeliculaElegida(peliculaObj)}>Ver Informacion</Link>
-                                <Link to={"/funcionesAsociadas"} className="funciones-asociadas" onClick={ () => setPeliculaElegida(peliculaObj) }>Ver funciones</Link>
+                                <Link to={"/peliculasInformacion"} className={styles.infoPelicula} onClick={ () => setPeliculaElegida(peliculaObj)}>Ver Informacion</Link>
+                                <Link to={"/funcionesAsociadas"} className={styles.funcionesAsociadas} onClick={ () => setPeliculaElegida(peliculaObj) }>Ver funciones</Link>
                             </th>
                         </tr>
                     ))}

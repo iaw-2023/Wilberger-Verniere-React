@@ -1,10 +1,10 @@
+import '../../master.css';
+import styles from "./carrito.module.css";
+
 import React, { useState } from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
-import "./carrito.css";
-import '../../master.css';
 import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
-import { Navigate } from 'react-router-dom';
 
 function Ordenes() {
   const {carrito, cancelarOrden, limpiarCompra, confirmarCompra } = useContext(dataContext);
@@ -34,10 +34,10 @@ function Ordenes() {
   return (
     <div className='wrapper'>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div className='input-wrapper'>
-          <div className="observaciones">
-            <div className='observaciones-text'>Observaciones:</div>   
-            <input type="text" className="input-observaciones" value={observaciones} onChange={handleSubmitObservaciones}/>
+        <div className={styles.carritoInputWrapper}>
+          <div className={styles.carritoObservaciones}>
+            <div className={styles.carritoObservacionesText}>Observaciones:</div>   
+            <input type="text" className={styles.carritoInputObservaciones} value={observaciones} onChange={handleSubmitObservaciones}/>
           </div>
         </div>
         <table className="tabla dark:text-gray-400">
@@ -60,19 +60,19 @@ function Ordenes() {
                 <th className="tablaH"> {carritoObj.NroSala}       </th>
                 <th className="tablaH"> {carritoObj.NroTickets}    </th>
                 <th className="tablaH"> 
-                    <Button className="quitar-orden" onClick={ ()=>cancelarOrden(index) }>Quitar</Button>
+                    <Button className={styles.carritoBotonQuitarOrden} onClick={ ()=>cancelarOrden(index) }>Quitar</Button>
                 </th>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <ButtonGroup className='boton-group'>
+      <ButtonGroup className={styles.carritoBotonGroup}>
         { carrito && carrito.length>0 &&
-          <Button className="boton-cancelar" onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
+          <Button className={styles.carritoBotonCancelar} onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
         }
         { carrito && carrito.length>0 && 
-          <Button className="boton-enviar" onClick={ ()=>confirmarCompra(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
+          <Button className={styles.carritoBotonEnviar} onClick={ ()=>confirmarCompra(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
         }
       </ButtonGroup>
     </div>
