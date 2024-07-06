@@ -6,7 +6,9 @@ import React, { useEffect } from 'react';
 //https://github.com/mercadopago/sdk-js/blob/main/API/bricks/card-payment.md VER PAGINA EJEMPLO
 function PagoTarjeta() {
 
-    /* useEffect(() => {
+
+    const inicializacionMercadoPago = () =>
+    {
       const scriptMercadoPago = document.createElement("script");
       scriptMercadoPago.src = "https://sdk.mercadopago.com/js/v2";
       scriptMercadoPago.async = true;
@@ -16,6 +18,9 @@ function PagoTarjeta() {
       return () => {
         document.body.removeChild(scriptMercadoPago);
       };
+    }
+    useEffect(() => {
+      inicializacionMercadoPago
     }, []);
 
     const initializeBrick = () => {
@@ -71,7 +76,7 @@ function PagoTarjeta() {
               }
           },
       });
-    }  */
+    }
 
     return(
         <div>
