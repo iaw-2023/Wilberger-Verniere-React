@@ -1,7 +1,7 @@
 import MERCADOPAGO_API_KEY from "../../config/mercadopago";
 
 //https://github.com/mercadopago/sdk-js/blob/main/API/bricks/card-payment.md VER PAGINA EJEMPLO
-function pagoTarjeta() {
+function PagoTarjeta() {
 
     useEffect(() => {
       const scriptMercadoPago = document.createElement("script");
@@ -77,4 +77,4 @@ function pagoTarjeta() {
     )
 }
 
-export default pagoTarjeta();
+export default PagoTarjeta();
