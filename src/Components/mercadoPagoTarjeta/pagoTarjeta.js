@@ -80,4 +80,4 @@ function PagoTarjeta() {
     )
 }
 
-export default PagoTarjeta();
+export default PagoTarjeta
