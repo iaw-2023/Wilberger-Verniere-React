@@ -116,7 +116,8 @@ const DataProvider = ( {children} ) => {
     }
     
     const pagarconMP = () => {
-        navigate('/pagoTarjeta')
+        navigate('/pagoTarjeta');
+        return;
     }
 
     const limpiarCompra = () =>
@@ -199,6 +200,7 @@ const DataProvider = ( {children} ) => {
             obtenerInfoPeliculaChatGPT,
             respuestaChatGPT,
             errorRespuestaChatGPT,
+            pagarconMP, 
         }
     }>{children}</dataContext.Provider>
 };
