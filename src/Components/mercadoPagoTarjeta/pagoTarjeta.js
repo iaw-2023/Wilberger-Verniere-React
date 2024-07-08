@@ -20,7 +20,7 @@ function PagoTarjeta() {
       };
     }
     useEffect(() => {
-      inicializacionMercadoPago
+      inicializacionMercadoPago();
     }, []);
 
     const initializeBrick = () => {
