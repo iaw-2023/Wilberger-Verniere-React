@@ -30,7 +30,7 @@ function PeliculasInformacion(){
             </h2>
             <h3 className={styles.peliculasPortadaHeader}>
                 Portada:
-                { peliculaElegida.Imagen ? peliculaElegida.Imagen : <p>Imagen no disponible</p> }
+                { peliculaElegida.Imagen ? <img src={peliculaElegida.Imagen}/>  : <p>Imagen no disponible</p> }
             </h3>
         </article>
     )
