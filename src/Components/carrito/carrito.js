@@ -2,10 +2,12 @@ import '../../master.css';
 import styles from "./carrito.module.css";
 
 import React, { useState } from 'react';
-import {Button, ButtonGroup} from 'react-bootstrap';
+import {Button, ButtonGroup, Modal} from 'react-bootstrap';
 import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 import { PagoTarjetaModal } from '../mercadoPagoTarjeta/pagoTarjetaModal';
+
+Modal.setAppElement('#wrapper');
 
 function Ordenes() {
   const {carrito, cancelarOrden, limpiarCompra, confirmarCompra } = useContext(dataContext);
