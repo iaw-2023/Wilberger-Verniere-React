@@ -10,7 +10,6 @@ export default function App() {
 
   useEffect(() => {
     setIsClient(true);
-    Modal.setAppElement('#app-wrapper');
   }, []);
 
   if (!isClient) {
@@ -46,7 +45,7 @@ export default function App() {
   }
 
   return (
-    <div id="app-wrapper">
+    <div>
       <HashRouter>
         <DataProvider>
           <div className="navigation-menu">
