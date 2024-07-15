@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Navigate } from 'react-router-dom';
+import Modal from 'react-modal';
 
 export default function App() {
   const [isClient, setIsClient] = useState(false);
