@@ -1,8 +1,9 @@
 import MERCADOPAGO_API_KEY from "../../config/mercadopago";
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 function PagoTarjeta() {
 
+    const {confirmarCompra} = useContext(dataContext);
     const inicializacionMercadoPago = () =>
     {
       const scriptMercadoPago = document.createElement("script");
@@ -46,7 +47,8 @@ function PagoTarjeta() {
                     // get payment result
                     console.log("Resolve: ",response)
                     resolve();
-
+                    console.log(props.location.state.obs,props.location.state.email,props.location.state.fecha);
+                    confirmarCompra(props.location.state.obs,props.location.state.email,props.location.state.fecha);
                   })
                   .catch((error) => {
                     // get payment result error

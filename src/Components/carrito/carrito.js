@@ -75,7 +75,7 @@ function Ordenes() {
           <Button className={styles.carritoBotonEnviar} onClick={ ()=>confirmarCompra(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
         }
         { carrito && carrito.length>0 && 
-          <Button className={styles.carritoBotonMP} onClick={ ()=>pagarconMP() }>Pagar con MercadoPago</Button>
+          <Button className={styles.carritoBotonMP} onClick={ ()=>pagarconMP(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Pagar con MercadoPago</Button>
         }
       </ButtonGroup>
     </div>

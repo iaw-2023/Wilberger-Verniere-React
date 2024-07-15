@@ -184,8 +184,8 @@ const DataProvider = ( {children} ) => {
             }
     }
 
-    const pagarconMP = () => {
-        navigate('/pagoTarjeta');
+    const pagarconMP = (observaciones, email, fechaCompra) => {
+        navigate('/pagoTarjeta', { state:{obs:observaciones, email:email, fecha:fechaCompra}} );
         return;
     }
 
