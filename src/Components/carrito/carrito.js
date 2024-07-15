@@ -7,8 +7,6 @@ import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 import { PagoTarjetaModal } from '../mercadoPagoTarjeta/pagoTarjetaModal';
 
-Modal.setAppElement('#wrapper');
-
 function Ordenes() {
   const {carrito, cancelarOrden, limpiarCompra, confirmarCompra } = useContext(dataContext);
   const [observaciones, SetObservaciones] = useState("");
