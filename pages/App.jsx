@@ -9,6 +9,7 @@ export default function App() {
 
   useEffect(() => {
     setIsClient(true);
+    Modal.setAppElement('#app-wrapper');
   }, []);
 
   if (!isClient) {
