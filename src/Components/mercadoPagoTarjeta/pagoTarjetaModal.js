@@ -4,6 +4,8 @@ import MERCADOPAGO_API_KEY from "../../config/mercadopago";
 import React, { useEffect } from 'react';
 import Modal from 'react-modal';
 
+Modal.setAppElement('#__next');
+
 const PagoTarjetaModal = ({ isOpen, onRequestClose }) => {
 
     const inicializacionMercadoPago = () =>
