@@ -1,5 +1,6 @@
 import MERCADOPAGO_API_KEY from "../../config/mercadopago";
 import React, { useContext, useEffect } from 'react';
+import { dataContext } from '../context/dataContext';
 
 function PagoTarjeta() {
 
