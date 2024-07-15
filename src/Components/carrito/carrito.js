@@ -5,10 +5,12 @@ import React, { useState } from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
+import PagoTarjetaModal from './mercadoPagoTarjeta';
 
 function Ordenes() {
-  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra, pagarconMP } = useContext(dataContext);
+  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra } = useContext(dataContext);
   const [observaciones, SetObservaciones] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   
   const handleSubmitObservaciones = (event) => 
   {
@@ -79,8 +81,8 @@ function Ordenes() {
         }
         { carrito && carrito.length>0 && 
            <div>
-            <Button className={styles.carritoBotonMP} onClick={ openModal }>Pagar con MercadoPago</Button>
-            <PaymentModal isOpen={modalIsOpen} onRequestClose={closeModal}/>
+            <Button className={styles.carritoBotonMP} onClick={openModal}>Pagar con MercadoPago</Button>
+            <PagoTarjetaModal isOpen={modalIsOpen} onRequestClose={closeModal}/>
            </div>
         }
       </ButtonGroup>
