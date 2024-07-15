@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
-import PagoTarjetaModal from './mercadoPagoTarjeta';
+import PagoTarjetaModal from '../mercadoPagoTarjeta';
 
 function Ordenes() {
   const {carrito, cancelarOrden, limpiarCompra, confirmarCompra } = useContext(dataContext);
