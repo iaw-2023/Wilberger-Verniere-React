@@ -1,4 +1,4 @@
-import styles from './pagoTarketaModal.module.css';
+import styles from './pagoTarjetaModal.module.css';
 
 import MERCADOPAGO_API_KEY from "../../config/mercadopago";
 import React, { useEffect } from 'react';
