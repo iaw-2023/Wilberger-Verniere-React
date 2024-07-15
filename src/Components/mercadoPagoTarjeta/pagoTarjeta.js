@@ -1,10 +1,7 @@
-import styles from './pagoTarjetaModal.module.css';
-
 import MERCADOPAGO_API_KEY from "../../config/mercadopago";
 import React, { useEffect } from 'react';
-import Modal from 'react-modal';
 
-const PagoTarjetaModal = ({ isOpen, onRequestClose }) => {
+function PagoTarjeta() {
 
     const inicializacionMercadoPago = () =>
     {
@@ -49,7 +46,7 @@ const PagoTarjetaModal = ({ isOpen, onRequestClose }) => {
                     // get payment result
                     console.log("Resolve: ",response)
                     resolve();
-                    //confirmarCompra();
+
                   })
                   .catch((error) => {
                     // get payment result error
@@ -78,14 +75,11 @@ const PagoTarjetaModal = ({ isOpen, onRequestClose }) => {
       });
     }
 
-    return (
-      <Modal isOpen={isOpen} onRequestClose={onRequestClose} overlayClassName={styles.overlay} className={styles.content} contentLabel="Payment Modal">
+    return(
         <div>
-          <div id="cardPaymentBrick_container"></div>
-          <button onClick={onRequestClose}>Salir</button>
+             <div id="cardPaymentBrick_container"></div>
         </div>
-      </Modal>
-    );
+    )
 }
 
-export default PagoTarjetaModal
+export default PagoTarjeta

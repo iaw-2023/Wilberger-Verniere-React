@@ -3,14 +3,12 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Navigate } from 'react-router-dom';
-import Modal from 'react-modal';
 
 export default function App() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
-    Modal.setAppElement(document.body);
   }, []);
 
   if (!isClient) {
@@ -36,6 +34,7 @@ export default function App() {
   const ComprasAsociadas = require('../src/Components/compras/comprasAsociadas').default;
   const UserIni = require('../src/Components/usuarios/usuariosIniciar').default;
   const UserReg = require('../src/Components/usuarios/usuariosRegistrar').default;
+  const PagoTarjeta = require('../src/Components/mercadoPagoTarjeta/pagoTarjeta').default;
 
   function ProteccionRoute({ element, isLogin }) {  
     if (isLogin || sessionStorage.getItem('authToken')) {
@@ -65,6 +64,7 @@ export default function App() {
             <Route path="/compras" element={<ProteccionRoute element={<Compras />} />} />
             <Route path="/comprasAsociadas" element={<ProteccionRoute element={<ComprasAsociadas />} />} />
             <Route path="/carrito" element={<ProteccionRoute element={<Carrito />} />} />
+            <Route path="/pagoTarjeta" element={<ProteccionRoute element={<PagoTarjeta />} />} />
           </Routes>
         </DataProvider>
       </HashRouter>

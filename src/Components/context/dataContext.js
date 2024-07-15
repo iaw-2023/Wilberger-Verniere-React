@@ -184,6 +184,11 @@ const DataProvider = ( {children} ) => {
             }
     }
 
+    const pagarconMP = () => {
+        navigate('/pagoTarjeta');
+        return;
+    }
+
     return <dataContext.Provider value={ 
         {
             carrito, setCarrito, 
@@ -194,7 +199,8 @@ const DataProvider = ( {children} ) => {
             handleLogOut,
             obtenerInfoPeliculaChatGPT,
             respuestaChatGPT,
-            errorRespuestaChatGPT
+            errorRespuestaChatGPT,
+            pagarconMP
         }
     }>{children}</dataContext.Provider>
 };

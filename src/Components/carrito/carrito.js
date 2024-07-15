@@ -2,15 +2,13 @@ import '../../master.css';
 import styles from "./carrito.module.css";
 
 import React, { useState } from 'react';
-import {Button, ButtonGroup, Modal} from 'react-bootstrap';
+import {Button, ButtonGroup} from 'react-bootstrap';
 import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
-import { PagoTarjetaModal } from '../mercadoPagoTarjeta/pagoTarjetaModal';
 
 function Ordenes() {
-  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra } = useContext(dataContext);
+  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra, pagarconMP } = useContext(dataContext);
   const [observaciones, SetObservaciones] = useState("");
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   
   const handleSubmitObservaciones = (event) => 
   {
@@ -29,9 +27,6 @@ function Ordenes() {
     
     return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`;
   }
-
-  const openModal = () => { setModalIsOpen(true); }
-  const closeModal = () => { setModalIsOpen(false); }
 
   console.log(carrito);
   console.log(sessionStorage.getItem('userEmail'));
@@ -80,10 +75,7 @@ function Ordenes() {
           <Button className={styles.carritoBotonEnviar} onClick={ ()=>confirmarCompra(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
         }
         { carrito && carrito.length>0 && 
-           <div>
-            <Button className={styles.carritoBotonMP} onClick={openModal}>Pagar con MercadoPago</Button>
-            <PagoTarjetaModal isOpen={modalIsOpen} onRequestClose={closeModal}/>
-           </div>
+          <Button className={styles.carritoBotonMP} onClick={ ()=>pagarconMP() }>Pagar con MercadoPago</Button>
         }
       </ButtonGroup>
     </div>
