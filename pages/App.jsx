@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Navigate } from 'react-router-dom';
 import Modal from 'react-modal';
 
+Modal.setAppElement('#root');
+
 export default function App() {
   const [isClient, setIsClient] = useState(false);
 
@@ -45,7 +47,7 @@ export default function App() {
   }
 
   return (
-    <div>
+    <div id='root'>
       <HashRouter>
         <DataProvider>
           <div className="navigation-menu">
