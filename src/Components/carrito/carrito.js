@@ -47,7 +47,7 @@ function Ordenes() {
         <div className={styles.carritoInputWrapper}>
           <div className={styles.carritoObservaciones}>
             <div className={styles.carritoObservacionesText}>Observaciones:</div>   
-            <input type="text" className={styles.carritoInputObservaciones} value={observaciones} onChange={handleSubmitObservaciones}/>
+            <input type="text" className={styles.carritoInputObservaciones} value={observacionesCompra} onChange={handleSubmitObservaciones}/>
           </div>
         </div>
         <table className="tabla dark:text-gray-400">
