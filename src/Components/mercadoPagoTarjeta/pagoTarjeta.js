@@ -48,7 +48,7 @@ function PagoTarjeta() {
           },
           onSubmit: (cardData) => {
             return new Promise((resolve, reject) => {
-              fetch("http://localhost:8000/process_payment", {
+              fetch(apiClient+"/process_payment", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
