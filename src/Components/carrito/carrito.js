@@ -25,7 +25,7 @@ function Ordenes() {
       //SetObservaciones(""); 
       setObservacionesCompra("");
     }
-    console.log(observaciones);
+    console.log(observacionesCompra);
   }
 
   const getCurrentDate = (separator='-') => 
