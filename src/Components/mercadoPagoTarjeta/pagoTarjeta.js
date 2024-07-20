@@ -54,13 +54,14 @@ function PagoTarjeta() {
                   },
                   body: JSON.stringify(cardData),
                 })
+                  .then((response) => console.log(response.text))
                   .then((response) => response.json())
                   .then((response) => {
                     // get payment result
                     console.log("Resolve: ",response)
                     resolve();
                     console.log("Se confirma la compra con tarjeta");
-                    confirmarCompra(observacionesCompra + "- PAGO TARJETA MP", "Ver como obtener email inputado", getCurrentDate());
+                    confirmarCompra(observacionesCompra + "- PAGO TARJETA MP", sessionStorage.getItem('userEmail'), getCurrentDate());
                   })
                   .catch((error) => {
                     // get payment result error
