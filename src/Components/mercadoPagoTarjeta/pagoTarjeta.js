@@ -4,7 +4,7 @@ import { dataContext } from '../context/dataContext';
 
 function PagoTarjeta() {
 
-    const {confirmarCompra} = useContext(dataContext);
+    const { confirmarCompra, observacionesCompra } = useContext(dataContext);
     const inicializacionMercadoPago = () =>
     {
       const scriptMercadoPago = document.createElement("script");
@@ -17,6 +17,17 @@ function PagoTarjeta() {
         document.body.removeChild(scriptMercadoPago);
       };
     }
+    const getCurrentDate = (separator='-') => 
+    {
+      let newDate = new Date()
+      let date = newDate.getDate();
+      let month = newDate.getMonth() + 1;
+      let year = newDate.getFullYear();
+        
+      return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`;
+    }
+    
+
     useEffect(() => {
       inicializacionMercadoPago();
     }, []);
@@ -27,7 +38,7 @@ function PagoTarjeta() {
           initialization: {
             amount: 100,
             payer: {
-              email: "",
+              email: sessionStorage.getItem('userEmail'),
             },
           },
           callbacks: {
@@ -48,8 +59,8 @@ function PagoTarjeta() {
                     // get payment result
                     console.log("Resolve: ",response)
                     resolve();
-                    console.log(props.location.state.obs,props.location.state.email,props.location.state.fecha);
-                    confirmarCompra(props.location.state.obs,props.location.state.email,props.location.state.fecha);
+                    console.log("Se confirma la compra con tarjeta");
+                    confirmarCompra(observacionesCompra + "- PAGO TARJETA MP", "Ver como obtener email inputado", getCurrentDate());
                   })
                   .catch((error) => {
                     // get payment result error

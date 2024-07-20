@@ -1,20 +1,30 @@
 import '../../master.css';
 import styles from "./carrito.module.css";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 
 function Ordenes() {
-  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra, pagarconMP } = useContext(dataContext);
-  const [observaciones, SetObservaciones] = useState("");
+  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra, pagarconMP, observacionesCompra, setObservacionesCompra } = useContext(dataContext);
+  //const [observaciones, SetObservaciones] = useState("");
   
+  useEffect(() => {
+    setObservacionesCompra("");
+  }, []);
+
   const handleSubmitObservaciones = (event) => 
   {
     event.preventDefault();
-    if(event.target.value) {SetObservaciones(event.target.value);}
-    else { SetObservaciones(""); }
+    if(event.target.value) {
+      //SetObservaciones(event.target.value);
+      setObservacionesCompra(event.target.value);
+    }
+    else { 
+      //SetObservaciones(""); 
+      setObservacionesCompra("");
+    }
     console.log(observaciones);
   }
 
@@ -72,10 +82,11 @@ function Ordenes() {
           <Button className={styles.carritoBotonCancelar} onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
         }
         { carrito && carrito.length>0 && 
-          <Button className={styles.carritoBotonEnviar} onClick={ ()=>confirmarCompra(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
+          //<Button className={styles.carritoBotonEnviar} onClick={ ()=>confirmarCompra(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
+          <Button className={styles.carritoBotonEnviar} onClick={ ()=>confirmarCompra(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
         }
         { carrito && carrito.length>0 && 
-          <Button className={styles.carritoBotonMP} onClick={ ()=>pagarconMP(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Pagar con MercadoPago</Button>
+          <Button className={styles.carritoBotonMP} onClick={ ()=>pagarconMP() }>Pagar con MercadoPago</Button>
         }
       </ButtonGroup>
     </div>

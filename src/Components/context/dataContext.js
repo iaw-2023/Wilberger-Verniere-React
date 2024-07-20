@@ -14,6 +14,7 @@ const DataProvider = ( {children} ) => {
     const [compraElegida, setCompraElegida] = useState();
     const [respuestaChatGPT, setRespuestaChatGPT] = useState('');
     const [errorRespuestaChatGPT, seterrorRespuestaChatGPT] = useState('');
+    const [observacionesCompra, setObservacionesCompra] = useState('');
     const navigate = useNavigate();
 
     const promptComprar = (compra) => 
@@ -184,10 +185,12 @@ const DataProvider = ( {children} ) => {
             }
     }
 
-    const pagarconMP = (observaciones, email, fechaCompra) => {
-        navigate('/pagoTarjeta', { state:{obs:observaciones, email:email, fecha:fechaCompra}} );
+    const pagarconMP = () => {
+        navigate('/pagoTarjeta');
         return;
     }
+
+
 
     return <dataContext.Provider value={ 
         {
@@ -196,10 +199,10 @@ const DataProvider = ( {children} ) => {
             confirmarCompra, limpiarCompra, 
             peliculaElegida, setPeliculaElegida,
             compraElegida, setCompraElegida,
+            observacionesCompra, setObservacionesCompra,
             handleLogOut,
             obtenerInfoPeliculaChatGPT,
-            respuestaChatGPT,
-            errorRespuestaChatGPT,
+            respuestaChatGPT, errorRespuestaChatGPT,
             pagarconMP
         }
     }>{children}</dataContext.Provider>
