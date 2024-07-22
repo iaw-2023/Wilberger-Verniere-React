@@ -40,12 +40,13 @@ function PeliculasInformacion(){
             <h3 className={styles.peliculasPortadaHeader}>
                 Portada:
                 { peliculaElegida.Imagen ? <img src={peliculaElegida.Imagen}/> 
-                    : respuestaOpenMovie.data.Poster ? <p>Imagen obtenida de Open Movie DB <img src={ respuestaOpenMovie.data.Poster }/></p> 
+                    : respuestaOpenMovie.Poster ? <p>Imagen obtenida de Open Movie DB <img src={ respuestaOpenMovie.Poster }/></p> 
                         : <p>Error al obtener la portada de Open Movie DB</p> }
             </h3>
             <h3 className={styles.peliculasReseñasHeader}>
                 Reseñas:
-                { respuestaOpenMovie.Ratings && respuestaOpenMovie.Ratings.length>0 ?
+                { respuestaOpenMovie.Ratings ?
+                    respuestaOpenMovie.Ratings.length>0 ?
                     <table className="tabla dark:text-gray-400">
                         <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -62,7 +63,8 @@ function PeliculasInformacion(){
                             ))}
                         </tbody>
                     </table>
-                    : errorRespuestaOpenMovie
+                    : <p>No hay reseñas para esta pelicula</p>
+                : errorRespuestaOpenMovie
                 }
             </h3>
         </article>
