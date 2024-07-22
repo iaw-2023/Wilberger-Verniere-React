@@ -13,6 +13,7 @@ const DataProvider = ( {children} ) => {
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState();
     const [respuestaChatGPT, setRespuestaChatGPT] = useState('');
+    const [errorRespuestaChatGPT, seterrorRespuestaChatGPT] = useState('');
     const navigate = useNavigate();
 
     const promptComprar = (compra) => 
@@ -175,9 +176,11 @@ const DataProvider = ( {children} ) => {
             console.log('Respuesta ChatGPT: ',response);
             if (response.data && response.data.choices && response.data.choices.length > 0){
                 setRespuestaChatGPT(response.data.choices[0].message.content);
+                seterrorRespuestaChatGPT('');
             }
           } catch (error) { 
                 console.error('Error:', error);
+                seterrorRespuestaChatGPT('ERROR: solicitud ChatGPT');
             }
     }
 
@@ -191,6 +194,7 @@ const DataProvider = ( {children} ) => {
             handleLogOut,
             obtenerInfoPeliculaChatGPT,
             respuestaChatGPT,
+            errorRespuestaChatGPT,
         }
     }>{children}</dataContext.Provider>
 };

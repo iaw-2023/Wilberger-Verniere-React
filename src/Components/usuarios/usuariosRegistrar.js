@@ -1,5 +1,4 @@
-import "./usuarios.css";
-import "../../master.css";
+import styles from "./usuarios.module.css";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import apiClient from '../../Services/api';
@@ -28,12 +27,12 @@ function UsuariosRegistrar() {
                     setNombreUser("");
                     setContraseña("");
                     setEmail("");
-                    setRespuesta(response.data.error);
+                    setRespuesta(response.data.message);
                     Navigate("/usuariosIniciar");
                 })
                 .catch(function (response) {
                     console.log(response);
-                    setRespuesta(response.data.error);
+                    setRespuesta(response.data.message);
                 });
             });
     }
@@ -65,24 +64,27 @@ function UsuariosRegistrar() {
     }
 
     return (
-        <div>
-            <div className="usuario">
-                Nombre de Usuario: 
-                <input type="text" className="input-user-nombreUser" value={nombreUser} onChange={handleTextNombreUser}/>
+        <div className={styles.container}>
+            <div className={styles.formContainer}>
+                <h2 className={styles.header}>Registrar usuario</h2>
+                <div className="usuario">
+                    Nombre de Usuario:
+                    <input type="text" className={styles.input} value={nombreUser} onChange={handleTextNombreUser} />
+                </div>
+                <div className="email">
+                    Email:
+                    <input type="text" className={styles.input} value={email} onChange={handleTextEmail} />
+                    {email && (!emailValido) && <div className={styles.emailValidText}>Este email no es valido!</div>}
+                </div>
+                <div className="contraseña">
+                    Contraseña:
+                    <input type="text" className={styles.input} value={contraseña} onChange={handleTextContraseña} />
+                </div>
+                <div className={styles.responseMessage}>
+                    {respuesta && <p>{respuesta.message}</p>}
+                </div>
+                {emailValido && nombreUser && contraseña && <Button className={styles.button} onClick={() => submitRegister()}>Confirmar</Button>}
             </div>
-            <div className="email">
-                Email: 
-                <input type="text" className="input-user-emailUser" value={email} onChange={handleTextEmail}/>
-                { email && (!emailValido) && <div className='email-valido-text'>Este email no es valido!</div>}
-            </div> 
-            <div className="contraseña">
-                Contraseña:
-                <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
-            </div>
-            <div className="respuesta-message">
-                {respuesta && <p>{respuesta.message}</p>}
-            </div>
-            { emailValido && nombreUser && contraseña && <Button className="boton-enviar" onClick={ ()=>submitRegister() }>Confirmar</Button>}
         </div>
     )
 }

@@ -1,5 +1,6 @@
-import "./compras.css";
 import '../../master.css';
+import styles from "./compras.module.css";
+
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import { dataContext } from "../context/dataContext";
@@ -36,7 +37,7 @@ function Compras() {
   if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS COMPRAS</p>
 
   return (
-    <div className="form-div">
+    <div className={styles.comprasFormDiv}>
       <table className="tabla dark:text-gray-400">
           <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -51,7 +52,7 @@ function Compras() {
                 <th className="tablaH"> {compraObj.Observaciones} </th>
                 <th className="tablaH"> {compraObj.FechaCompra} </th>
                 <th className="tablaH"> 
-                    <Link to='/ComprasAsociadas' className="lista-orden" onClick={ setCompraElegida(compraObj) }>Ordenes Asociadas</Link>
+                    <Link to='/ComprasAsociadas' onClick={ setCompraElegida(compraObj) }>Ordenes Asociadas</Link>
                 </th>
               </tr>
             ))}

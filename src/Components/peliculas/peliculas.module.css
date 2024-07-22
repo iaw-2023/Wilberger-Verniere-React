@@ -1,4 +1,4 @@
-.funciones-asociadas{
+.funcionesAsociadas{
     background-color: #5c67b8;
     text-decoration: none;
     border-radius: 5px;
@@ -9,7 +9,7 @@
     margin-right: 5px;
 }
 
-.info-pelicula{
+.infoPelicula{
     background-color: #5cb898;
     text-decoration: none;
     border-radius: 5px;
@@ -27,12 +27,29 @@
     border-radius: 8px;
 }
 
-.Nombre {
+.peliculasNombreHeader {
     font-size: 1.5em;
     margin-bottom: 10px;
 }
 
-.Sinopsis {
+.peliculasNombreTexto{
     font-size: 1.2em;
+}
+
+.peliculasSinopsisHeader {
+    font-size: 1.5em;
     line-height: 1.4;
+}
+
+.peliculasSinopsisTexto{
+    font-size: 1.2em; 
+}
+
+.peliculasErrorChatGPT {
+    font-size: 1.5em;
+    color: red;
+}
+
+.peliculasPortadaHeader {
+    font-size: 1.5em;
 }

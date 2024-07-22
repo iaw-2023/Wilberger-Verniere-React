@@ -1,6 +1,5 @@
-import "./usuarios.css";
-import "../../master.css";
-import { useContext, useState } from "react";
+import styles from "./usuarios.module.css";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiClient from '../../Services/api';
 
@@ -32,8 +31,8 @@ function UsuariosIniciar() {
             navigate('/');
           })
         .catch(function (error) {
-            console.log(error);
-            setError(response.error);
+            console.log(error.response);
+            setError(error.response.data.message);
           });
     }
 
@@ -50,19 +49,22 @@ function UsuariosIniciar() {
     }
 
     return (
-        <div>
-            <div className="email">
-                Email: 
-                <input type="text" className="input-user-emailUser" value={email} onChange={handleTextEmail}/>
-            </div> 
-            <div className="contraseña">
-                Contraseña: 
-                <input type="text" className="input-user-contraseñaUser" value={contraseña} onChange={handleTextContraseña}/>
+        <div className={styles.container}>
+            <div className={styles.formContainer}>
+                <h2 className={styles.header}>Iniciar sesion</h2>
+                <div className="email">
+                    Email:
+                    <input type="text" className={styles.input} value={email} onChange={handleTextEmail} />
+                </div>
+                <div className="contraseña">
+                    Contraseña:
+                    <input type="text" className={styles.input} value={contraseña} onChange={handleTextContraseña} />
+                </div>
+                <div className={styles.errorMessage}>
+                    {error && <p>{error}</p>}
+                </div>
+                {email && contraseña && <button className={styles.button} onClick={() => submitLogin()}>Confirmar</button>}
             </div>
-            <div className="error-message">
-                {error && <p>{error.message}</p>}
-            </div>
-            { email && contraseña && <button className="boton-enviar" onClick={ ()=>submitLogin() }>Confirmar</button>}
         </div>
     )
 }

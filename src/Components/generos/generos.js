@@ -1,7 +1,7 @@
+import '../../master.css';
+
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import './generos.css';
-import '../../master.css';
 import apiClient from '../../Services/api';
 
 function listaPeliculas(arregloPeliculas){
@@ -13,10 +13,8 @@ function listaPeliculas(arregloPeliculas){
         let j=0; 
         arregloRet[j]="[ "; j++;
         for (let i = 0; i<arregloPeliculas.length; i++){
-            //console.log("arregloPeliculas: ", arregloPeliculas[i]);
             if (i>0) { arregloRet[j]=","; j++; }
             arregloRet[j]=arregloPeliculas[i].nombre + "\n"; j++;
-            //console.log("arregloRet: ", arregloRet[i])
         }
         arregloRet[j]=" ]";
         return arregloRet;

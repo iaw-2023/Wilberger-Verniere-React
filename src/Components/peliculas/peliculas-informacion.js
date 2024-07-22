@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from 'react';
-import './peliculas.css';
 import '../../master.css';
+import styles from './peliculas.module.css';
+
+import React, { useContext, useEffect } from 'react';
 import { dataContext } from '../context/dataContext';
 
 
 function PeliculasInformacion(){
 
-    const { peliculaElegida,obtenerInfoPeliculaChatGPT, respuestaChatGPT } = useContext(dataContext);
+    const { peliculaElegida,obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT } = useContext(dataContext);
 
     console.log(peliculaElegida);
 
@@ -18,14 +19,19 @@ function PeliculasInformacion(){
 
     return (
         <article>
-            <h1 className="Nombre">
+            <h1 className={styles.nombreHeader}>
                 Nombre: 
-                <p className="nombre">{peliculaElegida.Nombre}</p>
+                <p className={styles.peliculasNombreTexto}>{peliculaElegida.Nombre}</p>
             </h1>
-                <h2 className="Sinopsis">
-                    Sinopsis: 
-                    { respuestaChatGPT && respuestaChatGPT.length>0 && (<p className="sinopsis">{respuestaChatGPT}</p>) }
-                </h2>
+            <h2 className={styles.peliculasSinopsisHeader}>
+                Sinopsis: 
+                { respuestaChatGPT && respuestaChatGPT.length>0 && (<p className={styles.peliculasSinopsisTexto}>{respuestaChatGPT}</p>) }
+                { errorRespuestaChatGPT && errorRespuestaChatGPT.length>0 && (<p className={styles.peliculasErrorChatGPT}>{errorRespuestaChatGPT}</p>) }
+            </h2>
+            <h3 className={styles.peliculasPortadaHeader}>
+                Portada:
+                { peliculaElegida.Imagen ? <img src={peliculaElegida.Imagen}/>  : <p>Imagen no disponible</p> }
+            </h3>
         </article>
     )
 };

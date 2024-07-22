@@ -1,8 +1,7 @@
 "use client";
-import React, { useContext } from 'react';
+import React from 'react';
 import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { dataContext } from '../src/Components/context/dataContext';
 import { Navigate } from 'react-router-dom';
 
 export default function App() {
@@ -35,6 +34,7 @@ export default function App() {
   const ComprasAsociadas = require('../src/Components/compras/comprasAsociadas').default;
   const UserIni = require('../src/Components/usuarios/usuariosIniciar').default;
   const UserReg = require('../src/Components/usuarios/usuariosRegistrar').default;
+  const PagoTarjeta = require('../src/Components/mercadoPagoTarjeta/pagoTarjeta').default;
 
   function ProteccionRoute({ element, isLogin }) {  
     if (isLogin || sessionStorage.getItem('authToken')) {
@@ -64,10 +64,8 @@ export default function App() {
             <Route path="/compras" element={<ProteccionRoute element={<Compras />} />} />
             <Route path="/comprasAsociadas" element={<ProteccionRoute element={<ComprasAsociadas />} />} />
             <Route path="/carrito" element={<ProteccionRoute element={<Carrito />} />} />
+            {/* <Route path="/pagoTarjeta" element={<ProteccionRoute element={<PagoTarjeta />} />} /> */}
           </Routes>
-          {/* <div className= "page-footer">
-            <Footer/>
-          </div> */}
         </DataProvider>
       </HashRouter>
     </div>
