@@ -7,11 +7,19 @@ import { dataContext } from '../context/dataContext';
 
 function PeliculasInformacion(){
 
-    const { peliculaElegida,obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT } = useContext(dataContext);
+    const { 
+        peliculaElegida, 
+        obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT, 
+        obtenerInfoPeliculaOpenMovie, respuestaOpenMovie, errorRespuestaOpenMovie, 
+    } = useContext(dataContext);
 
     console.log(peliculaElegida);
 
-    const fetchInfo = () =>{ obtenerInfoPeliculaChatGPT(peliculaElegida.Nombre)};
+    const fetchInfo = () =>
+    { 
+        obtenerInfoPeliculaChatGPT(peliculaElegida.Nombre);
+        obtenerInfoPeliculaOpenMovie(peliculaElegida.Nombre);
+    };
 
     useEffect(() => {
         fetchInfo();
@@ -30,7 +38,11 @@ function PeliculasInformacion(){
             </h2>
             <h3 className={styles.peliculasPortadaHeader}>
                 Portada:
-                { peliculaElegida.Imagen ? <img src={peliculaElegida.Imagen}/> : <p>Imagen no disponible</p> }
+                { peliculaElegida.Imagen ? <img src={peliculaElegida.Imagen}/> : <p>Imagen obtenida de Open Movie DB <img src={ respuestaOpenMovie.Poster }/></p> }
+            </h3>
+            <h3 className={styles.peliculasReseñasHeader}>
+                Reseñas:
+                Reseñas OpenMovie DB
             </h3>
         </article>
     )
