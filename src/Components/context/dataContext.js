@@ -164,7 +164,7 @@ const DataProvider = ( {children} ) => {
     const preguntarChatGptAPI = async (consulta) =>
     {
         try {
-            const response = await axios.post(
+            const response = await axios.get(
                 'https://api.openai.com/v1/chat/completions',
               {
                 model: 'gpt-3.5-turbo',
@@ -203,7 +203,7 @@ const DataProvider = ( {children} ) => {
     const preguntarOpenMovie = async (nombre) =>
     {
         try {
-            const response = await axios.post(
+            const response = await axios.get(
                 'https://www.omdbapi.com/?apikey='+OPEN_DATABASE_API_KEY+'&'+'t='+nombre,
               {
                 headers: {
