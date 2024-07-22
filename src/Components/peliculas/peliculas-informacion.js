@@ -38,7 +38,9 @@ function PeliculasInformacion(){
             </h2>
             <h3 className={styles.peliculasPortadaHeader}>
                 Portada:
-                { peliculaElegida.Imagen ? <img src={peliculaElegida.Imagen}/> : <p>Imagen obtenida de Open Movie DB <img src={ respuestaOpenMovie.Poster }/></p> }
+                { peliculaElegida.Imagen ? <img src={peliculaElegida.Imagen}/> 
+                    : respuestaOpenMovie.Poster ? <p>Imagen obtenida de Open Movie DB <img src={ respuestaOpenMovie.Poster }/></p> 
+                        : <p>Error al obtener la portada de Open Movie DB</p> }
             </h3>
             <h3 className={styles.peliculasReseñasHeader}>
                 Reseñas:
