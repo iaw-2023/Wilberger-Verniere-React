@@ -45,7 +45,7 @@ function PeliculasInformacion(){
             </h3>
             <h3 className={styles.peliculasReseñasHeader}>
                 Reseñas:
-                { respuestaOpenMovie.data.Ratings ?
+                { respuestaOpenMovie.Ratings && respuestaOpenMovie.Ratings.length>0 ?
                     <table className="tabla dark:text-gray-400">
                         <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -54,7 +54,7 @@ function PeliculasInformacion(){
                             </tr>
                         </thead>
                         <tbody>
-                            { respuestaOpenMovie.data.Ratings.length>0 && respuestaOpenMovie.data.Ratings.map((reseñaObj, index) => (
+                            { respuestaOpenMovie.Ratings.map((reseñaObj, index) => (
                             <tr className="tablaRow" key={index}>
                                 <th className="tablaH"> {reseñaObj.Source}      </th>
                                 <th className="tablaH"> {reseñaObj.Value}         </th>
@@ -62,7 +62,7 @@ function PeliculasInformacion(){
                             ))}
                         </tbody>
                     </table>
-                    : <p>No hay reseñas disponibles </p>
+                    : errorRespuestaOpenMovie
                 }
             </h3>
         </article>

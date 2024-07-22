@@ -212,8 +212,8 @@ const DataProvider = ( {children} ) => {
               }
             );
             console.log('Respuesta OpenMovie: ', response);
-            if (response.data && response.data.choices && response.data.choices.length > 0){
-                setRespuestaOpenMovie('Respuesta OpenMovieDB');
+            if (response.data){
+                setRespuestaOpenMovie(response.data);
                 seterrorRespuestaOpenMovie('');
             }
           } catch (error) { 
