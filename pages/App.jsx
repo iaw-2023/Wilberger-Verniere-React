@@ -30,6 +30,7 @@ export default function App() {
   const Footer = require('../src/Components/footer/footer').default;
   const DataProvider = require('../src/Components/context/dataContext').default;
   const Compras = require('../src/Components/compras/compras').default;
+  const PeliculaInformacion = require('../src/Components/peliculas/peliculas-informacion').default;
   const FuncionesAsociadas = require('../src/Components/funciones/funciones-asociadas').default;
   const ComprasAsociadas = require('../src/Components/compras/comprasAsociadas').default;
   const UserIni = require('../src/Components/usuarios/usuariosIniciar').default;
@@ -55,6 +56,7 @@ export default function App() {
             <Route path="/funciones" element={<Funciones />} />
             <Route path="/funcionesAsociadas" element={<FuncionesAsociadas />} />
             <Route path="/peliculas" element={<Peliculas />} />
+            <Route path="/peliculasInformacion" element={<PeliculaInformacion />} />
             <Route path="/generos" element={<Generos />} />
             <Route path="/usuariosIniciar" element={<UserIni />} />
             <Route path="/usuariosRegistrar" element={<UserReg />} />

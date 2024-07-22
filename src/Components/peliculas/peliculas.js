@@ -51,6 +51,7 @@ function Peliculas() {
                             <th className="tablaH"> {peliculaObj.Nombre}   </th>
                             <th className="tablaH">  {peliculaObj.Genero}   </th>
                             <th>
+                                <Link to={"/peliculasInformacion"} className="info-pelicula" onClick={ () => setPeliculaElegida(peliculaObj)}>Ver Informacion</Link>
                                 <Link to={"/funcionesAsociadas"} className="funciones-asociadas" onClick={ () => setPeliculaElegida(peliculaObj) }>Ver funciones</Link>
                             </th>
                         </tr>

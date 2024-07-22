@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import './funciones.css';
 import '../../master.css';
 import {Button} from 'react-bootstrap';
-import axios from 'axios';
 import { dataContext } from '../context/dataContext';
 import apiClient from '../../Services/api';
 

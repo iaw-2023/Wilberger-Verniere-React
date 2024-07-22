@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../Services/api';
+import OPENAI_API_KEY from '../../config/openai'; 
+import axios from 'axios';
 
 export const dataContext = createContext([]);
 
@@ -10,6 +12,7 @@ const DataProvider = ( {children} ) => {
     const [carrito, setCarrito] = useState([]);
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState();
+    const [respuestaChatGPT, setRespuestaChatGPT] = useState('');
     const navigate = useNavigate();
 
     const promptComprar = (compra) => 
@@ -142,6 +145,42 @@ const DataProvider = ( {children} ) => {
         });
     } 
 
+    const obtenerInfoPeliculaChatGPT = (nombre) => 
+    {
+        setRespuestaChatGPT('');
+        const consulta = "¿Can you give me a short plot description of the movie: "+nombre+"?. If not posible respond 'Error al buscar una sinopsis en ChatGPT'";
+        preguntarChatGptAPI(consulta);
+    }
+
+    const preguntarChatGptAPI = async (consulta) =>
+    {
+        try {
+            const response = await axios.post(
+                'https://api.openai.com/v1/chat/completions',
+              {
+                model: 'gpt-3.5-turbo',
+                messages: [
+                    { role: 'system', content: 'You are a helpful assistant.' },
+                    { role: 'user', content: consulta },
+                ],
+                max_tokens: 250,
+              },
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${OPENAI_API_KEY}`,
+                },
+              }
+            );
+            console.log('Respuesta ChatGPT: ',response);
+            if (response.data && response.data.choices && response.data.choices.length > 0){
+                setRespuestaChatGPT(response.data.choices[0].message.content);
+            }
+          } catch (error) { 
+                console.error('Error:', error);
+            }
+    }
+
     return <dataContext.Provider value={ 
         {
             carrito, setCarrito, 
@@ -150,6 +189,8 @@ const DataProvider = ( {children} ) => {
             peliculaElegida, setPeliculaElegida,
             compraElegida, setCompraElegida,
             handleLogOut,
+            obtenerInfoPeliculaChatGPT,
+            respuestaChatGPT,
         }
     }>{children}</dataContext.Provider>
 };

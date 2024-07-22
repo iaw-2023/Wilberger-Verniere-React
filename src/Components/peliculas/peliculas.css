@@ -8,3 +8,31 @@
     cursor: pointer;
     margin-right: 5px;
 }
+
+.info-pelicula{
+    background-color: #5cb898;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 5px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.article {
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.Nombre {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.Sinopsis {
+    font-size: 1.2em;
+    line-height: 1.4;
+}
