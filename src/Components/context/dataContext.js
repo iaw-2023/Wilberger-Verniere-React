@@ -200,10 +200,10 @@ const DataProvider = ( {children} ) => {
         preguntarOpenMovie(nombreFormateado);
     }
 
-    const preguntarOpenMovie = (nombre) =>
+    const preguntarOpenMovie = async (nombre) =>
     {
         try {
-            const response = axios.post(
+            const response = await axios.post(
                 'https://www.omdbapi.com/?apikey='+OPEN_DATABASE_API_KEY+'&'+'t='+nombre,
               {
                 headers: {
