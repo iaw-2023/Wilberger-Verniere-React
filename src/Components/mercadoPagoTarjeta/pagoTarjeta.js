@@ -48,12 +48,15 @@ function PagoTarjeta() {
           },
           onSubmit: (cardData) => {
             return new Promise((resolve, reject) => {
-              fetch(apiClient+"/process_payment", {
-                method: "POST",
+              apiClient.post("rest/process_payment", 
+              { 
+                'body': JSON.stringify(cardData),
+              },
+              {
                 headers: {
                   "Content-Type": "application/json",
-                },
-                body: JSON.stringify(cardData),
+                   Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                }
               })
                 .then((response) => response.json())
                 .then((response) => {
