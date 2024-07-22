@@ -208,7 +208,7 @@ const DataProvider = ( {children} ) => {
               {
                 headers: {
                   'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${OPEN_DATABASE_API_KEY}`,
+                  'Authorization': `Bearer ${sessionStorage.getItem('authToken')}`,
                 },
               }
             );
