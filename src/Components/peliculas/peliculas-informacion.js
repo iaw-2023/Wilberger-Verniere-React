@@ -25,6 +25,7 @@ function PeliculasInformacion(){
         fetchInfo();
     },[]);
 
+    
     return (
         <article>
             <h1 className={styles.nombreHeader}>
@@ -39,12 +40,30 @@ function PeliculasInformacion(){
             <h3 className={styles.peliculasPortadaHeader}>
                 Portada:
                 { peliculaElegida.Imagen ? <img src={peliculaElegida.Imagen}/> 
-                    : respuestaOpenMovie.Poster ? <p>Imagen obtenida de Open Movie DB <img src={ respuestaOpenMovie.Poster }/></p> 
+                    : respuestaOpenMovie.data.Poster ? <p>Imagen obtenida de Open Movie DB <img src={ respuestaOpenMovie.data.Poster }/></p> 
                         : <p>Error al obtener la portada de Open Movie DB</p> }
             </h3>
             <h3 className={styles.peliculasReseñasHeader}>
                 Reseñas:
-                Reseñas OpenMovie DB
+                { respuestaOpenMovie.data.Ratings ?
+                    <table className="tabla dark:text-gray-400">
+                        <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" className="tablaH">Origen:</th>
+                                <th scope="col" className="tablaH">Valoracion:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { respuestaOpenMovie.data.Ratings.length>0 && respuestaOpenMovie.data.Ratings.map((reseñaObj, index) => (
+                            <tr className="tablaRow" key={index}>
+                                <th className="tablaH"> {reseñaObj.Source}      </th>
+                                <th className="tablaH"> {reseñaObj.Value}         </th>
+                            </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    : <p>No hay reseñas disponibles </p>
+                }
             </h3>
         </article>
     )
