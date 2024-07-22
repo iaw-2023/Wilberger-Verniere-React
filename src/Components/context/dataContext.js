@@ -204,7 +204,7 @@ const DataProvider = ( {children} ) => {
     {
         try {
             const response = axios.post(
-                'http://www.omdbapi.com/?apikey='+OPEN_DATABASE_API_KEY+'&'+'t='+nombre,
+                'https://www.omdbapi.com/?apikey='+OPEN_DATABASE_API_KEY+'&'+'t='+nombre,
               {
                 headers: {
                   'Content-Type': 'application/json',
