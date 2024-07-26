@@ -1,0 +1,3 @@
+const OPEN_DATABASE_API_KEY = '8a915868';
+
+export default OPEN_DATABASE_API_KEY;

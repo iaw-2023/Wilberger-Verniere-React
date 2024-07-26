@@ -4,6 +4,7 @@ import { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../Services/api';
 import OPENAI_API_KEY from '../../config/openai'; 
+import OPEN_DATABASE_API_KEY from '../../config/openDatabase'; 
 import axios from 'axios';
 
 export const dataContext = createContext([]);
@@ -12,9 +13,15 @@ const DataProvider = ( {children} ) => {
     const [carrito, setCarrito] = useState([]);
     const [peliculaElegida, setPeliculaElegida] = useState([]);
     const [compraElegida, setCompraElegida] = useState();
+
     const [respuestaChatGPT, setRespuestaChatGPT] = useState('');
     const [errorRespuestaChatGPT, seterrorRespuestaChatGPT] = useState('');
+
+    const [respuestaOpenMovie, setRespuestaOpenMovie] = useState('');
+    const [errorRespuestaOpenMovie, seterrorRespuestaOpenMovie] = useState('');
+
     const [observacionesCompra, setObservacionesCompra] = useState('');
+
     const navigate = useNavigate();
 
     const promptComprar = (compra) => 
@@ -157,7 +164,7 @@ const DataProvider = ( {children} ) => {
     const preguntarChatGptAPI = async (consulta) =>
     {
         try {
-            const response = await axios.post(
+            const response = await axios.get(
                 'https://api.openai.com/v1/chat/completions',
               {
                 model: 'gpt-3.5-turbo',
@@ -185,12 +192,40 @@ const DataProvider = ( {children} ) => {
             }
     }
 
+    const obtenerInfoPeliculaOpenMovie = (nombre) =>
+    {
+        setRespuestaOpenMovie('');
+        let nombreFormateado = nombre.replace(/\s/g, '+');
+        console.log(nombreFormateado);        
+        preguntarOpenMovie(nombreFormateado);
+    }
+
+    const preguntarOpenMovie = async (nombre) =>
+    {
+        try {
+            const response = await axios.get(
+                'https://www.omdbapi.com/?apikey='+OPEN_DATABASE_API_KEY+'&'+'t='+nombre,
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              }
+            );
+            console.log('Respuesta OpenMovie: ', response);
+            if (response.data){
+                setRespuestaOpenMovie(response.data);
+                seterrorRespuestaOpenMovie('');
+            }
+          } catch (error) { 
+                console.error('Error:', error);
+                seterrorRespuestaOpenMovie('ERROR: solicitud OpenMovieDB');
+            }
+    }
+
     const pagarconMP = () => {
         navigate('/pagoTarjeta');
         return;
     }
-
-
 
     return <dataContext.Provider value={ 
         {
@@ -201,8 +236,8 @@ const DataProvider = ( {children} ) => {
             compraElegida, setCompraElegida,
             observacionesCompra, setObservacionesCompra,
             handleLogOut,
-            obtenerInfoPeliculaChatGPT,
-            respuestaChatGPT, errorRespuestaChatGPT,
+            obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT,
+            obtenerInfoPeliculaOpenMovie, respuestaOpenMovie, errorRespuestaOpenMovie, 
             pagarconMP
         }
     }>{children}</dataContext.Provider>
