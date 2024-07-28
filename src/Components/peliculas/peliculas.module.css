@@ -1,55 +1,53 @@
-.funcionesAsociadas{
-    background-color: #5c67b8;
-    text-decoration: none;
-    border-radius: 5px;
-    padding: 5px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-.infoPelicula{
-    background-color: #5cb898;
-    text-decoration: none;
-    border-radius: 5px;
-    padding: 5px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-.article {
+.peliculaArticulo {
     margin: 20px;
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
 }
 
-.peliculasNombreHeader {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+.peliculaInfoContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
 }
 
-.peliculasNombreTexto{
-    font-size: 1.2em;
+.peliculaNombreContainer {
+    flex: 1;
+    padding: 20px;
 }
 
-.peliculasSinopsisHeader {
-    font-size: 1.5em;
-    line-height: 1.4;
+.peliculasPortadaContainer {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
 }
 
-.peliculasSinopsisTexto{
-    font-size: 1.2em; 
+.peliculaPortada{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.peliculasErrorChatGPT {
-    font-size: 1.5em;
-    color: red;
+.peliculasPortadaContainerImagen {
+    max-width: 100%;
+    height: auto;
 }
 
-.peliculasPortadaHeader {
-    font-size: 1.5em;
+.peliculasReseñaContainer {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.peliculasHeader{
+    font-size: 2em;
+    margin-bottom: 5px;  
+}
+
+.peliculasTexto{
+    font-size: 1.25em;
+}
+
+.peliculasError{
+    color: #d73737;
 }

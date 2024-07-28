@@ -18,44 +18,7 @@
     margin-right: 15px;
 }
 
-.carritoBotonQuitarOrden{
-    background-color: #d9534f;
-    border-radius: 5px;
-    padding: 5px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
 .carritoBotonGroup{
     float: right;
     margin-top: 50px;
-}
-
-.carritoBotonEnviar{
-    background-color: #5cb85c;
-    border-radius: 5px;
-    padding: 5px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.carritoBotonCancelar{
-    background-color: #d9534f;
-    border-radius: 5px;
-    padding: 5px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.carritoBotonMP{
-    background-color: #386fb7;
-    border-radius: 5px;
-    padding: 5px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin-right: 5px;
 }

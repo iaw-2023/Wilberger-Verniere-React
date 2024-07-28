@@ -63,7 +63,7 @@ function UsuariosIniciar() {
                 <div className={styles.errorMessage}>
                     {error && <p>{error}</p>}
                 </div>
-                {email && contraseña && <button className={styles.button} onClick={() => submitLogin()}>Confirmar</button>}
+                {email && contraseña && <button className={`button button_login`} onClick={() => submitLogin()}>Confirmar</button>}
             </div>
         </div>
     )

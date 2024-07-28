@@ -11,8 +11,7 @@ function FuncionesAsociadas() {
     const [error, setError] = useState(null);
     const [funcion, setFuncion] = useState([])
 
-    const fetchFuncion = () => 
-    {
+    const fetchFuncion = () => {
         return apiClient.get("/rest/funciones/asociadas", { 
             params: {
                 'Id': peliculaElegida.Id,
@@ -33,40 +32,44 @@ function FuncionesAsociadas() {
 
     return (
         <div>
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="tabla dark:text-gray-400">
-                    <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
+            <div className="tabla_container">
+                <table className="tabla">
+                    <thead className="tablaHead tablaOscuro">
                         <tr>
-                            <th scope="col" className="tablaH">Pelicula:</th>
-                            <th scope="col" className="tablaH">Fecha:</th>
-                            <th scope="col" className="tablaH">Hora:</th>
-                            <th scope="col" className="tablaH">Sala numero:</th>
-                            <th scope="col" className="tablaH">Asientos Disponibles:</th>
-                            <th scope="col" className="tablaH">Accion:</th>
+                            <th scope="col" className="tablaHeadElem">Pelicula:</th>
+                            <th scope="col" className="tablaHeadElem">Fecha:</th>
+                            <th scope="col" className="tablaHeadElem">Hora:</th>
+                            <th scope="col" className="tablaHeadElem">Sala numero:</th>
+                            <th scope="col" className="tablaHeadElem">Asientos Disponibles:</th>
+                            <th scope="col" className="tablaHeadElem">Accion:</th>
                         </tr>
                     </thead>
                     <tbody>
-                    { funcion && funcion.length>0 && funcion.map((funcionObj,index) => {
+                        { funcion && funcion.length>0 && funcion.map((funcionObj,index) => {
                             if (funcionObj.AsientosDisponible>0) {
                                 return <tr className="tablaRow" key={index}>
-                                    <th className="tablaH"> {funcionObj.Pelicula}      </th>
-                                    <th className="tablaH"> {funcionObj.Fecha}         </th>
-                                    <th className="tablaH"> {funcionObj.Hora}          </th>
-                                    <th className="tablaH"> {funcionObj.NroSala}       </th>
-                                    <th className="tablaH"> {funcionObj.AsientosDisponible}       </th>
-                                    <th className="tablaH"> 
-                                        <Button className={styles.añadirTicket} onClick={ ()=>promptComprar(funcionObj) }>Comprar</Button>
+                                    <th className="tableBodyElem"> {funcionObj.Pelicula}      </th>
+                                    <th className="tableBodyElem"> {funcionObj.Fecha}         </th>
+                                    <th className="tableBodyElem"> {funcionObj.Hora}          </th>
+                                    <th className="tableBodyElem"> {funcionObj.NroSala}       </th>
+                                    <th className="tableBodyElem"> {funcionObj.AsientosDisponible}       </th>
+                                    <th className="tableBodyElem"> 
+                                        <Button 
+                                        className={`button ${styles.añadirTicket}`} 
+                                        onClick={ ()=>promptComprar(funcionObj) }>
+                                            Comprar
+                                        </Button>
                                     </th>
                                 </tr>
                             }
                             else {
                                 return <tr className={styles.sinAsientos} key={index}>
-                                    <th className="tablaH"> {funcionObj.Pelicula}      </th>
-                                    <th className="tablaH"> {funcionObj.Fecha}         </th>
-                                    <th className="tablaH"> {funcionObj.Hora}          </th>
-                                    <th className="tablaH"> {funcionObj.NroSala}       </th>
-                                    <th className="tablaH"> {funcionObj.AsientosDisponible}       </th>
-                                    <th className="tablaH"> 
+                                    <th className="tableBodyElem"> {funcionObj.Pelicula}      </th>
+                                    <th className="tableBodyElem"> {funcionObj.Fecha}         </th>
+                                    <th className="tableBodyElem"> {funcionObj.Hora}          </th>
+                                    <th className="tableBodyElem"> {funcionObj.NroSala}       </th>
+                                    <th className="tableBodyElem"> {funcionObj.AsientosDisponible}       </th>
+                                    <th className="tableBodyElem"> 
                                         ENTRADAS AGOTADAS
                                     </th>
                                 </tr>

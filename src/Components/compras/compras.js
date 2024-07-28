@@ -38,26 +38,29 @@ function Compras() {
 
   return (
     <div className={styles.comprasFormDiv}>
-      <table className="tabla dark:text-gray-400">
-          <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="tablaH">Observaciones:</th>
-              <th scope="col" className="tablaH">Fecha Creacion:</th>
-              <th scope="col" className="tablaH">Accion:</th>
+      <table className="tabla">
+        <thead className="tablaHead tablaOscuro">
+          <tr>
+            <th scope="col" className="tablaHeadElem">Observaciones:</th>
+            <th scope="col" className="tablaHeadElem">Fecha Creacion:</th>
+            <th scope="col" className="tablaHeadElem">Accion:</th>
+          </tr>
+        </thead>
+        <tbody>
+          { compra && compra.length>0 && compra.map((compraObj,index) => (
+            <tr className="tablaRow" key={index}>
+              <th className="tableBodyElem"> {compraObj.Observaciones} </th>
+              <th className="tableBodyElem"> {compraObj.FechaCompra} </th>
+              <th className="tableBodyElem"> 
+                  <Link to='/ComprasAsociadas' 
+                  onClick={ setCompraElegida(compraObj) }>
+                    Ordenes Asociadas
+                  </Link>
+              </th>
             </tr>
-          </thead>
-          <tbody>
-            { compra && compra.length>0 && compra.map((compraObj,index) => (
-              <tr className="tablaRow" key={index}>
-                <th className="tablaH"> {compraObj.Observaciones} </th>
-                <th className="tablaH"> {compraObj.FechaCompra} </th>
-                <th className="tablaH"> 
-                    <Link to='/ComprasAsociadas' onClick={ setCompraElegida(compraObj) }>Ordenes Asociadas</Link>
-                </th>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }
