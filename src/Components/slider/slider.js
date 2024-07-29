@@ -19,7 +19,7 @@ function Slider({ slides }) {
       >
         {slides.map((slide) => (
           <Carousel.Item key={slide.image} interval={slide.interval}>
-            <img
+            <img className={styles.carouselImage}
               src={slide.image}
               alt="First slide"
             />
@@ -37,5 +37,3 @@ function Slider({ slides }) {
 }
 
 export default Slider;
-
-

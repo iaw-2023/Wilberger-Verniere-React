@@ -9,3 +9,53 @@
 .sliderContainer{
     margin-bottom: 0%;
 }
+
+/* Celulares */
+@media (max-width: 576px) {
+    .welcomeTextContainer h1 {
+      font-size: 1.5rem;
+    }
+    .welcomeTextContainer p {
+      font-size: 1rem;
+    }
+  }
+  
+/* Tablets */
+@media (min-width: 577px) and (max-width: 768px) {
+    .welcomeTextContainer h1 {
+        font-size: 2rem;
+    }
+    .welcomeTextContainer p {
+        font-size: 1.25rem;
+    }
+}
+
+/* Laptops */
+@media (min-width: 769px) and (max-width: 992px) {
+    .welcomeTextContainer h1 {
+        font-size: 2.5rem;
+    }
+    .welcomeTextContainer p {
+        font-size: 1.5rem;
+    }
+}
+
+/* PC escritorio */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .welcomeTextContainer h1 {
+        font-size: 3rem;
+    }
+    .welcomeTextContainer p {
+        font-size: 1.75rem;
+    }
+}
+
+/* Computadora grande */
+@media (min-width: 1201px) {
+    .welcomeTextContainer h1 {
+        font-size: 3rem;
+    }
+    .welcomeTextContainer p {
+        font-size: 2rem;
+    }
+}

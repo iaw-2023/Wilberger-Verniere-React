@@ -80,3 +80,104 @@
     background-color: #ffffff;
     color:#000000;
 }
+
+/* Celulares */
+@media (max-width: 576px) {
+    .tabla {
+        font-size: 0.5rem;
+    }
+    .tablaHeadElem {
+        padding: 0.25rem 0.5rem;
+    } 
+    .tablaBodyElem {
+        padding: 0.15rem 0.25rem;
+    }
+    .button {
+        padding: 3px;
+        margin-right: 3px;
+        font-size: 0.5rem;
+    }
+    .button_login {
+        padding: 4px;
+        font-size: 8px;
+    }
+}
+
+/* Tablets */
+@media (min-width: 577px) and (max-width: 768px) {
+    .tabla {
+        font-size: 0.8rem;
+    }
+    .tablaHeadElem {
+        padding: 0.6rem 1.2rem;
+    } 
+    .tablaBodyElem {
+        padding: 0.4rem 0.6rem;
+    }
+    .button {
+        padding: 4px;
+        margin-right: 4px;
+        font-size: 0.8rem;
+    }
+    .button_login {
+        padding: 6px;
+        font-size: 12px;
+    }
+}
+
+/* Laptops */
+@media (min-width: 769px) and (max-width: 992px) {
+    .tabla {
+        font-size: 0.875rem;
+    }
+    .tablaHeadElem, .tablaBodyElem {
+        padding: 0.75rem 1.5rem;
+    }
+    .button {
+        padding: 5px;
+        margin-right: 5px;
+        font-size: 0.875rem;
+    }
+    .button_login {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+/* PC escritorio */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .tabla {
+        font-size: 0.925rem;
+    }
+    .tablaHeadElem, .tablaBodyElem {
+        padding: 0.8rem 1.6rem;
+    }
+    .button {
+        padding: 6px;
+        margin-right: 6px;
+        font-size: 0.925rem;
+    }
+    .button_login {
+        padding: 11px;
+        font-size: 17px;
+    }
+}
+
+/* Computadora grande */
+@media (min-width: 1201px) {
+    .tabla {
+        font-size: 1rem;
+    }
+    .tablaHeadElem, .tablaBodyElem {
+        padding: 0.9rem 1.8rem;
+    }
+    .button {
+        padding: 7px;
+        margin-right: 7px;
+        font-size: 1rem;
+    }
+    .button_login {
+        padding: 12px;
+        font-size: 18px;
+    }
+}
