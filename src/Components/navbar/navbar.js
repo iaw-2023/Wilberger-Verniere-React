@@ -27,7 +27,7 @@ function NavBar() {
           </div> }
         { islogin &&  
           <div className={styles.infoCuentaContainer}>
-            <div className={styles.userNombre}> {sessionStorage.getItem('userNombre')} </div>
+            <div className={`${styles.navBarContainerElem} ${styles.userNombre}`}> {sessionStorage.getItem('userNombre')} </div>
             <Link to="/" className={styles.navBarContainerElem} onClick={ handleLogOut }>LogOut</Link>
           </div> }
       </div>
