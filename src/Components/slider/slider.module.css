@@ -1,0 +1,26 @@
+.carouselnextImageIcon {
+    background-color: rgba(53, 56, 59, 0.9);
+    background-image: url("./arrow-right-solid.svg");
+}
+
+.carouselContainer {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: auto;
+  }
+
+.carouselCaptionContainer{
+  background-color: rgba(53, 56, 59, 0.9);
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+}
+
+.carouselTitleCaption{
+    font-size: 17px;
+}
+
+.carouselSubtitleCaption{
+    font-size: 15px;
+}

@@ -1,15 +1,19 @@
+import styles from './welcome.module.css'
+
 import Slider from '../slider/slider'
 import slides from '../slider/mock.json'
 
 function Welcome() {
     return (
-      <>
-        <h1>Bienvenido</h1>
-        <p>Elija una opcion en la barra de navegacion.</p>
-        <div className = "image-slider">
-          <Slider slides = {slides}/>
+      <div className={styles.welcomeContainer}>
+        <div className={styles.welcomeTextContainer}>
+          <h1>Bienvenido</h1>
+          <p>Elija una opcion en la barra de navegacion.</p>
         </div>
-      </>
+        <div className={styles.sliderContainer}>
+          <Slider slides={slides}/>
+        </div>
+      </div>
     );
 }
 
