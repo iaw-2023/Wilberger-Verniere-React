@@ -24,3 +24,6 @@ Usamos variables globales para observaciones inputadas en carrito de compras.
 
 ## Servicio-web-js
 Usamos Open Movie Database para obtener informacion de peliculas, como reseñas o portadas
+
+## Responsive-js
+Hacemos paginas responsive para celulares(576px), tablets(577px a 768px), laptops pequeñas(769px a 992px), computadoras de escritorio(993px a 1200px) y grandes computadoras(1201px)
