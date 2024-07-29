@@ -1,10 +1,10 @@
-.topnav {
+.navBarContainer {
     overflow: hidden;
     background-color: #2c2a2a;
     display: flex;
 }
 
-.topnav a {
+.navBarContainerElem {
     float: left;
     display: block;
     color: white;
@@ -14,11 +14,11 @@
     font-size: 17px;
 }
 
-.topnav a:hover {
+.navBarContainerElem:hover {
     background-color: #04AA6D;
 }
 
-.infoCuenta{
+.infoCuentaContainer{
     margin-left: auto;
     display: flex;
     align-items: center;

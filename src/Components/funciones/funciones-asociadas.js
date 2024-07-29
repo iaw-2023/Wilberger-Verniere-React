@@ -48,12 +48,12 @@ function FuncionesAsociadas() {
                         { funcion && funcion.length>0 && funcion.map((funcionObj,index) => {
                             if (funcionObj.AsientosDisponible>0) {
                                 return <tr className="tablaRow" key={index}>
-                                    <th className="tableBodyElem"> {funcionObj.Pelicula}      </th>
-                                    <th className="tableBodyElem"> {funcionObj.Fecha}         </th>
-                                    <th className="tableBodyElem"> {funcionObj.Hora}          </th>
-                                    <th className="tableBodyElem"> {funcionObj.NroSala}       </th>
-                                    <th className="tableBodyElem"> {funcionObj.AsientosDisponible}       </th>
-                                    <th className="tableBodyElem"> 
+                                    <th className="tablaBodyElem"> {funcionObj.Pelicula}      </th>
+                                    <th className="tablaBodyElem"> {funcionObj.Fecha}         </th>
+                                    <th className="tablaBodyElem"> {funcionObj.Hora}          </th>
+                                    <th className="tablaBodyElem"> {funcionObj.NroSala}       </th>
+                                    <th className="tablaBodyElem"> {funcionObj.AsientosDisponible}       </th>
+                                    <th className="tablaBodyElem"> 
                                         <Button 
                                         className={`button ${styles.añadirTicket}`} 
                                         onClick={ ()=>promptComprar(funcionObj) }>
@@ -64,12 +64,12 @@ function FuncionesAsociadas() {
                             }
                             else {
                                 return <tr className={styles.sinAsientos} key={index}>
-                                    <th className="tableBodyElem"> {funcionObj.Pelicula}      </th>
-                                    <th className="tableBodyElem"> {funcionObj.Fecha}         </th>
-                                    <th className="tableBodyElem"> {funcionObj.Hora}          </th>
-                                    <th className="tableBodyElem"> {funcionObj.NroSala}       </th>
-                                    <th className="tableBodyElem"> {funcionObj.AsientosDisponible}       </th>
-                                    <th className="tableBodyElem"> 
+                                    <th className="tablaBodyElem"> {funcionObj.Pelicula}      </th>
+                                    <th className="tablaBodyElem"> {funcionObj.Fecha}         </th>
+                                    <th className="tablaBodyElem"> {funcionObj.Hora}          </th>
+                                    <th className="tablaBodyElem"> {funcionObj.NroSala}       </th>
+                                    <th className="tablaBodyElem"> {funcionObj.AsientosDisponible}       </th>
+                                    <th className="tablaBodyElem"> 
                                         ENTRADAS AGOTADAS
                                     </th>
                                 </tr>

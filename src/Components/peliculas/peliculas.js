@@ -41,9 +41,9 @@ function Peliculas() {
                 <tbody>
                     { pelicula && pelicula.length>0 && pelicula.map((peliculaObj,index) => (
                         <tr className="tablaRow" key={index}>
-                            <th className="tableBodyElem"> {peliculaObj.Nombre}   </th>
-                            <th className="tableBodyElem">  {peliculaObj.Genero}   </th>
-                            <th className="tableBodyElem">
+                            <th className="tablaBodyElem"> {peliculaObj.Nombre}   </th>
+                            <th className="tablaBodyElem">  {peliculaObj.Genero}   </th>
+                            <th className="tablaBodyElem">
                                 <Link to={"/peliculasInformacion"} 
                                 className={`button`} 
                                 onClick={ () => setPeliculaElegida(peliculaObj)}>
