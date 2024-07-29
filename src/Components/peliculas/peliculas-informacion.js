@@ -13,10 +13,9 @@ function PeliculasInformacion(){
         obtenerInfoPeliculaOpenMovie, respuestaOpenMovie, errorRespuestaOpenMovie, 
     } = useContext(dataContext);
 
-    console.log(peliculaElegida);
-
     const fetchInfo = () =>
-    { 
+    {
+        console.log("Pelicula elegida: ",peliculaElegida); 
         obtenerInfoPeliculaChatGPT(peliculaElegida.Nombre);
         obtenerInfoPeliculaOpenMovie(peliculaElegida.Nombre);
     };

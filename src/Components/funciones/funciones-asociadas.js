@@ -24,10 +24,10 @@ function FuncionesAsociadas() {
     }
 
     useEffect(() => {
+        console.log("Pelicula elegida: ",peliculaElegida);
         fetchFuncion();
     },[]);
-
-    console.log(peliculaElegida);
+    
     if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS FUNCIONES</p>
 
     return (

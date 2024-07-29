@@ -1,5 +1,4 @@
 import '../../master.css';
-import styles from './peliculas.module.css';
 
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
