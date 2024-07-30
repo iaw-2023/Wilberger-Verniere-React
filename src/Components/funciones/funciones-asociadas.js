@@ -46,34 +46,27 @@ function FuncionesAsociadas() {
                     </thead>
                     <tbody>
                         { funcion && funcion.length>0 && funcion.map((funcionObj,index) => {
-                            if (funcionObj.AsientosDisponible>0) {
-                                return <tr className="tablaRow" key={index}>
-                                    <th className="tablaBodyElem"> {funcionObj.Pelicula}      </th>
-                                    <th className="tablaBodyElem"> {funcionObj.Fecha}         </th>
-                                    <th className="tablaBodyElem"> {funcionObj.Hora}          </th>
-                                    <th className="tablaBodyElem"> {funcionObj.NroSala}       </th>
-                                    <th className="tablaBodyElem"> {funcionObj.AsientosDisponible}       </th>
-                                    <th className="tablaBodyElem"> 
-                                        <Button 
-                                        className={`button ${styles.añadirTicket}`} 
-                                        onClick={ ()=>promptComprar(funcionObj) }>
-                                            Comprar
-                                        </Button>
+                            const tablaParcial = (
+                                <>
+                                    <th className="tablaBodyElem"> {funcionObj.Pelicula} </th>
+                                    <th className="tablaBodyElem"> {funcionObj.Fecha} </th>
+                                    <th className="tablaBodyElem"> {funcionObj.Hora} </th>
+                                    <th className="tablaBodyElem"> {funcionObj.NroSala} </th>
+                                    <th className="tablaBodyElem"> {funcionObj.AsientosDisponible} </th>
+                                </>
+                            );
+                            return(
+                                <tr className={funcionObj.AsientosDisponible > 0 ? "tablaRow" : styles.sinAsientos} key={index}>
+                                    {tablaParcial}
+                                    <th className="tablaBodyElem">
+                                        {funcionObj.AsientosDisponible > 0 ? (
+                                            <Button className="button" onClick={() => promptComprar(funcionObj)}>Comprar</Button>
+                                        ) : (
+                                            "ENTRADAS AGOTADAS"
+                                        )}
                                     </th>
                                 </tr>
-                            }
-                            else {
-                                return <tr className={styles.sinAsientos} key={index}>
-                                    <th className="tablaBodyElem"> {funcionObj.Pelicula}      </th>
-                                    <th className="tablaBodyElem"> {funcionObj.Fecha}         </th>
-                                    <th className="tablaBodyElem"> {funcionObj.Hora}          </th>
-                                    <th className="tablaBodyElem"> {funcionObj.NroSala}       </th>
-                                    <th className="tablaBodyElem"> {funcionObj.AsientosDisponible}       </th>
-                                    <th className="tablaBodyElem"> 
-                                        ENTRADAS AGOTADAS
-                                    </th>
-                                </tr>
-                            }
+                            );
                         })}
                     </tbody>
                 </table>
