@@ -53,8 +53,8 @@ function Generos() {
                 <tbody>
                     { genero && genero.length>0 && genero.map((generoObj,index) => (
                         <tr className="tablaRow" key={index}>
-                            <th className="tablaBodyElem"> {generoObj.Nombre} </th>
-                            <th className="tablaBodyElem"> { listaPeliculas(generoObj.Peliculas) } </th>
+                            <th data-label="Nombre:" className="tablaBodyElem"> {generoObj.Nombre} </th>
+                            <th data-label="Peliculas:" className="tablaBodyElem"> { listaPeliculas(generoObj.Peliculas) } </th>
                         </tr>
                     ))}
                 </tbody>

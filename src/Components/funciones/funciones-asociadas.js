@@ -48,17 +48,17 @@ function FuncionesAsociadas() {
                         { funcion && funcion.length>0 && funcion.map((funcionObj,index) => {
                             const tablaParcial = (
                                 <>
-                                    <th className="tablaBodyElem"> {funcionObj.Pelicula} </th>
-                                    <th className="tablaBodyElem"> {funcionObj.Fecha} </th>
-                                    <th className="tablaBodyElem"> {funcionObj.Hora} </th>
-                                    <th className="tablaBodyElem"> {funcionObj.NroSala} </th>
-                                    <th className="tablaBodyElem"> {funcionObj.AsientosDisponible} </th>
+                                    <th data-label="Pelicula:" className="tablaBodyElem"> {funcionObj.Pelicula} </th>
+                                    <th data-label="Fecha:" className="tablaBodyElem"> {funcionObj.Fecha} </th>
+                                    <th data-label="Hora:" className="tablaBodyElem"> {funcionObj.Hora} </th>
+                                    <th data-label="Sala numero:" className="tablaBodyElem"> {funcionObj.NroSala} </th>
+                                    <th data-label="Asientos Disponibles:" className="tablaBodyElem"> {funcionObj.AsientosDisponible} </th>
                                 </>
                             );
                             return(
                                 <tr className={funcionObj.AsientosDisponible > 0 ? "tablaRow" : styles.sinAsientos} key={index}>
                                     {tablaParcial}
-                                    <th className="tablaBodyElem">
+                                    <th data-label="Accion:" className="tablaBodyElem">
                                         {funcionObj.AsientosDisponible > 0 ? (
                                             <Button className="button" onClick={() => promptComprar(funcionObj)}>Comprar</Button>
                                         ) : (

@@ -70,8 +70,8 @@ function PeliculasInformacion(){
                         <tbody>
                             { respuestaOpenMovie.Ratings.map((reseñaObj, index) => (
                             <tr className="tablaRow" key={index}>
-                                <th className="tablaBodyElem"> {reseñaObj.Source}      </th>
-                                <th className="tablaBodyElem"> {reseñaObj.Value}         </th>
+                                <th data-label="Origen:" className="tablaBodyElem"> {reseñaObj.Source}      </th>
+                                <th data-label="Valoracion:" className="tablaBodyElem"> {reseñaObj.Value}         </th>
                             </tr>
                             ))}
                         </tbody>

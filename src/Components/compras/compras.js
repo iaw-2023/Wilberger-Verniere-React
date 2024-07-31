@@ -49,10 +49,11 @@ function Compras() {
         <tbody>
           { compra && compra.length>0 && compra.map((compraObj,index) => (
             <tr className="tablaRow" key={index}>
-              <th className="tablaBodyElem"> {compraObj.Observaciones} </th>
-              <th className="tablaBodyElem"> {compraObj.FechaCompra} </th>
-              <th className="tablaBodyElem"> 
-                  <Link to='/ComprasAsociadas' 
+              <th data-label="Observaciones:" className="tablaBodyElem"> {compraObj.Observaciones} </th>
+              <th data-label="Fecha Creacion:" className="tablaBodyElem"> {compraObj.FechaCompra} </th>
+              <th data-label="Accion:" className="tablaBodyElem"> 
+                  <Link to='/ComprasAsociadas'
+                  className="button"
                   onClick={ setCompraElegida(compraObj) }>
                     Ordenes Asociadas
                   </Link>

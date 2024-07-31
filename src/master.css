@@ -84,44 +84,79 @@
 /* Celulares */
 @media (max-width: 576px) {
     .tabla {
-        font-size: 0.5rem;
+        font-size: 0.85rem;
     }
-    .tablaHeadElem {
-        padding: 0.25rem 0.5rem;
-    } 
-    .tablaBodyElem {
-        padding: 0.15rem 0.25rem;
+    .tablaHead{
+        display: none;
+    }
+    .tablaRow{
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid #000000;
+    }
+    .tablaRow:last-child{
+        margin-bottom: 0.5rem;
+    }
+    .tablaBodyElem{
+        display: block;
+        width: 100%;
+        text-align: right;
+        position: relative;
+        border: 0;
+        border-bottom: 1px dashed #000000;;
+    }
+    .tablaBodyElem:last-child{
+        border-bottom: 0;
+    }
+    .tablaBodyElem::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        text-align: left;
+        padding-left: 1.2rem;
     }
     .button {
         padding: 3px;
-        margin-right: 3px;
-        font-size: 0.5rem;
-    }
-    .button_login {
-        padding: 4px;
-        font-size: 8px;
     }
 }
 
 /* Tablets */
 @media (min-width: 577px) and (max-width: 768px) {
     .tabla {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
-    .tablaHeadElem {
-        padding: 0.6rem 1.2rem;
-    } 
-    .tablaBodyElem {
-        padding: 0.4rem 0.6rem;
+    .tablaHead{
+        display: none;
+    }
+    .tablaRow{
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid #000000;
+    }
+    .tablaRow:last-child{
+        margin-bottom: 0.5rem;
+    }
+    .tablaBodyElem{
+        display: block;
+        width: 100%;
+        text-align: right;
+        position: relative;
+        border: 0;
+        border-bottom: 1px dashed #000000;;
+    }
+    .tablaBodyElem:last-child{
+        border-bottom: 0;
+    }
+    .tablaBodyElem::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        text-align: left;
+        padding-left: 1.2rem;
     }
     .button {
         padding: 4px;
-        margin-right: 4px;
-        font-size: 0.8rem;
-    }
-    .button_login {
-        padding: 6px;
-        font-size: 12px;
+        font-size: 1.2rem;
     }
 }
 
