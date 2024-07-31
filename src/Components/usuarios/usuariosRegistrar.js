@@ -83,7 +83,7 @@ function UsuariosRegistrar() {
                 <div className={styles.responseMessage}>
                     {respuesta && <p>{respuesta.message}</p>}
                 </div>
-                {emailValido && nombreUser && contraseña && <Button className={styles.button} onClick={() => submitRegister()}>Confirmar</Button>}
+                {emailValido && nombreUser && contraseña && <Button className={`button button_login`} onClick={() => submitRegister()}>Confirmar</Button>}
             </div>
         </div>
     )

@@ -13,10 +13,9 @@ function PeliculasInformacion(){
         obtenerInfoPeliculaOpenMovie, respuestaOpenMovie, errorRespuestaOpenMovie, 
     } = useContext(dataContext);
 
-    console.log(peliculaElegida);
-
     const fetchInfo = () =>
-    { 
+    {
+        console.log("Pelicula elegida: ",peliculaElegida); 
         obtenerInfoPeliculaChatGPT(peliculaElegida.Nombre);
         obtenerInfoPeliculaOpenMovie(peliculaElegida.Nombre);
     };
@@ -27,46 +26,60 @@ function PeliculasInformacion(){
 
     
     return (
-        <article>
-            <h1 className={styles.nombreHeader}>
-                Nombre: 
-                <p className={styles.peliculasNombreTexto}>{peliculaElegida.Nombre}</p>
-            </h1>
-            <h2 className={styles.peliculasSinopsisHeader}>
-                Sinopsis: 
-                { respuestaChatGPT && respuestaChatGPT.length>0 && (<p className={styles.peliculasSinopsisTexto}>{respuestaChatGPT}</p>) }
-                { errorRespuestaChatGPT && errorRespuestaChatGPT.length>0 && (<p className={styles.peliculasErrorChatGPT}>{errorRespuestaChatGPT}</p>) }
-            </h2>
-            <h3 className={styles.peliculasPortadaHeader}>
-                Portada:
-                { peliculaElegida.Imagen ? <img src={peliculaElegida.Imagen}/> 
-                    : respuestaOpenMovie.Poster ? <p>Imagen obtenida de Open Movie DB <img src={ respuestaOpenMovie.Poster }/></p> 
-                        : <p>Error al obtener la portada de Open Movie DB</p> }
-            </h3>
-            <h3 className={styles.peliculasReseñasHeader}>
-                Reseñas:
+        <article className={styles.peliculaArticulo}>
+            <div className={styles.peliculaInfoContainer}>
+                <div className={styles.peliculaNombreContainer}>
+                    <div>
+                        <h1 className={styles.peliculasHeader}>Nombre:</h1>
+                        <p className={styles.peliculasTexto}>{peliculaElegida.Nombre}</p>
+                    </div>
+                    <div className="Sinopsis">
+                        <h2 className={styles.peliculasHeader}>Sinopsis: </h2>
+                        { respuestaChatGPT && respuestaChatGPT.length>0 && 
+                            (<p className={styles.peliculasTexto}>
+                                {respuestaChatGPT}
+                            </p>)}
+                        { errorRespuestaChatGPT && errorRespuestaChatGPT.length>0 && 
+                            (<p className={`${styles.peliculasTexto} ${styles.peliculasError}`}>
+                                {errorRespuestaChatGPT}
+                            </p>
+                        )}
+                    </div>
+                </div>
+                <div className={styles.peliculasPortadaContainer}>
+                    <h3 className={styles.peliculasHeader}>Portada:</h3>
+                    <div className={styles.peliculaPortada}>
+                    { peliculaElegida.Imagen ? <img className={styles.peliculasPortadaContainerImagen} src={peliculaElegida.Imagen}/> 
+                        : respuestaOpenMovie.Poster ? <div><img className={styles.peliculasPortadaContainerImagen} src={respuestaOpenMovie.Poster} alt="Poster"/><p>Imagen obtenida de Open Movie DB</p></div> 
+                            : <p className={`${styles.peliculasTexto} ${styles.peliculasError}`}>Error al obtener la portada de Open Movie DB</p> 
+                    }
+                    </div>
+                </div>
+            </div>
+            <div className={styles.peliculasReseñaContainer}>
+                <h4 className={styles.peliculasHeader}>Reseñas:</h4>
                 { respuestaOpenMovie.Ratings ?
                     respuestaOpenMovie.Ratings.length>0 ?
-                    <table className="tabla dark:text-gray-400">
-                        <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
+                    <table className="tabla">
+                        <thead className="tablaHead tablaOscuro">
                             <tr>
-                                <th scope="col" className="tablaH">Origen:</th>
-                                <th scope="col" className="tablaH">Valoracion:</th>
+                                <th scope="col" className="tablaHeadElem">Origen:</th>
+                                <th scope="col" className="tablaHeadElem">Valoracion:</th>
                             </tr>
                         </thead>
                         <tbody>
                             { respuestaOpenMovie.Ratings.map((reseñaObj, index) => (
                             <tr className="tablaRow" key={index}>
-                                <th className="tablaH"> {reseñaObj.Source}      </th>
-                                <th className="tablaH"> {reseñaObj.Value}         </th>
+                                <th data-label="Origen:" className="tablaBodyElem"> {reseñaObj.Source}      </th>
+                                <th data-label="Valoracion:" className="tablaBodyElem"> {reseñaObj.Value}         </th>
                             </tr>
                             ))}
                         </tbody>
                     </table>
-                    : <p>No hay reseñas para esta pelicula</p>
+                    : <p className={`${styles.peliculasTexto} ${styles.peliculasError}`}>No hay reseñas para esta pelicula</p>
                 : errorRespuestaOpenMovie
                 }
-            </h3>
+            </div>
         </article>
     )
 };

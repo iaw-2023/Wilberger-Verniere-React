@@ -1,0 +1,88 @@
+.carouselnextImageIcon {
+    background-color: rgba(53, 56, 59, 0.9);
+    background-image: url("./arrow-right-solid.svg");
+}
+
+.carouselContainer {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: auto;
+}
+
+.carouselImage{
+  height: auto;
+  width: auto;
+}
+
+.carouselCaptionContainer{
+  background-color: rgba(53, 56, 59, 0.9);
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+}
+
+.carouselTitleCaption{
+    font-size: 17px;
+}
+
+.carouselSubtitleCaption{
+    font-size: 15px;
+}
+
+/* Responsive */
+
+/* Celulares */
+@media (max-width: 576px) {
+  .carouselTitleCaption {
+    font-size: 1rem;
+  }
+
+  .carouselSubtitleCaption {
+    font-size: 0.875rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 577px) and (max-width: 768px) {
+  .carouselTitleCaption {
+    font-size: 1.25rem;
+  }
+
+  .carouselSubtitleCaption {
+    font-size: 1rem;
+  }
+}
+
+/* Laptops */
+@media (min-width: 769px) and (max-width: 992px) {
+  .carouselTitleCaption {
+    font-size: 1.5rem;
+  }
+
+  .carouselSubtitleCaption {
+    font-size: 1.125rem;
+  }
+}
+
+/* PC escritorio */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .carouselTitleCaption {
+    font-size: 1.75rem;
+  }
+
+  .carouselSubtitleCaption {
+    font-size: 1.25rem;
+  }
+}
+
+/* Computadora grande */
+@media (min-width: 1201px) {
+  .carouselTitleCaption {
+    font-size: 2rem;
+  }
+
+  .carouselSubtitleCaption {
+    font-size: 1.5rem;
+  }
+}

@@ -43,34 +43,38 @@ function Ordenes() {
 
   return (
     <div className='wrapper'>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="tabla_container">
         <div className={styles.carritoInputWrapper}>
           <div className={styles.carritoObservaciones}>
             <div className={styles.carritoObservacionesText}>Observaciones:</div>   
             <input type="text" className={styles.carritoInputObservaciones} value={observacionesCompra} onChange={handleSubmitObservaciones}/>
           </div>
         </div>
-        <table className="tabla dark:text-gray-400">
-          <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
+        <table className="tabla">
+          <thead className="tablaHead tablaOscuro">
             <tr>
-              <th scope="col" className="tablaH">Pelicula:</th>
-              <th scope="col" className="tablaH">Fecha:</th>
-              <th scope="col" className="tablaH">Hora:</th>
-              <th scope="col" className="tablaH">Sala numero:</th>
-              <th scope="col" className="tablaH">Tickets Comprados:</th>
-              <th scope="col" className="tablaH">Accion:</th>
+              <th scope="col" className="tablaHeadElem">Pelicula:</th>
+              <th scope="col" className="tablaHeadElem">Fecha:</th>
+              <th scope="col" className="tablaHeadElem">Hora:</th>
+              <th scope="col" className="tablaHeadElem">Sala numero:</th>
+              <th scope="col" className="tablaHeadElem">Tickets Comprados:</th>
+              <th scope="col" className="tablaHeadElem">Accion:</th>
             </tr>
           </thead>
           <tbody>
             { carrito && carrito.length>0 && carrito.map((carritoObj, index) => (
               <tr className="tablaRow" key={index}>
-                <th className="tablaH"> {carritoObj.Pelicula}      </th>
-                <th className="tablaH"> {carritoObj.Fecha}         </th>
-                <th className="tablaH"> {carritoObj.Hora}          </th>
-                <th className="tablaH"> {carritoObj.NroSala}       </th>
-                <th className="tablaH"> {carritoObj.NroTickets}    </th>
-                <th className="tablaH"> 
-                    <Button className={styles.carritoBotonQuitarOrden} onClick={ ()=>cancelarOrden(index) }>Quitar</Button>
+                <th className="tablaBodyElem"> {carritoObj.Pelicula}      </th>
+                <th className="tablaBodyElem"> {carritoObj.Fecha}         </th>
+                <th className="tablaBodyElem"> {carritoObj.Hora}          </th>
+                <th className="tablaBodyElem"> {carritoObj.NroSala}       </th>
+                <th className="tablaBodyElem"> {carritoObj.NroTickets}    </th>
+                <th className="tablaBodyElem"> 
+                    <Button 
+                    className={`button button_cancelar`} 
+                    onClick={ ()=>cancelarOrden(index) }>
+                      Quitar
+                    </Button>
                 </th>
               </tr>
             ))}
@@ -79,14 +83,22 @@ function Ordenes() {
       </div>
       <ButtonGroup className={styles.carritoBotonGroup}>
         { carrito && carrito.length>0 &&
-          <Button className={styles.carritoBotonCancelar} onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
+          <Button className={`button button_cancelar`} 
+          onClick={ ()=>limpiarCompra() }>
+            Eliminar Compra
+          </Button>
         }
         { carrito && carrito.length>0 && 
-          //<Button className={styles.carritoBotonEnviar} onClick={ ()=>confirmarCompra(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
-          <Button className={styles.carritoBotonEnviar} onClick={ ()=>confirmarCompra(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
+          <Button className={`button button_confirmar`}
+          onClick={ ()=>confirmarCompra(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>
+            Confirmar Compra
+          </Button>
         }
         { carrito && carrito.length>0 && 
-          <Button className={styles.carritoBotonMP} onClick={ ()=>pagarconMP() }>Pagar con MercadoPago</Button>
+          <Button className={`button button_mp`} 
+          onClick={ ()=>pagarconMP() }>
+            Pagar con MercadoPago
+          </Button>
         }
       </ButtonGroup>
     </div>

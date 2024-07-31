@@ -1,5 +1,4 @@
 import '../../master.css';
-import styles from './peliculas.module.css';
 
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
@@ -29,23 +28,31 @@ function Peliculas() {
 
   return (
     <div>
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="tabla dark:text-gray-400">
-                <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
+        <div className="tabla_container">
+            <table className="tabla">
+                <thead className="tablaHead tablaOscuro">
                     <tr>
-                        <th scope="col" className="tablaH">Nombre: </th>
-                        <th scope="col" className="tablaH">Genero: </th>
-                        <th scope="col" className="tablaH">Accion: </th>
+                        <th scope="col" className="tablaHeadElem">Nombre: </th>
+                        <th scope="col" className="tablaHeadElem">Genero: </th>
+                        <th scope="col" className="tablaHeadElem">Accion: </th>
                     </tr>
                 </thead>
                 <tbody>
                     { pelicula && pelicula.length>0 && pelicula.map((peliculaObj,index) => (
                         <tr className="tablaRow" key={index}>
-                            <th className="tablaH"> {peliculaObj.Nombre}   </th>
-                            <th className="tablaH">  {peliculaObj.Genero}   </th>
-                            <th>
-                                <Link to={"/peliculasInformacion"} className={styles.infoPelicula} onClick={ () => setPeliculaElegida(peliculaObj)}>Ver Informacion</Link>
-                                <Link to={"/funcionesAsociadas"} className={styles.funcionesAsociadas} onClick={ () => setPeliculaElegida(peliculaObj) }>Ver funciones</Link>
+                            <th data-label="Nombre:" className="tablaBodyElem"> {peliculaObj.Nombre}   </th>
+                            <th data-label="Genero:" className="tablaBodyElem">  {peliculaObj.Genero}   </th>
+                            <th data-label="Accion:" className="tablaBodyElem">
+                                <Link to={"/peliculasInformacion"} 
+                                className="button"
+                                onClick={ () => setPeliculaElegida(peliculaObj)}>
+                                    Ver Informacion
+                                </Link>
+                                <Link to={"/funcionesAsociadas"} 
+                                className="button"
+                                onClick={ () => setPeliculaElegida(peliculaObj) }>
+                                    Ver funciones
+                                </Link>
                             </th>
                         </tr>
                     ))}

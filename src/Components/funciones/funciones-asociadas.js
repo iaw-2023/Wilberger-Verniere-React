@@ -11,8 +11,7 @@ function FuncionesAsociadas() {
     const [error, setError] = useState(null);
     const [funcion, setFuncion] = useState([])
 
-    const fetchFuncion = () => 
-    {
+    const fetchFuncion = () => {
         return apiClient.get("/rest/funciones/asociadas", { 
             params: {
                 'Id': peliculaElegida.Id,
@@ -25,52 +24,49 @@ function FuncionesAsociadas() {
     }
 
     useEffect(() => {
+        console.log("Pelicula elegida: ",peliculaElegida);
         fetchFuncion();
     },[]);
-
-    console.log(peliculaElegida);
+    
     if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS FUNCIONES</p>
 
     return (
         <div>
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table className="tabla dark:text-gray-400">
-                    <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
+            <div className="tabla_container">
+                <table className="tabla">
+                    <thead className="tablaHead tablaOscuro">
                         <tr>
-                            <th scope="col" className="tablaH">Pelicula:</th>
-                            <th scope="col" className="tablaH">Fecha:</th>
-                            <th scope="col" className="tablaH">Hora:</th>
-                            <th scope="col" className="tablaH">Sala numero:</th>
-                            <th scope="col" className="tablaH">Asientos Disponibles:</th>
-                            <th scope="col" className="tablaH">Accion:</th>
+                            <th scope="col" className="tablaHeadElem">Pelicula:</th>
+                            <th scope="col" className="tablaHeadElem">Fecha:</th>
+                            <th scope="col" className="tablaHeadElem">Hora:</th>
+                            <th scope="col" className="tablaHeadElem">Sala numero:</th>
+                            <th scope="col" className="tablaHeadElem">Asientos Disponibles:</th>
+                            <th scope="col" className="tablaHeadElem">Accion:</th>
                         </tr>
                     </thead>
                     <tbody>
-                    { funcion && funcion.length>0 && funcion.map((funcionObj,index) => {
-                            if (funcionObj.AsientosDisponible>0) {
-                                return <tr className="tablaRow" key={index}>
-                                    <th className="tablaH"> {funcionObj.Pelicula}      </th>
-                                    <th className="tablaH"> {funcionObj.Fecha}         </th>
-                                    <th className="tablaH"> {funcionObj.Hora}          </th>
-                                    <th className="tablaH"> {funcionObj.NroSala}       </th>
-                                    <th className="tablaH"> {funcionObj.AsientosDisponible}       </th>
-                                    <th className="tablaH"> 
-                                        <Button className={styles.añadirTicket} onClick={ ()=>promptComprar(funcionObj) }>Comprar</Button>
+                        { funcion && funcion.length>0 && funcion.map((funcionObj,index) => {
+                            const tablaParcial = (
+                                <>
+                                    <th data-label="Pelicula:" className="tablaBodyElem"> {funcionObj.Pelicula} </th>
+                                    <th data-label="Fecha:" className="tablaBodyElem"> {funcionObj.Fecha} </th>
+                                    <th data-label="Hora:" className="tablaBodyElem"> {funcionObj.Hora} </th>
+                                    <th data-label="Sala numero:" className="tablaBodyElem"> {funcionObj.NroSala} </th>
+                                    <th data-label="Asientos Disponibles:" className="tablaBodyElem"> {funcionObj.AsientosDisponible} </th>
+                                </>
+                            );
+                            return(
+                                <tr className={funcionObj.AsientosDisponible > 0 ? "tablaRow" : styles.sinAsientos} key={index}>
+                                    {tablaParcial}
+                                    <th data-label="Accion:" className="tablaBodyElem">
+                                        {funcionObj.AsientosDisponible > 0 ? (
+                                            <Button className="button" onClick={() => promptComprar(funcionObj)}>Comprar</Button>
+                                        ) : (
+                                            "ENTRADAS AGOTADAS"
+                                        )}
                                     </th>
                                 </tr>
-                            }
-                            else {
-                                return <tr className={styles.sinAsientos} key={index}>
-                                    <th className="tablaH"> {funcionObj.Pelicula}      </th>
-                                    <th className="tablaH"> {funcionObj.Fecha}         </th>
-                                    <th className="tablaH"> {funcionObj.Hora}          </th>
-                                    <th className="tablaH"> {funcionObj.NroSala}       </th>
-                                    <th className="tablaH"> {funcionObj.AsientosDisponible}       </th>
-                                    <th className="tablaH"> 
-                                        ENTRADAS AGOTADAS
-                                    </th>
-                                </tr>
-                            }
+                            );
                         })}
                     </tbody>
                 </table>

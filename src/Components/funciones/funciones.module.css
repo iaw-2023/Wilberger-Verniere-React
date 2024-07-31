@@ -1,14 +1,4 @@
 .sinAsientos{
-    background: #ce4843;
+    background-color: #d73737;
     color: #fff;
-}
-
-.añadirTicket{
-    background-color: #5cb85c;
-    border-radius: 5px;
-    padding: 5px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    margin-right: 5px;
 }
