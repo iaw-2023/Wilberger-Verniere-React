@@ -1,5 +1,4 @@
 import '../../master.css';
-import styles from "./compras.module.css";
 
 import React, { useContext } from 'react'
 import { dataContext } from "../context/dataContext";
@@ -9,7 +8,7 @@ function ComprasAsociadas() {
   const { compraElegida } = useContext(dataContext);
 
   return (
-    <div className={styles.comprasFormDiv}>
+    <div className="tabla_container">
       <table className="tabla">
         <thead className="tablaHead tablaOscuro">
           <tr>

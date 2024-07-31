@@ -1,5 +1,4 @@
 import '../../master.css';
-import styles from "./compras.module.css";
 
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
@@ -37,7 +36,7 @@ function Compras() {
   if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS COMPRAS</p>
 
   return (
-    <div className={styles.comprasFormDiv}>
+    <div className="tabla_container">
       <table className="tabla">
         <thead className="tablaHead tablaOscuro">
           <tr>
