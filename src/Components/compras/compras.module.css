@@ -4,3 +4,25 @@
     margin-top: 10px;
     text-align: center; 
 }
+
+/* Celulares */
+@media (max-width: 576px) {
+    .comprasFormDiv{
+        margin: 0;
+        position: relative;
+        overflow-x: auto;
+        box-shadow: 0 4px 6px #0000001a;
+        width: 100%;
+    }
+}
+
+/* Tablets */
+@media (min-width: 577px) and (max-width: 768px) {
+    .comprasFormDiv{
+        margin: 0;
+        position: relative;
+        overflow-x: auto;
+        box-shadow: 0 4px 6px #0000001a;
+        width: 100%;
+    }
+}

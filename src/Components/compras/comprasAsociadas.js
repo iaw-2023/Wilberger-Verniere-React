@@ -23,11 +23,11 @@ function ComprasAsociadas() {
         <tbody>
           { compraElegida.Compras && compraElegida.Compras.length>0 && compraElegida.Compras.map((compraObj,index) => (
             <tr className="tablaRow" key={index}>
-              <th className="tablaHeadElem"> {compraObj.Funcion.Pelicula} </th>
-              <th className="tablaHeadElem"> {compraObj.Funcion.Fecha} </th>
-              <th className="tablaHeadElem"> {compraObj.Funcion.Hora} </th>
-              <th className="tablaHeadElem"> {compraObj.Funcion.NroSala} </th>
-              <th className="tablaHeadElem"> {compraObj.NroTickets} </th>
+              <th className="tablaBodyElem"> {compraObj.Funcion.Pelicula} </th>
+              <th className="tablaBodyElem"> {compraObj.Funcion.Fecha} </th>
+              <th className="tablaBodyElem"> {compraObj.Funcion.Hora} </th>
+              <th className="tablaBodyElem"> {compraObj.Funcion.NroSala} </th>
+              <th className="tablaBodyElem"> {compraObj.NroTickets} </th>
             </tr>
           ))}
         </tbody>
