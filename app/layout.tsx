@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -13,9 +14,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <link rel="manifest" href="manifest.json" />
+      </head>
+      <body className={inter.className}>
+        <script src="index.js"></script>
+        {children}
+      </body>
     </html>
   )
 }

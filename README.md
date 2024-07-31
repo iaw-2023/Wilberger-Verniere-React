@@ -27,3 +27,7 @@ Usamos Open Movie Database para obtener informacion de peliculas, como reseñas 
 
 ## Responsive-js
 Hacemos paginas responsive para celulares(576px), tablets(577px a 768px), laptops(769px a 992px), PCs de escritorio(993px a 1200px) y grandes computadoras(1201px)
+
+## Pwa-js
+https://developer.mozilla.org/en-US/docs/Web/Manifest
+https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
