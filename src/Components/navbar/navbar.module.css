@@ -4,6 +4,14 @@
     display: flex;
 }
 
+.navBarToggleButton{
+    background-color: #6666b6;
+    display: none;
+    border-radius: 0;
+    text-transform: uppercase;
+    border-bottom-right-radius: 5px;
+}
+
 .navBarContainerElem {
     float: left;
     display: block;
@@ -50,6 +58,11 @@
         margin: auto;
         display: block;
     }
+    .navBarToggleButton{
+        display: flex;
+        z-index: 2;
+        position: relative;
+    }
 }
 
 /* Tablets */
@@ -72,10 +85,18 @@
         margin: auto;
         display: block;
     }
+    .navBarToggleButton{
+        display: flex;
+        z-index: 2;
+        position: relative;
+    }
 }
 
 /* Laptops */
 @media (min-width: 769px) and (max-width: 992px) {
+    .navBarContainer{
+        display: flex !important;
+    }
     .navBarContainerElem {
         padding: 12px 14px;
         font-size: 16px;
@@ -84,6 +105,9 @@
 
 /* PC escritorio */
 @media (min-width: 993px) and (max-width: 1200px) {
+    .navBarContainer{
+        display: flex !important; 
+    }
     .navBarContainerElem {
         padding: 16px 18px;
         font-size: 17px;
@@ -92,6 +116,9 @@
 
 /* Computadora grande */
 @media (min-width: 1201px) {
+    .navBarContainer{
+        display: flex !important; 
+    }
     .navBarContainerElem {
         padding: 18px 20px;
         font-size: 18px;
