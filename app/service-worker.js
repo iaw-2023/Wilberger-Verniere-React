@@ -51,19 +51,19 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('install', event => {
     event.waitUntil(
-      caches.open('mi-cache').then(cache => {
-        return cache.addAll([
+      addResourcesToCache([
           './',
           '/public/icons/webCinesIcon.png'
-        ]);
-      })
-    );
-  });
+        ])
+      );
+    });
   
   self.addEventListener('fetch', event => {
     event.respondWith(
-      caches.match(event.request).then(response => {
-        return response || fetch(event.request);
+      cacheFirst({
+        reuqest: event.request,
+        preloadResponsePromise: event.preloadResponse,
+        fallbackURL: './'
       })
     );
   });
