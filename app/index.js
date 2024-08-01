@@ -2,7 +2,7 @@
 const registrarServiceWorker = async () => {
   if("serviceWorker" in navigator){
     try{
-      const registro = await navigator.serviceWorker.register("../service-worker.js",
+      const registro = await navigator.serviceWorker.register("/service-worker.js",
         {
           scope: "/",
         }
