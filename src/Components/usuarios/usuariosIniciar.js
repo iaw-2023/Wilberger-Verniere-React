@@ -52,18 +52,18 @@ function UsuariosIniciar() {
         <div className={styles.container}>
             <div className={styles.formContainer}>
                 <h2 className={styles.header}>Iniciar sesion</h2>
-                <div className="email">
+                <label for="email" className="email">
                     Email:
-                    <input type="text" className={styles.input} value={email} onChange={handleTextEmail} />
-                </div>
-                <div className="contraseña">
+                    <input type="text" className={styles.input} id="email" value={email} onChange={handleTextEmail} />
+                </label>
+                <label for="contraseña" className="contraseña">
                     Contraseña:
-                    <input type="text" className={styles.input} value={contraseña} onChange={handleTextContraseña} />
-                </div>
+                    <input type="text" className={styles.input} id="contraseña"  value={contraseña} onChange={handleTextContraseña} />
+                </label>
                 <div className={styles.errorMessage}>
                     {error && <p>{error}</p>}
                 </div>
-                {email && contraseña && <button className={`button button_login`} onClick={() => submitLogin()}>Confirmar</button>}
+                { email && contraseña && <button className={`button button_login`} onClick={() => submitLogin()}>Confirmar</button> }
             </div>
         </div>
     )

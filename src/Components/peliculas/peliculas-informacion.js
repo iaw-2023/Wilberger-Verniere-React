@@ -49,8 +49,12 @@ function PeliculasInformacion(){
                 <div className={styles.peliculasPortadaContainer}>
                     <h3 className={styles.peliculasHeader}>Portada:</h3>
                     <div className={styles.peliculaPortada}>
-                    { peliculaElegida.Imagen ? <img className={styles.peliculasPortadaContainerImagen} src={peliculaElegida.Imagen}/> 
-                        : respuestaOpenMovie.Poster ? <div><img className={styles.peliculasPortadaContainerImagen} src={respuestaOpenMovie.Poster} alt="Poster"/><p>Imagen obtenida de Open Movie DB</p></div> 
+                    { peliculaElegida.Imagen ? 
+                        <img className={styles.peliculasPortadaContainerImagen} src={peliculaElegida.Imagen} alt={`Portada de la pelicula: ${peliculaElegida.Nombre}`}/> 
+                        : respuestaOpenMovie.Poster ? 
+                            <div>
+                                <img className={styles.peliculasPortadaContainerImagen} src={respuestaOpenMovie.Poster} alt={`Portada de la pelicula: ${peliculaElegida.Nombre}`}/>
+                                <p>Imagen obtenida de Open Movie DB</p></div> 
                             : <p className={`${styles.peliculasTexto} ${styles.peliculasError}`}>Error al obtener la portada de Open Movie DB</p> 
                     }
                     </div>

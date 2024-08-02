@@ -67,19 +67,19 @@ function UsuariosRegistrar() {
         <div className={styles.container}>
             <div className={styles.formContainer}>
                 <h2 className={styles.header}>Registrar usuario</h2>
-                <div className="usuario">
+                <label for="nombre-usuario" className="usuario">
                     Nombre de Usuario:
-                    <input type="text" className={styles.input} value={nombreUser} onChange={handleTextNombreUser} />
-                </div>
-                <div className="email">
+                    <input id="nombre-usuario" type="text" className={styles.input} value={nombreUser} onChange={handleTextNombreUser} />
+                </label>
+                <label for="email-usuario" className="email">
                     Email:
-                    <input type="text" className={styles.input} value={email} onChange={handleTextEmail} />
+                    <input id="email-usuario" type="text" className={styles.input} value={email} onChange={handleTextEmail} />
                     {email && (!emailValido) && <div className={styles.emailValidText}>Este email no es valido!</div>}
-                </div>
-                <div className="contraseña">
+                </label>
+                <label for="contraseña" className="contraseña">
                     Contraseña:
-                    <input type="text" className={styles.input} value={contraseña} onChange={handleTextContraseña} />
-                </div>
+                    <input id="contraseña" type="text" className={styles.input} value={contraseña} onChange={handleTextContraseña} />
+                </label>
                 <div className={styles.responseMessage}>
                     {respuesta && <p>{respuesta.message}</p>}
                 </div>

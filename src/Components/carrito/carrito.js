@@ -46,8 +46,8 @@ function Ordenes() {
       <div className="tabla_container">
         <div className={styles.carritoInputWrapper}>
           <div className={styles.carritoObservaciones}>
-            <div className={styles.carritoObservacionesText}>Observaciones:</div>   
-            <input type="text" className={styles.carritoInputObservaciones} value={observacionesCompra} onChange={handleSubmitObservaciones}/>
+            <label for="observaciones-texto" className={styles.carritoObservacionesText}>Observaciones:</label>   
+            <input id="observaciones-texto" type="text" className={styles.carritoInputObservaciones} value={observacionesCompra} onChange={handleSubmitObservaciones}/>
           </div>
         </div>
         <table className="tabla">

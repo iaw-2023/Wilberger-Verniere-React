@@ -32,3 +32,19 @@ Hacemos paginas responsive para celulares(576px), tablets(577px a 768px), laptop
 https://developer.mozilla.org/en-US/docs/Web/Manifest
 https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
 VER --> https://github.com/mdn/dom-examples/tree/main/service-worker/simple-service-worker
+
+## Accesibilidad-js
+https://www.w3.org/WAI/WCAG22/quickref/
+    1.1 Text Alternatives
+        1.1.1 Non-text Content
+            Situacion A > Technique H37: Using alt attributes on img elements
+            Situacion B > No situacion
+            Situacion C > Technique H44: Using label elements to associate text labels with form controls
+            Situacion D >
+            Situacion E >
+            Situacion F >
+    1.4 Distingishable
+        ..
+    2.1 KeyBoard Accesible
+        ..
+    3.3 Input Assistance

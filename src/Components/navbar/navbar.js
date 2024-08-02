@@ -30,21 +30,21 @@ function NavBar() {
           <Button className={styles.navBarToggleButton} onClick={ handleMenuButton }>Menu</Button>
         </div>
         <div id="navBarContainer" className={styles.navBarContainer}>
-          <Link to="/" className={styles.navBarContainerElem}>Home</Link>
-          <Link to="/funciones" className={styles.navBarContainerElem}>Estrenos</Link>
-          <Link to="/peliculas" className={styles.navBarContainerElem}>Peliculas</Link>
-          <Link to="/generos" className={styles.navBarContainerElem}>Generos</Link>
-          { islogin && <Link to="/compras" className={styles.navBarContainerElem}>Compras</Link> }
-          { islogin && <Link to="/carrito" className={styles.navBarContainerElem}>🛒</Link> }
+          <Link className={styles.navBarContainerElem} to="/" >Home</Link>
+          <Link className={styles.navBarContainerElem} to="/funciones" >Estrenos</Link>
+          <Link className={styles.navBarContainerElem} to="/peliculas" >Peliculas</Link>
+          <Link className={styles.navBarContainerElem} to="/generos" >Generos</Link>
+          { islogin && <Link className={styles.navBarContainerElem} to="/compras" >Compras</Link> }
+          { islogin && <Link className={styles.navBarContainerElem} to="/carrito" >🛒</Link> }
           { !islogin &&  
             <div className={styles.infoCuentaContainer}>
-              <Link to="/usuariosIniciar"  className={styles.navBarContainerElem}>Ingresar</Link>
-              <Link to="/usuariosRegistrar"  className={styles.navBarContainerElem}>Registrarse</Link>
+              <Link className={styles.navBarContainerElem} to="/usuariosIniciar"  >Ingresar</Link>
+              <Link className={styles.navBarContainerElem} to="/usuariosRegistrar"  >Registrarse</Link>
             </div> }
           { islogin &&  
             <div className={styles.infoCuentaContainer}>
               <div className={`${styles.navBarContainerElem} ${styles.userNombre}`}> {sessionStorage.getItem('userNombre')} </div>
-              <Link to="/" className={styles.navBarContainerElem} onClick={ handleLogOut }>LogOut</Link>
+              <Link className={styles.navBarContainerElem} onClick={ handleLogOut } to="/" >LogOut</Link>
             </div> }
         </div>
       </div>

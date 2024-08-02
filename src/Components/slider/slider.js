@@ -12,16 +12,12 @@ function Slider({ slides }) {
 
   return (
     <div className={styles.carouselContainer}>
-      <Carousel 
-        activeIndex={index}
-        onSelect={handleSelect}
-        nextIcon={<span aria-hidden="true" className={styles.carouselnextImageIcon} />}
-      >
+      <Carousel activeIndex={index} onSelect={handleSelect} nextIcon={<span aria-hidden="true" className={styles.carouselnextImageIcon} />}>
         {slides.map((slide) => (
           <Carousel.Item key={slide.image} interval={slide.interval}>
             <img className={styles.carouselImage}
               src={slide.image}
-              alt="First slide"
+              alt={`Portada de la pelicula: ${slide.title}`}
             />
             <Carousel.Caption>
               <div className={styles.carouselCaptionContainer}>
