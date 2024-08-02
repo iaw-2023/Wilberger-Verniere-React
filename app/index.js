@@ -1,4 +1,5 @@
 
+console.log("index.js esta ejecutando");
 const registrarServiceWorker = async () => {
   if("serviceWorker" in navigator){
     try{
@@ -21,6 +22,4 @@ const registrarServiceWorker = async () => {
     }
   }
 }
-
-
 registrarServiceWorker();
