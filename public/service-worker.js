@@ -8,7 +8,10 @@ self.addEventListener('install', (event) => {
       caches.open(STATIC_CACHE).then((cache) => {
         return cache.addAll([
           '/'
-        ]);
+        ])
+        .catch(error => {
+          console.log("Error STATIC_CACHE: ", error)
+        });
       }),
       caches.open(PAGES_CACHE).then((cache) => {
         return cache.addAll([
