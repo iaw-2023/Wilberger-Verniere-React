@@ -1,5 +1,3 @@
-const { preload } = require("react-dom");
-
 const addResourcesToCache = async (resources) => {
   const cache = await caches.open('mi-cache');
   await cache.addAll(resources)
@@ -53,7 +51,18 @@ self.addEventListener('install', event => {
     event.waitUntil(
       addResourcesToCache([
           './',
-          '/public/icons/webCinesIcon.png'
+          './app/layout.tsx','./app/page.tsx','./app/index.js',
+          './src/Components/carrito/carrito.js',
+          './src/Components/compras/compras.js', './src/Components/compras/comprasAsociadas.js',
+          './src/Components/funciones/funciones.js','./src/Components/funciones/funciones-asociadas.js',
+          './src/Components/generos/generos.js',
+          './src/Components/mercadoPagoTarjeta/pagoTarjeta.js',
+          './src/Components/navbar/navbar.js',
+          './src/Components/peliculas/peliculas.js','./src/Components/peliculas/peliculas-informacion.js',
+          './src/Components/slider/slider.js',
+          './src/Components/usuarios/usuariosIniciar.js', './src/Components/usuarios/usuariosRegistrar.js',
+          './src/Components/welcome/welcome.js',
+          './public/icons/webCinesIcon.png'
         ])
       );
     });
@@ -61,7 +70,7 @@ self.addEventListener('install', event => {
   self.addEventListener('fetch', event => {
     event.respondWith(
       cacheFirst({
-        reuqest: event.request,
+        request: event.request,
         preloadResponsePromise: event.preloadResponse,
         fallbackURL: './'
       })
