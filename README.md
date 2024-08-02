@@ -31,3 +31,4 @@ Hacemos paginas responsive para celulares(576px), tablets(577px a 768px), laptop
 ## Pwa-js
 https://developer.mozilla.org/en-US/docs/Web/Manifest
 https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API
+VER --> https://github.com/mdn/dom-examples/tree/main/service-worker/simple-service-worker
