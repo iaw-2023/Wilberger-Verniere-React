@@ -43,3 +43,9 @@
     color: red;
     font-size: 12px;
 }
+
+.button:disabled {
+    background-color: #565656;
+    color: #ffffff;
+    cursor: not-allowed;
+}

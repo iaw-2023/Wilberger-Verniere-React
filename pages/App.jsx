@@ -45,7 +45,7 @@ export default function App() {
   }
 
   return (
-    <div>
+    <div className="mainDiv">
       <HashRouter>
         <DataProvider>
           <div className="navigation-menu">

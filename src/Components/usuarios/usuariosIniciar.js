@@ -52,18 +52,19 @@ function UsuariosIniciar() {
         <div className={styles.container}>
             <div className={styles.formContainer}>
                 <h2 className={styles.header}>Iniciar sesion</h2>
-                <div className="email">
-                    Email:
-                    <input type="text" className={styles.input} value={email} onChange={handleTextEmail} />
-                </div>
-                <div className="contraseña">
-                    Contraseña:
-                    <input type="text" className={styles.input} value={contraseña} onChange={handleTextContraseña} />
-                </div>
+                <label for="email" className="requiredLabel">
+                    Email: <span className="requiredAsterisco">*</span>
+                    <input type="text" className={styles.input} id="email" value={email} onChange={handleTextEmail} />
+                </label>
+                <label for="contraseña" className="requiredLabel">
+                    Contraseña: <span className="requiredAsterisco">*</span>
+                    <input type="password" className={styles.input} id="contraseña"  value={contraseña} onChange={handleTextContraseña} />
+                </label>
                 <div className={styles.errorMessage}>
                     {error && <p>{error}</p>}
                 </div>
-                {email && contraseña && <button className={`button button_login`} onClick={() => submitLogin()}>Confirmar</button>}
+                <button className={`button button_login`} onClick={() => submitLogin()} disabled={!email || !contraseña}>Confirmar</button>
+                <p className="requiredNota">Los campos marcados con * son obligatorios</p>
             </div>
         </div>
     )

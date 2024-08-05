@@ -9,7 +9,7 @@
     font-size: .875rem;
     text-align: center;
     padding: 0 10px;
-    color: #5a5d62;
+    color: #000000;
 }
 
 .tablaHead{
@@ -40,6 +40,10 @@
     background-color:  #c1c1c1;
 }
 
+.tablaRow:focus{
+    background-color:  #c1c1c1;
+}
+
 .tablaOscuro{
     background-color: #424e61;
     color: #ffffff;
@@ -48,7 +52,7 @@
 .button{
     color: #fff;
     background-color: #6666b6;
-    border-color: #000000;
+    border: 1px solid #000000;
     text-decoration: none;
     cursor: pointer;
     border-radius: 10px;
@@ -58,7 +62,7 @@
 }
 
 .button_confirmar{
-    background-color: #2e8b57;
+    background-color: #217847;
 }
 
 .button_cancelar{
@@ -70,7 +74,7 @@
 }
 
 .button_login{
-    background-color: #007bff;
+    background-color: #0033ff;
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -79,6 +83,35 @@
 .button:hover{
     background-color: #ffffff;
     color:#000000;
+}
+
+.button:focus{
+    background-color: #ffffff;
+    color:#000000;
+}
+
+.button:disabled {
+    background-color: #6f6e6ea5;
+    color: #ffffff;
+    cursor: not-allowed;
+}
+
+.requiredLabel {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.requiredAsterisco {
+    color: #d73737;
+    margin-left: 5px;
+}
+
+.requiredNota {
+    margin-top: 20px;
+    color: #d73737;
+    font-size: 14px;
+    text-align: center;
 }
 
 /* Celulares */
