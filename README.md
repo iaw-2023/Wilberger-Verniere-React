@@ -40,9 +40,9 @@ https://www.w3.org/WAI/WCAG22/quickref/
             Situacion A > Technique H37: Using alt attributes on img elements
             Situacion B > No situacion
             Situacion C > Technique H44: Using label elements to associate text labels with form controls
-            Situacion D >
-            Situacion E >
-            Situacion F >
+            Situacion D > No situacion
+            Situacion E > No situacion
+            Situacion F > Technique H67: Using null alt text and no title attribute on img elements for images that assistive technology should ignore
     1.4 Distingishable
         ..
     2.1 KeyBoard Accesible
