@@ -53,8 +53,14 @@ https://www.w3.org/WAI/WCAG22/quickref/
         1.4.4 Resize Text 
             G142: Using a technology that has commonly-available user agents that support zoom --> VER SI SE HACE
     2.1 KeyBoard Accesible
-        2.1.1 Keyboard > G202: Ensuring keyboard control for all functionality 
+        2.1.1 Keyboard 
+            G202: Ensuring keyboard control for all functionality 
             -> Hicimos que resalte los botones cuando hace focus (se mueve en la pestaña con "tab") como cuando hace hover del boton 
             -> VER SI ES SUFICIENTE HACER ESTO
-        
     3.3 Input Assistance
+        3.3.1 Error Identification
+            Situacion A > SCR18: Providing client-side validation and alert 
+            Situacion B > SCR18: Providing client-side validation and alert 
+            Ver si estan bien asi
+        3.3.8 Accessible Authentication (Minimum)
+            H100: Providing properly marked up email and password inputs 

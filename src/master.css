@@ -90,6 +90,30 @@
     color:#000000;
 }
 
+.button:disabled {
+    background-color: #6f6e6ea5;
+    color: #ffffff;
+    cursor: not-allowed;
+}
+
+.requiredLabel {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.requiredAsterisco {
+    color: #d73737;
+    margin-left: 5px;
+}
+
+.requiredNota {
+    margin-top: 20px;
+    color: #d73737;
+    font-size: 14px;
+    text-align: center;
+}
+
 /* Celulares */
 @media (max-width: 576px) {
     .tabla {
