@@ -44,7 +44,17 @@ https://www.w3.org/WAI/WCAG22/quickref/
             Situacion E > No situacion
             Situacion F > Technique H67: Using null alt text and no title attribute on img elements for images that assistive technology should ignore
     1.4 Distingishable
-        ..
+        1.4.1 Use of Color
+            Situacion A > G14: Ensuring that information conveyed by color differences is also available in text ("Entradas Agotadas")
+            Situacion B > No situacion
+        1.4.3 Contrast(Minimum)
+            Situacion A > G18: Ensuring that a contrast ratio of at least 4.5:1 exists between text (and images of text) and background behind the text --> https://juicystudio.com/services/luminositycontrastratio.php#specify
+            Situacion B > No situacion
+        1.4.4 Resize Text 
+            G142: Using a technology that has commonly-available user agents that support zoom --> VER SI SE HACE
     2.1 KeyBoard Accesible
-        ..
+        2.1.1 Keyboard > G202: Ensuring keyboard control for all functionality 
+            -> Hicimos que resalte los botones cuando hace focus (se mueve en la pestaña con "tab") como cuando hace hover del boton 
+            -> VER SI ES SUFICIENTE HACER ESTO
+        
     3.3 Input Assistance

@@ -64,18 +64,18 @@ function Ordenes() {
           <tbody>
             { carrito && carrito.length>0 && carrito.map((carritoObj, index) => (
               <tr className="tablaRow" key={index}>
-                <th className="tablaBodyElem"> {carritoObj.Pelicula}      </th>
-                <th className="tablaBodyElem"> {carritoObj.Fecha}         </th>
-                <th className="tablaBodyElem"> {carritoObj.Hora}          </th>
-                <th className="tablaBodyElem"> {carritoObj.NroSala}       </th>
-                <th className="tablaBodyElem"> {carritoObj.NroTickets}    </th>
-                <th className="tablaBodyElem"> 
+                <td className="tablaBodyElem"> {carritoObj.Pelicula}      </td>
+                <td className="tablaBodyElem"> {carritoObj.Fecha}         </td>
+                <td className="tablaBodyElem"> {carritoObj.Hora}          </td>
+                <td className="tablaBodyElem"> {carritoObj.NroSala}       </td>
+                <td className="tablaBodyElem"> {carritoObj.NroTickets}    </td>
+                <td className="tablaBodyElem"> 
                     <Button 
                     className={`button button_cancelar`} 
                     onClick={ ()=>cancelarOrden(index) }>
                       Quitar
                     </Button>
-                </th>
+                </td>
               </tr>
             ))}
           </tbody>
