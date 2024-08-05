@@ -15,7 +15,7 @@ function Compras() {
     fetchCompras();
   },[]);  
 
-  console.log(sessionStorage.getItem('userEmail'));
+  console.log("Guardo en sessionStorage: ", sessionStorage.getItem('userEmail'));
 
   const fetchCompras = () => 
   {

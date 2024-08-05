@@ -10,7 +10,7 @@ import { Button } from "react-bootstrap";
 function NavBar() {
 
     const { handleLogOut } = useContext(dataContext);
-    console.log(sessionStorage.getItem('userNombre'));
+    console.log("Guardo en sessionStorage: ", sessionStorage.getItem('userNombre'));
     const islogin = sessionStorage.getItem('login') || false;
 
     const handleMenuButton = () => {

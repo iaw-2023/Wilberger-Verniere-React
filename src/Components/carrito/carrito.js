@@ -25,7 +25,7 @@ function Ordenes() {
       //SetObservaciones(""); 
       setObservacionesCompra("");
     }
-    console.log(observacionesCompra);
+    console.log("observacionesCompra: ",observacionesCompra);
   }
 
   const getCurrentDate = (separator='-') => 
@@ -38,8 +38,8 @@ function Ordenes() {
     return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`;
   }
 
-  console.log(carrito);
-  console.log(sessionStorage.getItem('userEmail'));
+  console.log("Carrito: ",carrito);
+  console.log("Guardo en sessionStorage: ",sessionStorage.getItem('userEmail'));
 
   return (
     <div className='wrapper'>

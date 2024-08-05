@@ -45,7 +45,7 @@ const DataProvider = ( {children} ) => {
             console.log("se va a llamar a comprar");
             comprar(compra, cantTickets);
             console.log("se completo comprar");
-            console.log(carrito);
+            console.log("Carrito: ",carrito);
         }
         console.log("Se cancelo comprar tickets");
     }
@@ -114,11 +114,11 @@ const DataProvider = ( {children} ) => {
             },
         })
         .then(function (response) {
-            console.log(response);
+            console.log("Response: ",response);
             setCarrito([]);
           })
         .catch(function (error) {
-            console.log(error);
+            console.log("Error: ",error);
             return null;
           }); 
     }
@@ -141,7 +141,7 @@ const DataProvider = ( {children} ) => {
             },
         })
         .then(function (response) {
-            console.log(response);
+            console.log("Response: ",response);
             sessionStorage.removeItem('authToken');
             sessionStorage.removeItem('login');
             sessionStorage.removeItem('userNombre');
@@ -149,7 +149,7 @@ const DataProvider = ( {children} ) => {
             navigate("/usuariosIniciar");
         })
         .catch(function (error) {
-            console.log(error);
+            console.log("Error: ",error);
             return null;
         });
     } 
@@ -196,7 +196,7 @@ const DataProvider = ( {children} ) => {
     {
         setRespuestaOpenMovie('');
         let nombreFormateado = nombre.replace(/\s/g, '+');
-        console.log(nombreFormateado);        
+        console.log("nombreFormateado: ",nombreFormateado);        
         preguntarOpenMovie(nombreFormateado);
     }
 
