@@ -10,17 +10,10 @@ import axios from 'axios';
 export const dataContext = createContext([]);
 
 const DataProvider = ( {children} ) => {
-    const [carrito, setCarrito] = useState([]);
-    const [peliculaElegida, setPeliculaElegida] = useState([]);
-    const [compraElegida, setCompraElegida] = useState();
-
     const [respuestaChatGPT, setRespuestaChatGPT] = useState('');
     const [errorRespuestaChatGPT, seterrorRespuestaChatGPT] = useState('');
-
     const [respuestaOpenMovie, setRespuestaOpenMovie] = useState('');
     const [errorRespuestaOpenMovie, seterrorRespuestaOpenMovie] = useState('');
-
-    const [observacionesCompra, setObservacionesCompra] = useState('');
 
     const navigate = useNavigate();
 
@@ -45,33 +38,33 @@ const DataProvider = ( {children} ) => {
             console.log("se va a llamar a comprar");
             comprar(compra, cantTickets);
             console.log("se completo comprar");
-            console.log("Carrito: ",carrito);
+            console.log("Carrito JSON: ", sessionStorage.getItem('carrito'));
         }
         console.log("Se cancelo comprar tickets");
     }
 
     const comprar = (compra, tickets) => 
     {
-        setCarrito( () => {
-            compra.NroTickets = tickets;
-            let found = false;
-            let index = 0;
-            console.log("Buscando compra en carrito");
-            while (!found && index < carrito.length){
-                let aux = carrito.at(index);
-                if (comprasIguales(aux,compra)){
-                    aux.NroTickets += compra.NroTickets;
-                    found = true;
-                    console.log("Se encontro compra en carrito y se sumaron tickets");
-                }
-                index++;
+        compra.NroTickets = tickets;
+        let CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito')) || [];
+        let found = false;
+        let index = 0;
+        console.log("Buscando compra en carrito");
+
+        while (!found && index < CARRITO_JSON.length){
+            let aux = CARRITO_JSON[index];
+            if (comprasIguales(aux,compra)){
+                aux.NroTickets += compra.NroTickets;
+                found = true;
+                console.log("Se encontro compra en carrito y se sumaron tickets");
             }
-            if (!found){
-                console.log("No se encontro, se agrego nueva compra al carrito");
-                carrito.push (compra);
-            }
-            return carrito;
-        });
+            index++;
+        }
+        if (!found){
+            console.log("No se encontro, se agrego nueva compra al carrito");
+            CARRITO_JSON.push(compra);
+        }
+        sessionStorage.setItem('carrito', JSON.stringify(CARRITO_JSON));
     }
  
     const comprasIguales = (compra1, compra2) => 
@@ -86,27 +79,28 @@ const DataProvider = ( {children} ) => {
 
     const cancelarOrden = (index) =>
     {
-        setCarrito( () => {
-            let nuevoCarrito = [];
-            for (let i=0; i<carrito.length; i++){
-                if (i != index){
-                    nuevoCarrito.push(carrito[i]);
-                }
+        let CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito')) || [];
+        let nuevoCarrito = [];
+        for (let i=0; i<CARRITO_JSON.length; i++){
+            if (i != index){
+                nuevoCarrito.push(CARRITO_JSON[i]);
             }
-            return nuevoCarrito;
-        });
+        }
+        sessionStorage.setItem('carrito', JSON.stringify(CARRITO_JSON));
+        console.log("Compra cancelada, carrito JSON: ", CARRITO_JSON);
     }
 
     const confirmarCompra = (observaciones, email, fechaCompra) =>
     {
-        let obvs = observaciones;
-        if (obvs=="") { obvs = "-";}
+        let obvs = observaciones === "" ? "-" : observaciones;
+        let CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito'))
+
         apiClient.post("/rest/compras/crear",
         { 
             'Observaciones': obvs, 
             'Email': email, 
             'FechaCompra': fechaCompra, 
-            'Compras': carrito 
+            'Compras': CARRITO_JSON 
         },
         {
             headers: {
@@ -115,7 +109,7 @@ const DataProvider = ( {children} ) => {
         })
         .then(function (response) {
             console.log("Response: ",response);
-            setCarrito([]);
+            limpiarCompra();
           })
         .catch(function (error) {
             console.log("Error: ",error);
@@ -123,11 +117,8 @@ const DataProvider = ( {children} ) => {
           }); 
     }
 
-    const limpiarCompra = () =>
-    { 
-        setCarrito( () => {
-            return [];
-        });
+    const limpiarCompra = () => { 
+        sessionStorage.setItem('carrito', JSON.stringify([]));
     }
 
     const handleLogOut = () =>
@@ -229,16 +220,12 @@ const DataProvider = ( {children} ) => {
 
     return <dataContext.Provider value={ 
         {
-            carrito, setCarrito, 
-            promptComprar, cancelarOrden, 
-            confirmarCompra, limpiarCompra, 
-            peliculaElegida, setPeliculaElegida,
-            compraElegida, setCompraElegida,
-            observacionesCompra, setObservacionesCompra,
-            handleLogOut,
+            promptComprar, 
+            cancelarOrden, 
+            limpiarCompra, confirmarCompra, pagarconMP,
             obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT,
             obtenerInfoPeliculaOpenMovie, respuestaOpenMovie, errorRespuestaOpenMovie, 
-            pagarconMP
+            handleLogOut
         }
     }>{children}</dataContext.Provider>
 };

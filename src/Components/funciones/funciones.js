@@ -55,7 +55,7 @@ function Funciones() {
                                     {tablaParcial}
                                     <td data-label="Accion:" className="tablaBodyElem">
                                         {funcionObj.AsientosDisponible > 0 ? (
-                                            <Button className="button" onClick={() => promptComprar(funcionObj)}>Comprar</Button>
+                                            <Button className="button" onClick={() => promptComprar(funcionObj) }>Comprar</Button>
                                         ) : (
                                             "ENTRADAS AGOTADAS"
                                         )}

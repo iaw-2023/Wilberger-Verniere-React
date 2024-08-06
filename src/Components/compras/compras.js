@@ -2,14 +2,12 @@ import '../../master.css';
 
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
-import { dataContext } from "../context/dataContext";
 import apiClient from '../../Services/api';
 
   
 function Compras() {
   const [compra, setCompra] = useState([]);
   const [error, setError] = useState(null);
-  const { setCompraElegida} = useContext(dataContext);
 
   useEffect(() => {
     fetchCompras();
@@ -27,10 +25,10 @@ function Compras() {
         Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
       },
     })
-        .then((response) => {
-            setCompra(response.data.data);
-            setError(null);
-        }).catch(setError);
+      .then((response) => {
+          setCompra(response.data.data);
+          setError(null);
+      }).catch(setError);
   }
 
   if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS COMPRAS</p>
@@ -53,7 +51,7 @@ function Compras() {
               <td data-label="Accion:" className="tablaBodyElem"> 
                   <Link to='/ComprasAsociadas'
                   className="button"
-                  onClick={ setCompraElegida(compraObj) }>
+                  onClick={ () => sessionStorage.setItem("compraElegida",JSON.stringify(compraObj)) }>
                     Ordenes Asociadas
                   </Link>
               </td>

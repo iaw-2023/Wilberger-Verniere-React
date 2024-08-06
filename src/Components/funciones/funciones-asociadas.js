@@ -7,14 +7,15 @@ import { dataContext } from '../context/dataContext';
 import apiClient from '../../Services/api';
 
 function FuncionesAsociadas() {
-    const {peliculaElegida, promptComprar} = useContext(dataContext);
+    const {promptComprar} = useContext(dataContext);
     const [error, setError] = useState(null);
-    const [funcion, setFuncion] = useState([])
+    const [funcion, setFuncion] = useState([]);
+    const PELICULA_ELEGIDA_JSON = JSON.parse(sessionStorage.getItem('peliculaElegida'));
 
     const fetchFuncion = () => {
         return apiClient.get("/rest/funciones/asociadas", { 
             params: {
-                'Id': peliculaElegida.Id,
+                'Id': PELICULA_ELEGIDA_JSON.Id,
             }
         })
             .then((response) => {
@@ -24,7 +25,7 @@ function FuncionesAsociadas() {
     }
 
     useEffect(() => {
-        console.log("Pelicula elegida: ",peliculaElegida);
+        console.log("Pelicula elegida JSON: ",PELICULA_ELEGIDA_JSON);
         fetchFuncion();
     },[]);
     

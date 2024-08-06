@@ -7,31 +7,31 @@ import { dataContext } from '../context/dataContext';
 
 function PeliculasInformacion(){
 
-    const { 
-        peliculaElegida, 
+    const {  
         obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT, 
         obtenerInfoPeliculaOpenMovie, respuestaOpenMovie, errorRespuestaOpenMovie, 
     } = useContext(dataContext);
 
+    const PELICULA_ELEGIDA_JSON = JSON.parse(sessionStorage.getItem("peliculaElegida"));
+
     const fetchInfo = () =>
-    {
-        console.log("Pelicula elegida: ",peliculaElegida); 
-        obtenerInfoPeliculaChatGPT(peliculaElegida.Nombre);
-        obtenerInfoPeliculaOpenMovie(peliculaElegida.Nombre);
+    { 
+        console.log("Pelicula elegida JSON: ",PELICULA_ELEGIDA_JSON); 
+        obtenerInfoPeliculaChatGPT(PELICULA_ELEGIDA_JSON.Nombre);
+        obtenerInfoPeliculaOpenMovie(PELICULA_ELEGIDA_JSON.Nombre);
     };
 
     useEffect(() => {
         fetchInfo();
     },[]);
 
-    
     return (
         <article className={styles.peliculaArticulo}>
             <div className={styles.peliculaInfoContainer}>
                 <div className={styles.peliculaNombreContainer}>
                     <div>
                         <h1 className={styles.peliculasHeader}>Nombre:</h1>
-                        <p className={styles.peliculasTexto}>{peliculaElegida.Nombre}</p>
+                        <p className={styles.peliculasTexto}>{PELICULA_ELEGIDA_JSON.Nombre}</p>
                     </div>
                     <div className="Sinopsis">
                         <h2 className={styles.peliculasHeader}>Sinopsis: </h2>
@@ -49,11 +49,11 @@ function PeliculasInformacion(){
                 <div className={styles.peliculasPortadaContainer}>
                     <h3 className={styles.peliculasHeader}>Portada:</h3>
                     <div className={styles.peliculaPortada}>
-                    { peliculaElegida.Imagen ? 
-                        <img className={styles.peliculasPortadaContainerImagen} src={peliculaElegida.Imagen} alt={`Portada de la pelicula: ${peliculaElegida.Nombre}`}/> 
+                    { PELICULA_ELEGIDA_JSON.Imagen ? 
+                        <img className={styles.peliculasPortadaContainerImagen} src={PELICULA_ELEGIDA_JSON.Imagen} alt={`Portada de la pelicula: ${PELICULA_ELEGIDA_JSON.Nombre}`}/> 
                         : respuestaOpenMovie.Poster ? 
                             <div>
-                                <img className={styles.peliculasPortadaContainerImagen} src={respuestaOpenMovie.Poster} alt={`Portada de la pelicula: ${peliculaElegida.Nombre}`}/>
+                                <img className={styles.peliculasPortadaContainerImagen} src={respuestaOpenMovie.Poster} alt={`Portada de la pelicula: ${PELICULA_ELEGIDA_JSON.Nombre}`}/>
                                 <p>Imagen obtenida de Open Movie DB</p></div> 
                             : <p className={`${styles.peliculasTexto} ${styles.peliculasError}`}>Error al obtener la portada de Open Movie DB</p> 
                     }

@@ -1,15 +1,16 @@
 import '../../master.css';
 import styles from "./carrito.module.css";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 
 function Ordenes() {
-  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra, pagarconMP, observacionesCompra, setObservacionesCompra } = useContext(dataContext);
-  //const [observaciones, SetObservaciones] = useState("");
-  
+  const { cancelarOrden, limpiarCompra, confirmarCompra, pagarconMP } = useContext(dataContext);
+  const CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito')) || [];
+  const [observacionesCompra, setObservacionesCompra] = useState('');
+
   useEffect(() => {
     setObservacionesCompra("");
   }, []);
@@ -17,15 +18,8 @@ function Ordenes() {
   const handleSubmitObservaciones = (event) => 
   {
     event.preventDefault();
-    if(event.target.value) {
-      //SetObservaciones(event.target.value);
-      setObservacionesCompra(event.target.value);
-    }
-    else { 
-      //SetObservaciones(""); 
-      setObservacionesCompra("");
-    }
-    console.log("observacionesCompra: ",observacionesCompra);
+    setObservacionesCompra(event.target.value);
+    console.log("observacionesCompra: ", observacionesCompra);
   }
 
   const getCurrentDate = (separator='-') => 
@@ -38,7 +32,7 @@ function Ordenes() {
     return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`;
   }
 
-  console.log("Carrito: ",carrito);
+  console.log("Carrito JSON: ",CARRITO_JSON);
   console.log("Guardo en sessionStorage: ",sessionStorage.getItem('userEmail'));
 
   return (
@@ -47,7 +41,11 @@ function Ordenes() {
         <div className={styles.carritoInputWrapper}>
           <div className={styles.carritoObservaciones}>
             <label for="observaciones-texto" className={styles.carritoObservacionesText}>Observaciones:</label>   
-            <input id="observaciones-texto" type="text" className={styles.carritoInputObservaciones} value={observacionesCompra} onChange={handleSubmitObservaciones}/>
+            <input id="observaciones-texto" type="text" 
+              className={styles.carritoInputObservaciones} 
+              value={observacionesCompra} 
+              onChange={handleSubmitObservaciones}
+            />
           </div>
         </div>
         <table className="tabla">
@@ -62,45 +60,38 @@ function Ordenes() {
             </tr>
           </thead>
           <tbody>
-            { carrito && carrito.length>0 && carrito.map((carritoObj, index) => (
-              <tr className="tablaRow" key={index}>
-                <td className="tablaBodyElem"> {carritoObj.Pelicula}      </td>
-                <td className="tablaBodyElem"> {carritoObj.Fecha}         </td>
-                <td className="tablaBodyElem"> {carritoObj.Hora}          </td>
-                <td className="tablaBodyElem"> {carritoObj.NroSala}       </td>
-                <td className="tablaBodyElem"> {carritoObj.NroTickets}    </td>
-                <td className="tablaBodyElem"> 
-                    <Button 
-                    className={`button button_cancelar`} 
-                    onClick={ ()=>cancelarOrden(index) }>
-                      Quitar
-                    </Button>
-                </td>
-              </tr>
-            ))}
+            { CARRITO_JSON.length>0 ? (
+              <ul>
+                { CARRITO_JSON.map((carritoObj, index) => (
+                <tr className="tablaRow" key={index}>
+                  <td className="tablaBodyElem"> {carritoObj.Pelicula}      </td>
+                  <td className="tablaBodyElem"> {carritoObj.Fecha}         </td>
+                  <td className="tablaBodyElem"> {carritoObj.Hora}          </td>
+                  <td className="tablaBodyElem"> {carritoObj.NroSala}       </td>
+                  <td className="tablaBodyElem"> {carritoObj.NroTickets}    </td>
+                  <td className="tablaBodyElem"> 
+                      <Button 
+                      className={`button button_cancelar`} 
+                      onClick={ ()=>cancelarOrden(index) }>
+                        Quitar
+                      </Button>
+                  </td>
+                </tr>
+                ))}
+                <ButtonGroup className={styles.carritoBotonGroup}>
+                  <Button className={`button button_cancelar`} onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
+                  <Button className={`button button_confirmar`} 
+                    onClick={ ()=>confirmarCompra(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>
+                    Confirmar Compra
+                  </Button>
+                  <Button className={`button button_mp`} onClick={ ()=>pagarconMP() }>Pagar con MercadoPago</Button>
+                </ButtonGroup>
+              </ul>
+              ) : (<p>No hay items en el carrito.</p>)
+            }
           </tbody>
         </table>
       </div>
-      <ButtonGroup className={styles.carritoBotonGroup}>
-        { carrito && carrito.length>0 &&
-          <Button className={`button button_cancelar`} 
-          onClick={ ()=>limpiarCompra() }>
-            Eliminar Compra
-          </Button>
-        }
-        { carrito && carrito.length>0 && 
-          <Button className={`button button_confirmar`}
-          onClick={ ()=>confirmarCompra(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>
-            Confirmar Compra
-          </Button>
-        }
-        { carrito && carrito.length>0 && 
-          <Button className={`button button_mp`} 
-          onClick={ ()=>pagarconMP() }>
-            Pagar con MercadoPago
-          </Button>
-        }
-      </ButtonGroup>
     </div>
   )
 }
