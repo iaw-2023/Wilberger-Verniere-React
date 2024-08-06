@@ -38,7 +38,7 @@ const DataProvider = ( {children} ) => {
             console.log("se va a llamar a comprar");
             comprar(compra, cantTickets);
             console.log("se completo comprar");
-            console.log("Carrito JSON: ", sessionStorage.getItem('carrito'));
+            console.log("Carrito JSON: ", JSON.parse(sessionStorage.getItem('carrito')));
         }
         console.log("Se cancelo comprar tickets");
     }
@@ -87,6 +87,8 @@ const DataProvider = ( {children} ) => {
             }
         }
         sessionStorage.setItem('carrito', JSON.stringify(CARRITO_JSON));
+        
+        CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito'));
         console.log("Compra cancelada, carrito JSON: ", CARRITO_JSON);
     }
 
