@@ -79,19 +79,19 @@ function Ordenes() {
                 ))
               ) : (<p>No hay items en el carrito.</p>)
             }
-            { CARRITO_JSON.length>0 ? (
-              <ButtonGroup className={styles.carritoBotonGroup}>
-                <Button className={`button button_cancelar`} onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
-                <Button className={`button button_confirmar`} 
-                  onClick={ ()=>confirmarCompra(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>
-                  Confirmar Compra
-                </Button>
-                <Button className={`button button_mp`} onClick={ ()=>pagarconMP() }>Pagar con MercadoPago</Button>
-              </ButtonGroup>
-              ) : ("")
-            }
           </tbody>
         </table>
+        { CARRITO_JSON.length>0 ? (
+          <ButtonGroup className={styles.carritoBotonGroup}>
+            <Button className={`button button_cancelar`} onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
+            <Button className={`button button_confirmar`} 
+              onClick={ ()=>confirmarCompra(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>
+              Confirmar Compra
+            </Button>
+            <Button className={`button button_mp`} onClick={ ()=>pagarconMP() }>Pagar con MercadoPago</Button>
+          </ButtonGroup>
+          ) : ("")
+        }
       </div>
     </div>
   )
