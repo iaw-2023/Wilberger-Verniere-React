@@ -61,33 +61,34 @@ function Ordenes() {
           </thead>
           <tbody>
             { CARRITO_JSON.length>0 ? (
-              <ul>
-                { CARRITO_JSON.map((carritoObj, index) => (
-                <tr className="tablaRow" key={index}>
-                  <td className="tablaBodyElem"> {carritoObj.Pelicula}      </td>
-                  <td className="tablaBodyElem"> {carritoObj.Fecha}         </td>
-                  <td className="tablaBodyElem"> {carritoObj.Hora}          </td>
-                  <td className="tablaBodyElem"> {carritoObj.NroSala}       </td>
-                  <td className="tablaBodyElem"> {carritoObj.NroTickets}    </td>
-                  <td className="tablaBodyElem"> 
-                      <Button 
-                      className={`button button_cancelar`} 
-                      onClick={ ()=>cancelarOrden(index) }>
-                        Quitar
-                      </Button>
-                  </td>
-                </tr>
-                ))}
-                <ButtonGroup className={styles.carritoBotonGroup}>
-                  <Button className={`button button_cancelar`} onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
-                  <Button className={`button button_confirmar`} 
-                    onClick={ ()=>confirmarCompra(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>
-                    Confirmar Compra
-                  </Button>
-                  <Button className={`button button_mp`} onClick={ ()=>pagarconMP() }>Pagar con MercadoPago</Button>
-                </ButtonGroup>
-              </ul>
+                CARRITO_JSON.map((carritoObj, index) => (
+                  <tr className="tablaRow" key={index}>
+                    <td className="tablaBodyElem"> {carritoObj.Pelicula}      </td>
+                    <td className="tablaBodyElem"> {carritoObj.Fecha}         </td>
+                    <td className="tablaBodyElem"> {carritoObj.Hora}          </td>
+                    <td className="tablaBodyElem"> {carritoObj.NroSala}       </td>
+                    <td className="tablaBodyElem"> {carritoObj.NroTickets}    </td>
+                    <td className="tablaBodyElem"> 
+                        <Button 
+                        className={`button button_cancelar`} 
+                        onClick={ ()=>cancelarOrden(index) }>
+                          Quitar
+                        </Button>
+                    </td>
+                  </tr>
+                ))
               ) : (<p>No hay items en el carrito.</p>)
+            }
+            { CARRITO_JSON.length>0 ? (
+              <ButtonGroup className={styles.carritoBotonGroup}>
+                <Button className={`button button_cancelar`} onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
+                <Button className={`button button_confirmar`} 
+                  onClick={ ()=>confirmarCompra(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>
+                  Confirmar Compra
+                </Button>
+                <Button className={`button button_mp`} onClick={ ()=>pagarconMP() }>Pagar con MercadoPago</Button>
+              </ButtonGroup>
+              ) : ("")
             }
           </tbody>
         </table>

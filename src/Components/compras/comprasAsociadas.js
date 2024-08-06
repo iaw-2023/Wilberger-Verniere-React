@@ -4,7 +4,7 @@ import React from 'react'
 
 function ComprasAsociadas() {
   
-  const COMPRA_ELEGIDA_JSON = JSON.parse(sessionStorage.getItem("peliculaElegida"));
+  const COMPRA_ELEGIDA_JSON = JSON.parse(sessionStorage.getItem("compraElegida"));
 
   return (
     <div className="tabla_container">
