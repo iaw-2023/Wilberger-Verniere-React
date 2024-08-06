@@ -36,24 +36,31 @@ function Peliculas() {
                     </tr>
                 </thead>
                 <tbody>
-                    { pelicula && pelicula.length>0 && pelicula.map((peliculaObj,index) => (
-                        <tr className="tablaRow" key={index}>
-                            <td data-label="Nombre:" className="tablaBodyElem"> {peliculaObj.Nombre} </td>
-                            <td data-label="Genero:" className="tablaBodyElem"> {peliculaObj.Genero} </td>
-                            <td data-label="Accion:" className="tablaBodyElem">
-                                <Link to={"/peliculasInformacion"} 
-                                className="button"
-                                onClick={ () => sessionStorage.setItem("peliculaElegida",JSON.stringify(peliculaObj))}>
-                                    Ver Informacion
-                                </Link>
-                                <Link to={"/funcionesAsociadas"} 
-                                className="button"
-                                onClick={ () => sessionStorage.setItem("peliculaElegida",JSON.stringify(peliculaObj))}>
-                                    Ver funciones
-                                </Link>
-                            </td>
-                        </tr>
-                    ))}
+                    { pelicula && pelicula.length>0 ? (
+                        pelicula.map((peliculaObj,index) => (
+                            <tr className="tablaRow" key={index}>
+                                <td data-label="Nombre:" className="tablaBodyElem"> {peliculaObj.Nombre} </td>
+                                <td data-label="Genero:" className="tablaBodyElem"> {peliculaObj.Genero} </td>
+                                <td data-label="Accion:" className="tablaBodyElem">
+                                    <Link to={"/peliculasInformacion"} 
+                                    className="button"
+                                    onClick={ () => sessionStorage.setItem("peliculaElegida",JSON.stringify(peliculaObj))}>
+                                        Ver Informacion
+                                    </Link>
+                                    <Link to={"/funcionesAsociadas"} 
+                                    className="button"
+                                    onClick={ () => sessionStorage.setItem("peliculaElegida",JSON.stringify(peliculaObj))}>
+                                        Ver funciones
+                                    </Link>
+                                </td>
+                            </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colspan="3" className="errorDiv">"NO HAY PELICULAS DISPONBILES"</td>
+                            </tr>
+                        )
+                    }
                 </tbody>
             </table>
         </div>

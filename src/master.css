@@ -114,6 +114,14 @@
     text-align: center;
 }
 
+.errorDiv{
+    color: #ffffff;
+    background-color: #d73737;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 18px;
+}
+
 /* Celulares */
 @media (max-width: 576px) {
     .tabla {
