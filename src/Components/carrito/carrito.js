@@ -20,8 +20,8 @@ function Ordenes() {
     console.log("Se actualizo el carrito en carrito.js");
   }
 
-  const confirmarCompraCarrito = (observaciones, email, fechaCompra) => {
-    confirmarCompra(observaciones, email, fechaCompra);
+  const confirmarCompraCarrito = async (observaciones, email, fechaCompra) => {
+    await confirmarCompra(observaciones, email, fechaCompra);
     actualizarCarrito();
   }
 
