@@ -93,12 +93,12 @@ function Ordenes() {
             { CARRITO_JSON.length>0 ? (
                 CARRITO_JSON.map((carritoObj, index) => (
                   <tr className="tablaRow" key={index}>
-                    <td className="tablaBodyElem"> {carritoObj.Pelicula}      </td>
-                    <td className="tablaBodyElem"> {carritoObj.Fecha}         </td>
-                    <td className="tablaBodyElem"> {carritoObj.Hora}          </td>
-                    <td className="tablaBodyElem"> {carritoObj.NroSala}       </td>
-                    <td className="tablaBodyElem"> {carritoObj.NroTickets}    </td>
-                    <td className="tablaBodyElem"> 
+                    <td data-label="Pelicula:" className="tablaBodyElem"> {carritoObj.Pelicula}      </td>
+                    <td data-label="Fecha:" className="tablaBodyElem"> {carritoObj.Fecha}         </td>
+                    <td data-label="Hora:" className="tablaBodyElem"> {carritoObj.Hora}          </td>
+                    <td data-label="Sala numero:" className="tablaBodyElem"> {carritoObj.NroSala}       </td>
+                    <td data-label="Tickets Comprados:" className="tablaBodyElem"> {carritoObj.NroTickets}    </td>
+                    <td data-label="Accion:" className="tablaBodyElem"> 
                         <Button 
                         className={`button button_cancelar`} 
                         onClick={ ()=>cancelarOrdenCarrito(index) }>
