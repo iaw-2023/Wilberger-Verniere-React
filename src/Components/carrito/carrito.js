@@ -16,8 +16,9 @@ function Ordenes() {
   }, []);
 
   const actualizarCarrito = () => {
-    setCarrito(JSON.parse(sessionStorage.getItem('carrito')) || []);
-    console.log("Se actualizo el carrito en carrito.js");
+    const carr_JSON = JSON.parse(sessionStorage.getItem('carrito')) || [];
+    setCarrito(carr_JSON);
+    console.log("Se actualizo el carrito en carrito.js", carr_JSON);
   }
 
   const confirmarCompraCarrito = async (observaciones, email, fechaCompra) => {

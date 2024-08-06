@@ -120,6 +120,7 @@ const DataProvider = ( {children} ) => {
 
     const limpiarCompra = () => { 
         sessionStorage.setItem('carrito', JSON.stringify([]));
+        console.log("Se limpio el carrito de compras");
     }
 
     const handleLogOut = () =>
