@@ -114,12 +114,13 @@
     text-align: center;
 }
 
-.errorDiv{
-    color: #ffffff;
-    background-color: #d73737;
+.alertaDIV{
+    color: #000000;
+    background-color: #fff700;
     text-transform: uppercase;
     text-align: center;
     font-size: 18px;
+    font-weight: bold;
 }
 
 /* Celulares */

@@ -108,7 +108,11 @@ function Ordenes() {
                     </td>
                   </tr>
                 ))
-              ) : (<p>No hay items en el carrito.</p>)
+              ) : (
+                <tr>
+                    <td colspan="6" className="alertaDIV">"NO SE REALIZARON COMPRAS TODAVIA"</td>
+                </tr>
+            )
             }
           </tbody>
         </table>

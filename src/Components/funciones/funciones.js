@@ -67,7 +67,7 @@ function Funciones() {
                             ) 
                             : (
                                 <tr>
-                                    <td colspan="6" className="errorDiv">"NO HAY FUNCIONES DISPONBILES"</td>
+                                    <td colspan="6" className="alertaDIV">"NO HAY FUNCIONES DISPONBILES"</td>
                                 </tr>
                             )
                         }
