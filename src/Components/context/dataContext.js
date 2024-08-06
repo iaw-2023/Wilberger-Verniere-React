@@ -136,6 +136,9 @@ const DataProvider = ( {children} ) => {
             sessionStorage.removeItem('login');
             sessionStorage.removeItem('userNombre');
             sessionStorage.removeItem('userEmail');
+            sessionStorage.removeItem('carrito');
+            sessionStorage.removeItem('compraElegida');
+            sessionStorage.removeItem('peliculaElegida');
             navigate("/usuariosIniciar");
         })
         .catch(function (error) {
