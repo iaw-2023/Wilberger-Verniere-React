@@ -22,8 +22,13 @@ function Ordenes() {
   }
 
   const confirmarCompraCarrito = async (observaciones, email, fechaCompra) => {
-    await confirmarCompra(observaciones, email, fechaCompra);
-    actualizarCarrito();
+    try{
+      await confirmarCompra(observaciones, email, fechaCompra);
+      actualizarCarrito();
+    } catch (error){
+      console.error("Error al confirmar compra: ",error);
+    }
+    
   }
 
   const limpiarCompraCarrito = () => {

@@ -97,7 +97,7 @@ const DataProvider = ( {children} ) => {
         let obvs = observaciones === "" ? "-" : observaciones;
         let CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito'))
 
-        apiClient.post("/rest/compras/crear",
+        return apiClient.post("/rest/compras/crear",
         { 
             'Observaciones': obvs, 
             'Email': email, 
@@ -115,6 +115,7 @@ const DataProvider = ( {children} ) => {
           })
         .catch(function (error) {
             console.log("Error: ",error);
+            throw error;
           }); 
     }
 
