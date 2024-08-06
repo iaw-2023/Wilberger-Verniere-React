@@ -61,7 +61,7 @@ function Generos() {
                         ) 
                         : (
                             <tr>
-                                <td colspan="2" className="alertaDIV">"NO HAY GENEROS DISPONBILES"</td>
+                                <td colspan="2" className="alertaDiv">NO HAY GENEROS DISPONBILES</td>
                             </tr>
                         )
                     }

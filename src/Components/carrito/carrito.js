@@ -28,7 +28,6 @@ function Ordenes() {
     } catch (error){
       console.error("Error al confirmar compra: ",error);
     }
-    
   }
 
   const limpiarCompraCarrito = () => {
@@ -110,7 +109,7 @@ function Ordenes() {
                 ))
               ) : (
                 <tr>
-                    <td colspan="6" className="alertaDIV">"NO SE REALIZARON COMPRAS TODAVIA"</td>
+                    <td colspan="6" className="alertaDiv">NO SE REALIZARON COMPRAS TODAVIA</td>
                 </tr>
             )
             }
