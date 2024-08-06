@@ -8,12 +8,36 @@ import { useContext } from 'react';
 
 function Ordenes() {
   const { cancelarOrden, limpiarCompra, confirmarCompra, pagarconMP } = useContext(dataContext);
-  const CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito')) || [];
+  const [CARRITO_JSON, setCarrito] = useState(JSON.parse(sessionStorage.getItem('carrito')) || [])
   const [observacionesCompra, setObservacionesCompra] = useState('');
 
   useEffect(() => {
     setObservacionesCompra("");
   }, []);
+
+  const actualizarCarrito = () => {
+    setCarrito(JSON.parse(sessionStorage.getItem('carrito')) || []);
+  }
+
+  const confirmarCompraCarrito = (observaciones, email, fechaCompra) => {
+    confirmarCompra(observaciones, email, fechaCompra);
+    actualizarCarrito();
+  }
+
+  const limpiarCompraCarrito = () => {
+    limpiarCompra();
+    actualizarCarrito();
+  }
+
+  const cancelarOrdenCarrito = (index) => {
+    cancelarOrden(index);
+    actualizarCarrito();
+  }
+
+  const pagarconMPCarrito = () => {
+    pagarconMP();
+    actualizarCarrito();
+  }
 
   const handleSubmitObservaciones = (event) => 
   {
@@ -71,7 +95,7 @@ function Ordenes() {
                     <td className="tablaBodyElem"> 
                         <Button 
                         className={`button button_cancelar`} 
-                        onClick={ ()=>cancelarOrden(index) }>
+                        onClick={ ()=>cancelarOrdenCarrito(index) }>
                           Quitar
                         </Button>
                     </td>
@@ -83,12 +107,12 @@ function Ordenes() {
         </table>
         { CARRITO_JSON.length>0 ? (
           <ButtonGroup className={styles.carritoBotonGroup}>
-            <Button className={`button button_cancelar`} onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
+            <Button className={`button button_cancelar`} onClick={ ()=>limpiarCompraCarrito() }>Eliminar Compra</Button>
             <Button className={`button button_confirmar`} 
-              onClick={ ()=>confirmarCompra(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>
+              onClick={ ()=>confirmarCompraCarrito(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>
               Confirmar Compra
             </Button>
-            <Button className={`button button_mp`} onClick={ ()=>pagarconMP() }>Pagar con MercadoPago</Button>
+            <Button className={`button button_mp`} onClick={ ()=>pagarconMPCarrito() }>Pagar con MercadoPago</Button>
           </ButtonGroup>
           ) : ("")
         }

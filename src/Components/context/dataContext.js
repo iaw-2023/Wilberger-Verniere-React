@@ -113,7 +113,6 @@ const DataProvider = ( {children} ) => {
           })
         .catch(function (error) {
             console.log("Error: ",error);
-            return null;
           }); 
     }
 
