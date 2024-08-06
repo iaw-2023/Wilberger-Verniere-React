@@ -86,8 +86,8 @@ const DataProvider = ( {children} ) => {
                 nuevoCarrito.push(CARRITO_JSON[i]);
             }
         }
-        sessionStorage.setItem('carrito', JSON.stringify(CARRITO_JSON));
-        
+        sessionStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
+
         CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito'));
         console.log("Compra cancelada, carrito JSON: ", CARRITO_JSON);
     }
