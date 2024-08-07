@@ -1,24 +1,76 @@
 const CACHE_WEBCINES = "webCines-cache-v1"
 const INSTALL_CACHE = [
   '/',
+  '/funciones',
+  '/peliculas',
+  '/generos',
   '../app/background.jpg',
   './icons/webCinesIcon.png'
 ];
 
-self.addEventListener('install', (event) => {
+//Cuando se activa se borran los SW viejos
+self.addEventListener("activate", (event) => {
+  const CACHE = [CACHE_WEBCINES];
   event.waitUntil(
-    Promise.all([
-      caches.open(CACHE_WEBCINES).then((cache) => {
-        return cache.addAll(INSTALL_CACHE)
-        .catch(error => {
-          console.log("Error INSTALL_CACHE: ", error);
-        });
-      })
-    ])
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
 });
 
-self.addEventListener('fetch', (event) => {
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_WEBCINES).then((cache) => {
+      return cache.addAll(INSTALL_CACHE)
+      .catch(error => {
+        console.log("Error install: ", error);
+      });
+    })
+  );
+});
+
+const deNetwork = (request, timeout) => 
+  new Promise((fulfill, reject) => {
+    const timeoutId = setTimeout(reject, timeout);
+    fetch(request).then(response => {
+      clearTimeout(timeoutId);
+      fulfill(response);
+      actualizar(request);
+    }, reject);
+  });
+
+const deCache = request =>
+  caches
+    .open(CACHE_WEBCINES)
+    .then(cache =>
+      cache
+        .match(request)
+        .then(matching => matching || cache.match("/"))
+    );
+
+const actualizar = request =>
+  caches
+    .open(CACHE_WEBCINES)
+    .then(cache =>
+      fetch(request).then(response => cache.put(request,response))
+    );
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    deNetwork(event.request,10000).catch(() => deCache(event.request))
+  );
+  event.waitUntil(actualizar(event.request));
+});
+
+  
+
+/* self.addEventListener('fetch', (event) => {
   // Pedidos API
   if (event.request.url.startsWith('https://wilberger-verniere-laravel-zxwy')) {
     event.respondWith(
@@ -110,20 +162,4 @@ self.addEventListener('fetch', (event) => {
       })
     );
   }
-});
-
-
-self.addEventListener("activate", (event) => {
-  const CACHE = [CACHE_WEBCINES];
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (CACHE.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
-});
+}); */
