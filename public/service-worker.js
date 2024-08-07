@@ -20,7 +20,7 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('fetch', (event) => {
   // Pedidos API
-  if (event.request.url.startsWith('https://wilberger-verniere-laravel-zxwy.vercel.app/')) {
+  if (event.request.url.startsWith('https://wilberger-verniere-laravel-zxwy')) {
     event.respondWith(
       caches.open(CACHE_WEBCINES).then((cache) => {
         return cache.match(event.request).then((cachedResponse) => {
@@ -43,7 +43,9 @@ self.addEventListener('fetch', (event) => {
 
             const respuestaACache = networkResponse.clone();
             caches.open(CACHE_WEBCINES).then((cache) => {
-              cache.put(event.request, respuestaACache);
+              cache.put(event.request, respuestaACache).catch((error) => {
+                console.error("Fallo en cachear respuesta: ", error);
+              });
             });
 
             const respuestaConHeader = new Response(networkResponse.body, {
@@ -55,6 +57,8 @@ self.addEventListener('fetch', (event) => {
               })
             });
             return respuestaConHeader;
+          }).catch((error) => {
+            console.error("Fetch fallo: ", error);
           });
         });
       })
@@ -82,7 +86,9 @@ self.addEventListener('fetch', (event) => {
 
           const respuestaACache = networkResponse.clone();
           caches.open(CACHE_WEBCINES).then((cache) => {
-            cache.put(event.request, respuestaACache);
+            cache.put(event.request, respuestaACache).catch((error) => {
+              console.error("Fallo en cachear respuesta: ", error);
+            });
           });
 
           const respuestaConHeader = new Response(networkResponse.body, {
@@ -94,6 +100,8 @@ self.addEventListener('fetch', (event) => {
             })
           });
           return respuestaConHeader;
+        }).catch((error) => {
+          console.error("Fetch fallo: ", error);
         });
       })
     );
