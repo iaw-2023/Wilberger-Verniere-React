@@ -1,32 +1,17 @@
-const STATIC_CACHE = 'static-cache-v1';
-const PAGES_CACHE = 'pages-cache-v1';
-const CSS_CACHE = 'css-cache-v1';
+const CACHE_WEBCINES = "webCines-cache-v1"
+const INSTALL_CACHE = [
+  '/',
+  '../app/background.jpg',
+  './icons/webCinesIcon.png'
+];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     Promise.all([
-      caches.open(STATIC_CACHE).then((cache) => {
-        return cache.addAll([
-          '/'
-        ])
+      caches.open(CACHE_WEBCINES).then((cache) => {
+        return cache.addAll(INSTALL_CACHE)
         .catch(error => {
-          console.log("Error STATIC_CACHE: ", error)
-        });
-      }),
-      caches.open(PAGES_CACHE).then((cache) => {
-        return cache.addAll([
-          '/app/page.tsx'
-        ])
-        .catch(error => {
-          console.log("Error PAGES_CACHE: ", error)
-        });
-      }),
-      caches.open(CSS_CACHE).then((cache) => {
-        return cache.addAll([
-          '/app/globals.css'
-        ])
-        .catch(error => {
-          console.log("Error CSS_CACHE: ", error)
+          console.log("Error INSTALL_CACHE: ", error)
         });
       })
     ])
@@ -34,14 +19,34 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', event => {
-  try {
     event.respondWith(
       caches.match(event.request).then(response => {
-        return response || fetch(event.request);
+        if (response) { return response; }
+        return fetch(event.request).then((response) => {
+          if (!response || response.status != 200 || response.type != 'basic') {
+            return response;
+          }
+          const respuestaACache = response.clone();
+          caches.open(CACHE_WEBCINES).then((cache) => {
+            cache.put(event.request, respuestaACache);
+          });
+          return response;
+        });
       })
     );
-  }
-  catch (error) {
-    console.log("Error en fetch: ", error)
-  }
+});
+
+self.addEventListener("activate", (event) => {
+  const CACHE = [CACHE_WEBCINES];
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (CACHE.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
 });

@@ -18,11 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* <link rel="manifest" href="manifest.json" /> */}
+        <link rel="manifest" href="manifest.json" />
       </head>
       <body className={inter.className}>
         {children}
-        {/* <Script id="service-worker-script" type="module" strategy="afterInteractive">
+        <Script id="service-worker-script" type="module" strategy="afterInteractive">
           {`
             console.log("index.js is running");
 
@@ -46,7 +46,7 @@ export default function RootLayout({
             };
             registrarServiceWorker();
           `}
-        </Script> */}
+        </Script>
       </body>
     </html>
   )
