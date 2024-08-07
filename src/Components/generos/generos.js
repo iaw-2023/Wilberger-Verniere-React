@@ -38,7 +38,7 @@ function Generos() {
       fetchGenero();
   },[]);
 
-  if (error) return<p> OCURRIO UN ERROR AL PEDIR LOS GENEROS </p>
+  if (error) return <p> OCURRIO UN ERROR AL PEDIR LOS GENEROS </p>
 
   return (
     <div>
@@ -51,12 +51,20 @@ function Generos() {
                     </tr>
                 </thead>
                 <tbody>
-                    { genero && genero.length>0 && genero.map((generoObj,index) => (
-                        <tr className="tablaRow" key={index}>
-                            <td data-label="Nombre:" className="tablaBodyElem"> {generoObj.Nombre} </td>
-                            <td data-label="Peliculas:" className="tablaBodyElem"> { listaPeliculas(generoObj.Peliculas) } </td>
-                        </tr>
-                    ))}
+                    { genero && genero.length>0 ? (
+                        genero.map((generoObj,index) => (
+                            <tr className="tablaRow" key={index}>
+                                <td data-label="Nombre:" className="tablaBodyElem"> {generoObj.Nombre} </td>
+                                <td data-label="Peliculas:" className="tablaBodyElem"> { listaPeliculas(generoObj.Peliculas) } </td>
+                            </tr>
+                            ))
+                        ) 
+                        : (
+                            <tr>
+                                <td colSpan="2" className="alertaDiv">NO HAY GENEROS DISPONBILES</td>
+                            </tr>
+                        )
+                    }
                 </tbody>
             </table>
         </div>

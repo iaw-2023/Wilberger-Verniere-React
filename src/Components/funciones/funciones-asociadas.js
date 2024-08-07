@@ -7,14 +7,15 @@ import { dataContext } from '../context/dataContext';
 import apiClient from '../../Services/api';
 
 function FuncionesAsociadas() {
-    const {peliculaElegida, promptComprar} = useContext(dataContext);
+    const {promptComprar} = useContext(dataContext);
     const [error, setError] = useState(null);
-    const [funcion, setFuncion] = useState([])
+    const [funcion, setFuncion] = useState([]);
+    const PELICULA_ELEGIDA_JSON = JSON.parse(sessionStorage.getItem('peliculaElegida'));
 
     const fetchFuncion = () => {
         return apiClient.get("/rest/funciones/asociadas", { 
             params: {
-                'Id': peliculaElegida.Id,
+                'Id': PELICULA_ELEGIDA_JSON.Id,
             }
         })
             .then((response) => {
@@ -24,7 +25,7 @@ function FuncionesAsociadas() {
     }
 
     useEffect(() => {
-        console.log("Pelicula elegida: ",peliculaElegida);
+        console.log("Pelicula elegida JSON: ",PELICULA_ELEGIDA_JSON);
         fetchFuncion();
     },[]);
     
@@ -45,29 +46,36 @@ function FuncionesAsociadas() {
                         </tr>
                     </thead>
                     <tbody>
-                        { funcion && funcion.length>0 && funcion.map((funcionObj,index) => {
-                            const tablaParcial = (
-                                <>
-                                    <td data-label="Pelicula:" className="tablaBodyElem"> {funcionObj.Pelicula} </td>
-                                    <td data-label="Fecha:" className="tablaBodyElem"> {funcionObj.Fecha} </td>
-                                    <td data-label="Hora:" className="tablaBodyElem"> {funcionObj.Hora} </td>
-                                    <td data-label="Sala numero:" className="tablaBodyElem"> {funcionObj.NroSala} </td>
-                                    <td data-label="Asientos Disponibles:" className="tablaBodyElem"> {funcionObj.AsientosDisponible} </td>
-                                </>
-                            );
-                            return(
-                                <tr className={funcionObj.AsientosDisponible > 0 ? "tablaRow" : styles.sinAsientos} key={index}>
-                                    {tablaParcial}
-                                    <td data-label="Accion:" className="tablaBodyElem">
-                                        {funcionObj.AsientosDisponible > 0 ? (
-                                            <Button className="button" onClick={() => promptComprar(funcionObj)}>Comprar</Button>
-                                        ) : (
-                                            "ENTRADAS AGOTADAS"
-                                        )}
-                                    </td>
+                        { funcion && funcion.length>0 ? (
+                            funcion.map((funcionObj,index) => {
+                                const tablaParcial = (
+                                    <>
+                                        <td data-label="Pelicula:" className="tablaBodyElem"> {funcionObj.Pelicula} </td>
+                                        <td data-label="Fecha:" className="tablaBodyElem"> {funcionObj.Fecha} </td>
+                                        <td data-label="Hora:" className="tablaBodyElem"> {funcionObj.Hora} </td>
+                                        <td data-label="Sala numero:" className="tablaBodyElem"> {funcionObj.NroSala} </td>
+                                        <td data-label="Asientos Disponibles:" className="tablaBodyElem"> {funcionObj.AsientosDisponible} </td>
+                                    </>
+                                );
+                                return(
+                                    <tr className={funcionObj.AsientosDisponible > 0 ? "tablaRow" : styles.sinAsientos} key={index}>
+                                        {tablaParcial}
+                                        <td data-label="Accion:" className="tablaBodyElem">
+                                            {funcionObj.AsientosDisponible > 0 ? (
+                                                <Button className="button" onClick={() => promptComprar(funcionObj)}>Comprar</Button>
+                                            ) : (
+                                                "ENTRADAS AGOTADAS"
+                                            )}
+                                        </td>
+                                    </tr>
+                                )
+                            })) 
+                            : (
+                                <tr>
+                                    <td colSpan="6" className="alertaDiv">NO HAY FUNCIONES DISPONBILES</td>
                                 </tr>
-                            );
-                        })}
+                            )
+                        }
                     </tbody>
                 </table>
             </div>

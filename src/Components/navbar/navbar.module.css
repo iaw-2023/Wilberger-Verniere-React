@@ -28,7 +28,7 @@
 }
 
 .navBarContainerElem:focus {
-    background-color: #03925e;
+    background-color: #6666b6;
 }
 
 .infoCuentaContainer{
@@ -39,6 +39,10 @@
 
 .userNombre{
     background-color: #5f9ea0;
+}
+
+.active{
+    background-color: #03925e;
 }
 
 /* Responsive */

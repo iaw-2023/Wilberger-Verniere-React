@@ -23,7 +23,7 @@ function UsuariosRegistrar() {
                     'name': nombreUser
                 })
                 .then(function (response) {
-                    console.log(response);
+                    console.log("Response: ",response);
                     setNombreUser("");
                     setContraseña("");
                     setEmail("");
@@ -31,7 +31,7 @@ function UsuariosRegistrar() {
                     Navigate("/usuariosIniciar");
                 })
                 .catch(function (response) {
-                    console.log(response);
+                    console.log("Response: ",response);
                     setRespuesta(response.data.message);
                 });
             });

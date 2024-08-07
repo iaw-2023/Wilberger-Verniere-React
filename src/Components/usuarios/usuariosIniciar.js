@@ -22,7 +22,7 @@ function UsuariosIniciar() {
 
         return apiClient.post("/rest/login",data)
         .then(function (response) {
-            console.log(response);
+            console.log("Response: ",response);
             sessionStorage.setItem('login', true);
             sessionStorage.setItem('authToken', response.data.access_token);
             sessionStorage.setItem('userNombre', response.data.user_name);
@@ -31,7 +31,7 @@ function UsuariosIniciar() {
             navigate('/');
           })
         .catch(function (error) {
-            console.log(error.response);
+            console.log("Error: ",error.response);
             setError(error.response.data.message);
           });
     }

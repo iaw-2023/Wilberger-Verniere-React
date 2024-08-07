@@ -1,11 +1,10 @@
 import '../../master.css';
 
-import React, { useContext } from 'react'
-import { dataContext } from "../context/dataContext";
-
+import React from 'react'
 
 function ComprasAsociadas() {
-  const { compraElegida } = useContext(dataContext);
+  
+  const COMPRA_ELEGIDA_JSON = JSON.parse(sessionStorage.getItem("compraElegida"));
 
   return (
     <div className="tabla_container">
@@ -20,7 +19,7 @@ function ComprasAsociadas() {
           </tr>
         </thead>
         <tbody>
-          { compraElegida.Compras && compraElegida.Compras.length>0 && compraElegida.Compras.map((compraObj,index) => (
+          { COMPRA_ELEGIDA_JSON.Compras && COMPRA_ELEGIDA_JSON.Compras.length>0 && COMPRA_ELEGIDA_JSON.Compras.map((compraObj,index) => (
             <tr className="tablaRow" key={index}>
               <td className="tablaBodyElem"> {compraObj.Funcion.Pelicula} </td>
               <td className="tablaBodyElem"> {compraObj.Funcion.Fecha} </td>
