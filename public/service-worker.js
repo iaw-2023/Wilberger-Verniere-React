@@ -18,14 +18,14 @@ self.addEventListener('install', (event) => {
   );
 });
 
-self.addEventListener('fetch', event => {
-  //Pedidos API
-  if (event.request.url.startsWith('https://wilberger-verniere-laravel-zxwy.vercel.app/')){
+self.addEventListener('fetch', (event) => {
+  // Pedidos API
+  if (event.request.url.startsWith('https://wilberger-verniere-laravel-zxwy.vercel.app/')) {
     event.respondWith(
-      caches.open(CACHE_WEBINES).then((cache)=>{
+      caches.open(CACHE_WEBCINES).then((cache) => {
         return cache.match(event.request).then((cachedResponse) => {
           if (cachedResponse) {
-            const responseWithHeader = new Response(cachedResponse.body, {
+            const respuestaConHeader = new Response(cachedResponse.body, {
               status: cachedResponse.status,
               statusText: cachedResponse.statusText,
               headers: new Headers({
@@ -33,34 +33,59 @@ self.addEventListener('fetch', event => {
                 'X-Handled-By': 'ServiceWorker'
               })
             });
-            return responseWithHeader;
+            return respuestaConHeader;
           }
+
           return fetch(event.request).then((networkResponse) => {
-            if (!networkResponse || networkResponse.status != 200 || networkResponse.type != 'basic'){
+            if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
               return networkResponse;
             }
-            cache.put(event.request,networkResponse.clone());
-            return networkResponse;
+
+            const respuestaACache = networkResponse.clone();
+            caches.open(CACHE_WEBCINES).then((cache) => {
+              cache.put(event.request, respuestaACache);
+            });
+
+            const respuestaConHeader = new Response(networkResponse.body, {
+              status: networkResponse.status,
+              statusText: networkResponse.statusText,
+              headers: new Headers({
+                ...networkResponse.headers,
+                'X-Handled-By': 'Network'
+              })
+            });
+            return respuestaConHeader;
           });
         });
       })
-    )
-  } 
-  //Otros pedidos
-  else {
+    );
+  } else {
+    // Otros pedidos
     event.respondWith(
-      caches.match(event.request).then(response => {
-        if (response) { return response; }
-        return fetch(event.request).then((response) => {
-          if (!response || response.status != 200 || response.type != 'basic') {
-            return response;
+      caches.match(event.request).then((response) => {
+        if (response) {
+          const respuestaConHeader = new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: new Headers({
+              ...response.headers,
+              'X-Handled-By': 'ServiceWorker'
+            })
+          });
+          return respuestaConHeader;
+        }
+
+        return fetch(event.request).then((networkResponse) => {
+          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+            return networkResponse;
           }
-          const respuestaACache = response.clone();
+
+          const respuestaACache = networkResponse.clone();
           caches.open(CACHE_WEBCINES).then((cache) => {
             cache.put(event.request, respuestaACache);
           });
 
-          const responseWithHeader = new Response(networkResponse.body, {
+          const respuestaConHeader = new Response(networkResponse.body, {
             status: networkResponse.status,
             statusText: networkResponse.statusText,
             headers: new Headers({
@@ -68,12 +93,13 @@ self.addEventListener('fetch', event => {
               'X-Handled-By': 'Network'
             })
           });
-          return responseWithHeader;
+          return respuestaConHeader;
         });
       })
     );
   }
 });
+
 
 self.addEventListener("activate", (event) => {
   const CACHE = [CACHE_WEBCINES];
