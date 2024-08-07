@@ -57,7 +57,7 @@ function Peliculas() {
                             ))
                         ) : (
                             <tr>
-                                <td colspan="3" className="alertaDiv">NO HAY PELICULAS DISPONBILES</td>
+                                <td colSpan="3" className="alertaDiv">NO HAY PELICULAS DISPONBILES</td>
                             </tr>
                         )
                     }

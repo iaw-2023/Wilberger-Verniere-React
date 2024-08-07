@@ -72,7 +72,7 @@ function FuncionesAsociadas() {
                             })) 
                             : (
                                 <tr>
-                                    <td colspan="6" className="alertaDiv">NO HAY FUNCIONES DISPONBILES</td>
+                                    <td colSpan="6" className="alertaDiv">NO HAY FUNCIONES DISPONBILES</td>
                                 </tr>
                             )
                         }

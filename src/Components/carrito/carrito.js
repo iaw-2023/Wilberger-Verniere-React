@@ -109,7 +109,7 @@ function Ordenes() {
                 ))
               ) : (
                 <tr>
-                    <td colspan="6" className="alertaDiv">NO SE REALIZARON COMPRAS TODAVIA</td>
+                    <td colSpan="6" className="alertaDiv">NO SE REALIZARON COMPRAS TODAVIA</td>
                 </tr>
             )
             }
