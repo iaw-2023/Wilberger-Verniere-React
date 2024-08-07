@@ -25,7 +25,15 @@ self.addEventListener('fetch', event => {
       caches.open(CACHE_WEBINES).then((cache)=>{
         return cache.match(event.request).then((cachedResponse) => {
           if (cachedResponse) {
-            return cachedResponse;
+            const responseWithHeader = new Response(cachedResponse.body, {
+              status: cachedResponse.status,
+              statusText: cachedResponse.statusText,
+              headers: new Headers({
+                ...cachedResponse.headers,
+                'X-Handled-By': 'ServiceWorker'
+              })
+            });
+            return responseWithHeader;
           }
           return fetch(event.request).then((networkResponse) => {
             if (!networkResponse || networkResponse.status != 200 || networkResponse.type != 'basic'){
@@ -51,7 +59,16 @@ self.addEventListener('fetch', event => {
           caches.open(CACHE_WEBCINES).then((cache) => {
             cache.put(event.request, respuestaACache);
           });
-          return response;
+
+          const responseWithHeader = new Response(networkResponse.body, {
+            status: networkResponse.status,
+            statusText: networkResponse.statusText,
+            headers: new Headers({
+              ...networkResponse.headers,
+              'X-Handled-By': 'Network'
+            })
+          });
+          return responseWithHeader;
         });
       })
     );
