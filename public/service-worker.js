@@ -45,7 +45,7 @@ self.addEventListener('fetch', (event) => {
             caches.open(CACHE_WEBCINES).then((cache) => {
               cache.put(event.request, respuestaACache).catch((error) => {
                 console.error("Fallo en cachear respuesta: ", error);
-                return catches.match("/");
+                return caches.match("/");
               });
             });
 
@@ -60,7 +60,7 @@ self.addEventListener('fetch', (event) => {
             return respuestaConHeader;
           }).catch((error) => {
             console.error("Fetch fallo: ", error);
-            return catches.match("/");
+            return caches.match("/");
           });
         });
       })
@@ -90,7 +90,7 @@ self.addEventListener('fetch', (event) => {
           caches.open(CACHE_WEBCINES).then((cache) => {
             cache.put(event.request, respuestaACache).catch((error) => {
               console.error("Fallo en cachear respuesta: ", error);
-              return catches.match("/");
+              return caches.match("/");
             });
           });
 
@@ -105,7 +105,7 @@ self.addEventListener('fetch', (event) => {
           return respuestaConHeader;
         }).catch((error) => {
           console.error("Fetch fallo: ", error);
-          return catches.match("/");
+          return caches.match("/");
         });
       })
     );
