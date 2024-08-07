@@ -19,6 +19,27 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', event => {
+  //Pedidos API
+  if (event.request.url.startsWith('https://wilberger-verniere-laravel-zxwy.vercel.app/')){
+    event.respondWith(
+      caches.open(CACHE_WEBINES).then((cache)=>{
+        return cache.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          return fetch(event.request).then((networkResponse) => {
+            if (!networkResponse || networkResponse.status != 200 || networkResponse.type != 'basic'){
+              return networkResponse;
+            }
+            cache.put(event.request,networkResponse.clone());
+            return networkResponse;
+          });
+        });
+      })
+    )
+  } 
+  //Otros pedidos
+  else {
     event.respondWith(
       caches.match(event.request).then(response => {
         if (response) { return response; }
@@ -34,6 +55,7 @@ self.addEventListener('fetch', event => {
         });
       })
     );
+  }
 });
 
 self.addEventListener("activate", (event) => {
