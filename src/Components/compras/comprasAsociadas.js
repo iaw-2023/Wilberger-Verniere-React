@@ -21,11 +21,11 @@ function ComprasAsociadas() {
         <tbody>
           { COMPRA_ELEGIDA_JSON.Compras && COMPRA_ELEGIDA_JSON.Compras.length>0 && COMPRA_ELEGIDA_JSON.Compras.map((compraObj,index) => (
             <tr className="tablaRow" key={index}>
-              <td className="tablaBodyElem"> {compraObj.Funcion.Pelicula} </td>
-              <td className="tablaBodyElem"> {compraObj.Funcion.Fecha} </td>
-              <td className="tablaBodyElem"> {compraObj.Funcion.Hora} </td>
-              <td className="tablaBodyElem"> {compraObj.Funcion.NroSala} </td>
-              <td className="tablaBodyElem"> {compraObj.NroTickets} </td>
+              <td data-label="Pelicula:" className="tablaBodyElem"> {compraObj.Funcion.Pelicula} </td>
+              <td data-label="Fecha:" className="tablaBodyElem"> {compraObj.Funcion.Fecha} </td>
+              <td data-label="Hora:" className="tablaBodyElem"> {compraObj.Funcion.Hora} </td>
+              <td data-label="Sala:" className="tablaBodyElem"> {compraObj.Funcion.NroSala} </td>
+              <td data-label="Tickets Comprados:" className="tablaBodyElem"> {compraObj.NroTickets} </td>
             </tr>
           ))}
         </tbody>
