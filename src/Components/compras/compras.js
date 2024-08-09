@@ -2,20 +2,18 @@ import '../../master.css';
 
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
-import { dataContext } from "../context/dataContext";
 import apiClient from '../../Services/api';
 
   
 function Compras() {
   const [compra, setCompra] = useState([]);
   const [error, setError] = useState(null);
-  const { setCompraElegida} = useContext(dataContext);
 
   useEffect(() => {
     fetchCompras();
   },[]);  
 
-  console.log(sessionStorage.getItem('userEmail'));
+  console.log("Guardo en sessionStorage: ", sessionStorage.getItem('userEmail'));
 
   const fetchCompras = () => 
   {
@@ -27,10 +25,10 @@ function Compras() {
         Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
       },
     })
-        .then((response) => {
-            setCompra(response.data.data);
-            setError(null);
-        }).catch(setError);
+      .then((response) => {
+          setCompra(response.data.data);
+          setError(null);
+      }).catch(setError);
   }
 
   if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS COMPRAS</p>
@@ -48,15 +46,15 @@ function Compras() {
         <tbody>
           { compra && compra.length>0 && compra.map((compraObj,index) => (
             <tr className="tablaRow" key={index}>
-              <th data-label="Observaciones:" className="tablaBodyElem"> {compraObj.Observaciones} </th>
-              <th data-label="Fecha Creacion:" className="tablaBodyElem"> {compraObj.FechaCompra} </th>
-              <th data-label="Accion:" className="tablaBodyElem"> 
+              <td data-label="Observaciones:" className="tablaBodyElem"> {compraObj.Observaciones} </td>
+              <td data-label="Fecha Creacion:" className="tablaBodyElem"> {compraObj.FechaCompra} </td>
+              <td data-label="Accion:" className="tablaBodyElem"> 
                   <Link to='/ComprasAsociadas'
                   className="button"
-                  onClick={ setCompraElegida(compraObj) }>
+                  onClick={ () => sessionStorage.setItem("compraElegida",JSON.stringify(compraObj)) }>
                     Ordenes Asociadas
                   </Link>
-              </th>
+              </td>
             </tr>
           ))}
         </tbody>

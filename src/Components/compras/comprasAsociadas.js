@@ -1,11 +1,10 @@
 import '../../master.css';
 
-import React, { useContext } from 'react'
-import { dataContext } from "../context/dataContext";
-
+import React from 'react'
 
 function ComprasAsociadas() {
-  const { compraElegida } = useContext(dataContext);
+  
+  const COMPRA_ELEGIDA_JSON = JSON.parse(sessionStorage.getItem("compraElegida"));
 
   return (
     <div className="tabla_container">
@@ -20,13 +19,13 @@ function ComprasAsociadas() {
           </tr>
         </thead>
         <tbody>
-          { compraElegida.Compras && compraElegida.Compras.length>0 && compraElegida.Compras.map((compraObj,index) => (
+          { COMPRA_ELEGIDA_JSON.Compras && COMPRA_ELEGIDA_JSON.Compras.length>0 && COMPRA_ELEGIDA_JSON.Compras.map((compraObj,index) => (
             <tr className="tablaRow" key={index}>
-              <th className="tablaBodyElem"> {compraObj.Funcion.Pelicula} </th>
-              <th className="tablaBodyElem"> {compraObj.Funcion.Fecha} </th>
-              <th className="tablaBodyElem"> {compraObj.Funcion.Hora} </th>
-              <th className="tablaBodyElem"> {compraObj.Funcion.NroSala} </th>
-              <th className="tablaBodyElem"> {compraObj.NroTickets} </th>
+              <td data-label="Pelicula:" className="tablaBodyElem"> {compraObj.Funcion.Pelicula} </td>
+              <td data-label="Fecha:" className="tablaBodyElem"> {compraObj.Funcion.Fecha} </td>
+              <td data-label="Hora:" className="tablaBodyElem"> {compraObj.Funcion.Hora} </td>
+              <td data-label="Sala:" className="tablaBodyElem"> {compraObj.Funcion.NroSala} </td>
+              <td data-label="Tickets Comprados:" className="tablaBodyElem"> {compraObj.NroTickets} </td>
             </tr>
           ))}
         </tbody>

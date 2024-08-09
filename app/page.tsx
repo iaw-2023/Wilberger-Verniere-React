@@ -1,8 +1,9 @@
 
-import React from "react"
+"use client";
+
+import React, { useEffect } from "react"
 import 'bootstrap/dist/css/bootstrap.css';
 import Link from 'next/link';
-import Footer from "../src/Components/footer/footer";
 
 
 export default function welcome(){
@@ -30,7 +31,6 @@ export default function welcome(){
             Visite nuestra pagina.
           </Link>
         </div>
-        <Footer/>
     </main>
   )
 }

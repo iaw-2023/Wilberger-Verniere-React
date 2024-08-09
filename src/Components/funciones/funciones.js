@@ -40,29 +40,37 @@ function Funciones() {
                         </tr>
                     </thead>
                     <tbody>
-                        { funcion && funcion.length>0 && funcion.map((funcionObj,index) => {
-                            const tablaParcial = (
-                                <>
-                                    <th data-label="Pelicula:" className="tablaBodyElem"> {funcionObj.Pelicula} </th>
-                                    <th data-label="Fecha:" className="tablaBodyElem"> {funcionObj.Fecha} </th>
-                                    <th data-label="Hora:" className="tablaBodyElem"> {funcionObj.Hora} </th>
-                                    <th data-label="Sala numero:" className="tablaBodyElem"> {funcionObj.NroSala} </th>
-                                    <th data-label="Asientos Disponibles:" className="tablaBodyElem"> {funcionObj.AsientosDisponible} </th>
-                                </>
-                            );
-                            return(
-                                <tr className={`tablaRow ${funcionObj.AsientosDisponible > 0 ? '' : styles.sinAsientos}`} key={index}>
-                                    {tablaParcial}
-                                    <th data-label="Accion:" className="tablaBodyElem">
-                                        {funcionObj.AsientosDisponible > 0 ? (
-                                            <Button className="button" onClick={() => promptComprar(funcionObj)}>Comprar</Button>
-                                        ) : (
-                                            "ENTRADAS AGOTADAS"
-                                        )}
-                                    </th>
+                        { funcion && funcion.length>0 ? (
+                            funcion.map((funcionObj,index) => {
+                                const tablaParcial = (
+                                    <>
+                                        <td data-label="Pelicula:" className="tablaBodyElem"> {funcionObj.Pelicula} </td>
+                                        <td data-label="Fecha:" className="tablaBodyElem"> {funcionObj.Fecha} </td>
+                                        <td data-label="Hora:" className="tablaBodyElem"> {funcionObj.Hora} </td>
+                                        <td data-label="Sala numero:" className="tablaBodyElem"> {funcionObj.NroSala} </td>
+                                        <td data-label="Asientos Disponibles:" className="tablaBodyElem"> {funcionObj.AsientosDisponible} </td>
+                                    </>
+                                );
+                                return(
+                                    <tr className={`tablaRow ${funcionObj.AsientosDisponible > 0 ? '' : styles.sinAsientos}`} key={index}>
+                                        {tablaParcial}
+                                        <td data-label="Accion:" className="tablaBodyElem">
+                                            {funcionObj.AsientosDisponible > 0 ? (
+                                                <Button className="button" onClick={() => promptComprar(funcionObj) }>Comprar</Button>
+                                            ) : (
+                                                "ENTRADAS AGOTADAS"
+                                            )}
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                            ) 
+                            : (
+                                <tr>
+                                    <td colSpan="6" className="alertaDiv">NO HAY FUNCIONES DISPONBILES</td>
                                 </tr>
-                            );
-                        })}
+                            )
+                        }
                     </tbody>
                 </table>
             </div>
