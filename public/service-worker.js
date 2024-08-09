@@ -30,7 +30,7 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_WEBCINES).then((cache) => {
       return cache.addAll(INSTALL_CACHE)
       .catch(error => {
-        console.log("Error install: ", error);
+        console.log("Error install PWA: ", error);
       });
     })
   );
@@ -41,7 +41,7 @@ const deNetwork = (request, timeout) =>
     if (!navigator.onLine) {
       return reject();
     }
-    
+
     const timeoutId = setTimeout(reject, timeout);
     fetch(request).then(response => {
       clearTimeout(timeoutId);
