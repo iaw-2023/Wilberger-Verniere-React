@@ -4,6 +4,7 @@ const INSTALL_CACHE = [
   '/funciones',
   '/peliculas',
   '/generos',
+  '/paginaErrorPWA',
   '../app/background.jpg',
   './icons/webCinesIcon.png'
 ];
@@ -51,7 +52,7 @@ const deCache = request =>
     .then(cache =>
       cache
         .match(request)
-        .then(matching => matching || cache.match("/"))
+        .then(matching => matching || cache.match("/paginaErrorPWA"))
     );
 
 const actualizar = request =>

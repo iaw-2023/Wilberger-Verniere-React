@@ -35,6 +35,7 @@ export default function App() {
   const UserIni = require('../src/Components/usuarios/usuariosIniciar').default;
   const UserReg = require('../src/Components/usuarios/usuariosRegistrar').default;
   const PagoTarjeta = require('../src/Components/mercadoPagoTarjeta/pagoTarjeta').default;
+  const PWA = require('../src/Components/pwa/pwa').default;
 
   function ProteccionRoute({ element, isLogin }) {  
     if (isLogin || sessionStorage.getItem('authToken')) {
@@ -65,6 +66,8 @@ export default function App() {
             <Route path="/comprasAsociadas" element={<ProteccionRoute element={<ComprasAsociadas />} />} />
             <Route path="/carrito" element={<ProteccionRoute element={<Carrito />} />} />
             <Route path="/pagoTarjeta" element={<ProteccionRoute element={<PagoTarjeta />} />} />
+
+            <Route path="/paginaErrorPWA" element={<PWA />} />
           </Routes>
         </DataProvider>
       </HashRouter>
