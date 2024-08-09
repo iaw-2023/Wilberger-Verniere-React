@@ -38,6 +38,10 @@ self.addEventListener('install', (event) => {
 
 const deNetwork = (request, timeout) => 
   new Promise((fulfill, reject) => {
+    if (!navigator.onLine) {
+      return reject();
+    }
+    
     const timeoutId = setTimeout(reject, timeout);
     fetch(request).then(response => {
       clearTimeout(timeoutId);
@@ -59,12 +63,14 @@ const actualizar = request =>
   caches
     .open(CACHE_WEBCINES)
     .then(cache =>
-      fetch(request).then(response => cache.put(request,response))
+      fetch(request)
+        .then(response => cache.put(request,response))
+        .catch(error => console.log("Error actualizar PWA: ",error))
     );
 
 self.addEventListener('fetch', event => {
   event.respondWith(
-    deNetwork(event.request,10000).catch(() => deCache(event.request))
+    deNetwork(event.request,5000).catch(() => deCache(event.request))
   );
   event.waitUntil(actualizar(event.request));
 });
