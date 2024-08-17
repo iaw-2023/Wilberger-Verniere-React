@@ -3,9 +3,6 @@ import { useState } from 'react';
 import { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../Services/api';
-import OPENAI_API_KEY from '../../config/openai'; 
-import OPEN_DATABASE_API_KEY from '../../config/openDatabase'; 
-import axios from 'axios';
 
 export const dataContext = createContext([]);
 
@@ -161,23 +158,11 @@ const DataProvider = ( {children} ) => {
     const preguntarChatGptAPI = async (consulta) =>
     {
         try {
-            const response = await axios.get(
-                'https://api.openai.com/v1/chat/completions',
-              {
-                model: 'gpt-3.5-turbo',
-                messages: [
-                    { role: 'system', content: 'You are a helpful assistant.' },
-                    { role: 'user', content: consulta },
-                ],
-                max_tokens: 250,
-              },
-              {
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${OPENAI_API_KEY}`,
-                },
-              }
-            );
+            const response = await apiClient.get("/rest/chatgpt", {
+                params: {
+                    'consulta': consulta, 
+                }
+            });
             console.log('Respuesta ChatGPT: ',response);
             if (response.data && response.data.choices && response.data.choices.length > 0){
                 setRespuestaChatGPT(response.data.choices[0].message.content);
@@ -200,14 +185,11 @@ const DataProvider = ( {children} ) => {
     const preguntarOpenMovie = async (nombre) =>
     {
         try {
-            const response = await axios.get(
-                'https://www.omdbapi.com/?apikey='+OPEN_DATABASE_API_KEY+'&'+'t='+nombre,
-              {
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-              }
-            );
+            const response = await apiClient.get("/rest/openmovie", { 
+                params: {
+                    'nombre': nombre, 
+                }
+            });
             console.log('Respuesta OpenMovie: ', response);
             if (response.data){
                 setRespuestaOpenMovie(response.data);
