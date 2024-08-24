@@ -3,17 +3,16 @@ import { useState } from 'react';
 import { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../Services/api';
-import OPENAI_API_KEY from '../../config/openai'; 
-import axios from 'axios';
 
 export const dataContext = createContext([]);
 
 const DataProvider = ( {children} ) => {
-    const [carrito, setCarrito] = useState([]);
-    const [peliculaElegida, setPeliculaElegida] = useState([]);
-    const [compraElegida, setCompraElegida] = useState();
     const [respuestaChatGPT, setRespuestaChatGPT] = useState('');
     const [errorRespuestaChatGPT, seterrorRespuestaChatGPT] = useState('');
+    const [respuestaOpenMovie, setRespuestaOpenMovie] = useState('');
+    const [errorRespuestaOpenMovie, seterrorRespuestaOpenMovie] = useState('');
+    const [observacionesCompra, setObservacionesCompra] = useState('');
+
     const navigate = useNavigate();
 
     const promptComprar = (compra) => 
@@ -37,33 +36,33 @@ const DataProvider = ( {children} ) => {
             console.log("se va a llamar a comprar");
             comprar(compra, cantTickets);
             console.log("se completo comprar");
-            console.log(carrito);
+            console.log("Carrito JSON: ", JSON.parse(sessionStorage.getItem('carrito')));
         }
         console.log("Se cancelo comprar tickets");
     }
 
     const comprar = (compra, tickets) => 
     {
-        setCarrito( () => {
-            compra.NroTickets = tickets;
-            let found = false;
-            let index = 0;
-            console.log("Buscando compra en carrito");
-            while (!found && index < carrito.length){
-                let aux = carrito.at(index);
-                if (comprasIguales(aux,compra)){
-                    aux.NroTickets += compra.NroTickets;
-                    found = true;
-                    console.log("Se encontro compra en carrito y se sumaron tickets");
-                }
-                index++;
+        compra.NroTickets = tickets;
+        let CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito')) || [];
+        let found = false;
+        let index = 0;
+        console.log("Buscando compra en carrito");
+
+        while (!found && index < CARRITO_JSON.length){
+            let aux = CARRITO_JSON[index];
+            if (comprasIguales(aux,compra)){
+                aux.NroTickets += compra.NroTickets;
+                found = true;
+                console.log("Se encontro compra en carrito y se sumaron tickets");
             }
-            if (!found){
-                console.log("No se encontro, se agrego nueva compra al carrito");
-                carrito.push (compra);
-            }
-            return carrito;
-        });
+            index++;
+        }
+        if (!found){
+            console.log("No se encontro, se agrego nueva compra al carrito");
+            CARRITO_JSON.push(compra);
+        }
+        sessionStorage.setItem('carrito', JSON.stringify(CARRITO_JSON));
     }
  
     const comprasIguales = (compra1, compra2) => 
@@ -78,27 +77,30 @@ const DataProvider = ( {children} ) => {
 
     const cancelarOrden = (index) =>
     {
-        setCarrito( () => {
-            let nuevoCarrito = [];
-            for (let i=0; i<carrito.length; i++){
-                if (i != index){
-                    nuevoCarrito.push(carrito[i]);
-                }
+        let CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito')) || [];
+        let nuevoCarrito = [];
+        for (let i=0; i<CARRITO_JSON.length; i++){
+            if (i != index){
+                nuevoCarrito.push(CARRITO_JSON[i]);
             }
-            return nuevoCarrito;
-        });
+        }
+        sessionStorage.setItem('carrito', JSON.stringify(nuevoCarrito));
+
+        CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito'));
+        console.log("Compra cancelada, carrito JSON: ", CARRITO_JSON);
     }
 
     const confirmarCompra = (observaciones, email, fechaCompra) =>
     {
-        let obvs = observaciones;
-        if (obvs=="") { obvs = "-";}
-        apiClient.post("/rest/compras/crear",
+        let obvs = observaciones === "" ? "-" : observaciones;
+        let CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito'))
+
+        return apiClient.post("/rest/compras/crear",
         { 
             'Observaciones': obvs, 
             'Email': email, 
             'FechaCompra': fechaCompra, 
-            'Compras': carrito 
+            'Compras': CARRITO_JSON 
         },
         {
             headers: {
@@ -106,20 +108,18 @@ const DataProvider = ( {children} ) => {
             },
         })
         .then(function (response) {
-            console.log(response);
-            setCarrito([]);
+            console.log("Response: ",response);
+            limpiarCompra();
           })
         .catch(function (error) {
-            console.log(error);
-            return null;
+            console.log("Error: ",error);
+            throw error;
           }); 
     }
 
-    const limpiarCompra = () =>
-    { 
-        setCarrito( () => {
-            return [];
-        });
+    const limpiarCompra = () => { 
+        sessionStorage.setItem('carrito', JSON.stringify([]));
+        console.log("Se limpio el carrito de compras");
     }
 
     const handleLogOut = () =>
@@ -133,15 +133,18 @@ const DataProvider = ( {children} ) => {
             },
         })
         .then(function (response) {
-            console.log(response);
+            console.log("Response: ",response);
             sessionStorage.removeItem('authToken');
             sessionStorage.removeItem('login');
             sessionStorage.removeItem('userNombre');
             sessionStorage.removeItem('userEmail');
+            sessionStorage.removeItem('carrito');
+            sessionStorage.removeItem('compraElegida');
+            sessionStorage.removeItem('peliculaElegida');
             navigate("/usuariosIniciar");
         })
         .catch(function (error) {
-            console.log(error);
+            console.log("Error: ",error);
             return null;
         });
     } 
@@ -156,23 +159,11 @@ const DataProvider = ( {children} ) => {
     const preguntarChatGptAPI = async (consulta) =>
     {
         try {
-            const response = await axios.post(
-                'https://api.openai.com/v1/chat/completions',
-              {
-                model: 'gpt-3.5-turbo',
-                messages: [
-                    { role: 'system', content: 'You are a helpful assistant.' },
-                    { role: 'user', content: consulta },
-                ],
-                max_tokens: 250,
-              },
-              {
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${OPENAI_API_KEY}`,
-                },
-              }
-            );
+            const response = await apiClient.get("/rest/chatgpt", {
+                params: {
+                    'consulta': consulta, 
+                }
+            });
             console.log('Respuesta ChatGPT: ',response);
             if (response.data && response.data.choices && response.data.choices.length > 0){
                 setRespuestaChatGPT(response.data.choices[0].message.content);
@@ -184,17 +175,47 @@ const DataProvider = ( {children} ) => {
             }
     }
 
+    const obtenerInfoPeliculaOpenMovie = (nombre) =>
+    {
+        setRespuestaOpenMovie('');
+        let nombreFormateado = nombre.replace(/\s/g, '+');
+        console.log("nombreFormateado: ",nombreFormateado);        
+        preguntarOpenMovie(nombreFormateado);
+    }
+
+    const preguntarOpenMovie = async (nombre) =>
+    {
+        try {
+            const response = await apiClient.get("/rest/openmovie", { 
+                params: {
+                    'nombre': nombre, 
+                }
+            });
+            console.log('Respuesta OpenMovie: ', response);
+            if (response.data){
+                setRespuestaOpenMovie(response.data);
+                seterrorRespuestaOpenMovie('');
+            }
+          } catch (error) { 
+                console.error('Error:', error);
+                seterrorRespuestaOpenMovie('ERROR: solicitud OpenMovieDB');
+            }
+    }
+
+    const pagarconMP = () => {
+        navigate('/pagoTarjeta');
+        return;
+    }
+
     return <dataContext.Provider value={ 
         {
-            carrito, setCarrito, 
-            promptComprar, cancelarOrden, 
-            confirmarCompra, limpiarCompra, 
-            peliculaElegida, setPeliculaElegida,
-            compraElegida, setCompraElegida,
-            handleLogOut,
-            obtenerInfoPeliculaChatGPT,
-            respuestaChatGPT,
-            errorRespuestaChatGPT,
+            promptComprar, 
+            cancelarOrden, 
+            limpiarCompra, confirmarCompra, pagarconMP,
+            obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT,
+            obtenerInfoPeliculaOpenMovie, respuestaOpenMovie, errorRespuestaOpenMovie,
+            observacionesCompra, setObservacionesCompra, 
+            handleLogOut
         }
     }>{children}</dataContext.Provider>
 };

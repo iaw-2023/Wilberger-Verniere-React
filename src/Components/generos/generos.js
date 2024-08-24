@@ -38,25 +38,33 @@ function Generos() {
       fetchGenero();
   },[]);
 
-  if (error) return<p> OCURRIO UN ERROR AL PEDIR LOS GENEROS </p>
+  if (error) return <p> OCURRIO UN ERROR AL PEDIR LOS GENEROS </p>
 
   return (
     <div>
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="tabla dark:text-gray-400">
-                <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
+        <div className="tabla_container">
+            <table className="tabla">
+                <thead className="tablaHead tablaOscuro">
                     <tr>
-                        <th scope="col" className="tablaH">Nombre: </th>
-                        <th scope="col" className="tablaH">Peliculas: </th>
+                        <th scope="col" className="tablaHeadElem">Nombre: </th>
+                        <th scope="col" className="tablaHeadElem">Peliculas: </th>
                     </tr>
                 </thead>
                 <tbody>
-                    { genero && genero.length>0 && genero.map((generoObj,index) => (
-                        <tr className="tablaRow" key={index}>
-                            <th className="tablaH"> {generoObj.Nombre} </th>
-                            <th className="tablaH"> {listaPeliculas(generoObj.Peliculas) } </th>
-                        </tr>
-                    ))}
+                    { genero && genero.length>0 ? (
+                        genero.map((generoObj,index) => (
+                            <tr className="tablaRow" key={index}>
+                                <td data-label="Nombre:" className="tablaBodyElem"> {generoObj.Nombre} </td>
+                                <td data-label="Peliculas:" className="tablaBodyElem"> { listaPeliculas(generoObj.Peliculas) } </td>
+                            </tr>
+                            ))
+                        ) 
+                        : (
+                            <tr>
+                                <td colSpan="2" className="alertaDiv">NO HAY GENEROS DISPONBILES</td>
+                            </tr>
+                        )
+                    }
                 </tbody>
             </table>
         </div>

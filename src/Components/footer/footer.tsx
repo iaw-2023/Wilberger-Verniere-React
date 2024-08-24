@@ -13,9 +13,9 @@ function Footer() {
         </div>
         <a href="https://react.dev">
           <img
-          src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-          alt="react-logo"
-          className={styles.logo}
+            src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+            alt="react-logo"
+            className={styles.logo}
           />
         </a>
       </div>

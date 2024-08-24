@@ -1,0 +1,3 @@
+const MERCADOPAGO_API_KEY = 'TEST-7a37b458-bec9-4bbf-8c74-1073203809bb';
+
+export default MERCADOPAGO_API_KEY;

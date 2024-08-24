@@ -1,21 +1,54 @@
 import '../../master.css';
 import styles from "./carrito.module.css";
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 
 function Ordenes() {
-  const {carrito, cancelarOrden, limpiarCompra, confirmarCompra } = useContext(dataContext);
-  const [observaciones, SetObservaciones] = useState("");
-  
+  const { cancelarOrden, limpiarCompra, confirmarCompra, pagarconMP, observacionesCompra, setObservacionesCompra } = useContext(dataContext);
+  const [CARRITO_JSON, setCarrito] = useState(JSON.parse(sessionStorage.getItem('carrito')) || [])
+
+  useEffect(() => {
+    setObservacionesCompra("");
+  }, []);
+
+  const actualizarCarrito = () => {
+    const carr_JSON = JSON.parse(sessionStorage.getItem('carrito')) || [];
+    setCarrito(carr_JSON);
+    console.log("Se actualizo el carrito en carrito.js", carr_JSON);
+  }
+
+  const confirmarCompraCarrito = async (observaciones, email, fechaCompra) => {
+    try{
+      await confirmarCompra(observaciones, email, fechaCompra);
+      actualizarCarrito();
+    } catch (error){
+      console.error("Error al confirmar compra: ",error);
+    }
+  }
+
+  const limpiarCompraCarrito = () => {
+    limpiarCompra();
+    actualizarCarrito();
+  }
+
+  const cancelarOrdenCarrito = (index) => {
+    cancelarOrden(index);
+    actualizarCarrito();
+  }
+
+  const pagarconMPCarrito = () => {
+    pagarconMP();
+    actualizarCarrito();
+  }
+
   const handleSubmitObservaciones = (event) => 
   {
     event.preventDefault();
-    if(event.target.value) {SetObservaciones(event.target.value);}
-    else { SetObservaciones(""); }
-    console.log(observaciones);
+    setObservacionesCompra(event.target.value);
+    console.log("observacionesCompra: ", observacionesCompra);
   }
 
   const getCurrentDate = (separator='-') => 
@@ -28,53 +61,71 @@ function Ordenes() {
     return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`;
   }
 
-  console.log(carrito);
-  console.log(sessionStorage.getItem('userEmail'));
+  console.log("Carrito JSON: ",CARRITO_JSON);
+  console.log("Guardo en sessionStorage: ",sessionStorage.getItem('userEmail'));
 
   return (
     <div className='wrapper'>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <div className="tabla_container">
         <div className={styles.carritoInputWrapper}>
           <div className={styles.carritoObservaciones}>
-            <div className={styles.carritoObservacionesText}>Observaciones:</div>   
-            <input type="text" className={styles.carritoInputObservaciones} value={observaciones} onChange={handleSubmitObservaciones}/>
+            <label for="observaciones-texto" className={styles.carritoObservacionesText}>Observaciones:</label>   
+            <input id="observaciones-texto" type="text" 
+              className={styles.carritoInputObservaciones} 
+              value={observacionesCompra} 
+              onChange={handleSubmitObservaciones}
+            />
           </div>
         </div>
-        <table className="tabla dark:text-gray-400">
-          <thead className="tablaHead dark:bg-gray-700 dark:text-gray-400">
+        <table className="tabla">
+          <thead className="tablaHead tablaOscuro">
             <tr>
-              <th scope="col" className="tablaH">Pelicula:</th>
-              <th scope="col" className="tablaH">Fecha:</th>
-              <th scope="col" className="tablaH">Hora:</th>
-              <th scope="col" className="tablaH">Sala numero:</th>
-              <th scope="col" className="tablaH">Tickets Comprados:</th>
-              <th scope="col" className="tablaH">Accion:</th>
+              <th scope="col" className="tablaHeadElem">Pelicula:</th>
+              <th scope="col" className="tablaHeadElem">Fecha:</th>
+              <th scope="col" className="tablaHeadElem">Hora:</th>
+              <th scope="col" className="tablaHeadElem">Sala numero:</th>
+              <th scope="col" className="tablaHeadElem">Tickets Comprados:</th>
+              <th scope="col" className="tablaHeadElem">Accion:</th>
             </tr>
           </thead>
           <tbody>
-            { carrito && carrito.length>0 && carrito.map((carritoObj, index) => (
-              <tr className="tablaRow" key={index}>
-                <th className="tablaH"> {carritoObj.Pelicula}      </th>
-                <th className="tablaH"> {carritoObj.Fecha}         </th>
-                <th className="tablaH"> {carritoObj.Hora}          </th>
-                <th className="tablaH"> {carritoObj.NroSala}       </th>
-                <th className="tablaH"> {carritoObj.NroTickets}    </th>
-                <th className="tablaH"> 
-                    <Button className={styles.carritoBotonQuitarOrden} onClick={ ()=>cancelarOrden(index) }>Quitar</Button>
-                </th>
-              </tr>
-            ))}
+            { CARRITO_JSON.length>0 ? (
+                CARRITO_JSON.map((carritoObj, index) => (
+                  <tr className="tablaRow" key={index}>
+                    <td data-label="Pelicula:" className="tablaBodyElem"> {carritoObj.Pelicula}      </td>
+                    <td data-label="Fecha:" className="tablaBodyElem"> {carritoObj.Fecha}         </td>
+                    <td data-label="Hora:" className="tablaBodyElem"> {carritoObj.Hora}          </td>
+                    <td data-label="Sala numero:" className="tablaBodyElem"> {carritoObj.NroSala}       </td>
+                    <td data-label="Tickets Comprados:" className="tablaBodyElem"> {carritoObj.NroTickets}    </td>
+                    <td data-label="Accion:" className="tablaBodyElem"> 
+                        <Button 
+                        className={`button button_cancelar`} 
+                        onClick={ ()=>cancelarOrdenCarrito(index) }>
+                          Quitar
+                        </Button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                    <td colSpan="6" className="alertaDiv">NO SE REALIZARON COMPRAS TODAVIA</td>
+                </tr>
+            )
+            }
           </tbody>
         </table>
+        { CARRITO_JSON.length>0 ? (
+          <ButtonGroup className={styles.carritoBotonGroup}>
+            <Button className={`button button_cancelar`} onClick={ ()=>limpiarCompraCarrito() }>Eliminar Compra</Button>
+            <Button className={`button button_confirmar`} 
+              onClick={ ()=>confirmarCompraCarrito(observacionesCompra, sessionStorage.getItem('userEmail'), getCurrentDate()) }>
+              Confirmar Compra
+            </Button>
+            <Button className={`button button_mp`} onClick={ ()=>pagarconMPCarrito() }>Pagar con MercadoPago</Button>
+          </ButtonGroup>
+          ) : ("")
+        }
       </div>
-      <ButtonGroup className={styles.carritoBotonGroup}>
-        { carrito && carrito.length>0 &&
-          <Button className={styles.carritoBotonCancelar} onClick={ ()=>limpiarCompra() }>Eliminar Compra</Button>
-        }
-        { carrito && carrito.length>0 && 
-          <Button className={styles.carritoBotonEnviar} onClick={ ()=>confirmarCompra(observaciones, sessionStorage.getItem('userEmail'), getCurrentDate()) }>Confirmar Compra</Button>
-        }
-      </ButtonGroup>
     </div>
   )
 }
