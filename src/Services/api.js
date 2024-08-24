@@ -1,8 +1,7 @@
 import axios from 'axios';
  
 const apiClient = axios.create({
-    //baseURL: 'https://wilberger-verniere-laravel-zxwy.vercel.app/',
-    baseURL: 'https://wilberger-verniere-laravel-zxwy-c6hf81cm8-iawv.vercel.app/',
+    baseURL: 'https://wilberger-verniere-laravel-zxwy.vercel.app/',
     withCredentials: true,
 });
  
