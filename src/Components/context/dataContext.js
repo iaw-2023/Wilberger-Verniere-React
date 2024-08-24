@@ -11,6 +11,7 @@ const DataProvider = ( {children} ) => {
     const [errorRespuestaChatGPT, seterrorRespuestaChatGPT] = useState('');
     const [respuestaOpenMovie, setRespuestaOpenMovie] = useState('');
     const [errorRespuestaOpenMovie, seterrorRespuestaOpenMovie] = useState('');
+    const [observacionesCompra, setObservacionesCompra] = useState('');
 
     const navigate = useNavigate();
 
@@ -212,7 +213,8 @@ const DataProvider = ( {children} ) => {
             cancelarOrden, 
             limpiarCompra, confirmarCompra, pagarconMP,
             obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT,
-            obtenerInfoPeliculaOpenMovie, respuestaOpenMovie, errorRespuestaOpenMovie, 
+            obtenerInfoPeliculaOpenMovie, respuestaOpenMovie, errorRespuestaOpenMovie,
+            observacionesCompra, setObservacionesCompra, 
             handleLogOut
         }
     }>{children}</dataContext.Provider>

@@ -7,9 +7,8 @@ import { dataContext } from '../context/dataContext';
 import { useContext } from 'react';
 
 function Ordenes() {
-  const { cancelarOrden, limpiarCompra, confirmarCompra, pagarconMP } = useContext(dataContext);
+  const { cancelarOrden, limpiarCompra, confirmarCompra, pagarconMP, observacionesCompra, setObservacionesCompra } = useContext(dataContext);
   const [CARRITO_JSON, setCarrito] = useState(JSON.parse(sessionStorage.getItem('carrito')) || [])
-  const [observacionesCompra, setObservacionesCompra] = useState('');
 
   useEffect(() => {
     setObservacionesCompra("");
