@@ -58,7 +58,7 @@ function PagoTarjeta() {
                    Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
                 }
               })
-                .then((response) => response.json())
+                //.then((response) => response.json())
                 .then((response) => {
                   // get payment result
                   console.log("Resolve: ",response)
