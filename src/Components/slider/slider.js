@@ -17,7 +17,7 @@ function Slider({ slides }) {
           <Carousel.Item key={slide.image} interval={slide.interval}>
             <img className={styles.carouselImage}
               src={slide.image}
-              alt=""
+              alt={`Portada de la pelicula: ${slide.title}`}
             />
             <Carousel.Caption>
               <div className={styles.carouselCaptionContainer}>
