@@ -69,7 +69,7 @@ function PagoTarjeta() {
                   resolve();
                   console.log("Se confirma la compra con tarjeta");
                   confirmarCompra(observacionesCompra + "- PAGO TARJETA MP", sessionStorage.getItem('userEmail'), getCurrentDate());
-                  navigate("/carrito");
+                  navigate("/funciones");
                 })
                 .catch((error) => {
                   // get payment result error
