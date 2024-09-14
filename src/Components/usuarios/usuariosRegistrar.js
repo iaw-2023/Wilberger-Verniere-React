@@ -2,7 +2,7 @@ import styles from "./usuarios.module.css";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import apiClient from '../../Services/api';
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function UsuariosRegistrar() {
 
@@ -11,6 +11,8 @@ function UsuariosRegistrar() {
     const [email, setEmail] = useState("");
     const [respuesta, setRespuesta] = useState(null);
     const [emailValido, SetEmailValido] = useState(false);
+
+    const navigate = useNavigate();
 
     const submitRegister = () =>
     {
@@ -28,7 +30,7 @@ function UsuariosRegistrar() {
                     setContraseña("");
                     setEmail("");
                     setRespuesta(response.data.message);
-                    Navigate("/usuariosIniciar");
+                    navigate("/usuariosIniciar");
                 })
                 .catch(function (response) {
                     console.log("Response: ",response);

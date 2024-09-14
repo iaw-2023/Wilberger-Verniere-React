@@ -2,10 +2,14 @@ import MERCADOPAGO_API_KEY from "../../config/mercadopago";
 import React, { useContext, useEffect } from 'react';
 import { dataContext } from '../context/dataContext';
 import apiClient from "../../Services/api";
+import { useNavigate } from "react-router-dom";
 
 function PagoTarjeta() {
 
   const { confirmarCompra, observacionesCompra } = useContext(dataContext);
+
+  const navigate = useNavigate();
+  
   const inicializacionMercadoPago = () =>
   {
     const scriptMercadoPago = document.createElement("script");
@@ -65,6 +69,7 @@ function PagoTarjeta() {
                   resolve();
                   console.log("Se confirma la compra con tarjeta");
                   confirmarCompra(observacionesCompra + "- PAGO TARJETA MP", sessionStorage.getItem('userEmail'), getCurrentDate());
+                  navigate("/carrito");
                 })
                 .catch((error) => {
                   // get payment result error
