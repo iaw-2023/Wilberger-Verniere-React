@@ -195,7 +195,7 @@ const DataProvider = ( {children} ) => {
                 }
             });
             console.log('Respuesta Gemini: ',response);
-            const responseAsJSON = response.josn();
+            const responseAsJSON = response.json();
             if (responseAsJSON.status === 200) {
                 const sinopsis = responseAsJSON.data.content || responseAsJSON.data.sinopsis || 'No se encontró sinopsis';
                 setRespuestaGemini(sinopsis);
