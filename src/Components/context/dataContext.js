@@ -198,6 +198,7 @@ const DataProvider = ( {children} ) => {
             
             if (response.status === 200) {
                 const responseAsJSON = JSON.parse(response.data.content);
+                console.log('ResponseAsJSON:', responseAsJSON);
                 const sinopsis = responseAsJSON.content;
                 setRespuestaGemini(sinopsis);
                 setErrorRespuestaGemini('');
