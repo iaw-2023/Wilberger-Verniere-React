@@ -9,6 +9,8 @@ export const dataContext = createContext([]);
 const DataProvider = ( {children} ) => {
     const [respuestaChatGPT, setRespuestaChatGPT] = useState('');
     const [errorRespuestaChatGPT, seterrorRespuestaChatGPT] = useState('');
+    const [respuestaGemini, setRespuestaGemini] = useState('');
+    const [errorRespuestaGemini, setErrorRespuestaGemini] = useState('');
     const [respuestaOpenMovie, setRespuestaOpenMovie] = useState('');
     const [errorRespuestaOpenMovie, seterrorRespuestaOpenMovie] = useState('');
     const [observacionesCompra, setObservacionesCompra] = useState('');
@@ -175,6 +177,39 @@ const DataProvider = ( {children} ) => {
             }
     }
 
+
+    const obtenerInfoPeliculaGemini = (nombre) => 
+    {
+        setRespuestaGemini('');
+        const consulta = "¿Can you give me a short plot description of the movie: "+nombre+"?. If not posible respond 'Error al buscar una sinopsis en Gemini'";
+        preguntarGeminiAPI(consulta);
+    }
+    
+
+    const preguntarGeminiAPI = async (consulta) =>
+    {
+        try {
+            const response = await apiClient.get("/rest/gemini", {
+                params: {
+                    'consulta': consulta, 
+                }
+            });
+            console.log('Respuesta Gemini: ',response);
+            if (response.status === 200 && response.data.content){
+                setRespuestaGemini(response.data.content);
+                setErrorRespuestaGemini('');
+            }
+            else {
+                setRespuestaGemini('');
+                setErrorRespuestaGemini(response.data.error);
+            }
+        } catch (error) { 
+            console.error('Error:', error);
+            setErrorRespuestaGemini('ERROR: solicitud Gemini');
+        }
+    }
+
+
     const obtenerInfoPeliculaOpenMovie = (nombre) =>
     {
         setRespuestaOpenMovie('');
@@ -213,6 +248,7 @@ const DataProvider = ( {children} ) => {
             cancelarOrden, 
             limpiarCompra, confirmarCompra, pagarconMP,
             obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT,
+            obtenerInfoPeliculaGemini, respuestaGemini, errorRespuestaGemini,
             obtenerInfoPeliculaOpenMovie, respuestaOpenMovie, errorRespuestaOpenMovie,
             observacionesCompra, setObservacionesCompra, 
             handleLogOut

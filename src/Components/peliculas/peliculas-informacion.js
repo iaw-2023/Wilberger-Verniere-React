@@ -9,6 +9,7 @@ function PeliculasInformacion(){
 
     const {  
         obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT, 
+        obtenerInfoPeliculaGemini, respuestaGemini, errorRespuestaGemini,
         obtenerInfoPeliculaOpenMovie, respuestaOpenMovie, errorRespuestaOpenMovie, 
     } = useContext(dataContext);
 
@@ -17,7 +18,7 @@ function PeliculasInformacion(){
     const fetchInfo = () =>
     { 
         console.log("Pelicula elegida JSON: ",PELICULA_ELEGIDA_JSON); 
-        obtenerInfoPeliculaChatGPT(PELICULA_ELEGIDA_JSON.Nombre);
+        obtenerInfoPeliculaGemini(PELICULA_ELEGIDA_JSON.Nombre);
         obtenerInfoPeliculaOpenMovie(PELICULA_ELEGIDA_JSON.Nombre);
     };
 
@@ -27,36 +28,36 @@ function PeliculasInformacion(){
 
     return (
         <article className={styles.peliculaArticulo}>
-            <div className={styles.peliculaInfoContainer}>
-                <div className={styles.peliculaNombreContainer}>
-                    <div>
-                        <h1 className={styles.peliculasHeader}>Nombre:</h1>
-                        <p className={styles.peliculasTexto}>{PELICULA_ELEGIDA_JSON.Nombre}</p>
+            <div className={styles.peliculaContainer}>
+                <div className={styles.peliculaInfoContainer}>
+                    <div className={styles.peliculaNombreContainer}>
+                        <h1 className={styles.peliculasNombreHeader}>Nombre:</h1>
+                        <p className={styles.peliculasNombreTexto}>{PELICULA_ELEGIDA_JSON.Nombre}</p>
                     </div>
-                    <div className="Sinopsis">
-                        <h2 className={styles.peliculasHeader}>Sinopsis: </h2>
-                        { respuestaChatGPT && respuestaChatGPT.length>0 && 
-                            (<p className={styles.peliculasTexto}>
-                                {respuestaChatGPT}
+                    <div className={styles.peliculaSinopsisContainer}>
+                        <h2 className={styles.peliculasSinopsisHeader}>Sinopsis: </h2>
+                        { respuestaGemini && respuestaGemini.length>0 && 
+                            (<p className={styles.peliculasSinopsisTexto}>
+                                {respuestaGemini}
                             </p>)}
-                        { errorRespuestaChatGPT && errorRespuestaChatGPT.length>0 && 
-                            (<p className={`${styles.peliculasTexto} ${styles.peliculasError}`}>
-                                {errorRespuestaChatGPT}
+                        { errorRespuestaGemini && errorRespuestaGemini.length>0 && 
+                            (<p className={`${styles.peliculasSinopsisTexto} ${styles.peliculasError}`}>
+                                {errorRespuestaGemini}
                             </p>
                         )}
                     </div>
                 </div>
                 <div className={styles.peliculasPortadaContainer}>
-                    <h3 className={styles.peliculasHeader}>Portada:</h3>
-                    <div className={styles.peliculaPortada}>
+                    <h3 className={styles.peliculasPortadaHeader}>Portada</h3>
+                    <div className={styles.peliculaPortadaImagen}>
                     { PELICULA_ELEGIDA_JSON.Imagen ?
-                        <img className={styles.peliculasPortadaContainerImagen} src={PELICULA_ELEGIDA_JSON.Imagen} alt={`Portada de la pelicula: ${PELICULA_ELEGIDA_JSON.Nombre}`}/> 
+                        <img className={styles.peliculasPortadaImagen_img} src={PELICULA_ELEGIDA_JSON.Imagen} alt={`Portada de la pelicula: ${PELICULA_ELEGIDA_JSON.Nombre}`}/> 
                         : (respuestaOpenMovie.Poster && respuestaOpenMovie.Poster!="N/A") ? 
                             <div>
-                                <img className={styles.peliculasPortadaContainerImagen} src={respuestaOpenMovie.Poster} alt={`Portada de la pelicula: ${PELICULA_ELEGIDA_JSON.Nombre}`}/>
+                                <img className={styles.peliculasPortadaImagen_img} src={respuestaOpenMovie.Poster} alt={`Portada de la pelicula: ${PELICULA_ELEGIDA_JSON.Nombre}`}/>
                                 <p>Imagen obtenida de Open Movie DB</p>
                             </div> 
-                            : <p className={`${styles.peliculasTexto} ${styles.peliculasError}`}>Error al obtener la portada de Open Movie DB</p> 
+                            : <p className={`${styles.peliculasPortadaTexto} ${styles.peliculasError}`}>Error al obtener la portada de Open Movie DB</p> 
                     }
                     </div>
                 </div>

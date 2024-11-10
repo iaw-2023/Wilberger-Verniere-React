@@ -74,3 +74,8 @@ Por familiaridad se eligio utilizar a vercel como la plataforma para el deploy d
 
 3.3.8 Accessible Authentication (Minimum)
 - H100: Providing properly marked up email and password inputs
+
+
+## Gemini API
+- Ahora en vez de usar OpenAI API (chatGPT) para realizar consultas sobre la descripcion de una pelicula, usamos la API de Gemini
+- https://github.com/google-gemini-php/laravel > Usamos esta libreria en el backend
