@@ -195,13 +195,13 @@ const DataProvider = ( {children} ) => {
                 }
             });
             console.log('Respuesta Gemini: ',response);
-            if (response.status === 200 && response.data.content){
-                setRespuestaGemini(response.data.content);
+            if (response.status === 200) {
+                const sinopsis = response.data.content || response.data.sinopsis || 'No se encontró sinopsis';
+                setRespuestaGemini(sinopsis);
                 setErrorRespuestaGemini('');
-            }
-            else {
+            } else {
                 setRespuestaGemini('');
-                setErrorRespuestaGemini(response.data.error);
+                setErrorRespuestaGemini('Error al buscar una sinopsis en Gemini');
             }
         } catch (error) { 
             console.error('Error:', error);
