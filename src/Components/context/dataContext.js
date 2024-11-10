@@ -181,7 +181,7 @@ const DataProvider = ( {children} ) => {
     const obtenerInfoPeliculaGemini = (nombre) => 
     {
         setRespuestaGemini('');
-        const consulta = "¿Can you give me a short plot description of the movie: "+nombre+"?. If not posible respond 'Error al buscar una sinopsis en Gemini'";
+        const consulta = "¿Can you give me a short plot description of the movie: "+nombre+"?. If not posible respond 'Error al buscar una sinopsis en Gemini'. The response should be formatted like a JSON file where it should have parameters >>> content: <Here goes plot description only>, and only show if there is plot described | error: <Here goes Error al buscar una sinopsis en Gemini> and only show if there is no plot described in answer";
         preguntarGeminiAPI(consulta);
     }
     
@@ -195,8 +195,9 @@ const DataProvider = ( {children} ) => {
                 }
             });
             console.log('Respuesta Gemini: ',response);
-            if (response.status === 200) {
-                const sinopsis = response.data.content || response.data.sinopsis || 'No se encontró sinopsis';
+            const responseAsJSON = response.josn();
+            if (responseAsJSON.status === 200) {
+                const sinopsis = responseAsJSON.data.content || responseAsJSON.data.sinopsis || 'No se encontró sinopsis';
                 setRespuestaGemini(sinopsis);
                 setErrorRespuestaGemini('');
             } else {
