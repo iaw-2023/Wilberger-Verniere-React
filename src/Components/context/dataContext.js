@@ -181,7 +181,13 @@ const DataProvider = ( {children} ) => {
     const obtenerInfoPeliculaGemini = (nombre) => 
     {
         setRespuestaGemini('');
-        const consulta = "¿Can you give me a short plot description of the movie: "+nombre+"?. If not posible respond 'Error al buscar una sinopsis en Gemini'. The response should be formatted like a JSON file where it should have parameters >>> content: <Here goes plot description only>, and only show if there if its plot is described, else dont add this atribute | error: <Here goes Error al buscar una sinopsis en Gemini> and only show if there is no plot described in answer, else dont add this atribute";
+        setErrorRespuestaGemini('');
+        const consulta = `
+        ¿Can you give me a short plot description of the movie: ${nombre}?
+        Return a JSON response with:
+        - "content": <Here goes plot description only> if a plot description is found.
+        - Otherwise, return JSON with only "error": "Error al buscar una sinopsis en Gemini".
+        `;
         preguntarGeminiAPI(consulta);
     }
     
@@ -194,21 +200,18 @@ const DataProvider = ( {children} ) => {
                     'consulta': consulta, 
                 }
             });
-            console.log('Respuesta Gemini: ',response);
+            console.log('Respuesta Gemini: ',response.data);
             
-            if (response.status === 200) {
-                const responseAsJSON = JSON.parse(response.data.content);
-                console.log('ResponseAsJSON:', responseAsJSON);
-                const sinopsis = responseAsJSON.content;
-                setRespuestaGemini(sinopsis);
+            if (response.data.content) {
+                setRespuestaGemini(response.data.content);
                 setErrorRespuestaGemini('');
             } else {
                 setRespuestaGemini('');
-                setErrorRespuestaGemini('Error al buscar una sinopsis en Gemini');
+                setErrorRespuestaGemini(response.data.error);
             }
         } catch (error) { 
-            console.error('Error:', error);
-            setErrorRespuestaGemini('ERROR: solicitud Gemini');
+            console.log('Error preguntarGeminiAPI:', error);
+            setErrorRespuestaGemini('ERROR: error al setear resultado respuesta Gemini');
         }
     }
 
