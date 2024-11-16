@@ -48,7 +48,7 @@ function PeliculasInformacion(){
                     </div>
                 </div>
                 <div className={styles.peliculasPortadaContainer}>
-                    <h3 className={styles.peliculasPortadaHeader}>Portada</h3>
+                    <h3 className={styles.peliculasPortadaHeader}>Portada:</h3>
                     <div className={styles.peliculaPortadaImagen}>
                     { PELICULA_ELEGIDA_JSON.Imagen ?
                         <img className={styles.peliculasPortadaImagen_img} src={PELICULA_ELEGIDA_JSON.Imagen} alt={`Portada de la pelicula: ${PELICULA_ELEGIDA_JSON.Nombre}`}/> 

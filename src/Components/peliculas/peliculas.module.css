@@ -1,36 +1,37 @@
 .peliculaArticulo {
     margin: 20px;
-    padding: 15px;
-    border: 1px solid #ccc;
+    padding: 20px;
     border-radius: 10px;
+    border: 1px solid #ccc;
+    height: 100%;
 }
 
 .peliculaContainer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
 }
 
 .peliculaInfoContainer {
-    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 20px;
-    border: 1px dashed black;
+    padding: 10px;
 }
 
 .peliculaNombreContainer {
-    margin-bottom: 10px;
-    border: 1px dashed black;
     padding: 10px;
     border-radius: 10px;
+    border: 1px solid #ccc;
 }
 
 .peliculasNombreHeader{
     font-size: 2em;
-    margin-bottom: 15px;  
+    margin-bottom: 15px;
+    text-transform: uppercase; 
+    margin-right: 10px; 
 }
 
 .peliculasNombreTexto{
@@ -38,15 +39,16 @@
 }
 
 .peliculaSinopsisContainer {
-    margin-bottom: 10px;
-    border: 1px dashed black;
+    height: auto;
     padding: 10px;
     border-radius: 10px;
+    border: 1px solid #ccc;
 }
 
 .peliculasSinopsisHeader{
     font-size: 2em;
-    margin-bottom: 15px;  
+    margin-bottom: 15px;
+    text-transform: uppercase; 
 }
 
 .peliculasSinopsisTexto{
@@ -57,11 +59,10 @@
     flex-shrink: 0;
     text-align: center;
     border-radius: 10px;
-    border: 1px dashed black;
-    background-color: #6666b6;
-    padding: 1%;
-    margin-left: 20px;
+    padding: 10px;
+    margin-left: 10px;
     width: auto;
+    border: 1px solid #ccc;
 }
 
 .peliculasPortadaHeader{
@@ -74,14 +75,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .peliculasPortadaImagen_img {
-    max-width: 100%;
     height: auto;
     border-radius: 10px;
     padding: 2px;
     border: 1px solid white;
+    width: 100%;
 }
 
 .peliculasPortadaTexto{
@@ -107,70 +109,130 @@
     .peliculasPortadaHeader {
         font-size: 1rem;
     }
-  
+
     .peliculasNombreTexto,
     .peliculasSinopsisTexto,
     .peliculasPortadaTexto {
         font-size: 0.875rem;
     }
-  }
-  
-  /* Tablets */
-  @media (min-width: 577px) and (max-width: 768px) {
+
+    .peliculaArticulo {
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .peliculaContainer {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .peliculaInfoContainer {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .peliculaNombreContainer{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+    }
+
+    .peliculasPortadaContainer {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+/* Tablets */
+@media (min-width: 577px) and (max-width: 768px) {
     .peliculasNombreHeader,
     .peliculasSinopsisHeader,
     .peliculasPortadaHeader {
         font-size: 1.25rem;
     }
-  
+
     .peliculasNombreTexto,
     .peliculasSinopsisTexto,
     .peliculasPortadaTexto {
         font-size: 1rem;
     }
-  }
-  
-  /* Laptops */
-  @media (min-width: 769px) and (max-width: 992px) {
+
+    .peliculaArticulo {
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .peliculaContainer {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .peliculaInfoContainer {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .peliculaNombreContainer{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+    }
+
+    .peliculasPortadaContainer {
+        margin-top: 10px;
+        width: 100%;
+    }
+}
+
+/* Laptops */
+@media (min-width: 769px) and (max-width: 992px) {
     .peliculasNombreHeader,
     .peliculasSinopsisHeader,
     .peliculasPortadaHeader {
         font-size: 1.5rem;
     }
-  
+
     .peliculasNombreTexto,
     .peliculasSinopsisTexto,
     .peliculasPortadaTexto {
         font-size: 1.25rem;
     }
-  }
-  
-  /* PC de escritorio */
-  @media (min-width: 993px) and (max-width: 1200px) {
+}
+
+/* PC de escritorio */
+@media (min-width: 993px) and (max-width: 1200px) {
     .peliculasNombreHeader,
     .peliculasSinopsisHeader,
     .peliculasPortadaHeader {
         font-size: 1.75rem;
     }
-  
+
     .peliculasNombreTexto,
     .peliculasSinopsisTexto,
     .peliculasPortadaTexto {
         font-size: 1.25rem;
     }
-  }
-  
-  /* Computadora grande */
-  @media (min-width: 1201px) {
+}
+
+/* Computadora grande */
+@media (min-width: 1201px) {
     .peliculasNombreHeader,
     .peliculasSinopsisHeader,
     .peliculasPortadaHeader {
         font-size: 2rem;
     }
-  
+
     .peliculasNombreTexto,
     .peliculasSinopsisTexto,
     .peliculasPortadaTexto {
         font-size: 1.5rem;
     }
-  }
+}
