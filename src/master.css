@@ -1,3 +1,17 @@
+.mainDiv{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.navBarContainer {
+    margin-bottom: 10px;
+}
+
+.routesContainer{
+    height: 100%;
+}
+
 .tabla_container{
     position: relative;
     overflow-x: auto;

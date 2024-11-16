@@ -49,10 +49,10 @@ export default function App() {
     <div className="mainDiv">
       <HashRouter>
         <DataProvider>
-          <div className="navigation-menu">
-            <NavBar />
+          <div className="NavBarContainer">
+            <NavBar/>
           </div>
-          <Routes>
+          <Routes className="routesContainer">
             <Route path="/" element={<Welcome />} />
             <Route path="/funciones" element={<Funciones />} />
             <Route path="/funcionesAsociadas" element={<FuncionesAsociadas />} />
