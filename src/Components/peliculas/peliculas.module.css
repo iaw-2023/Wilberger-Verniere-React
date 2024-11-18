@@ -1,17 +1,20 @@
 .peliculaArticulo {
-    margin: 20px;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     border: 1px solid #ccc;
     height: 100%;
+    border: 1px solid green;
+    gap: 10px;
+    overflow: auto;
 }
 
 .peliculaContainer {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 10px;
+    width: 100%;
     padding: 10px;
+    border: 1px solid red;
 }
 
 .peliculaInfoContainer {
@@ -92,7 +95,8 @@
 
 .peliculasReseñaContainer {
     width: 100%;
-    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid blue;
 }
 
 .peliculasError{
@@ -117,6 +121,7 @@
     }
 
     .peliculaArticulo {
+        display: flex;
         flex: 1;
         flex-direction: column;
         align-items: center;
@@ -127,6 +132,7 @@
         align-items: center;
         margin-bottom: 10px;
         padding: 10px;
+        border: 1px solid #ccc;
     }
 
     .peliculaInfoContainer {
@@ -162,7 +168,7 @@
     }
 
     .peliculaArticulo {
-        flex: 1;
+        display: flex;
         flex-direction: column;
         align-items: center;
     }
@@ -178,7 +184,7 @@
         width: 100%;
         padding: 10px;
     }
-
+ 
     .peliculaNombreContainer{
         display: flex;
         flex-direction: row;

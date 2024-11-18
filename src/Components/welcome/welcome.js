@@ -5,10 +5,8 @@ import slides from '../slider/mock.json'
 
 function Welcome() {
     return (
-      <div className={styles.welcomeContainer}>
-        <div className={styles.sliderContainer}>
-          <Slider slides={slides}/>
-        </div>
+      <div className={styles.sliderContainer}>
+        <Slider slides={slides}/>
       </div>
     );
 }

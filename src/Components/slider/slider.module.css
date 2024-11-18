@@ -4,16 +4,17 @@
 }
 
 .carouselContainer {
-  display: block;
-  justify-content: center;
+  display: flex;
+  height: 100%;
+  width: 100%;
   align-items: center;
-  height: auto;
-  width: auto;
+  justify-content: center;
+  border: 5px solid red;
 }
 
 .carouselImage{
-  height: auto;
-  width: auto;
+  height: 100%;
+  width: 100%;
   margin-left: 50%;
   transform: translateX(-50%);
 }
