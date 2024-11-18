@@ -1,6 +1,7 @@
 .carouselnextImageIcon {
     background-color: rgba(53, 56, 59, 0.9);
     background-image: url("./arrow-right-solid.svg");
+    right: 10px;
 }
 
 .carouselContainer {
@@ -9,20 +10,25 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  border: 5px solid red;
+  background-color: rgba(53, 56, 59, 0.9);
+  overflow: hidden;
+  position: relative;
 }
 
-.carouselImage{
+.carouselImage {
+  width: auto;
   height: 100%;
-  width: 100%;
-  margin-left: 50%;
-  transform: translateX(-50%);
+  object-fit: fill;
 }
 
 .carouselCaptionContainer{
   background-color: rgba(53, 56, 59, 0.9);
   font-family: 'Courier New', Courier, monospace;
   color: white;
+  max-width: 90vw;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
 }
 
 .carouselTitleCaption{
