@@ -1,0 +1,54 @@
+.tablaContainer {
+    position: relative;
+    overflow-x: auto;
+    box-shadow: 0 4px 6px #0000001a;
+}
+
+.table {
+    width: 100%;
+    font-size: .875rem;
+    text-align: center;
+    padding: 0 10px;
+    color: #000000;
+}
+
+.tableHeader {
+    font-size: .75rem;
+    color: #fff;
+    text-transform: uppercase;
+    background-color: #43505b;
+    border: none;
+}
+
+.tablaHeaderCell {
+    padding: 0.75rem 1.5rem;
+    border-right: 1px solid #000000;
+}
+
+.tablaBodyCell {
+    padding: 0.75rem 1.5rem;
+    border-right: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+
+.tableBodyRow {
+    background-color: #ffffff;
+}
+
+.tableBodyRow:hover {
+    background-color: #c1c1c1;
+}
+
+.tableBodyRow:focus {
+    background-color: #c1c1c1;
+}
+
+.errorDiv {
+    color: #000000;
+    background-color: #fff700;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
