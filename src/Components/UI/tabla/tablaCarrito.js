@@ -23,7 +23,7 @@ export default function TablaCarrito({
                                 {tableColumnTitlesArray.map((columnName, index) => (
                                     columnName === "Accion" ?
                                         <TableButtonsCarrito
-                                            carrito={rowObject}
+                                            key={index}
                                             index={index}
                                             onClickCancelarOrden={onClickCancelarOrden}
                                         />
