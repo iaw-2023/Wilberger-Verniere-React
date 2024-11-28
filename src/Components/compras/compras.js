@@ -1,22 +1,21 @@
 import '../../master.css';
 
-import React, { useContext, useEffect, useState } from 'react'
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
 import apiClient from '../../Services/api';
+import ButtonWithRedirect from '../UI/buttons/ButtonWithRedirect';
 
-  
+
 function Compras() {
   const [compra, setCompra] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchCompras();
-  },[]);  
+  }, []);
 
   console.log("Guardo en sessionStorage: ", sessionStorage.getItem('userEmail'));
 
-  const fetchCompras = () => 
-  {
+  const fetchCompras = () => {
     return apiClient.get("/rest/compras/asociadas", {
       params: {
         'email': sessionStorage.getItem('userEmail')
@@ -26,12 +25,12 @@ function Compras() {
       },
     })
       .then((response) => {
-          setCompra(response.data.data);
-          setError(null);
+        setCompra(response.data.data);
+        setError(null);
       }).catch(setError);
   }
 
-  if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS COMPRAS</p>
+  if (error) return <p>OCURRIO UN ERROR AL PEDIR LAS COMPRAS</p>
 
   return (
     <div className="tabla_container">
@@ -44,16 +43,17 @@ function Compras() {
           </tr>
         </thead>
         <tbody>
-          { compra && compra.length>0 && compra.map((compraObj,index) => (
+          {compra && compra.length > 0 && compra.map((compraObj, index) => (
             <tr className="tablaRow" key={index}>
               <td data-label="Observaciones:" className="tablaBodyElem"> {compraObj.Observaciones} </td>
               <td data-label="Fecha Creacion:" className="tablaBodyElem"> {compraObj.FechaCompra} </td>
-              <td data-label="Accion:" className="tablaBodyElem"> 
-                  <Link to='/ComprasAsociadas'
-                  className="button"
-                  onClick={ () => sessionStorage.setItem("compraElegida",JSON.stringify(compraObj)) }>
-                    Ordenes Asociadas
-                  </Link>
+              <td data-label="Accion:" className="tablaBodyElem">
+                <ButtonWithRedirect
+                  type="default"
+                  buttonText="Ordenes Asociadas"
+                  redirectUrl={`/ComprasAsociadas`}
+                  onClick={() => sessionStorage.setItem("compraElegida", JSON.stringify(compraObj))}
+                />
               </td>
             </tr>
           ))}

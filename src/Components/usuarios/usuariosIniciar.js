@@ -2,6 +2,7 @@ import styles from "./usuarios.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import apiClient from '../../Services/api';
+import ButtonWithoutRedirect from '../UI/buttons/ButtonWithoutRedirect';
 
 
 function UsuariosIniciar() {
@@ -12,38 +13,35 @@ function UsuariosIniciar() {
 
     const navigate = useNavigate();
 
-    const submitLogin = () =>
-    {
-        console.log("Busco usuario:",email, contraseña);
+    const submitLogin = () => {
+        console.log("Busco usuario:", email, contraseña);
         const data = {
             email: email,
             password: contraseña,
         };
 
-        return apiClient.post("/rest/login",data)
-        .then(function (response) {
-            console.log("Response: ",response);
-            sessionStorage.setItem('login', true);
-            sessionStorage.setItem('authToken', response.data.access_token);
-            sessionStorage.setItem('userNombre', response.data.user_name);
-            sessionStorage.setItem('userEmail', response.data.user_email);
-            setError(null);
-            navigate('/');
-          })
-        .catch(function (error) {
-            console.log("Error: ",error.response);
-            setError(error.response.data.message);
-          });
+        return apiClient.post("/rest/login", data)
+            .then(function (response) {
+                console.log("Response: ", response);
+                sessionStorage.setItem('login', true);
+                sessionStorage.setItem('authToken', response.data.access_token);
+                sessionStorage.setItem('userNombre', response.data.user_name);
+                sessionStorage.setItem('userEmail', response.data.user_email);
+                setError(null);
+                navigate('/');
+            })
+            .catch(function (error) {
+                console.log("Error: ", error.response);
+                setError(error.response.data.message);
+            });
     }
 
-    const handleTextEmail = (event) => 
-    {
+    const handleTextEmail = (event) => {
         event.preventDefault();
         setEmail(event.target.value);
     }
 
-    const handleTextContraseña = (event) => 
-    {
+    const handleTextContraseña = (event) => {
         event.preventDefault();
         setContraseña(event.target.value);
     }
@@ -58,12 +56,17 @@ function UsuariosIniciar() {
                 </label>
                 <label for="contraseña" className="requiredLabel">
                     Contraseña: <span className="requiredAsterisco">*</span>
-                    <input type="password" className={styles.input} id="contraseña"  value={contraseña} onChange={handleTextContraseña} />
+                    <input type="password" className={styles.input} id="contraseña" value={contraseña} onChange={handleTextContraseña} />
                 </label>
                 <div className={styles.errorMessage}>
                     {error && <p>{error}</p>}
                 </div>
-                <button className={`button button_login`} onClick={() => submitLogin()} disabled={!email || !contraseña}>Confirmar</button>
+                <ButtonWithoutRedirect
+                    type="login"
+                    buttonText="Confirmar"
+                    onClick={() => submitLogin()}
+                    disabled={!email || !contraseña}
+                />
                 <p className="requiredNota">Los campos marcados con * son obligatorios</p>
             </div>
         </div>

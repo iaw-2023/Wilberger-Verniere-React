@@ -2,14 +2,14 @@ import '../../master.css';
 import styles from './funciones.module.css';
 
 import React, { useContext, useEffect, useState } from 'react';
-import {Button} from 'react-bootstrap';
 import { dataContext } from '../context/dataContext';
 import apiClient from '../../Services/api';
+import ButtonWithoutRedirect from '../UI/buttons/ButtonWithoutRedirect';
 
 function Funciones() {
     const [funcion, setFuncion] = useState([])
     const [error, setError] = useState(null);
-    const {promptComprar} = useContext(dataContext);
+    const { promptComprar } = useContext(dataContext);
 
     const fetchFuncion = () => {
         return apiClient.get("/rest/funciones")
@@ -21,9 +21,9 @@ function Funciones() {
 
     useEffect(() => {
         fetchFuncion();
-    },[]);
+    }, []);
 
-    if (error) return<p>OCURRIO UN ERROR AL PEDIR LAS FUNCIONES</p>
+    if (error) return <p>OCURRIO UN ERROR AL PEDIR LAS FUNCIONES</p>
 
     return (
         <div>
@@ -40,8 +40,8 @@ function Funciones() {
                         </tr>
                     </thead>
                     <tbody>
-                        { funcion && funcion.length>0 ? (
-                            funcion.map((funcionObj,index) => {
+                        {funcion && funcion.length > 0 ? (
+                            funcion.map((funcionObj, index) => {
                                 const tablaParcial = (
                                     <>
                                         <td data-label="Pelicula:" className="tablaBodyElem"> {funcionObj.Pelicula} </td>
@@ -51,12 +51,12 @@ function Funciones() {
                                         <td data-label="Asientos Disponibles:" className="tablaBodyElem"> {funcionObj.AsientosDisponible} </td>
                                     </>
                                 );
-                                return(
+                                return (
                                     <tr className={`tablaRow ${funcionObj.AsientosDisponible > 0 ? '' : styles.sinAsientos}`} key={index}>
                                         {tablaParcial}
                                         <td data-label="Accion:" className="tablaBodyElem">
                                             {funcionObj.AsientosDisponible > 0 ? (
-                                                <Button className="button" onClick={() => promptComprar(funcionObj) }>Comprar</Button>
+                                                <ButtonWithoutRedirect type="default" buttonText="Comprar" onClick={() => promptComprar(funcionObj)} />
                                             ) : (
                                                 "ENTRADAS AGOTADAS"
                                             )}
@@ -64,7 +64,7 @@ function Funciones() {
                                     </tr>
                                 )
                             })
-                            ) 
+                        )
                             : (
                                 <tr>
                                     <td colSpan="6" className="alertaDiv">NO HAY FUNCIONES DISPONBILES</td>

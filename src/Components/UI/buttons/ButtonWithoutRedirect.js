@@ -1,10 +1,11 @@
-import styles from "./ButtonWithoutRedirect.module.css";
-import {Button} from 'react-bootstrap';
+import styles from "./Button.module.css";
+import { Button } from 'react-bootstrap';
 
 export default function ButtonWithoutRedirect({
     type,
     buttonText,
-    onClick
+    onClick,
+    disabled
 }) {
 
     const getButtonStyle = () => {
@@ -14,6 +15,7 @@ export default function ButtonWithoutRedirect({
             case "confirmar":
                 return "btnConfirmar";
             case "login":
+                if (disabled) { return "btnLoginDisabled"; }
                 return "btnLogin";
             case "mercadoPago":
                 return "btnMercadoPago";
@@ -25,7 +27,7 @@ export default function ButtonWithoutRedirect({
     const buttonStyle = getButtonStyle();
 
     return (
-        <Button className={`${styles.btnBase} ${styles[buttonStyle]}`} type={type} onClick={onClick}>
+        <Button className={`${styles.btnBase} ${styles[buttonStyle]}`} onClick={onClick} disabled={disabled}>
             {buttonText}
         </Button>
     );

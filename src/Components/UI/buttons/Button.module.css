@@ -1,20 +1,21 @@
-.btnBase{
+.btnBase {
     color: #fff;
     border-radius: 10px;
     padding: 5px 10px 5px 10px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-decoration: none;
+    font-weight: bold;
     margin-right: 10px;
 }
 
-.btnBase:hover{
+.btnBase:hover {
     background-color: #ffffff;
-    color:#000000;
+    color: #000000;
 }
 
-.btnBase:focus{
+.btnBase:focus {
     background-color: #ffffff;
-    color:#000000;
+    color: #000000;
 }
 
 .btnBase:disabled {
@@ -25,22 +26,34 @@
 
 .btnConfirmar {
     background-color: #217847;
+    border-color: #217847;
 }
 
 .btnCancelar {
     background-color: #d73737;
+    border-color: #d73737;
 }
 
 .btnMercadoPago {
     background-color: #386fb7;
+    border-color: #386fb7;
 }
 
 .btnDefault {
     background-color: #6666b6;
+    border-color: #6666b6;
 }
 
 .btnLogin {
     background-color: #0033ff;
+    border-color: #0033ff;
+    width: 100%;
+    padding: 10px;
+}
+
+.btnLoginDisabled {
+    background-color: #6f6e6ea5;
+    border-color: #6f6e6ea5 !important;
     width: 100%;
     padding: 10px;
 }
@@ -49,35 +62,35 @@
 
 /* Celulares */
 @media (max-width: 576px) {
-    .btnBase{
+    .btnBase {
         font-size: smaller;
     }
 }
 
 /* Tablets */
 @media (min-width: 577px) and (max-width: 992px) {
-    .btnBase{
+    .btnBase {
         font-size: small;
     }
 }
 
 /* Laptops */
 @media (min-width: 993px) and (max-width: 1200px) {
-    .btnBase{
+    .btnBase {
         font-size: medium;
     }
 }
 
 /* PC escritorio */
 @media (min-width: 1201px) {
-    .btnBase{
+    .btnBase {
         font-size: large;
     }
 }
 
 /* Computadora grande */
 @media (min-width: 1201px) {
-    .btnBase{
+    .btnBase {
         font-size: larger;
     }
 }

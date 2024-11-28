@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import apiClient from '../../Services/api';
 import { useNavigate } from "react-router-dom";
+import ButtonWithoutRedirect from "../UI/buttons/ButtonWithoutRedirect";
 
 function UsuariosRegistrar() {
 
@@ -85,7 +86,12 @@ function UsuariosRegistrar() {
                 <div className={styles.responseMessage}>
                     {respuesta && <p>{respuesta.message}</p>}
                 </div>
-                <Button className={`button button_login`} onClick={() => submitRegister()} disabled={!nombreUser || !emailValido || !contraseña}>Confirmar</Button>
+                <ButtonWithoutRedirect
+                    type="login"
+                    buttonText="Confirmar"
+                    onClick={() => submitRegister()}
+                    disabled={!nombreUser || !emailValido || !contraseña}
+                />
                 <p className="requiredNota">Los campos marcados con * son obligatorios</p>
             </div>
         </div>

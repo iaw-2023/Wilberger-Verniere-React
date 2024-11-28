@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./ButtonWithRedirect.module.css";
+import styles from "./Button.module.css";
 
 export default function ButtonWithRedirect({
     redirectUrl,
@@ -26,7 +26,7 @@ export default function ButtonWithRedirect({
     const buttonStyle = getButtonStyle();
 
     return (
-        <Link to={redirectUrl} className={`${styles.btnBase} ${styles[buttonStyle]}`} type={type} onClick={onClick}>
+        <Link to={redirectUrl} className={`${styles.btnBase} ${styles[buttonStyle]}`} onClick={onClick}>
             {buttonText}
         </Link>
     );
