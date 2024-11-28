@@ -3,7 +3,7 @@
     border-radius: 10px;
     border: 1px solid #ccc;
     height: 100%;
-    border: 1px solid green;
+    margin: 10px;
     gap: 10px;
     overflow: auto;
 }
@@ -15,6 +15,7 @@
     width: 100%;
     padding: 10px;
     border: 1px solid red;
+    margin-bottom: 10px;
 }
 
 .peliculaInfoContainer {
