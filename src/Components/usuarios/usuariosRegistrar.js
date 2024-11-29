@@ -15,8 +15,7 @@ function UsuariosRegistrar() {
 
     const navigate = useNavigate();
 
-    const submitRegister = () =>
-    {
+    const submitRegister = () => {
         apiClient.get("/sanctum/csrf-cookie")
             .then(() => {
                 console.log("Creo usuario:", nombreUser, contraseña, email);
@@ -25,34 +24,32 @@ function UsuariosRegistrar() {
                     'password': contraseña,
                     'name': nombreUser
                 })
-                .then(function (response) {
-                    console.log("Response: ",response);
-                    setNombreUser("");
-                    setContraseña("");
-                    setEmail("");
-                    setRespuesta(response.data.message);
-                    navigate("/usuariosIniciar");
-                })
-                .catch(function (response) {
-                    console.log("Response: ",response);
-                    setRespuesta(response.data.message);
-                });
+                    .then(function (response) {
+                        console.log("Response: ", response);
+                        setNombreUser("");
+                        setContraseña("");
+                        setEmail("");
+                        setRespuesta(response.data.success);
+                        navigate("/usuariosIniciar");
+                    })
+                    .catch(function (error) {
+                        console.log("Response: ", error.response);
+                        setRespuesta(error.response.data.error);
+                    });
             });
     }
 
-    const handleTextNombreUser = (event) => 
-    {
+    const handleTextNombreUser = (event) => {
         event.preventDefault();
         setNombreUser(event.target.value);
     }
 
-    const handleTextEmail = (event) => 
-    {
+    const handleTextEmail = (event) => {
         event.preventDefault();
         setEmail(event.target.value);
-        if (esValidoEmail(event.target.value)){
+        if (esValidoEmail(event.target.value)) {
             SetEmailValido(true);
-          }
+        }
         else { SetEmailValido(false); }
     }
 
@@ -60,8 +57,7 @@ function UsuariosRegistrar() {
         return /\S+@\S+\.\S+/.test(email);
     }
 
-    const handleTextContraseña = (event) => 
-    {
+    const handleTextContraseña = (event) => {
         event.preventDefault();
         setContraseña(event.target.value);
     }
@@ -84,7 +80,7 @@ function UsuariosRegistrar() {
                     <input id="contraseña" type="password" className={styles.input} value={contraseña} onChange={handleTextContraseña} />
                 </label>
                 <div className={styles.responseMessage}>
-                    {respuesta && <p>{respuesta.message}</p>}
+                    {respuesta && <p>{respuesta}</p>}
                 </div>
                 <ButtonWithoutRedirect
                     type="login"

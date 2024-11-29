@@ -14,7 +14,6 @@
     align-items: flex-start;
     width: 100%;
     padding: 10px;
-    border: 1px solid red;
     margin-bottom: 10px;
 }
 
@@ -28,7 +27,6 @@
 .peliculaNombreContainer {
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid #ccc;
 }
 
 .peliculasNombreHeader{
@@ -46,7 +44,6 @@
     height: auto;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid #ccc;
 }
 
 .peliculasSinopsisHeader{
@@ -97,7 +94,6 @@
 .peliculasReseñaContainer {
     width: 100%;
     padding: 10px;
-    border: 1px solid blue;
 }
 
 .peliculasError{

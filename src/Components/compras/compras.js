@@ -43,20 +43,26 @@ function Compras() {
           </tr>
         </thead>
         <tbody>
-          {compra && compra.length > 0 && compra.map((compraObj, index) => (
-            <tr className="tablaRow" key={index}>
-              <td data-label="Observaciones:" className="tablaBodyElem"> {compraObj.Observaciones} </td>
-              <td data-label="Fecha Creacion:" className="tablaBodyElem"> {compraObj.FechaCompra} </td>
-              <td data-label="Accion:" className="tablaBodyElem">
-                <ButtonWithRedirect
-                  type="default"
-                  buttonText="Ordenes Asociadas"
-                  redirectUrl={`/ComprasAsociadas`}
-                  onClick={() => sessionStorage.setItem("compraElegida", JSON.stringify(compraObj))}
-                />
-              </td>
-            </tr>
-          ))}
+          {(compra && compra.length > 0) ?
+            (compra.map((compraObj, index) => (
+              <tr className="tablaRow" key={index}>
+                <td data-label="Observaciones:" className="tablaBodyElem"> {compraObj.Observaciones} </td>
+                <td data-label="Fecha Creacion:" className="tablaBodyElem"> {compraObj.FechaCompra} </td>
+                <td data-label="Accion:" className="tablaBodyElem">
+                  <ButtonWithRedirect
+                    type="default"
+                    buttonText="Ordenes Asociadas"
+                    redirectUrl={`/ComprasAsociadas`}
+                    onClick={() => sessionStorage.setItem("compraElegida", JSON.stringify(compraObj))}
+                  />
+                </td>
+              </tr>
+            ))
+            ) : (
+              <tr>
+                <td colSpan="3" className="alertaDiv">NO HAY COMPRAS ASOCIADAS A ESTA CUENTA</td>
+              </tr>
+            )}
         </tbody>
       </table>
     </div>

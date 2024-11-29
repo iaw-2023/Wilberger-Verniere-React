@@ -33,7 +33,7 @@ export default function BuyTicketsPopup(
                 <div className={styles.popupBackgroundContainer}>
                     <div className={styles.popupContainer} >
                         <div className={styles.popupTextContainer}>
-                            <p className={styles.popupTextContainerText}>
+                            <p for="cantidadTickets" className={styles.popupTextContainerText}>
                                 {popupText}
                             </p>
                             <input
