@@ -5,11 +5,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { dataContext } from '../context/dataContext';
 import apiClient from '../../Services/api';
 import ButtonWithoutRedirect from '../UI/buttons/ButtonWithoutRedirect';
+import BuyTicketsPopup from '../UI/popups/buyTicketsPopup';
 
 function Funciones() {
     const [funcion, setFuncion] = useState([])
     const [error, setError] = useState(null);
-    const { promptComprar } = useContext(dataContext);
+    const [popupTicketsVisible, setPopupTicketsVisible] = useState(false);
+    const [funcionElegida, setFuncionElegida] = useState({});
+    const { comprar } = useContext(dataContext);
 
     const fetchFuncion = () => {
         return apiClient.get("/rest/funciones")
@@ -22,6 +25,21 @@ function Funciones() {
     useEffect(() => {
         fetchFuncion();
     }, []);
+
+
+
+    const onClickComprar = (funcion) => {
+        console.log("Abrir popup comprar tickets");
+        setFuncionElegida(funcion);
+        setPopupTicketsVisible(true);
+    }
+
+    const onClickBuyTickets = (funcion, cantidadTickets) => {
+        comprar(funcion, cantidadTickets);
+        setPopupTicketsVisible(false);
+    }
+
+    const onClosePopup = () => setPopupTicketsVisible(false);
 
     if (error) return <p>OCURRIO UN ERROR AL PEDIR LAS FUNCIONES</p>
 
@@ -56,7 +74,11 @@ function Funciones() {
                                         {tablaParcial}
                                         <td data-label="Accion:" className="tablaBodyElem">
                                             {funcionObj.AsientosDisponible > 0 ? (
-                                                <ButtonWithoutRedirect type="default" buttonText="Comprar" onClick={() => promptComprar(funcionObj)} />
+                                                <ButtonWithoutRedirect
+                                                    type="default"
+                                                    buttonText="Comprar"
+                                                    onClick={() => onClickComprar(funcionObj)}
+                                                />
                                             ) : (
                                                 "ENTRADAS AGOTADAS"
                                             )}
@@ -74,6 +96,14 @@ function Funciones() {
                     </tbody>
                 </table>
             </div>
+            <BuyTicketsPopup
+                popupVisible={popupTicketsVisible}
+                popupText={"Ingrese la cantidad de tickets que desea comprar, hay " + funcionElegida.AsientosDisponible + " asientos disponibles"}
+                availableTickets={funcionElegida.AsientosDisponible}
+                funcionElegida={funcionElegida}
+                onAccept={(funcion, cantidadTickets) => onClickBuyTickets(funcion, cantidadTickets)}
+                onClose={onClosePopup}
+            />
         </div>
     )
 }

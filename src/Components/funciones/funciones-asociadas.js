@@ -7,9 +7,11 @@ import apiClient from '../../Services/api';
 import ButtonWithoutRedirect from '../UI/buttons/ButtonWithoutRedirect';
 
 function FuncionesAsociadas() {
-    const { promptComprar } = useContext(dataContext);
     const [error, setError] = useState(null);
+    const [popupTicketsVisible, setPopupTicketsVisible] = useState(false);
     const [funcion, setFuncion] = useState([]);
+    const [funcionElegida, setFuncionElegida] = useState({});
+    const { comprar } = useContext(dataContext);
     const PELICULA_ELEGIDA_JSON = JSON.parse(sessionStorage.getItem('peliculaElegida'));
 
     const fetchFuncion = () => {
@@ -28,6 +30,19 @@ function FuncionesAsociadas() {
         console.log("Pelicula elegida JSON: ", PELICULA_ELEGIDA_JSON);
         fetchFuncion();
     }, []);
+
+    const onClickComprar = (funcion) => {
+        console.log("Abrir popup comprar tickets");
+        setFuncionElegida(funcion);
+        setPopupTicketsVisible(true);
+    }
+
+    const onClickBuyTickets = (funcion, cantidadTickets) => {
+        comprar(funcion, cantidadTickets);
+        setPopupTicketsVisible(false);
+    }
+
+    const onClosePopup = () => setPopupTicketsVisible(false);
 
     if (error) return <p>OCURRIO UN ERROR AL PEDIR LAS FUNCIONES</p>
 
@@ -62,7 +77,11 @@ function FuncionesAsociadas() {
                                         {tablaParcial}
                                         <td data-label="Accion:" className="tablaBodyElem">
                                             {funcionObj.AsientosDisponible > 0 ? (
-                                                <ButtonWithoutRedirect type="default" buttonText="Comprar" onClick={() => promptComprar(funcionObj)} />
+                                                <ButtonWithoutRedirect
+                                                    type="default"
+                                                    buttonText="Comprar"
+                                                    onClick={() => onClickComprar(funcionObj)}
+                                                />
                                             ) : (
                                                 "ENTRADAS AGOTADAS"
                                             )}
@@ -79,6 +98,14 @@ function FuncionesAsociadas() {
                     </tbody>
                 </table>
             </div>
+            <BuyTicketsPopup
+                popupVisible={popupTicketsVisible}
+                popupText={"Ingrese la cantidad de tickets que desea comprar, hay " + funcionElegida.AsientosDisponible + " asientos disponibles"}
+                availableTickets={funcionElegida.AsientosDisponible}
+                funcionElegida={funcionElegida}
+                onAccept={(funcion, cantidadTickets) => onClickBuyTickets(funcion, cantidadTickets)}
+                onClose={onClosePopup}
+            />
         </div>
     )
 }

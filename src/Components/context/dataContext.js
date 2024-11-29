@@ -250,7 +250,7 @@ const DataProvider = ( {children} ) => {
 
     return <dataContext.Provider value={ 
         {
-            promptComprar, 
+            promptComprar, comprar, 
             cancelarOrden, 
             limpiarCompra, confirmarCompra, pagarconMP,
             obtenerInfoPeliculaChatGPT, respuestaChatGPT, errorRespuestaChatGPT,
