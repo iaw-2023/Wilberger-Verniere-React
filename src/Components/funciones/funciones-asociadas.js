@@ -6,6 +6,7 @@ import { dataContext } from '../context/dataContext';
 import apiClient from '../../Services/api';
 import ButtonWithoutRedirect from '../UI/buttons/ButtonWithoutRedirect';
 import BuyTicketsPopup from '../UI/popups/buyTicketsPopup';
+import { useNavigate } from 'react-router-dom';
 
 function FuncionesAsociadas() {
     const [error, setError] = useState(null);
@@ -14,6 +15,7 @@ function FuncionesAsociadas() {
     const [funcionElegida, setFuncionElegida] = useState({});
     const { comprar } = useContext(dataContext);
     const PELICULA_ELEGIDA_JSON = JSON.parse(sessionStorage.getItem('peliculaElegida'));
+    const navigate = useNavigate();
 
     const fetchFuncion = () => {
         return apiClient.get("/rest/funciones/asociadas", {
@@ -33,6 +35,11 @@ function FuncionesAsociadas() {
     }, []);
 
     const onClickComprar = (funcion) => {
+        if (!sessionStorage.getItem('authToken')){ //Si no esta logueado lo redirecciona a pantalla de login
+            navigate('/usuariosIniciar');
+            return;
+        }
+
         console.log("Abrir popup comprar tickets");
         setFuncionElegida(funcion);
         setPopupTicketsVisible(true);

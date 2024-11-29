@@ -6,6 +6,7 @@ import { dataContext } from '../context/dataContext';
 import apiClient from '../../Services/api';
 import ButtonWithoutRedirect from '../UI/buttons/ButtonWithoutRedirect';
 import BuyTicketsPopup from '../UI/popups/buyTicketsPopup';
+import { useNavigate } from 'react-router-dom';
 
 function Funciones() {
     const [funcion, setFuncion] = useState([])
@@ -13,6 +14,7 @@ function Funciones() {
     const [popupTicketsVisible, setPopupTicketsVisible] = useState(false);
     const [funcionElegida, setFuncionElegida] = useState({});
     const { comprar } = useContext(dataContext);
+    const navigate = useNavigate();
 
     const fetchFuncion = () => {
         return apiClient.get("/rest/funciones")
@@ -29,6 +31,11 @@ function Funciones() {
 
 
     const onClickComprar = (funcion) => {
+        if (!sessionStorage.getItem('authToken')){ //Si no esta logueado lo redirecciona a pantalla de login
+            navigate('/usuariosIniciar');
+            return;
+        }
+
         console.log("Abrir popup comprar tickets");
         setFuncionElegida(funcion);
         setPopupTicketsVisible(true);

@@ -13,6 +13,9 @@
     border-radius: 10px;
     width: 25vw;
     z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .popupTextContainer {
@@ -47,4 +50,97 @@
     color: #d73737;
     font-weight: bold;
     margin: 10px 0px 10px 0;
+}
+
+/* Responsive */
+
+/* Celulares */
+@media (max-width: 576px) {
+    .popupTextContainerText {
+        font-size: smaller;
+    }
+
+    .popupTextContainerErrorMessage {
+        font-size: smaller;
+    }
+
+    .popupTextContainerInput {
+        font-size: smaller;
+    }
+
+    .popupContainer {
+        width: 70%;
+    }
+}
+
+/* Tablets */
+@media (min-width: 577px) and (max-width: 992px) {
+    .popupTextContainerText {
+        font-size: small;
+    }
+
+    .popupTextContainerErrorMessage {
+        font-size: small;
+    }
+
+    .popupTextContainerInput {
+        font-size: small;
+    }
+
+    .popupContainer {
+        width: 60%;
+    }
+}
+
+/* Laptops */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .popupTextContainerText {
+        font-size: medium;
+    }
+
+    .popupTextContainerErrorMessage {
+        font-size: medium;
+    }
+
+    .popupTextContainerInput {
+        font-size: medium;
+    }
+
+    .popupContainer {
+        width: 50%;
+    }
+}
+
+/* PC escritorio */
+@media (min-width: 1201px) {
+    .popupTextContainerText {
+        font-size: large;
+    }
+
+    .popupTextContainerErrorMessage {
+        font-size: large;
+    }
+
+    .popupTextContainerInput {
+        font-size: large;
+    }
+
+    .popupContainer {
+        width: 40%;
+    }
+}
+
+/* Computadora grande */
+@media (min-width: 1201px) {
+    .popupTextContainerText {
+        font-size: larger;
+    }
+
+    .popupTextContainerErrorMessage {
+        font-size: larger;
+    }
+
+    .popupTextContainerInput {
+        font-size: larger;
+    }
 }
