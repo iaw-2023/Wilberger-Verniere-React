@@ -5,6 +5,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { dataContext } from '../context/dataContext';
 import apiClient from '../../Services/api';
 import ButtonWithoutRedirect from '../UI/buttons/ButtonWithoutRedirect';
+import BuyTicketsPopup from '../UI/popups/buyTicketsPopup';
 
 function FuncionesAsociadas() {
     const [error, setError] = useState(null);
