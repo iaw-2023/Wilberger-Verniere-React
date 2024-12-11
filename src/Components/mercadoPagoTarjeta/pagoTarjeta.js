@@ -109,11 +109,11 @@ function PagoTarjeta() {
         },
         onSubmit: (cardData, additionalData) => {
           return new Promise((resolve, reject) => {
-            console.log("CardData: ", cardData);
-            console.log("AdditionalData: ", additionalData);
+            const paymentData = { ...cardData, ...additionalData };
+            console.log("PaymentData: ", paymentData);
             apiClient.post("rest/process_payment",
               {
-                'body': JSON.stringify(cardData),
+                'body': JSON.stringify(paymentData),
               },
               {
                 headers: {
