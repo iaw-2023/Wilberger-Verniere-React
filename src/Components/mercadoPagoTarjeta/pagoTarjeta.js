@@ -108,10 +108,10 @@ function PagoTarjeta() {
         },
         onSubmit: (cardData) => {
           return new Promise((resolve, reject) => {
-            console.log(cardData);
+            console.log("CardData: ",cardData);
             const payload = {
               ...cardData,
-              cardholderName: cardData.HOLDER_NAME,
+              cardholderName: cardData.first_name,
             };
             console.log("Payload: ", payload);
             apiClient.post("rest/process_payment",
