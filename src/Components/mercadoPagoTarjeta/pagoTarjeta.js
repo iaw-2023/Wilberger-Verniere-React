@@ -18,7 +18,7 @@ function PagoTarjeta() {
     const scriptMercadoPago = document.createElement("script");
     scriptMercadoPago.src = "https://sdk.mercadopago.com/js/v2";
     scriptMercadoPago.async = true;
-    scriptMercadoPago.onload = () => initializeBrick2();
+    scriptMercadoPago.onload = () => initializeBrick();
     document.body.appendChild(scriptMercadoPago);
 
     return () => {
@@ -107,9 +107,10 @@ function PagoTarjeta() {
         onReady: () => {
           // handle form ready
         },
-        onSubmit: (cardData) => {
+        onSubmit: (cardData, additionalData) => {
           return new Promise((resolve, reject) => {
             console.log("CardData: ", cardData);
+            console.log("AdditionalData: ", additionalData);
             apiClient.post("rest/process_payment",
               {
                 'body': JSON.stringify(cardData),
