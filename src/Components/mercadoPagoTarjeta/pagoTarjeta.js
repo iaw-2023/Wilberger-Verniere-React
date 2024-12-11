@@ -112,6 +112,7 @@ function PagoTarjeta() {
               ...cardData,
               cardholderName: cardData.card_holder_name,
             };
+            console.log("Payload: ", payload);
             apiClient.post("rest/process_payment",
               payload,
               {
