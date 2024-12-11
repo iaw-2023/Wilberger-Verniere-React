@@ -10,6 +10,7 @@ function PagoTarjeta() {
   const { confirmarCompra, observacionesCompra } = useContext(dataContext);
   const [errorMPPopupVisible, setErrorMPPopupVisible] = useState(false);
   const [errorMPPopupText, setErrorMPPopupText] = useState("");
+  const [brickController, setBrickController] = useState(null);
 
   const navigate = useNavigate();
 
@@ -17,7 +18,7 @@ function PagoTarjeta() {
     const scriptMercadoPago = document.createElement("script");
     scriptMercadoPago.src = "https://sdk.mercadopago.com/js/v2";
     scriptMercadoPago.async = true;
-    scriptMercadoPago.onload = () => initializeBrick();
+    scriptMercadoPago.onload = () => initializeBrick2();
     document.body.appendChild(scriptMercadoPago);
 
     return () => {
@@ -150,6 +151,76 @@ function PagoTarjeta() {
         }
       },
     });
+  }
+
+  const initializeBrick2 = async () => {
+    try {
+      // Create the brick and get the controller
+      const controller = await mp.bricks().create("cardPayment", "cardPaymentBrick_container", {
+        initialization: {
+          amount: 100, // Define the payment amount
+        },
+        callbacks: {
+          onReady: () => {
+            console.log("Brick is ready for interaction");
+          },
+          onSubmit: (cardData) => {
+            return new Promise((resolve, reject) => {
+              // Ensure the controller is defined when this function is executed
+              if (!brickController) {
+                console.error("BrickController is not available");
+                reject(new Error("BrickController not initialized"));
+                return;
+              }
+
+              // Get additional data
+              const additionalData = brickController.getAdditionalData();
+              const paymentData = { ...cardData, additionalData };
+
+              // Send payment data to the backend
+              apiClient.post("rest/process_payment",
+                {
+                  'body': JSON.stringify(paymentData),
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                  }
+                })
+                .then((response) => {
+                  console.log("Resolve: ", response)
+                  handleResponseMP(resolve, response);
+                })
+                .catch((error) => {
+                  console.log("Error pago: ", error);
+                  reject();
+                });
+            });
+          },
+          onError: (error) => {
+            console.error("Error in Brick: ", error);
+          },
+        },
+        customization: {
+          visual: {
+            style: {
+              customVariables: {
+                theme: "default",
+              },
+            },
+          },
+          paymentMethods: {
+            maxInstallments: 1,
+          },
+        },
+      });
+
+      // Store the controller after successful initialization
+      setBrickController(controller);
+    } catch (error) {
+      console.error("Error initializing Brick: ", error);
+    }
   }
 
   const onClosePopup = () => {
