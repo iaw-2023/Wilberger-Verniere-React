@@ -108,10 +108,15 @@ function PagoTarjeta() {
         },
         onSubmit: (cardData) => {
           return new Promise((resolve, reject) => {
-            apiClient.post("rest/process_payment",
-              {
-                'body': JSON.stringify(cardData),
+            const payload = {
+              ...cardData,
+              payer: {
+                ...cardData.payer,
+                card_holder_name: cardData.card_holder_name
               },
+            };
+            apiClient.post("rest/process_payment",
+              payload,
               {
                 headers: {
                   "Content-Type": "application/json",
