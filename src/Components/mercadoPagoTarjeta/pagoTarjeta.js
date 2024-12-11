@@ -110,12 +110,9 @@ function PagoTarjeta() {
         onSubmit: (cardData) => {
           return new Promise((resolve, reject) => {
             console.log("CardData: ", cardData);
-            const cardHolderName = document.querySelector('#cardPaymentBrick_container input[name="cardholderName"]').value;
-            let updatedCardData = { ...cardData, cardHolderName };
-            console.log("UpdatedCardData: ", updatedCardData);
             apiClient.post("rest/process_payment",
               {
-                'body': JSON.stringify(updatedCardData),
+                'body': JSON.stringify(cardData),
               },
               {
                 headers: {
@@ -155,6 +152,7 @@ function PagoTarjeta() {
 
   const initializeBrick2 = async () => {
     try {
+      const mp = new MercadoPago(MERCADOPAGO_API_KEY, { locale: 'es-AR' });
       // Create the brick and get the controller
       const controller = await mp.bricks().create("cardPayment", "cardPaymentBrick_container", {
         initialization: {
