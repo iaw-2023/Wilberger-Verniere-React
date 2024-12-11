@@ -108,14 +108,14 @@ function PagoTarjeta() {
         },
         onSubmit: (cardData) => {
           return new Promise((resolve, reject) => {
-            console.log("CardData: ",cardData);
-            const payload = {
-              ...cardData,
-              cardholderName: cardData.first_name,
-            };
-            console.log("Payload: ", payload);
+            console.log("CardData: ", cardData);
+            const cardHolderName = document.querySelector('#cardPaymentBrick_container input[name="cardholderName"]').value;
+            let updatedCardData = { ...cardData, cardHolderName };
+            console.log("UpdatedCardData: ", updatedCardData);
             apiClient.post("rest/process_payment",
-              payload,
+              {
+                'body': JSON.stringify(updatedCardData),
+              },
               {
                 headers: {
                   "Content-Type": "application/json",
@@ -127,7 +127,6 @@ function PagoTarjeta() {
                 handleResponseMP(resolve, response);
               })
               .catch((error) => {
-                // get payment result error
                 console.log("Error pago: ", error);
                 reject();
               });
