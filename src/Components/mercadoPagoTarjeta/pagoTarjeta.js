@@ -38,25 +38,31 @@ function PagoTarjeta() {
   }, []);
 
   const handleResponseMP = (resolve, response) => {
-    if (response.data.status == "approved") {
-      console.log("Se confirma la compra con tarjeta");
-      setErrorMPPopupVisible(false);
-      setErrorMPPopupText("");
-      resolve();
-      confirmarCompra(observacionesCompra + "- PAGO TARJETA MP", sessionStorage.getItem('userEmail'), getCurrentDate());
-      navigate("/carrito");
-    }
-    if (response.data.status == "in_process") {
-      setErrorMPPopupText("Se esta procesando tu pago");
-      setErrorMPPopupVisible(true);
-    }
-    if (response.data.status == "pending") {
-      setErrorMPPopupText("El pago esta pendiente");
-      setErrorMPPopupVisible(true);
-    }
-    if (response.data.status == "canceled") {
-      resolveErrorText(response.data.status_detail);
-      setErrorMPPopupVisible(true);
+    switch (response.data.status) {
+      case "approved":
+        console.log("Se confirma la compra con tarjeta");
+        setErrorMPPopupVisible(false);
+        setErrorMPPopupText("");
+        resolve();
+        confirmarCompra(observacionesCompra + "- PAGO TARJETA MP", sessionStorage.getItem('userEmail'), getCurrentDate());
+        navigate("/carrito");
+        break;
+      case "in_process":
+        setErrorMPPopupText("Se esta procesando tu pago");
+        setErrorMPPopupVisible(true);
+        break;
+      case "pending":
+        setErrorMPPopupText("El pago esta pendiente");
+        setErrorMPPopupVisible(true);
+        break;
+      case "rejected":
+        resolveErrorText(response.data.status_detail);
+        setErrorMPPopupVisible(true);
+        break;
+      default:
+        resolveErrorText("El estado de la respuesta es desconocido");
+        setErrorMPPopupVisible(true);
+        break;
     }
   }
 
