@@ -3,15 +3,17 @@ import React, { useContext, useEffect } from 'react';
 import { dataContext } from '../context/dataContext';
 import apiClient from "../../Services/api";
 import { useNavigate } from "react-router-dom";
+import ResponseMPPopup from "../UI/popups/responseMPPopup";
 
 function PagoTarjeta() {
 
   const { confirmarCompra, observacionesCompra } = useContext(dataContext);
+  const [errorMPPopupVisible, setErrorMPPopupVisible] = useState(false);
+  const [errorMPPopupText, setErrorMPPopupText] = useState("");
 
   const navigate = useNavigate();
-  
-  const inicializacionMercadoPago = () =>
-  {
+
+  const inicializacionMercadoPago = () => {
     const scriptMercadoPago = document.createElement("script");
     scriptMercadoPago.src = "https://sdk.mercadopago.com/js/v2";
     scriptMercadoPago.async = true;
@@ -22,86 +24,141 @@ function PagoTarjeta() {
       document.body.removeChild(scriptMercadoPago);
     };
   }
-  const getCurrentDate = (separator='-') => 
-  {
+  const getCurrentDate = (separator = '-') => {
     let newDate = new Date()
     let date = newDate.getDate();
     let month = newDate.getMonth() + 1;
     let year = newDate.getFullYear();
-      
-    return `${year}${separator}${month<10?`0${month}`:`${month}`}${separator}${date}`;
+
+    return `${year}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${date}`;
   }
-  
 
   useEffect(() => {
     inicializacionMercadoPago();
   }, []);
 
+  const handleResponseMP = (resolve, response) => {
+    if (response.data.status == "approved") {
+      console.log("Se confirma la compra con tarjeta");
+      setErrorMPPopupVisible(false);
+      setErrorMPPopupText("");
+      resolve();
+      confirmarCompra(observacionesCompra + "- PAGO TARJETA MP", sessionStorage.getItem('userEmail'), getCurrentDate());
+      navigate("/carrito");
+    }
+    if (response.data.status == "in_process") {
+      setErrorMPPopupText("Se esta procesando tu pago");
+      setErrorMPPopupVisible(true);
+    }
+    if (response.data.status == "pending") {
+      setErrorMPPopupText("El pago esta pendiente");
+      setErrorMPPopupVisible(true);
+    }
+    if (response.data.status == "canceled") {
+      resolveErrorText(response.data.status_detail);
+      setErrorMPPopupVisible(true);
+    }
+  }
+
+  const resolveErrorText = (responseStatus) => {
+    let text = "";
+    switch (responseStatus) {
+      case "cc_rejected_insufficient_amount":
+        text = "Tu tarjeta no tiene fondos suficientes.";
+        break;
+      case "cc_rejected_blacklist":
+        text = "Tu tarjeta ha sido rechazada.";
+        break;
+      case "cc_rejected_bad_filled_date":
+        text = "La fecha de vencimiento es incorrecta.";
+        break;
+      case "cc_rejected_bad_filled_other":
+        text = "La informacion de tu tarjeta es incorrecta.";
+        break;
+      case "cc_rejected_max_attempts":
+        text = "Has superado el limite de intentos.";
+        break;
+      case "payment_method_not_allowed":
+        text = "El medio de pago seleccionado no esta permitido.";
+        break;
+      default:
+        text = "Error al realizar el pago con tarjeta.";
+    }
+    setErrorMPPopupText(text);
+  }
+
   const initializeBrick = () => {
     const mp = new MercadoPago(MERCADOPAGO_API_KEY, { locale: 'es-AR' });
     mp.bricks().create("cardPayment", "cardPaymentBrick_container", {
-        initialization: {
-          amount: 100,
-          payer: {
-            email: sessionStorage.getItem('userEmail'),
-          },
+      initialization: {
+        amount: 100,
+        payer: {
+          email: sessionStorage.getItem('userEmail'),
         },
-        callbacks: {
-          onReady: () => {
-            // handle form ready
-          },
-          onSubmit: (cardData) => {
-            return new Promise((resolve, reject) => {
-              apiClient.post("rest/process_payment", 
-              { 
+      },
+      callbacks: {
+        onReady: () => {
+          // handle form ready
+        },
+        onSubmit: (cardData) => {
+          return new Promise((resolve, reject) => {
+            apiClient.post("rest/process_payment",
+              {
                 'body': JSON.stringify(cardData),
               },
               {
                 headers: {
                   "Content-Type": "application/json",
-                   Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
+                  Authorization: `Bearer ${sessionStorage.getItem('authToken')}`,
                 }
               })
-                //.then((response) => response.json())
-                .then((response) => {
-                  // get payment result
-                  console.log("Resolve: ",response)
-                  resolve();
-                  console.log("Se confirma la compra con tarjeta");
-                  confirmarCompra(observacionesCompra + "- PAGO TARJETA MP", sessionStorage.getItem('userEmail'), getCurrentDate());
-                  navigate("/funciones");
-                })
-                .catch((error) => {
-                  // get payment result error
-                  console.log("Error pago: ",error);
-                  reject();
-                });
-            });
-          },
-          onError: (error) => {
-            // handle error
-            console.log("Error :",error);
-          },
+              .then((response) => {
+                console.log("Resolve: ", response)
+                handleResponseMP(resolve, response);
+              })
+              .catch((error) => {
+                // get payment result error
+                console.log("Error pago: ", error);
+                reject();
+              });
+          });
         },
-        customization: {
-            visual: {
-              style: {
-                customVariables: {
-                  theme: 'default',
-                }
-              }
-            },
-            paymentMethods: {
-                maxInstallments: 1,
+        onError: (error) => {
+          // handle error
+          console.log("Error :", error);
+        },
+      },
+      customization: {
+        visual: {
+          style: {
+            customVariables: {
+              theme: 'default',
             }
+          }
         },
+        paymentMethods: {
+          maxInstallments: 1,
+        }
+      },
     });
   }
 
-  return(
-      <div>
-            <div id="cardPaymentBrick_container"></div>
-      </div>
+  const onClosePopup = () => {
+    setErrorMPPopupVisible(false);
+    setErrorMPPopupText("");
+    console.log("No se realizo el pago con tarjeta");
+    navigate("/carrito");
+  }
+
+  return (
+    <div>
+      <div id="cardPaymentBrick_container"></div>
+      <ResponseMPPopup
+        popupVisible={errorMPPopupVisible}
+        onClose={onClosePopup}
+        popupText={errorMPPopupText}
+      />
+    </div>
   )
 }
 
