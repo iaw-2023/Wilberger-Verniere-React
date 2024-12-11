@@ -45,7 +45,7 @@ const DataProvider = ( {children} ) => {
 
     const comprar = (compra, tickets) => 
     {
-        compra.NroTickets = tickets;
+        compra.NroTickets = Number(tickets);
         let CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito')) || [];
         let found = false;
         let index = 0;
