@@ -92,7 +92,7 @@ const DataProvider = ( {children} ) => {
         console.log("Compra cancelada, carrito JSON: ", CARRITO_JSON);
     }
 
-    const confirmarCompra = (observaciones, email, fechaCompra) =>
+    const confirmarCompra = async(observaciones, email, fechaCompra) =>
     {
         let obvs = observaciones === "" ? "-" : observaciones;
         let CARRITO_JSON = JSON.parse(sessionStorage.getItem('carrito'))

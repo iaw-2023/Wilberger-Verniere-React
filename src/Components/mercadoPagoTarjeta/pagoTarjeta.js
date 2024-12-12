@@ -38,25 +38,30 @@ function PagoTarjeta() {
     inicializacionMercadoPago();
   }, []);
 
-  const handleResponseMP = (resolve, response) => {
+
+  const handleResponseMP = async(resolve, response) => {
+    console.log("Response status: ", response.data.status);
     switch (response.data.status) {
       case "approved":
         console.log("Se confirma la compra con tarjeta");
         setErrorMPPopupVisible(false);
         setErrorMPPopupText("");
         resolve();
-        confirmarCompra(observacionesCompra + "- PAGO TARJETA MP", sessionStorage.getItem('userEmail'), getCurrentDate());
+        await confirmarCompra(observacionesCompra + "- PAGO TARJETA MP", sessionStorage.getItem('userEmail'), getCurrentDate());
         navigate("/carrito");
         break;
       case "in_process":
+        console.log("La compra esta en proceso");
         setErrorMPPopupText("Se esta procesando tu pago");
         setErrorMPPopupVisible(true);
         break;
       case "pending":
+        console.log("La compra esta pendiente");
         setErrorMPPopupText("El pago esta pendiente");
         setErrorMPPopupVisible(true);
         break;
       case "rejected":
+        console.log("La compra fue rechazada");
         resolveErrorText(response.data.status_detail);
         setErrorMPPopupVisible(true);
         break;
@@ -71,25 +76,25 @@ function PagoTarjeta() {
     let text = "";
     switch (responseStatus) {
       case "cc_rejected_insufficient_amount":
-        text = "Tu tarjeta no tiene fondos suficientes.";
+        text = "ERROR: Tu tarjeta no tiene fondos suficientes.";
         break;
       case "cc_rejected_blacklist":
-        text = "Tu tarjeta ha sido rechazada.";
+        text = "ERROR: Tu tarjeta ha sido rechazada (esta en la lista negra).";
         break;
       case "cc_rejected_bad_filled_date":
-        text = "La fecha de vencimiento es incorrecta.";
+        text = "ERROR: La fecha de vencimiento es incorrecta.";
         break;
       case "cc_rejected_bad_filled_other":
-        text = "La informacion de tu tarjeta es incorrecta.";
+        text = "ERROR: La informacion de tu tarjeta es incorrecta.";
         break;
       case "cc_rejected_max_attempts":
-        text = "Has superado el limite de intentos.";
+        text = "ERROR: Has superado el limite de intentos posibles.";
         break;
       case "payment_method_not_allowed":
-        text = "El medio de pago seleccionado no esta permitido.";
+        text = "ERROR: El medio de pago seleccionado no esta permitido.";
         break;
       default:
-        text = "Error al realizar el pago con tarjeta.";
+        text = "ERROR: Error al realizar el pago con tarjeta.";
     }
     setErrorMPPopupText(text);
   }
@@ -122,7 +127,7 @@ function PagoTarjeta() {
                 }
               })
               .then((response) => {
-                console.log("Resolve: ", response)
+                console.log("Response: ", response)
                 handleResponseMP(resolve, response);
               })
               .catch((error) => {
